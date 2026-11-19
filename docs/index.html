@@ -537,6 +537,12 @@ textarea#verify-msg { width: 100%; border: 1.5px solid var(--line); border-radiu
 
 .install-card { border-color: var(--accent); display: flex; flex-direction: column; gap: 6px; }
 
+/* accounts */
+.acct-card.off { border-color: var(--accent); }
+.ac input[type="text"], .ac input[type="email"], .ac input[type="password"] { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 11px; background: var(--card); width: 100%; }
+.linkish { border: 0; background: none; color: var(--accent-ink); font-weight: 700; padding: 0; text-decoration: underline; }
+.ad-rep summary { cursor: pointer; }
+
 </style>
 </head>
 <body>
@@ -1477,7 +1483,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.2.0',
+    version: '1.3.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1618,6 +1624,18 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       cgWrongMoves: 'النقلات الغلط:', cgOpenBoard: 'افتحه على لوحة التحليل',
       hwiStep2T: 'احفظ الملف في «الملفات»', hwiStep2: 'افتح الملف في واتساب، ودوس على زرار المشاركة ⬆️ واختار «حفظ في الملفات» (Save to Files).', hwiStep3T: 'ضيفه للتطبيق', hwiStep3: 'ارجع للصفحة دي ودوس «أضف ملف الواجب»، واختار الملف من «الملفات» (Files).',
       instTitle: 'نزّل التطبيق على موبايلك', instIos: 'من Safari: دوس زرار المشاركة ⬆️ تحت، وبعدين «إضافة إلى الشاشة الرئيسية» (Add to Home Screen). هتلاقي أيقونة التطبيق على الشاشة وبيفتح زي أي تطبيق.', instOther: 'من قايمة المتصفح اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».',
+      acMake: 'حسابك على سيرفر الأكاديمية', acMine: 'حسابي', acCardStudent: 'اعمل حساب، ونتايج واجبك هتوصل للكابتن لوحدها', acCardCoach: 'اعمل حساب عشان مجموعاتك وحضورك يتحفظوا على السيرفر ونتايج الطلاب توصلك لوحدها', acOn: 'متصل', acPending: 'مستني موافقة الأكاديمية',
+      acPendingLong: 'حسابك كمدرب مستني موافقة الأكاديمية. لحد ما يتوافق عليه بياناتك بتتحفظ على الموبايل بس.', acCoachHint: 'اعمل حساب على سيرفر الأكاديمية عشان بياناتك تتحفظ ونتايج الطلاب توصلك لوحدها.',
+      acNew: 'حساب جديد', acHave: 'عندي حساب', acUpStudent: 'اختار اسم مستخدم (حروف إنجليزي وأرقام) وكلمة سر. ادّي اسم المستخدم للكابتن عشان يضيفك لمجموعتك.', acUpCoach: 'اختار اسم مستخدم وكلمة سر. حسابك كمدرب هيتفعّل بعد موافقة الأكاديمية.', acInHow: 'ادخل باسم المستخدم وكلمة السر.',
+      acUser: 'اسم المستخدم', acUserHint: 'مثلاً: omar.ali', acEmail: 'البريد', acPw2: 'كلمة السر تاني', acCreate: 'إنشاء الحساب', acSignIn: 'دخول', acAdmin: 'دخول إدارة الأكاديمية', acNotAdmin: 'رجوع لدخول المدربين والطلاب',
+      acAdminHow: 'حساب إدارة الأكاديمية بالبريد ده بس. أول مرة: «إنشاء حساب الإدارة»، وبعدين افتح رسالة التفعيل اللي هتوصل على البريد ودوس «فعّلت البريد».', acAdminFirst: 'إنشاء حساب الإدارة (أول مرة)', acVerifySent: 'بعتنا رسالة تفعيل على بريدك. افتحها ودوس على اللينك، وبعدين ارجع هنا ودوس «فعّلت البريد».', acVerified: 'فعّلت البريد', acNotVerified: 'البريد لسه ما اتفعّلش. افتح رسالة التفعيل الأول.',
+      acForgot: 'نسيت كلمة السر', acResetSent: 'بعتنا رابط تغيير كلمة السر على البريد.',
+      acErrTaken: 'اسم المستخدم ده محجوز، اختار اسم تاني.', acErrLogin: 'اسم المستخدم أو كلمة السر غلط.', acErrWeak: 'كلمة السر لازم تكون 6 حروف أو أكتر.', acErrUser: 'اسم المستخدم من 3 لـ 30 حرف إنجليزي أو رقم (ومسموح . و _ و -).', acErrMany: 'محاولات كتير، استنى شوية وجرّب تاني.', acErrPerm: 'مش مسموح لحسابك يعمل ده.', acErrNet: 'مفيش اتصال بالسيرفر. اتأكد من النت وجرّب تاني.', acErrMatch: 'كلمتين السر مش زي بعض.',
+      acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'اسم المستخدم بتاعك @{u}. ادّيه للكابتن عشان يضيفك لمجموعتك، ونتايج واجبك هتوصله لوحدها.',
+      acRefresh: 'تحديث', acSignOut: 'خروج', acDelete: 'حذف الحساب وبياناته', acDeleteSure: 'متأكد؟ دوس تاني للحذف النهائي', acDeleted: 'اتمسح الحساب.', acSync: 'تحديث من السيرفر', acSynced: 'اتحدّث ✔',
+      cgStudentUser: 'اسم الطالب، أو @اسم_المستخدم لو عنده حساب', cgNoUser: 'مفيش متدرب باسم المستخدم @{u}.', cgUserAdded: 'اتضاف {n} ✔ ونتايجه هتوصلك لوحدها.',
+      rpSendApp: 'ابعت التقرير للأكاديمية (على السيرفر)', rpSentApp: 'التقرير وصل للأكاديمية ✔',
+      adTitle: 'إدارة الأكاديمية', adSub: 'موافقة المدربين والتقارير الشهرية', adPending: 'مدربين مستنيين موافقة', adNoPending: 'مفيش طلبات جديدة.', adApprove: 'موافقة', adCoaches: 'المدربين', adReportsN: '{n} تقرير', adBlock: 'إيقاف', adReports: 'التقارير الشهرية', adNoReports: 'لسه مفيش تقارير.',
       ssTitle: 'الحصص والحضور', ssToday: 'تسجيل حصة النهارده', ssNone: 'لسه مفيش حصص متسجلة للمجموعة دي.', ssNoStudents: 'ضيف طلاب للمجموعة الأول.', ssRowSub: 'حضر {p} من {n}', ssAbsentN: 'غاب {n}', ssAll: 'كل الحصص ({n})',
       ssDate: 'تاريخ الحصة', ssTopic: 'موضوع الحصة', ssTopicHint: 'اختياري، مثلاً: الشوكة', ssHow: 'علّم حضور كل طالب، وقيّم اللي حضر من 1 لـ 5 (1 ضعيف · 5 ممتاز). كل حاجة بتتحفظ أول بأول.',
       ssAllPresent: 'علّم الكل حاضر', ssSum: 'حضر {p} من {n} · متأخر {l} · غايب {a} · بعذر {x}', ssAttendance: 'حضور', ssUnmarked: 'لسه', ssNoteHint: 'ملاحظة على الطالب (اختياري)', ssDone: 'تم', ssSaved: 'اتحفظت الحصة ✔', ssDelete: 'حذف الحصة',
@@ -1664,7 +1682,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       licContent: 'الدروس والشعار واسم الأكاديمية ملك Hashem Chess Castle.',
       licNoWarranty: 'البرنامج مقدَّم بدون أي ضمان، طبقًا للبندين 15 و16 من الرخصة.',
       licFull: 'نص رخصة GPLv3 كاملًا', licSfSource: 'كود Stockfish المصدري', licSfjsSource: 'كود Stockfish.js 19.0.1', loading: 'جاري التحميل…',
-      privacy: 'الخصوصية', privacyText: 'التطبيق لا يجمع أي بيانات شخصية. كله بيشتغل من غير إنترنت، ما عدا قاعدة النهايات ومستكشف Lichess: دول بيبعتوا وضع الرقعة بس لـ Lichess. تقدّمك يُحفظ على جهازك فقط.',
+      privacy: 'الخصوصية', privacyText: 'من غير حساب: التطبيق لا يجمع أي بيانات شخصية، وتقدّمك يُحفظ على جهازك فقط. قاعدة النهايات ومستكشف Lichess بيبعتوا وضع الرقعة بس لـ Lichess. لو عملت حساب أكاديمية (اختياري): اسمك واسم المستخدم ونتايج الواجب (للمتدرب) أو المجموعات والحضور والتقييمات (للمدرب) بتتحفظ على سيرفر الأكاديمية (Google Firebase) وبيشوفها مدربين وإدارة الأكاديمية بس. تقدر تمسح حسابك وبياناته من «حسابي».',
       close: 'إغلاق', move: 'نقلة', moves: 'نقلات', puzzlesCount: '{n} لغز', stockfishOn: 'Stockfish يعمل', stockfishOff: 'Stockfish غير مضاف، يعمل المحرك المدمج'
     },
     en: {
@@ -1702,6 +1720,18 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       cgWrongMoves: 'Wrong moves:', cgOpenBoard: 'Open on the analysis board',
       hwiStep2T: 'Save the file to Files', hwiStep2: 'Open the file in WhatsApp, tap the Share button ⬆️ and choose “Save to Files”.', hwiStep3T: 'Add it to the app', hwiStep3: 'Come back to this page, tap “Add homework file” and pick the file in Files.',
       instTitle: 'Install the app on your phone', instIos: 'In Safari: tap the Share button ⬆️ at the bottom, then “Add to Home Screen”. The app gets its own icon and opens like any app.', instOther: 'From the browser menu choose “Install app” or “Add to Home screen”.',
+      acMake: 'Your academy account', acMine: 'My account', acCardStudent: 'Create an account and your homework results reach your coach by themselves', acCardCoach: 'Create an account so your groups and attendance are kept on the server and students’ results reach you by themselves', acOn: 'connected', acPending: 'waiting for the academy’s approval',
+      acPendingLong: 'Your coach account is waiting for the academy’s approval. Until then your data stays on this phone only.', acCoachHint: 'Create an account on the academy server so your data is kept safe and students’ results reach you by themselves.',
+      acNew: 'New account', acHave: 'I have an account', acUpStudent: 'Pick a username (English letters and digits) and a password. Give the username to your coach so they add you to your group.', acUpCoach: 'Pick a username and a password. Your coach account works after the academy approves it.', acInHow: 'Sign in with your username and password.',
+      acUser: 'Username', acUserHint: 'e.g. omar.ali', acEmail: 'E-mail', acPw2: 'Password again', acCreate: 'Create account', acSignIn: 'Sign in', acAdmin: 'Academy admin sign-in', acNotAdmin: 'Back to coach and student sign-in',
+      acAdminHow: 'The academy admin account uses this e-mail only. First time: “Create the admin account”, then open the verification e-mail, tap its link and come back to tap “I verified my e-mail”.', acAdminFirst: 'Create the admin account (first time)', acVerifySent: 'We sent a verification e-mail. Open it and tap the link, then come back and tap “I verified my e-mail”.', acVerified: 'I verified my e-mail', acNotVerified: 'The e-mail is not verified yet. Open the verification e-mail first.',
+      acForgot: 'Forgot password', acResetSent: 'We sent a password reset link to the e-mail.',
+      acErrTaken: 'This username is taken; pick another.', acErrLogin: 'Wrong username or password.', acErrWeak: 'The password needs 6 characters or more.', acErrUser: 'Usernames are 3 to 30 English letters or digits (. _ - allowed).', acErrMany: 'Too many attempts; wait a little and try again.', acErrPerm: 'Your account is not allowed to do this.', acErrNet: 'Cannot reach the server. Check the internet and try again.', acErrMatch: 'The two passwords differ.',
+      acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your username is @{u}. Give it to your coach so they add you to your group; your homework results reach them by themselves.',
+      acRefresh: 'Refresh', acSignOut: 'Sign out', acDelete: 'Delete account and its data', acDeleteSure: 'Sure? Tap again to delete for good', acDeleted: 'Account deleted.', acSync: 'Update from the server', acSynced: 'Updated ✔',
+      cgStudentUser: 'Student name, or @username if they have an account', cgNoUser: 'No student with the username @{u}.', cgUserAdded: '{n} added ✔ Their results will reach you by themselves.',
+      rpSendApp: 'Send the report to the academy (server)', rpSentApp: 'The academy received the report ✔',
+      adTitle: 'Academy admin', adSub: 'Approve coaches and read monthly reports', adPending: 'Coaches waiting for approval', adNoPending: 'No new requests.', adApprove: 'Approve', adCoaches: 'Coaches', adReportsN: '{n} reports', adBlock: 'Suspend', adReports: 'Monthly reports', adNoReports: 'No reports yet.',
       ssTitle: 'Classes and attendance', ssToday: 'Record today’s class', ssNone: 'No classes recorded for this group yet.', ssNoStudents: 'Add students to the group first.', ssRowSub: '{p} of {n} came', ssAbsentN: '{n} absent', ssAll: 'All classes ({n})',
       ssDate: 'Class date', ssTopic: 'Class topic', ssTopicHint: 'Optional, e.g. Forks', ssHow: 'Mark each student’s attendance and rate those who came from 1 to 5 (1 weak · 5 excellent). Everything is saved as you go.',
       ssAllPresent: 'Mark everyone present', ssSum: '{p} of {n} came · {l} late · {a} absent · {x} excused', ssAttendance: 'Attendance', ssUnmarked: 'Not marked', ssNoteHint: 'Note on the student (optional)', ssDone: 'Done', ssSaved: 'Class saved ✔', ssDelete: 'Delete class',
@@ -1748,7 +1778,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       licContent: 'The lessons, logo and academy name belong to Hashem Chess Castle.',
       licNoWarranty: 'The program comes with no warranty, as stated in sections 15 and 16 of the licence.',
       licFull: 'Full GPLv3 licence text', licSfSource: 'Stockfish source code', licSfjsSource: 'Stockfish.js 19.0.1 source', loading: 'Loading…',
-      privacy: 'Privacy', privacyText: 'This app collects no personal data. Everything works offline except the endgame tablebase and the Lichess explorer, which send only the board position to Lichess. Your progress is stored on your device only.',
+      privacy: 'Privacy', privacyText: 'Without an account the app collects no personal data and your progress stays on your device. The endgame tablebase and the Lichess explorer send only the board position to Lichess. With an (optional) academy account, your name, username and homework results (students) or groups, attendance and ratings (coaches) are stored on the academy server (Google Firebase) and seen only by the academy’s coaches and management. You can delete your account and its data from “My account”.',
       close: 'Close', move: 'move', moves: 'moves', puzzlesCount: '{n} puzzles', stockfishOn: 'Stockfish is running', stockfishOff: 'Stockfish is not bundled, the built-in engine is used'
     }
   };
@@ -1774,6 +1804,160 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var h = 5381;
     for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
     return (h >>> 0).toString(36);
+  };
+})(window);
+
+/*
+ * Hashem Chess Puzzle — accounts and sync with Firebase (free Spark plan), through the plain REST APIs (no SDK).
+ *  - Auth: email + password. Coaches and students sign in with a username (stored as <username>@hashemchess.app);
+ *    the academy admin signs in with his real, verified e-mail (see ADMIN_EMAIL and firestore.rules).
+ *  - Firestore collections: users/{uid}, coachdata/{uid}, sessions/{id}, results/{id}, reports/{id}.
+ *    Big payloads are stored as one JSON string field ("json") so the encoding stays simple.
+ */
+(function (root) {
+  'use strict';
+  var HCC = root.HCC, store = HCC.store;
+  var CFG = HCC.FIREBASE = {
+    apiKey: 'AIzaSyBP1og-13hK_vTToIVDEprL_1T71JGNPIQ',
+    projectId: 'hashem-chess-castle',
+    domain: 'hashemchess.app',                    // usernames become <username>@hashemchess.app
+    adminEmail: 'hashem.mostafa1994@gmail.com'
+  };
+  // the automated tests point these at a local mock server (?cloud=http://localhost:port)
+  var mock = /[?&]cloud=([^&#]+)/.exec(root.location ? root.location.search : '');
+  var AUTH = mock ? decodeURIComponent(mock[1]) + '/auth' : 'https://identitytoolkit.googleapis.com/v1';
+  var TOKEN = mock ? decodeURIComponent(mock[1]) + '/token' : 'https://securetoken.googleapis.com/v1/token';
+  var DB = (mock ? decodeURIComponent(mock[1]) + '/fs' : 'https://firestore.googleapis.com/v1') + '/projects/' + CFG.projectId + '/databases/(default)/documents';
+
+  function sess() { return store.data.cloud || null; }
+  function errCode(j) { return (j && j.error && (j.error.message || j.error.status)) || 'NETWORK'; }
+  function post(url, body, token) {
+    var h = { 'Content-Type': 'application/json' }; if (token) h.Authorization = 'Bearer ' + token;
+    return fetch(url, { method: 'POST', headers: h, body: JSON.stringify(body) }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(errCode(j)); e.status = r.status; throw e; } return j; });
+    });
+  }
+  function emailOf(user) { user = String(user || '').trim().toLowerCase(); return user.indexOf('@') > 0 ? user : user + '@' + CFG.domain; }
+  function normUser(u) { return String(u || '').trim().toLowerCase(); }
+  function keep(j) {
+    var s = { uid: j.localId || j.user_id, idToken: j.idToken || j.id_token, refresh: j.refreshToken || j.refresh_token, exp: Date.now() + (+(j.expiresIn || j.expires_in || 3600) - 120) * 1000, email: j.email || (sess() || {}).email };
+    store.data.cloud = Object.assign({}, sess() || {}, s); store.save(); return store.data.cloud;
+  }
+  /** A valid ID token, refreshed when it is about to expire. */
+  function token() {
+    var s = sess(); if (!s) return Promise.reject(new Error('SIGNED_OUT'));
+    if (s.idToken && Date.now() < s.exp) return Promise.resolve(s.idToken);
+    return fetch(TOKEN + '?key=' + CFG.apiKey, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(s.refresh) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(errCode(j)); return keep(j).idToken; }); });
+  }
+
+  // ---------------------------------------------------------------- Firestore values
+  function enc(v) {
+    if (v === null || v === undefined) return { nullValue: null };
+    if (typeof v === 'boolean') return { booleanValue: v };
+    if (typeof v === 'number') return Number.isInteger(v) ? { integerValue: String(v) } : { doubleValue: v };
+    if (Array.isArray(v)) return { arrayValue: { values: v.map(enc) } };
+    if (typeof v === 'object') { var f = {}; for (var k in v) f[k] = enc(v[k]); return { mapValue: { fields: f } }; }
+    return { stringValue: String(v) };
+  }
+  function dec(v) {
+    if (!v) return null;
+    if ('stringValue' in v) return v.stringValue;
+    if ('integerValue' in v) return +v.integerValue;
+    if ('doubleValue' in v) return v.doubleValue;
+    if ('booleanValue' in v) return v.booleanValue;
+    if ('nullValue' in v) return null;
+    if ('arrayValue' in v) return (v.arrayValue.values || []).map(dec);
+    if ('mapValue' in v) return decFields(v.mapValue.fields || {});
+    if ('timestampValue' in v) return v.timestampValue;
+    return null;
+  }
+  function decFields(f) { var o = {}; for (var k in f) o[k] = dec(f[k]); return o; }
+  function docOut(d) { var o = decFields(d.fields || {}); o._id = d.name.split('/').pop(); if (o.json) { try { o.data = JSON.parse(o.json); } catch (e) { o.data = null; } } return o; }
+  function req(method, path, body) {
+    return token().then(function (t) {
+      return fetch(DB + path, { method: method, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t }, body: body ? JSON.stringify(body) : undefined });
+    }).then(function (r) {
+      if (method === 'GET' && r.status === 404) return null;
+      return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(errCode(j)); e.status = r.status; throw e; } return j; });
+    });
+  }
+  var C = HCC.cloud = {
+    enc: enc, dec: dec, emailOf: emailOf,
+    signedIn: function () { return !!(sess() && sess().uid); },
+    uid: function () { return (sess() || {}).uid; },
+    email: function () { return (sess() || {}).email || ''; },
+    profile: function () { return (sess() || {}).profile || null; },
+    isAdmin: function () { var s = sess(); return !!(s && s.email === CFG.adminEmail); },
+    get: function (path) { return req('GET', '/' + path).then(function (d) { return d ? docOut(d) : null; }); },
+    /** Creates or replaces a document. */
+    set: function (path, obj) { var f = {}; for (var k in obj) f[k] = enc(obj[k]); return req('PATCH', '/' + path, { fields: f }).then(docOut); },
+    /** Updates only the given fields. */
+    update: function (path, obj) {
+      var f = {}, q = []; for (var k in obj) { f[k] = enc(obj[k]); q.push('updateMask.fieldPaths=' + encodeURIComponent(k)); }
+      return req('PATCH', '/' + path + '?' + q.join('&') + '&currentDocument.exists=true', { fields: f }).then(docOut);
+    },
+    del: function (path) { return req('DELETE', '/' + path); },
+    /** where: [[field, op, value]] with op one of EQUAL, IN, GREATER_THAN_OR_EQUAL ... */
+    query: function (coll, where, limit) {
+      var filters = (where || []).map(function (w) { return { fieldFilter: { field: { fieldPath: w[0] }, op: w[1], value: enc(w[2]) } }; });
+      var q = { from: [{ collectionId: coll }] };
+      if (filters.length === 1) q.where = filters[0]; else if (filters.length > 1) q.where = { compositeFilter: { op: 'AND', filters: filters } };
+      if (limit) q.limit = limit;
+      return req('POST', ':runQuery', { structuredQuery: q }).then(function (rows) { return (rows || []).filter(function (r) { return r.document; }).map(function (r) { return docOut(r.document); }); });
+    },
+
+    // ---------------------------------------------------------------- accounts
+    /** New account. role: 'student' | 'coach' (a coach waits for the academy's approval). */
+    signUp: function (username, password, name, role) {
+      var u = normUser(username);
+      if (!/^[a-z0-9._-]{3,30}$/.test(u)) return Promise.reject(new Error('BAD_USERNAME'));
+      return post(AUTH + '/accounts:signUp?key=' + CFG.apiKey, { email: emailOf(u), password: password, returnSecureToken: true }).then(function (j) {
+        keep(j);
+        var p = { name: name, username: u, role: role === 'coach' ? 'coach' : 'student', approved: false, at: Date.now() };
+        return C.set('users/' + j.localId, p).then(function () { store.data.cloud.profile = p; store.save(); return p; });
+      });
+    },
+    signIn: function (user, password) {
+      return post(AUTH + '/accounts:signInWithPassword?key=' + CFG.apiKey, { email: emailOf(user), password: password, returnSecureToken: true }).then(function (j) {
+        keep(j); return C.refreshProfile();
+      });
+    },
+    /** The academy admin's own account (his real e-mail). The e-mail must be verified before the rules trust it. */
+    adminSignUp: function (password) {
+      return post(AUTH + '/accounts:signUp?key=' + CFG.apiKey, { email: CFG.adminEmail, password: password, returnSecureToken: true }).then(function (j) {
+        keep(j); return post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'VERIFY_EMAIL', idToken: j.idToken });
+      });
+    },
+    adminVerified: function () {
+      return token().then(function (t) { return post(AUTH + '/accounts:lookup?key=' + CFG.apiKey, { idToken: t }); })
+        .then(function (j) { var u = (j.users || [])[0] || {}; if (u.emailVerified) { store.data.cloud.exp = 0; store.save(); } return !!u.emailVerified; });   // exp 0: the next call gets a fresh token that carries email_verified
+    },
+    resetPassword: function (email) { return post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'PASSWORD_RESET', email: email }); },
+    refreshProfile: function () {
+      if (C.isAdmin()) { store.data.cloud.profile = { name: 'Hashem Chess Castle', role: 'admin', approved: true }; store.save(); return Promise.resolve(store.data.cloud.profile); }
+      return C.get('users/' + C.uid()).then(function (p) { store.data.cloud.profile = p; store.save(); return p; });
+    },
+    signOut: function () { delete store.data.cloud; store.save(); },
+    /** Deletes the user's data and account (Google Play requires this to be possible in the app). */
+    deleteAccount: function () {
+      var uid = C.uid(), p = C.profile() || {};
+      var steps = [C.del('users/' + uid)];
+      if (p.role === 'coach') steps.push(C.del('coachdata/' + uid), C.query('sessions', [['coachUid', 'EQUAL', uid]]).then(function (l) { return Promise.all(l.map(function (s) { return C.del('sessions/' + s._id); })); }));
+      if (p.role === 'student') steps.push(C.query('results', [['studentUid', 'EQUAL', uid]]).then(function (l) { return Promise.all(l.map(function (s) { return C.del('results/' + s._id); })); }));
+      return Promise.all(steps).then(token).then(function (t) { return post(AUTH + '/accounts:delete?key=' + CFG.apiKey, { idToken: t }); }).then(function () { C.signOut(); });
+    }
+  };
+  /** Turns a Firebase error code into a message key for the UI. */
+  C.errKey = function (e) {
+    var m = String(e && e.message || e);
+    if (/EMAIL_EXISTS/.test(m)) return 'acErrTaken';
+    if (/INVALID_LOGIN|INVALID_PASSWORD|EMAIL_NOT_FOUND|INVALID_EMAIL/.test(m)) return 'acErrLogin';
+    if (/WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET/.test(m)) return 'acErrWeak';
+    if (/BAD_USERNAME/.test(m)) return 'acErrUser';
+    if (/TOO_MANY/.test(m)) return 'acErrMany';
+    if (/PERMISSION|403/.test(m)) return 'acErrPerm';
+    return 'acErrNet';
   };
 })(window);
 
@@ -3208,6 +3392,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (cv.page === 'inbox') return coachInbox();
     if (cv.page === 'session') return coachSession();
     if (cv.page === 'report') return coachReport();
+    if (cv.page === 'admin') return adminView();
     coachGroups();
   }
   function pasteSheet(after) {
@@ -3220,7 +3405,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     setTop({ title: t('cgTitle'), back: function () { state.cv = null; render(); } });
     page.appendChild(h('h2', { text: t('cgTitle') }));
     page.appendChild(h('p', { class: 'muted', text: t('cgHow') }));
-    page.appendChild(h('div', { class: 'btns' }, btn(t('cgPaste'), 'primary', function () { pasteSheet(render); }, 'chat')));
+    page.appendChild(h('div', { class: 'btns' }, btn(t('cgPaste'), cloudCoach() ? '' : 'primary', function () { pasteSheet(render); }, 'chat'),
+      cloudCoach() ? btn(t('acSync'), 'primary', function () { var b = this; b.disabled = true; coachPull().then(function () { HCC.toast(t('acSynced')); render(); }, function (e) { HCC.toast(t(HCC.cloud.errKey(e))); b.disabled = false; }); }, 'redo') : null));
+    var an = accountNote(); if (an) page.appendChild(an);
     var lastM = addMonths(monthOf(todayIso()), -1);
     if (!d.sent[lastM] && d.sessions.some(function (x) { return monthOf(x.date) === lastM; }))
       page.appendChild(h('div', { class: 'note bad rp-remind' }, t('rpRemind', { m: monthName(lastM) }), ' ',
@@ -3287,14 +3474,16 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var list = h('div', { class: 'list' });
     g.students.forEach(function (s) {
       var mine = res.filter(function (r) { return normName(r.name) === normName(s); });
-      list.appendChild(h('div', { class: 'unit' }, h('span', { class: 'grow', dir: 'auto', text: s }), h('span', { class: 'muted small', text: t('cgSent', { n: mine.length }) }),
-        h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () { g.students = g.students.filter(function (x) { return x !== s; }); store.save(); render(); } }, icon('close'))));
+      var u = (g.uids || {})[s];
+      list.appendChild(h('div', { class: 'unit' }, h('span', { class: 'grow', dir: 'auto' }, s, u ? h('span', { class: 'muted small ltr', text: ' @' + u.username }) : null), h('span', { class: 'muted small', text: t('cgSent', { n: mine.length }) }),
+        h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () { g.students = g.students.filter(function (x) { return x !== s; }); if (g.uids) delete g.uids[s]; store.save(); render(); } }, icon('close'))));
     });
     page.appendChild(list);
-    var stIn = h('input', { type: 'text', id: 'cg-student', dir: 'auto', placeholder: t('cgStudentName') });
+    var stIn = h('input', { type: 'text', id: 'cg-student', dir: 'auto', placeholder: t(cloudCoach() ? 'cgStudentUser' : 'cgStudentName') });
     page.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'cg-student', text: t('cgAddStudent') }), h('div', { class: 'row' }, stIn,
       btn(t('cgAdd'), '', function () {
         var n = stIn.value.replace(/\s+/g, ' ').trim(); if (!n) { stIn.focus(); return; }
+        if (n.charAt(0) === '@') { addByUsername(g, n.slice(1)); return; }
         var other = groupOf(n); if (other) other.students = other.students.filter(function (x) { return normName(x) !== normName(n); });
         g.students.push(n); store.save(); render();
       }))));
@@ -3581,7 +3770,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var num = (HCC.APP.reportWhatsapp || HCC.APP.whatsapp || '').replace(/\D/g, '');
     var copyB = btn(t('rpCopy'), '', function () { copyText(text(), copyB, t('rpCopy')); });
     page.appendChild(h('div', { class: 'btns col rp-send' },
-      num ? h('button', { type: 'button', class: 'btn wa', onclick: function () { open('https://wa.me/' + num + '?text=' + encodeURIComponent(text())); } }, icon('chat'), t('rpSendAcademy')) : null,
+      cloudCoach() ? btn(t('rpSendApp'), 'primary', function () {
+        var b = this; b.disabled = true;
+        HCC.cloud.set('reports/' + HCC.cloud.uid() + '_' + month + '_' + (cv.gid || 'all'), { coachUid: HCC.cloud.uid(), coachName: (store.data.user || {}).name || '', month: month, scope: cv.gid || 'all', text: text(), at: Date.now() })
+          .then(function () { d.sent[month] = Date.now(); store.save(); HCC.toast(t('rpSentApp')); render(); }, function (e) { b.disabled = false; HCC.toast(t(HCC.cloud.errKey(e))); });
+      }, 'upload') : null,
+      num ? h('button', { type: 'button', class: 'btn' + (cloudCoach() ? '' : ' wa'), onclick: function () { open('https://wa.me/' + num + '?text=' + encodeURIComponent(text())); } }, icon('chat'), t('rpSendAcademy')) : null,
       btn(t('rpSendOther'), '', function () { open('https://wa.me/?text=' + encodeURIComponent(text())); }, 'share'),
       copyB,
       h('div', { class: 'sh-manual', hidden: 'hidden' }, h('p', { class: 'muted', text: t('shCopyFail') }), h('textarea', { readonly: 'readonly', rows: '4', dir: 'auto' }))));
@@ -3594,8 +3788,222 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     return reportText(gs.map(function (g) { return monthStats(g, month); }), month, '');
   };
 
+  // ---------------------------------------------------------------- accounts and sync (Firebase, see cloud.js)
+  var CL = HCC.cloud;
+  function cloudCoach() { var p = CL.profile(); return CL.signedIn() && p && p.role === 'coach' && p.approved === true && role() === 'coach'; }
+  function cloudStudent() { var p = CL.profile(); return CL.signedIn() && p && p.role === 'student'; }
+  /** Home card: sign in / account status. */
+  function accountCard() {
+    var p = CL.profile(), sub;
+    if (!CL.signedIn()) sub = t(role() === 'coach' ? 'acCardCoach' : 'acCardStudent');
+    else if (CL.isAdmin()) sub = CL.email();
+    else sub = (p ? '@' + p.username : '') + (p && p.role === 'coach' && !p.approved ? ' · ' + t('acPending') : ' · ' + t('acOn'));
+    return h('button', { type: 'button', class: 'card tap acct-card' + (CL.signedIn() ? '' : ' off'), onclick: accountSheet },
+      h('span', { class: 'cg-ic', text: CL.signedIn() ? '☁️' : '👤' }),
+      h('div', { class: 'grow' }, h('h3', { text: t(CL.signedIn() ? 'acMine' : 'acMake') }), h('span', { class: 'muted ltr-auto', dir: 'auto', text: sub })), chev());
+  }
+  function accountNote() {
+    if (role() !== 'coach') return null;
+    var p = CL.profile();
+    if (!CL.signedIn()) return h('div', { class: 'note' }, t('acCoachHint') + ' ', h('button', { type: 'button', class: 'linkish', onclick: accountSheet, text: t('acMake') }));
+    if (p && !p.approved) return h('div', { class: 'note bad', text: t('acPendingLong') });
+    return null;
+  }
+  function accountSheet() {
+    var box = h('div', { class: 'list ac' }), msg = h('div');
+    function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
+    function ok(k) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note good', text: t(k) })); }
+    function busy(b, on) { b.disabled = on; }
+    if (CL.signedIn()) {
+      var p = CL.profile() || {};
+      box.appendChild(h('div', { class: 'card' }, h('h3', { dir: 'auto', text: p.name || CL.email() }),
+        h('p', { class: 'muted ltr', text: p.username ? '@' + p.username : CL.email() }),
+        h('p', { class: 'small', text: t(CL.isAdmin() ? 'acRoleAdmin' : p.role === 'coach' ? (p.approved ? 'acRoleCoach' : 'acPendingLong') : 'acRoleStudent') })));
+      if (p.role === 'student') box.appendChild(h('div', { class: 'note', text: t('acStudentInfo', { u: p.username }) }));
+      var sure = false;
+      box.appendChild(msg);
+      box.appendChild(h('div', { class: 'btns col' },
+        btn(t('acRefresh'), '', function () { var b = this; busy(b, true); CL.refreshProfile().then(function () { return cloudStart(); }).then(function () { closeSheet(); render(); }, function (e) { busy(b, false); fail(e); }); }, 'redo'),
+        btn(t('acSignOut'), '', function () { CL.signOut(); closeSheet(); render(); }),
+        btn(t('acDelete'), 'danger', function () {
+          var b = this; if (!sure) { sure = true; b.textContent = t('acDeleteSure'); return; }
+          busy(b, true); CL.deleteAccount().then(function () { closeSheet(); render(); HCC.toast(t('acDeleted')); }, function (e) { busy(b, false); fail(e); });
+        })));
+      openSheet(t('acMine'), box); return;
+    }
+    var mode = 'in', admin = false, userIn, pwIn, pw2In;
+    function draw() {
+      HCC.clear(box);
+      if (!admin) box.appendChild(h('div', { class: 'seg', role: 'group' },
+        h('button', { type: 'button', 'aria-pressed': String(mode === 'up'), text: t('acNew'), onclick: function () { mode = 'up'; draw(); } }),
+        h('button', { type: 'button', 'aria-pressed': String(mode === 'in'), text: t('acHave'), onclick: function () { mode = 'in'; draw(); } })));
+      box.appendChild(h('p', { class: 'muted', text: t(admin ? 'acAdminHow' : mode === 'up' ? (role() === 'coach' ? 'acUpCoach' : 'acUpStudent') : 'acInHow') }));
+      userIn = h('input', { type: admin ? 'email' : 'text', id: 'ac-user', autocomplete: 'username', autocapitalize: 'none', dir: 'ltr', value: admin ? HCC.FIREBASE.adminEmail : '', readonly: admin ? 'readonly' : null, placeholder: t('acUserHint') });
+      pwIn = h('input', { type: 'password', id: 'ac-pw', autocomplete: mode === 'up' ? 'new-password' : 'current-password', dir: 'ltr' });
+      pw2In = h('input', { type: 'password', id: 'ac-pw2', autocomplete: 'new-password', dir: 'ltr' });
+      box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-user', text: t(admin ? 'acEmail' : 'acUser') }), userIn));
+      box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-pw', text: t('password') }), pwIn));
+      if (mode === 'up') box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-pw2', text: t('acPw2') }), pw2In));
+      box.appendChild(msg);
+      box.appendChild(h('div', { class: 'btns col' }, btn(t(mode === 'up' ? 'acCreate' : 'acSignIn'), 'primary', go1)));
+      if (admin && mode === 'up') box.appendChild(btn(t('acVerified'), '', function () {
+        var b = this; busy(b, true);
+        CL.adminVerified().then(function (v) { busy(b, false); if (!v) return fail('acNotVerified'); return CL.refreshProfile().then(function () { closeSheet(); render(); }); }, function (e) { busy(b, false); fail(e); });
+      }));
+      box.appendChild(h('div', { class: 'btns' },
+        admin ? btn(t(mode === 'up' ? 'acHave' : 'acAdminFirst'), '', function () { mode = mode === 'up' ? 'in' : 'up'; draw(); }) : null,
+        admin && mode === 'in' ? btn(t('acForgot'), '', function () { CL.resetPassword(HCC.FIREBASE.adminEmail).then(function () { ok('acResetSent'); }, fail); }) : null,
+        btn(t(admin ? 'acNotAdmin' : 'acAdmin'), '', function () { admin = !admin; mode = 'in'; HCC.clear(msg); draw(); })));
+    }
+    function go1() {
+      var b = this, u = userIn.value.trim(), pw = pwIn.value;
+      if (!u) return fail('acErrUser');
+      if (pw.length < 6) return fail('acErrWeak');
+      if (mode === 'up' && pw !== pw2In.value) return fail('acErrMatch');
+      busy(b, true); HCC.clear(msg);
+      var job;
+      if (admin) job = mode === 'up' ? CL.adminSignUp(pw).then(function () { busy(b, false); ok('acVerifySent'); draw(); return 'wait'; }) : CL.signIn(u, pw);
+      else if (mode === 'up') job = CL.signUp(u, pw, (store.data.user || {}).name || u, role());
+      else job = CL.signIn(u, pw);
+      job.then(function (r) {
+        if (r === 'wait') return;
+        var p = CL.profile();
+        if (!admin && !p) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
+        if (admin && !CL.isAdmin()) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
+        if (p && p.name && store.data.user && p.role !== 'admin') { store.data.user.name = p.name; store.data.studentName = p.name; if (p.role !== store.data.user.role && p.role !== 'coach') store.data.user.role = p.role; store.save(); }
+        return cloudStart().then(function () { closeSheet(); render(); HCC.toast(t('acWelcome')); });
+      }).catch(function (e) { busy(b, false); fail(e); });
+    }
+    draw();
+    openSheet(t('acMake'), box);
+  }
+  HCC.accountSheet = accountSheet;
+
+  // student: the homework result goes to the server by itself after every exercise
+  var hwTimer = null, hwPending = {};
+  function hwChanged(unitId) {
+    if (!cloudStudent()) return;
+    content.courses.forEach(function (c) { if (c.units.some(function (u) { return u.id === unitId; })) hwPending[c.id || pick(c.title)] = c; });
+    clearTimeout(hwTimer); hwTimer = setTimeout(uploadHomework, 1500);
+  }
+  function uploadHomework() {
+    var list = Object.keys(hwPending).map(function (k) { return hwPending[k]; }); hwPending = {};
+    var p = CL.profile() || {}, name = p.name || store.data.studentName || (store.data.user || {}).name || '';
+    return Promise.all(list.map(function (c) {
+      var r = parseResults(homeworkMessage(c, name))[0]; if (!r) return null;
+      return CL.set('results/' + CL.uid() + '_' + HCC.hash(r.title), { studentUid: CL.uid(), username: p.username || '', name: name, title: r.title, json: JSON.stringify(r), at: Date.now() });
+    })).catch(function () { list.forEach(function (c) { hwPending[c.id || pick(c.title)] = c; }); });   // offline: try again with the next change
+  }
+  HCC._uploadHomework = function () { content.courses.forEach(function (c) { hwPending[c.id || pick(c.title)] = c; }); return uploadHomework(); };
+
+  // coach: groups, notes and classes live on the server; homework results come from the students' accounts
+  var lastPush = null, pushTimer = null, pulling = false;
+  function coachSnap() {
+    var d = coachData(), ss = {};
+    d.sessions.forEach(function (x) { ss[x.id] = JSON.stringify(x); });
+    return { main: JSON.stringify({ groups: d.groups, notes: d.notes, sent: d.sent }), sessions: ss };
+  }
+  function coachPush() {
+    if (!cloudCoach() || pulling) return Promise.resolve();
+    var now = coachSnap(), prev = lastPush || { main: '', sessions: {} }, uid = CL.uid(), jobs = [];
+    if (now.main !== prev.main) jobs.push(CL.set('coachdata/' + uid, { json: now.main, at: Date.now() }));
+    Object.keys(now.sessions).forEach(function (id) {
+      if (now.sessions[id] !== prev.sessions[id]) { var x = JSON.parse(now.sessions[id]); jobs.push(CL.set('sessions/' + id, { coachUid: uid, month: monthOf(x.date), json: now.sessions[id], at: Date.now() })); }
+    });
+    Object.keys(prev.sessions).forEach(function (id) { if (!now.sessions[id]) jobs.push(CL.del('sessions/' + id)); });
+    if (!jobs.length) return Promise.resolve();
+    return Promise.all(jobs).then(function () { lastPush = now; coachData().syncedAt = Date.now(); }, function () { /* offline: the next change retries */ });
+  }
+  function pushSoon() { clearTimeout(pushTimer); pushTimer = setTimeout(coachPush, 1200); }
+  /** Brings the coach's data from the server (server copy wins), then the students' results. */
+  function coachPull() {
+    if (!cloudCoach()) return Promise.resolve();
+    var uid = CL.uid(), d = coachData(); pulling = true;
+    return Promise.all([CL.get('coachdata/' + uid), CL.query('sessions', [['coachUid', 'EQUAL', uid]])]).then(function (res) {
+      var main = res[0], ss = res[1];
+      if (main && main.data) { d.groups = main.data.groups || []; d.notes = main.data.notes || {}; d.sent = main.data.sent || {}; }
+      else if (d.groups.length) lastPush = null;   // first sign-in on this phone: upload what is here
+      if (main || ss.length) d.sessions = ss.map(function (x) { return x.data; }).filter(Boolean);
+      store.save(); pulling = false;
+      if (main) lastPush = coachSnap();
+      return fetchResults();
+    }).then(function () { pulling = false; return coachPush(); }, function (e) { pulling = false; throw e; });
+  }
+  function fetchResults() {
+    var d = coachData(), byUid = {};
+    d.groups.forEach(function (g) { Object.keys(g.uids || {}).forEach(function (name) { byUid[g.uids[name].uid] = name; }); });
+    var uids = Object.keys(byUid); if (!uids.length) return Promise.resolve();
+    var chunks = []; for (var i = 0; i < uids.length; i += 30) chunks.push(uids.slice(i, i + 30));
+    return Promise.all(chunks.map(function (c) { return CL.query('results', [['studentUid', 'IN', c]]); })).then(function (lists) {
+      [].concat.apply([], lists).forEach(function (doc) {
+        var r = doc.data; if (!r) return;
+        r.name = byUid[doc.studentUid] || r.name; r.at = doc.at || r.at; r.cloud = true;
+        d.results = d.results.filter(function (x) { return !(normName(x.name) === normName(r.name) && x.title === r.title); });
+        d.results.push(r);
+      });
+      store.save();
+    });
+  }
+  function addByUsername(g, user) {
+    user = String(user || '').trim().toLowerCase();
+    if (!cloudCoach()) { HCC.toast(t('acCoachHint')); return; }
+    CL.query('users', [['username', 'EQUAL', user]], 1).then(function (l) {
+      var p = l[0]; if (!p || p.role !== 'student') { HCC.toast(t('cgNoUser', { u: user })); return; }
+      var name = p.name || user, other = groupOf(name);
+      if (other && other !== g) { other.students = other.students.filter(function (x) { return normName(x) !== normName(name); }); if (other.uids) delete other.uids[name]; }
+      if (g.students.indexOf(name) < 0) g.students.push(name);
+      g.uids = g.uids || {}; g.uids[name] = { uid: p._id, username: user };
+      store.save(); return fetchResults().then(function () { HCC.toast(t('cgUserAdded', { n: name })); render(); });
+    }, function (e) { HCC.toast(t(CL.errKey(e))); });
+  }
+  /** On start and after signing in. */
+  function cloudStart() {
+    if (!CL.signedIn()) return Promise.resolve();
+    return CL.refreshProfile().then(function () {
+      if (cloudCoach()) return coachPull();
+      if (cloudStudent()) return HCC._uploadHomework();
+    }).then(function () { if (!state.onboard && state.tab === 'home') render(); }, function () { /* offline: keep working locally */ });
+  }
+  // every save of the coach's data is pushed a moment later
+  (function () { var save0 = store.save; store.save = function () { var r = save0.apply(store, arguments); if (cloudCoach() && !pulling) pushSoon(); return r; }; })();
+  HCC._coachPull = coachPull; HCC._coachPush = coachPush;
+
+  // ---------------------------------------------------------------- the academy admin: approve coaches, read the monthly reports
+  function adminView() {
+    setTop({ title: t('adTitle'), back: function () { state.cv = null; render(); } });
+    var page = h('div', { class: 'page cg ad' }), body = h('div', { class: 'cg' }, h('p', { class: 'muted', text: t('loading') }));
+    page.appendChild(h('h2', { text: t('adTitle') }));
+    page.appendChild(body);
+    mainEl.appendChild(page);
+    Promise.all([CL.query('users', [['role', 'EQUAL', 'coach']]), CL.query('reports', [])]).then(function (res) {
+      HCC.clear(body);
+      var coaches = res[0], reports = res[1].sort(function (a, b) { return b.at - a.at; });
+      var pending = coaches.filter(function (c) { return !c.approved; }), ok = coaches.filter(function (c) { return c.approved; });
+      body.appendChild(h('div', { class: 'eyebrow', text: t('adPending') + ' (' + pending.length + ')' }));
+      if (!pending.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoPending') }));
+      pending.forEach(function (c) {
+        body.appendChild(h('div', { class: 'card row' }, h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: c.name }), h('span', { class: 'muted small ltr', text: '@' + c.username })),
+          btn(t('adApprove'), 'primary', function () { var b = this; b.disabled = true; CL.update('users/' + c._id, { approved: true }).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }),
+          btn(t('remove'), 'danger', function () { var b = this; b.disabled = true; CL.del('users/' + c._id).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); })));
+      });
+      body.appendChild(h('div', { class: 'eyebrow', text: t('adCoaches') + ' (' + ok.length + ')' }));
+      ok.forEach(function (c) {
+        var mine = reports.filter(function (r) { return r.coachUid === c._id; });
+        body.appendChild(h('div', { class: 'card row' }, h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: c.name }), h('span', { class: 'muted small' }, h('span', { class: 'ltr', text: '@' + c.username }), ' · ' + t('adReportsN', { n: mine.length }))),
+          btn(t('adBlock'), '', function () { var b = this; b.disabled = true; CL.update('users/' + c._id, { approved: false }).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); })));
+      });
+      body.appendChild(h('div', { class: 'eyebrow', text: t('adReports') }));
+      if (!reports.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoReports') }));
+      reports.forEach(function (r) {
+        var copyB = btn(t('rpCopy'), '', function () { copyText(r.text, copyB, t('rpCopy')); });
+        body.appendChild(h('details', { class: 'card ad-rep' }, h('summary', {}, h('b', { dir: 'auto', text: r.coachName + ' · ' + monthName(r.month) }), h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(r.at)) })),
+          h('pre', { class: 'hw-preview', dir: 'auto', text: r.text }), h('div', { class: 'btns' }, copyB), h('div', { class: 'sh-manual', hidden: 'hidden' }, h('textarea', { readonly: 'readonly', rows: '4' }))));
+      });
+    }, function (e) { HCC.clear(body); body.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+  }
+
   function homeView() {
-    if (state.cv && role() === 'coach') return coachView();
+    if (state.cv && (role() === 'coach' || (state.cv.page === 'admin' && HCC.cloud.isAdmin()))) return coachView();
     setTop();
     var next = content.nextUnit(), pz = store.data.puzzle, page = h('div', { class: 'page' });
     var started = Object.keys(store.data.progress).length > 0, r = role();
@@ -3621,6 +4029,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('span', { class: 'muted', text: pz.solved + ' ' + t('solved') })),
       h('button', { type: 'button', class: 'card tap', style: 'flex-direction:column;align-items:flex-start;gap:4px', onclick: function () { go('play'); } },
         h('span', { class: 'eyebrow', text: t('play') }), h('h3', { text: t('playComputer') }), h('span', { class: 'muted', text: t('playSub') }))));
+    if (HCC.cloud.isAdmin()) page.appendChild(h('button', { type: 'button', class: 'card tap rp-card admin-card', onclick: function () { state.cv = { page: 'admin' }; render(); } },
+      h('span', { class: 'cg-ic', text: '🏰' }), h('div', { class: 'grow' }, h('h3', { text: t('adTitle') }), h('span', { class: 'muted', text: t('adSub') })), chev()));
+    if (r !== 'visitor') page.appendChild(accountCard());
     if (r === 'coach') {
       var cd = coachData();
       page.appendChild(h('button', { type: 'button', class: 'card tap coach-card', onclick: function () { state.cv = { page: 'groups' }; render(); } },
@@ -3906,14 +4317,14 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     else { r = hw[id] = hwRec(r); if (r.done) return; }
     r.m++;
     if (san && r.w.length < 8 && r.w.indexOf(san) < 0) r.w.push(san);
-    store.save();
+    store.save(); hwChanged(id);
   }
   /** Called when the exercise is solved. */
   function hwSolved(id, hints, t0) {
     var hw = store.data.hw = store.data.hw || {}, r = hw[id];
-    if (!r) { hw[id] = { v: 2, s: hints ? 2 : 3, pts: hints ? 2 : 3, m: 0, h: hints || 0, w: [], t: Date.now() - t0, at: Date.now(), done: true }; store.save(); return; }
+    if (!r) { hw[id] = { v: 2, s: hints ? 2 : 3, pts: hints ? 2 : 3, m: 0, h: hints || 0, w: [], t: Date.now() - t0, at: Date.now(), done: true }; store.save(); hwChanged(id); return; }
     r = hw[id] = hwRec(r);
-    if (!r.done) { r.done = true; r.solvedAt = Date.now(); store.save(); }
+    if (!r.done) { r.done = true; r.solvedAt = Date.now(); store.save(); hwChanged(id); }
   }
   HCC._hwMiss = hwMiss; HCC._hwSolved = hwSolved;   // for the tests
   /** Homework score from each exercise's first answer: 3 points per exercise. */
@@ -5640,7 +6051,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       if (tab !== state.tab && TABS.some(function (x) { return x[0] === tab; })) { state.tab = tab; renderTabs(); render(); }
     });
     setTop(); renderTabs();
-    content.load().then(function () { render(); });
+    content.load().then(function () { render(); cloudStart(); });
     HCC.lichess.finishSignIn().then(function (ok) { if (ok) { store.data.exSource = store.data.exSource && store.data.exSource !== 'local' ? store.data.exSource : 'masters'; store.save(); if (state.tab === 'analysis' && !sheetEl) render(); } });
     // When Stockfish turns out to be bundled, refresh the screens that offer it.
     HCC.sf.init().then(function (ok) { if (ok && !sheetEl && (state.tab === 'analysis' || (state.tab === 'play' && !store.data.play))) render(); });
