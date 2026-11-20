@@ -543,6 +543,24 @@ textarea#verify-msg { width: 100%; border: 1.5px solid var(--line); border-radiu
 .linkish { border: 0; background: none; color: var(--accent-ink); font-weight: 700; padding: 0; text-decoration: underline; }
 .ad-rep summary { cursor: pointer; }
 
+/* password box with the eye button (the field is LTR, so the eye sits on the right) */
+.pw-wrap { position: relative; direction: ltr; }
+.pw-wrap input { width: 100%; padding-right: 46px !important; }
+.pw-wrap .pw-eye { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border: 0; background: transparent; color: var(--ink-2); display: grid; place-items: center; border-radius: 8px; }
+.pw-wrap .pw-eye.on { color: var(--accent-ink); }
+.pw-wrap .pw-eye.on::after { content: ''; position: absolute; width: 22px; height: 2px; background: currentColor; transform: rotate(-45deg); border-radius: 2px; }
+.pw-wrap .pw-eye svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.ob-mode { margin: 4px 0 2px; }
+.ob-alts { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 6px; }
+.ob-alts .btn { width: 100%; }
+.ob input[type="password"], .ob #ob-user { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 11px; background: var(--card); width: 100%; }
+
+.ob-forgot { align-self: flex-start; margin-top: 6px; font-size: 14px; }
+.ob .field { display: flex; flex-direction: column; }
+.ac-mail { display: flex; flex-direction: column; gap: 8px; }
+.ac-mail input { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 11px; background: var(--card); width: 100%; }
+
 </style>
 </head>
 <body>
@@ -1483,7 +1501,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.3.0',
+    version: '1.3.3',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1624,13 +1642,17 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       cgWrongMoves: 'النقلات الغلط:', cgOpenBoard: 'افتحه على لوحة التحليل',
       hwiStep2T: 'احفظ الملف في «الملفات»', hwiStep2: 'افتح الملف في واتساب، ودوس على زرار المشاركة ⬆️ واختار «حفظ في الملفات» (Save to Files).', hwiStep3T: 'ضيفه للتطبيق', hwiStep3: 'ارجع للصفحة دي ودوس «أضف ملف الواجب»، واختار الملف من «الملفات» (Files).',
       instTitle: 'نزّل التطبيق على موبايلك', instIos: 'من Safari: دوس زرار المشاركة ⬆️ تحت، وبعدين «إضافة إلى الشاشة الرئيسية» (Add to Home Screen). هتلاقي أيقونة التطبيق على الشاشة وبيفتح زي أي تطبيق.', instOther: 'من قايمة المتصفح اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».',
+      fgHow: 'اكتب اسم المستخدم أو البريد اللي عملت بيه الحساب.', fgSend: 'ترجيع كلمة السر', fgSent: 'بعتنا رابط تغيير كلمة السر على {e}. افتحه من البريد واختار كلمة سر جديدة، وبعدين ادخل بيها.', fgNoMail: 'الحساب ده باسم مستخدم من غير بريد، فمينفعش يترجّع برابط. هيتفتح واتساب برسالة للأكاديمية، وهي هتمسح الحساب القديم عشان تعمل حساب جديد بنفس الاسم، والكابتن يضيفك تاني.', fgWaText: 'السلام عليكم، نسيت كلمة السر بتاعة تطبيق Hashem Chess Puzzle. اسم المستخدم: {u}', fgTip: 'نصيحة: لو عملت حساب ببريدك الإلكتروني بدل اسم المستخدم، تقدر ترجّع كلمة السر بنفسك في أي وقت.',
+      acMailTitle: 'اربط بريدك', acMailWhy: 'عشان لو نسيت كلمة السر تقدر ترجّعها بنفسك. هيوصلك رابط على البريد، وبعد ما تفتحه بتدخل بالبريد بدل اسم المستخدم.', acLinkMail: 'ابعت رابط التأكيد', acLinkSent: 'بعتنا رابط على {e}. افتحه، وبعدين ادخل بالبريد ده وكلمة السر نفسها.',
+      obName: 'اسمك', obUserRule: 'اسم بالإنجليزي من غير مسافات (مثلاً omar.ali)، أو بريدك الإلكتروني. بالبريد تقدر ترجّع كلمة السر لوحدك لو نسيتها.', obVisitor: 'تصفّح كزائر', obOffline: 'استخدام من غير حساب (البيانات على الموبايل بس)', obBackAccount: 'رجوع لتسجيل الدخول',
+      pwShow: 'إظهار كلمة السر', pwHide: 'إخفاء كلمة السر',
       acMake: 'حسابك على سيرفر الأكاديمية', acMine: 'حسابي', acCardStudent: 'اعمل حساب، ونتايج واجبك هتوصل للكابتن لوحدها', acCardCoach: 'اعمل حساب عشان مجموعاتك وحضورك يتحفظوا على السيرفر ونتايج الطلاب توصلك لوحدها', acOn: 'متصل', acPending: 'مستني موافقة الأكاديمية',
       acPendingLong: 'حسابك كمدرب مستني موافقة الأكاديمية. لحد ما يتوافق عليه بياناتك بتتحفظ على الموبايل بس.', acCoachHint: 'اعمل حساب على سيرفر الأكاديمية عشان بياناتك تتحفظ ونتايج الطلاب توصلك لوحدها.',
       acNew: 'حساب جديد', acHave: 'عندي حساب', acUpStudent: 'اختار اسم مستخدم (حروف إنجليزي وأرقام) وكلمة سر. ادّي اسم المستخدم للكابتن عشان يضيفك لمجموعتك.', acUpCoach: 'اختار اسم مستخدم وكلمة سر. حسابك كمدرب هيتفعّل بعد موافقة الأكاديمية.', acInHow: 'ادخل باسم المستخدم وكلمة السر.',
-      acUser: 'اسم المستخدم', acUserHint: 'مثلاً: omar.ali', acEmail: 'البريد', acPw2: 'كلمة السر تاني', acCreate: 'إنشاء الحساب', acSignIn: 'دخول', acAdmin: 'دخول إدارة الأكاديمية', acNotAdmin: 'رجوع لدخول المدربين والطلاب',
+      acUser: 'اسم المستخدم أو البريد', acUserHint: 'مثلاً: omar.ali', acEmail: 'البريد', acPw2: 'كلمة السر تاني', acCreate: 'إنشاء الحساب', acSignIn: 'دخول', acAdmin: 'دخول إدارة الأكاديمية', acNotAdmin: 'رجوع لدخول المدربين والطلاب',
       acAdminHow: 'حساب إدارة الأكاديمية بالبريد ده بس. أول مرة: «إنشاء حساب الإدارة»، وبعدين افتح رسالة التفعيل اللي هتوصل على البريد ودوس «فعّلت البريد».', acAdminFirst: 'إنشاء حساب الإدارة (أول مرة)', acVerifySent: 'بعتنا رسالة تفعيل على بريدك. افتحها ودوس على اللينك، وبعدين ارجع هنا ودوس «فعّلت البريد».', acVerified: 'فعّلت البريد', acNotVerified: 'البريد لسه ما اتفعّلش. افتح رسالة التفعيل الأول.',
-      acForgot: 'نسيت كلمة السر', acResetSent: 'بعتنا رابط تغيير كلمة السر على البريد.',
-      acErrTaken: 'اسم المستخدم ده محجوز، اختار اسم تاني.', acErrLogin: 'اسم المستخدم أو كلمة السر غلط.', acErrWeak: 'كلمة السر لازم تكون 6 حروف أو أكتر.', acErrUser: 'اسم المستخدم من 3 لـ 30 حرف إنجليزي أو رقم (ومسموح . و _ و -).', acErrMany: 'محاولات كتير، استنى شوية وجرّب تاني.', acErrPerm: 'مش مسموح لحسابك يعمل ده.', acErrNet: 'مفيش اتصال بالسيرفر. اتأكد من النت وجرّب تاني.', acErrMatch: 'كلمتين السر مش زي بعض.',
+      acForgot: 'نسيت كلمة السر؟', acResetSent: 'بعتنا رابط تغيير كلمة السر على البريد.',
+      acErrTaken: 'اسم المستخدم ده محجوز، اختار اسم تاني.', acErrLogin: 'اسم المستخدم أو كلمة السر غلط.', acErrWeak: 'كلمة السر لازم تكون 6 حروف أو أكتر.', acErrUser: 'اسم المستخدم من 3 لـ 30 حرف إنجليزي أو رقم من غير مسافات (ومسموح . و _ و -)، أو اكتب بريدك الإلكتروني.', acErrMany: 'محاولات كتير، استنى شوية وجرّب تاني.', acErrPerm: 'مش مسموح لحسابك يعمل ده.', acErrNet: 'مفيش اتصال بالسيرفر. اتأكد من النت وجرّب تاني.', acErrMatch: 'كلمتين السر مش زي بعض.',
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'اسم المستخدم بتاعك @{u}. ادّيه للكابتن عشان يضيفك لمجموعتك، ونتايج واجبك هتوصله لوحدها.',
       acRefresh: 'تحديث', acSignOut: 'خروج', acDelete: 'حذف الحساب وبياناته', acDeleteSure: 'متأكد؟ دوس تاني للحذف النهائي', acDeleted: 'اتمسح الحساب.', acSync: 'تحديث من السيرفر', acSynced: 'اتحدّث ✔',
       cgStudentUser: 'اسم الطالب، أو @اسم_المستخدم لو عنده حساب', cgNoUser: 'مفيش متدرب باسم المستخدم @{u}.', cgUserAdded: 'اتضاف {n} ✔ ونتايجه هتوصلك لوحدها.',
@@ -1720,13 +1742,17 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       cgWrongMoves: 'Wrong moves:', cgOpenBoard: 'Open on the analysis board',
       hwiStep2T: 'Save the file to Files', hwiStep2: 'Open the file in WhatsApp, tap the Share button ⬆️ and choose “Save to Files”.', hwiStep3T: 'Add it to the app', hwiStep3: 'Come back to this page, tap “Add homework file” and pick the file in Files.',
       instTitle: 'Install the app on your phone', instIos: 'In Safari: tap the Share button ⬆️ at the bottom, then “Add to Home Screen”. The app gets its own icon and opens like any app.', instOther: 'From the browser menu choose “Install app” or “Add to Home screen”.',
+      fgHow: 'Type the username or e-mail you created the account with.', fgSend: 'Reset my password', fgSent: 'We sent a password reset link to {e}. Open it, choose a new password, then sign in with it.', fgNoMail: 'This account uses a username without an e-mail, so it cannot be reset by a link. WhatsApp opens with a message to the academy; they delete the old account so you can make a new one with the same name, and your coach adds you again.', fgWaText: 'Hello, I forgot my Hashem Chess Puzzle password. Username: {u}', fgTip: 'Tip: an account made with your e-mail instead of a username can reset its password by itself at any time.',
+      acMailTitle: 'Link your e-mail', acMailWhy: 'So you can reset the password yourself if you forget it. We send a link to the e-mail; after you open it you sign in with the e-mail instead of the username.', acLinkMail: 'Send the confirmation link', acLinkSent: 'We sent a link to {e}. Open it, then sign in with this e-mail and the same password.',
+      obName: 'Your name', obUserRule: 'A name in English without spaces (e.g. omar.ali), or your e-mail. With an e-mail you can reset the password yourself if you forget it.', obVisitor: 'Browse as a visitor', obOffline: 'Use without an account (data stays on this phone)', obBackAccount: 'Back to sign-in',
+      pwShow: 'Show password', pwHide: 'Hide password',
       acMake: 'Your academy account', acMine: 'My account', acCardStudent: 'Create an account and your homework results reach your coach by themselves', acCardCoach: 'Create an account so your groups and attendance are kept on the server and students’ results reach you by themselves', acOn: 'connected', acPending: 'waiting for the academy’s approval',
       acPendingLong: 'Your coach account is waiting for the academy’s approval. Until then your data stays on this phone only.', acCoachHint: 'Create an account on the academy server so your data is kept safe and students’ results reach you by themselves.',
       acNew: 'New account', acHave: 'I have an account', acUpStudent: 'Pick a username (English letters and digits) and a password. Give the username to your coach so they add you to your group.', acUpCoach: 'Pick a username and a password. Your coach account works after the academy approves it.', acInHow: 'Sign in with your username and password.',
-      acUser: 'Username', acUserHint: 'e.g. omar.ali', acEmail: 'E-mail', acPw2: 'Password again', acCreate: 'Create account', acSignIn: 'Sign in', acAdmin: 'Academy admin sign-in', acNotAdmin: 'Back to coach and student sign-in',
+      acUser: 'Username or e-mail', acUserHint: 'e.g. omar.ali', acEmail: 'E-mail', acPw2: 'Password again', acCreate: 'Create account', acSignIn: 'Sign in', acAdmin: 'Academy admin sign-in', acNotAdmin: 'Back to coach and student sign-in',
       acAdminHow: 'The academy admin account uses this e-mail only. First time: “Create the admin account”, then open the verification e-mail, tap its link and come back to tap “I verified my e-mail”.', acAdminFirst: 'Create the admin account (first time)', acVerifySent: 'We sent a verification e-mail. Open it and tap the link, then come back and tap “I verified my e-mail”.', acVerified: 'I verified my e-mail', acNotVerified: 'The e-mail is not verified yet. Open the verification e-mail first.',
-      acForgot: 'Forgot password', acResetSent: 'We sent a password reset link to the e-mail.',
-      acErrTaken: 'This username is taken; pick another.', acErrLogin: 'Wrong username or password.', acErrWeak: 'The password needs 6 characters or more.', acErrUser: 'Usernames are 3 to 30 English letters or digits (. _ - allowed).', acErrMany: 'Too many attempts; wait a little and try again.', acErrPerm: 'Your account is not allowed to do this.', acErrNet: 'Cannot reach the server. Check the internet and try again.', acErrMatch: 'The two passwords differ.',
+      acForgot: 'Forgot password?', acResetSent: 'We sent a password reset link to the e-mail.',
+      acErrTaken: 'This username is taken; pick another.', acErrLogin: 'Wrong username or password.', acErrWeak: 'The password needs 6 characters or more.', acErrUser: 'Usernames are 3 to 30 English letters or digits without spaces (. _ - allowed), or use your e-mail.', acErrMany: 'Too many attempts; wait a little and try again.', acErrPerm: 'Your account is not allowed to do this.', acErrNet: 'Cannot reach the server. Check the internet and try again.', acErrMatch: 'The two passwords differ.',
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your username is @{u}. Give it to your coach so they add you to your group; your homework results reach them by themselves.',
       acRefresh: 'Refresh', acSignOut: 'Sign out', acDelete: 'Delete account and its data', acDeleteSure: 'Sure? Tap again to delete for good', acDeleted: 'Account deleted.', acSync: 'Update from the server', acSynced: 'Updated ✔',
       cgStudentUser: 'Student name, or @username if they have an account', cgNoUser: 'No student with the username @{u}.', cgUserAdded: '{n} added ✔ Their results will reach you by themselves.',
@@ -1830,7 +1856,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   var DB = (mock ? decodeURIComponent(mock[1]) + '/fs' : 'https://firestore.googleapis.com/v1') + '/projects/' + CFG.projectId + '/databases/(default)/documents';
 
   function sess() { return store.data.cloud || null; }
-  function errCode(j) { return (j && j.error && (j.error.message || j.error.status)) || 'NETWORK'; }
+  function errCode(j) { if (Array.isArray(j)) j = j[0]; return (j && j.error && (j.error.message || j.error.status)) || 'NETWORK'; }
   function post(url, body, token) {
     var h = { 'Content-Type': 'application/json' }; if (token) h.Authorization = 'Bearer ' + token;
     return fetch(url, { method: 'POST', headers: h, body: JSON.stringify(body) }).then(function (r) {
@@ -1911,7 +1937,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     /** New account. role: 'student' | 'coach' (a coach waits for the academy's approval). */
     signUp: function (username, password, name, role) {
       var u = normUser(username);
-      if (!/^[a-z0-9._-]{3,30}$/.test(u)) return Promise.reject(new Error('BAD_USERNAME'));
+      if (!C.validUser(u)) return Promise.reject(new Error('BAD_USERNAME'));
       return post(AUTH + '/accounts:signUp?key=' + CFG.apiKey, { email: emailOf(u), password: password, returnSecureToken: true }).then(function (j) {
         keep(j);
         var p = { name: name, username: u, role: role === 'coach' ? 'coach' : 'student', approved: false, at: Date.now() };
@@ -1933,6 +1959,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return token().then(function (t) { return post(AUTH + '/accounts:lookup?key=' + CFG.apiKey, { idToken: t }); })
         .then(function (j) { var u = (j.users || [])[0] || {}; if (u.emailVerified) { store.data.cloud.exp = 0; store.save(); } return !!u.emailVerified; });   // exp 0: the next call gets a fresh token that carries email_verified
     },
+    /** Puts a real e-mail on a username account (after the user opens the link sent to it, they sign in with the e-mail). */
+    linkEmail: function (email) {
+      return token().then(function (t) { return post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'VERIFY_AND_CHANGE_EMAIL', idToken: t, newEmail: normUser(email) }); });
+    },
     resetPassword: function (email) { return post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'PASSWORD_RESET', email: email }); },
     refreshProfile: function () {
       if (C.isAdmin()) { store.data.cloud.profile = { name: 'Hashem Chess Castle', role: 'admin', approved: true }; store.save(); return Promise.resolve(store.data.cloud.profile); }
@@ -1948,6 +1978,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return Promise.all(steps).then(token).then(function (t) { return post(AUTH + '/accounts:delete?key=' + CFG.apiKey, { idToken: t }); }).then(function () { C.signOut(); });
     }
   };
+  /** A username (3-30 English letters, digits . _ -) or a real e-mail (then "forgot password" can send a reset link). */
+  C.validUser = function (u) { u = normUser(u); return /^[a-z0-9._-]{3,30}$/.test(u) || /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(u); };
+  C.isEmail = function (u) { return normUser(u).indexOf('@') > 0; };
   /** Turns a Firebase error code into a message key for the UI. */
   C.errKey = function (e) {
     var m = String(e && e.message || e);
@@ -3259,14 +3292,127 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function moveFromUci(u) { return C.sqIndex(u.slice(0, 2)) | (C.sqIndex(u.slice(2, 4)) << 7); }
 
+  /** A password box with an eye button that shows or hides what was typed. */
+  function pwShow(input) {
+    var b = h('button', { type: 'button', class: 'pw-eye', 'aria-label': t('pwShow'), 'aria-pressed': 'false', title: t('pwShow') }, icon('eye'));
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); });   // keep the keyboard open
+    b.addEventListener('click', function () {
+      var on = input.type === 'password';
+      input.type = on ? 'text' : 'password';
+      b.setAttribute('aria-pressed', String(on)); b.classList.toggle('on', on);
+      b.setAttribute('aria-label', t(on ? 'pwHide' : 'pwShow')); b.title = t(on ? 'pwHide' : 'pwShow');
+    });
+    return h('div', { class: 'pw-wrap' }, input, b);
+  }
+
   // ---------------------------------------------------------------- home
   // ---------------------------------------------------------------- who uses the app (first start)
   function role() { return store.data.user ? store.data.user.role : 'student'; }
+  /** First start: one screen, one password. Sign in, or create an account (coach / student), or browse as a visitor. */
   function onboardingView() {
+    if (state.obOffline || (state.onboard && store.data.user && !CL.signedIn())) return offlineOnboarding();
+    var page = h('div', { class: 'page ob' }), msg = h('div'), mode = state.obMode || 'up', pickRole = state.obRole || '';
+    function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
+    setTop(state.onboard && store.data.user ? { title: t('account'), back: function () { state.onboard = false; render(); } } : undefined);
+    page.appendChild(h('div', { class: 'ob-head' }, h('div', { class: 'ob-logo' }, HCC.mark()), h('h2', { text: t('obWelcome') })));
+    page.appendChild(h('div', { class: 'seg ob-mode', role: 'group' },
+      h('button', { type: 'button', 'aria-pressed': String(mode === 'up'), text: t('acNew'), onclick: function () { state.obMode = 'up'; render(); } }),
+      h('button', { type: 'button', 'aria-pressed': String(mode === 'in'), text: t('acSignIn'), onclick: function () { state.obMode = 'in'; render(); } })));
+    var nameIn = h('input', { type: 'text', id: 'ob-name', autocomplete: 'name', dir: 'auto', placeholder: t('userNameHint'), value: (store.data.user || {}).name || '' });
+    var userIn = h('input', { type: 'text', id: 'ob-user', autocomplete: 'username', autocapitalize: 'none', spellcheck: 'false', dir: 'ltr', placeholder: t('acUserHint') });
+    var pwIn = h('input', { type: 'password', id: 'ob-pass', autocomplete: mode === 'up' ? 'new-password' : 'current-password', dir: 'ltr' });
+    if (mode === 'up') {
+      var roles = h('div', { class: 'ob-roles', role: 'radiogroup', 'aria-label': t('obWho') });
+      [['coach', '♔'], ['student', '♙']].forEach(function (r) {
+        var R = r[0].charAt(0).toUpperCase() + r[0].slice(1);
+        roles.appendChild(h('button', { type: 'button', class: 'card tap ob-role', role: 'radio', 'aria-checked': String(pickRole === r[0]), 'data-role': r[0], onclick: function () {
+          pickRole = state.obRole = r[0];
+          Array.prototype.forEach.call(roles.children, function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-role') === pickRole)); });
+          HCC.clear(msg);
+        } }, h('span', { class: 'ob-ic', text: r[1] }), h('div', { class: 'grow' }, h('h3', { text: t('role' + R) }), h('span', { class: 'muted', text: t('role' + R + 'Sub') }))));
+      });
+      page.appendChild(h('h3', { class: 'ob-q', text: t('obWho') }));
+      page.appendChild(roles);
+      page.appendChild(h('div', { class: 'field' }, h('label', { for: 'ob-name', text: t('obName') }), nameIn));
+    }
+    page.appendChild(h('div', { class: 'field' }, h('label', { for: 'ob-user', text: t('acUser') }), userIn,
+      mode === 'up' ? h('span', { class: 'muted small', text: t('obUserRule') }) : null));
+    page.appendChild(h('div', { class: 'field' }, h('label', { for: 'ob-pass', text: t('password') }), pwShow(pwIn),
+      mode === 'in' ? h('button', { type: 'button', class: 'linkish ob-forgot', text: t('acForgot'), onclick: function () { forgotSheet(userIn.value); } }) : null));
+    page.appendChild(msg);
+    var goBtn = btn(t(mode === 'up' ? 'acCreate' : 'acSignIn'), 'primary', function () {
+      var u = userIn.value.trim(), pw = pwIn.value, name = nameIn.value.replace(/\s+/g, ' ').trim();
+      if (mode === 'up') {
+        if (!pickRole) return fail('obPickRole');
+        if (name.length < 2) { nameIn.focus(); return fail('userNameShort'); }
+      }
+      if (!CL.validUser(u)) { userIn.focus(); return fail('acErrUser'); }
+      if (pw.length < 6) { pwIn.focus(); return fail('acErrWeak'); }
+      goBtn.disabled = true; HCC.clear(msg);
+      (mode === 'up' ? CL.signUp(u, pw, name, pickRole) : CL.signIn(u, pw)).then(function (p) {
+        if (!p) { CL.signOut(); throw new Error('INVALID_LOGIN'); }
+        return enterWithAccount();
+      }).catch(function (e) { goBtn.disabled = false; fail(e); });
+    });
+    page.appendChild(h('div', { class: 'btns' }, goBtn));
+    page.appendChild(h('div', { class: 'ob-alts' },
+      h('button', { type: 'button', class: 'btn', text: t('obVisitor'), onclick: function () { finishOnboard({ role: 'visitor', name: t('roleVisitor') }); } }),
+      h('button', { type: 'button', class: 'linkish', text: t('obOffline'), onclick: function () { state.obOffline = true; render(); } }),
+      h('button', { type: 'button', class: 'linkish', text: t('acAdmin'), onclick: function () { accountSheet({ admin: true }); } })));
+    page.appendChild(h('button', { type: 'button', class: 'lang-btn ob-lang', text: store.data.lang === 'ar' ? 'English' : 'العربية', onclick: function () {
+      store.data.lang = store.data.lang === 'ar' ? 'en' : 'ar'; store.save(); HCC.applyLang(); renderTabs(); render();
+    } }));
+    mainEl.appendChild(page);
+  }
+  /** Forgot password: an e-mail account gets a reset link; a username account asks the academy on WhatsApp. */
+  function forgotSheet(user) {
+    var box = h('div', { class: 'list ac' }), msg = h('div');
+    var inp = h('input', { type: 'text', id: 'fg-user', dir: 'ltr', autocapitalize: 'none', value: String(user || '').trim(), placeholder: t('acUserHint') });
+    function note(cls, k, v) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note ' + cls, text: t(k, v) })); }
+    box.appendChild(h('p', { class: 'muted', text: t('fgHow') }));
+    box.appendChild(h('div', { class: 'field' }, h('label', { for: 'fg-user', text: t('acUser') }), inp));
+    box.appendChild(msg);
+    var sendB = btn(t('fgSend'), 'primary', function () {
+      var u = inp.value.trim().toLowerCase();
+      if (!u) { inp.focus(); return note('bad', 'acErrUser'); }
+      if (CL.isEmail(u)) {
+        sendB.disabled = true;
+        CL.resetPassword(u).then(function () { note('good', 'fgSent', { e: u }); }, function (e) { sendB.disabled = false; note('bad', CL.errKey(e)); });
+        return;
+      }
+      // a username has no mailbox behind it: the academy resets it
+      var num = String(HCC.APP.whatsapp || '').replace(/\D/g, '');
+      note('', 'fgNoMail');
+      var a = h('a', { href: 'https://wa.me/' + num + '?text=' + encodeURIComponent(t('fgWaText', { u: u })), target: '_blank', rel: 'noopener' }); document.body.appendChild(a); a.click(); a.remove();
+    });
+    box.appendChild(h('div', { class: 'btns col' }, sendB));
+    box.appendChild(h('p', { class: 'muted small', text: t('fgTip') }));
+    openSheet(t('acForgot'), box);
+  }
+  HCC.forgotSheet = forgotSheet;
+
+  function finishOnboard(user) {
+    store.data.user = user;
+    if (user.role !== 'visitor') store.data.studentName = user.name;
+    store.save();
+    state.onboard = false; state.obOffline = false; state.tab = 'home';
+    try { if (location.hash !== '#home') location.hash = 'home'; } catch (e) { /* no hash */ }
+    renderTabs(); render();
+  }
+  /** After signing in or creating an account: the account decides who uses the app. */
+  function enterWithAccount() {
+    var p = CL.profile() || {};
+    var user = CL.isAdmin() ? { role: 'coach', name: (store.data.user && store.data.user.name) || p.name } : { role: p.role === 'coach' ? 'coach' : 'student', name: p.name || '' };
+    if (CL.isAdmin() || (p.role === 'coach' && p.approved)) store.data.basicsOpen = true;
+    finishOnboard(user);
+    return cloudStart();
+  }
+
+  function offlineOnboarding() {
     var u = store.data.user || {}, pickRole = u.role || '', page = h('div', { class: 'page ob' }), err = h('div');
     var nameIn = h('input', { type: 'text', id: 'ob-name', autocomplete: 'name', dir: 'auto', placeholder: t('userNameHint'), value: u.name || store.data.studentName || '' });
     var pwIn = h('input', { type: 'password', id: 'ob-pw', autocomplete: 'off', autocapitalize: 'none', dir: 'ltr' });
-    var pwBox = h('div', { class: 'field', hidden: pickRole !== 'coach' || (u.role === 'coach') }, h('label', { for: 'ob-pw', text: t('coachPassword') }), pwIn);
+    var pwBox = h('div', { class: 'field', hidden: pickRole !== 'coach' || (u.role === 'coach') }, h('label', { for: 'ob-pw', text: t('coachPassword') }), pwShow(pwIn));
     var roles = h('div', { class: 'ob-roles', role: 'radiogroup', 'aria-label': t('obWho') });
     [['coach', '♔'], ['student', '♙'], ['visitor', '👋']].forEach(function (r) {
       roles.appendChild(h('button', { type: 'button', class: 'card tap ob-role', role: 'radio', 'aria-checked': String(pickRole === r[0]), 'data-role': r[0], onclick: function () {
@@ -3299,6 +3445,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     page.appendChild(pwBox);
     page.appendChild(err);
     page.appendChild(h('div', { class: 'btns' }, btn(t('obStart'), 'primary', start)));
+    if (!store.data.user) page.appendChild(h('button', { type: 'button', class: 'linkish ob-alt', text: t('obBackAccount'), onclick: function () { state.obOffline = false; render(); } }));
     page.appendChild(h('button', { type: 'button', class: 'lang-btn ob-lang', text: store.data.lang === 'ar' ? 'English' : 'العربية', onclick: function () {
       store.data.lang = store.data.lang === 'ar' ? 'en' : 'ar'; store.save(); HCC.applyLang(); renderTabs(); render();
     } }));
@@ -3809,7 +3956,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (p && !p.approved) return h('div', { class: 'note bad', text: t('acPendingLong') });
     return null;
   }
-  function accountSheet() {
+  function accountSheet(opts) {
     var box = h('div', { class: 'list ac' }), msg = h('div');
     function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
     function ok(k) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note good', text: t(k) })); }
@@ -3820,18 +3967,29 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('p', { class: 'muted ltr', text: p.username ? '@' + p.username : CL.email() }),
         h('p', { class: 'small', text: t(CL.isAdmin() ? 'acRoleAdmin' : p.role === 'coach' ? (p.approved ? 'acRoleCoach' : 'acPendingLong') : 'acRoleStudent') })));
       if (p.role === 'student') box.appendChild(h('div', { class: 'note', text: t('acStudentInfo', { u: p.username }) }));
+      if (!CL.isAdmin() && /@hashemchess\.app$/.test(CL.email())) {
+        var emIn = h('input', { type: 'email', id: 'ac-mail', dir: 'ltr', autocapitalize: 'none', placeholder: 'name@gmail.com' });
+        var emMsg = h('div');
+        var emB = btn(t('acLinkMail'), '', function () {
+          var e = emIn.value.trim();
+          if (!CL.isEmail(e)) { emIn.focus(); return; }
+          emB.disabled = true;
+          CL.linkEmail(e).then(function () { HCC.clear(emMsg); emMsg.appendChild(h('div', { class: 'note good', text: t('acLinkSent', { e: e }) })); }, function (er) { emB.disabled = false; HCC.clear(emMsg); emMsg.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(er)) })); });
+        });
+        box.appendChild(h('div', { class: 'card ac-mail' }, h('h3', { text: t('acMailTitle') }), h('p', { class: 'muted small', text: t('acMailWhy') }), emIn, emMsg, h('div', { class: 'btns' }, emB)));
+      }
       var sure = false;
       box.appendChild(msg);
       box.appendChild(h('div', { class: 'btns col' },
         btn(t('acRefresh'), '', function () { var b = this; busy(b, true); CL.refreshProfile().then(function () { return cloudStart(); }).then(function () { closeSheet(); render(); }, function (e) { busy(b, false); fail(e); }); }, 'redo'),
-        btn(t('acSignOut'), '', function () { CL.signOut(); closeSheet(); render(); }),
+        btn(t('acSignOut'), '', function () { CL.signOut(); store.data.user = null; store.save(); closeSheet(); state.obMode = 'in'; render(); }),
         btn(t('acDelete'), 'danger', function () {
           var b = this; if (!sure) { sure = true; b.textContent = t('acDeleteSure'); return; }
-          busy(b, true); CL.deleteAccount().then(function () { closeSheet(); render(); HCC.toast(t('acDeleted')); }, function (e) { busy(b, false); fail(e); });
+          busy(b, true); CL.deleteAccount().then(function () { store.data.user = null; store.save(); closeSheet(); render(); HCC.toast(t('acDeleted')); }, function (e) { busy(b, false); fail(e); });
         })));
       openSheet(t('acMine'), box); return;
     }
-    var mode = 'in', admin = false, userIn, pwIn, pw2In;
+    var mode = 'in', admin = !!(opts && opts.admin), userIn, pwIn, pw2In;
     function draw() {
       HCC.clear(box);
       if (!admin) box.appendChild(h('div', { class: 'seg', role: 'group' },
@@ -3842,13 +4000,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       pwIn = h('input', { type: 'password', id: 'ac-pw', autocomplete: mode === 'up' ? 'new-password' : 'current-password', dir: 'ltr' });
       pw2In = h('input', { type: 'password', id: 'ac-pw2', autocomplete: 'new-password', dir: 'ltr' });
       box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-user', text: t(admin ? 'acEmail' : 'acUser') }), userIn));
-      box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-pw', text: t('password') }), pwIn));
-      if (mode === 'up') box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-pw2', text: t('acPw2') }), pw2In));
+      box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ac-pw', text: t('password') }), pwShow(pwIn)));
       box.appendChild(msg);
       box.appendChild(h('div', { class: 'btns col' }, btn(t(mode === 'up' ? 'acCreate' : 'acSignIn'), 'primary', go1)));
       if (admin && mode === 'up') box.appendChild(btn(t('acVerified'), '', function () {
         var b = this; busy(b, true);
-        CL.adminVerified().then(function (v) { busy(b, false); if (!v) return fail('acNotVerified'); return CL.refreshProfile().then(function () { closeSheet(); render(); }); }, function (e) { busy(b, false); fail(e); });
+        CL.adminVerified().then(function (v) { busy(b, false); if (!v) return fail('acNotVerified'); return CL.refreshProfile().then(function () { closeSheet(); return enterWithAccount(); }); }, function (e) { busy(b, false); fail(e); });
       }));
       box.appendChild(h('div', { class: 'btns' },
         admin ? btn(t(mode === 'up' ? 'acHave' : 'acAdminFirst'), '', function () { mode = mode === 'up' ? 'in' : 'up'; draw(); }) : null,
@@ -3859,7 +4016,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var b = this, u = userIn.value.trim(), pw = pwIn.value;
       if (!u) return fail('acErrUser');
       if (pw.length < 6) return fail('acErrWeak');
-      if (mode === 'up' && pw !== pw2In.value) return fail('acErrMatch');
       busy(b, true); HCC.clear(msg);
       var job;
       if (admin) job = mode === 'up' ? CL.adminSignUp(pw).then(function () { busy(b, false); ok('acVerifySent'); draw(); return 'wait'; }) : CL.signIn(u, pw);
@@ -3870,8 +4026,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         var p = CL.profile();
         if (!admin && !p) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
         if (admin && !CL.isAdmin()) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
-        if (p && p.name && store.data.user && p.role !== 'admin') { store.data.user.name = p.name; store.data.studentName = p.name; if (p.role !== store.data.user.role && p.role !== 'coach') store.data.user.role = p.role; store.save(); }
-        return cloudStart().then(function () { closeSheet(); render(); HCC.toast(t('acWelcome')); });
+        closeSheet(); return enterWithAccount().then(function () { HCC.toast(t('acWelcome')); });
       }).catch(function (e) { busy(b, false); fail(e); });
     }
     draw();
@@ -3960,6 +4115,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   function cloudStart() {
     if (!CL.signedIn()) return Promise.resolve();
     return CL.refreshProfile().then(function () {
+      if (cloudCoach() || CL.isAdmin()) { store.data.basicsOpen = true; store.save(); }
       if (cloudCoach()) return coachPull();
       if (cloudStudent()) return HCC._uploadHomework();
     }).then(function () { if (!state.onboard && state.tab === 'home') render(); }, function () { /* offline: keep working locally */ });
@@ -4008,7 +4164,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var next = content.nextUnit(), pz = store.data.puzzle, page = h('div', { class: 'page' });
     var started = Object.keys(store.data.progress).length > 0, r = role();
     if (store.data.user) page.appendChild(h('div', { class: 'row hello' }, h('h2', { class: 'grow', dir: 'auto', text: t('hello', { n: store.data.user.name }) }),
-      h('button', { type: 'button', class: 'pill role-pill', onclick: function () { state.onboard = true; render(); }, text: t('role' + r.charAt(0).toUpperCase() + r.slice(1)) })));
+      h('button', { type: 'button', class: 'pill role-pill', onclick: function () { if (CL.signedIn()) accountSheet(); else { state.onboard = true; render(); } }, text: t('role' + r.charAt(0).toUpperCase() + r.slice(1)) })));
     if (r === 'visitor') next = null;
     if (next) {
       var pr = content.progressOf(next.course.units);
@@ -4126,7 +4282,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     pw.addEventListener('input', function () { HCC.clear(err); });
     openSheet(t('basicsTitle'), [h('div', { class: 'list' },
       h('p', { class: 'muted', text: t('basicsLockedSub') }),
-      h('div', { class: 'field' }, h('label', { for: 'basics-pw', text: t('password') }), pw), err,
+      h('div', { class: 'field' }, h('label', { for: 'basics-pw', text: t('password') }), pwShow(pw)), err,
       h('button', { type: 'button', class: 'btn primary', onclick: tryOpen }, t('open')))]);
     setTimeout(function () { pw.focus(); }, 50);
   }
@@ -6060,6 +6216,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
 
 </script>
 <script>HCC.start();
-if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) navigator.serviceWorker.register("sw.js").catch(function () {});</script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) { var had = !!navigator.serviceWorker.controller; navigator.serviceWorker.addEventListener("controllerchange", function () { if (had) location.reload(); }); navigator.serviceWorker.register("sw.js").catch(function () {}); }</script>
 </body>
 </html>
