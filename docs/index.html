@@ -597,6 +597,11 @@ body.gated .tabs{display:none}
 .lib input[type=search]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line,#d6dbe6);font:inherit;margin-bottom:8px}
 .lib-row{gap:8px;align-items:center}
 .lib-row .btn{min-height:34px;padding:6px 12px}
+.usage .us-line{margin:8px 0}
+.us-bar{height:8px;border-radius:99px;background:var(--line,#e3e7ef);overflow:hidden;margin-top:4px}
+.us-bar i{display:block;height:100%;background:#2e7d32}
+.us-bar.warn i{background:#e0a100}
+.us-bar.bad i{background:#c62828}
 
 </style>
 </head>
@@ -1538,7 +1543,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.8.0',
+    version: '1.8.1',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1693,6 +1698,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. لسه الإدارة ما حطّتكش في مجموعة؛ أول ما تتحط نتايج واجبك هتوصل للكابتن لوحدها.',
       vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
       adTab_users: 'المستخدمين', adTab_groups: 'المجموعات', adTab_reports: 'التقارير', adCat_pending: 'طلبات جديدة', adCat_coach: 'مدربين', adCat_student: 'متدربين', adCat_visitor: 'زوار', adCat_blocked: 'موقوفين', adEmpty: 'مفيش حد هنا.', adNoGroup: 'بدون مجموعة', adGroupsN: '{n} مجموعة', adUnconfirmed: 'لسه ما أكّدش الإيميل', adUser: 'المستخدم', adPerm: 'الصلاحية', adCoachAsk: 'طالب يبقى مدرب. دوس «مدرب» للموافقة.', adGroup: 'المجموعة', adMakeGroupFirst: 'اعمل مجموعة الأول من «المجموعات».', adBlockUser: 'إيقاف الحساب', adUnblock: 'إلغاء الإيقاف', adDelete: 'حذف المستخدم', adDeleteSure: 'متأكد؟ دوس تاني للحذف', adBlockHow: 'الحساب الموقوف ما يقدرش يستخدم التطبيق بحسابه لحد ما تلغي الإيقاف. الحذف بيمسح بياناته من الأكاديمية.', adSaved: 'اتحفظ ✔', adBlocked: 'اتوقف الحساب', adUnblocked: 'اتلغى الإيقاف ✔', adDeleted: 'اتمسح المستخدم', adNoGroupN: '{n} متدرب لسه من غير مجموعة. دوس عشان تشوفهم.', adNoGroups: 'لسه مفيش مجموعات.', adNoCoach: 'من غير مدرب', adStudentsN: '{n} متدرب', adPickCoach: 'اختار المدرب', adCoach: 'المدرب', adMoveTo: 'انقل إلى', adTakeOut: 'شيله من المجموعة', adPickStudent: 'اختار المتدرب',
+      acErrQuota: 'سيرفر الأكاديمية وصل للحد اليومي المجاني. شغلك محفوظ، والمزامنة هترجع لوحدها الصبح لما الحد اليومي يتصفّر.', usTitle: 'استهلاك السيرفر النهارده', usReads: 'القراءات', usWrites: 'الكتابات', usReset: 'العداد بيتصفّر الساعة {h} بتوقيتك.', usNear: 'قربتوا من الحد اليومي المجاني. لو ده بيتكرر، حوّل المشروع لخطة Blaze من Firebase (نفس الداتا، بتدفع على الزيادة بس).', usConsole: 'التفاصيل الكاملة في Firebase',
       hwNoUpload: 'إضافة الواجبات للمدرب والإدارة بس.', libPick: 'اختار من المكتبة', ghwUpload: 'رفع ملف جديد', libTitle: 'مكتبة الواجبات', libSearch: 'دوّر باسم الواجب', libBasicsTitle: '♟ واجبات المبتدئين', libBasics: 'مبتدئين', libFiles: '📚 الواجبات المرفوعة', libNoFiles: 'لسه مفيش. أي ملف يترفع لمجموعة بيتحفظ هنا لوحده.', libSend: 'ابعت', libAgain: 'ابعت تاني', libWasSent: 'اتبعت للمجموعة دي', libSent: 'اتبعت «{f}» لـ{s} متدرب ✔', prevEx: 'السابق', hwAutoSub: 'افتح الواجب وحلّ التمارين، والتطبيق بيصحّحلك نقلة بنقلة.', hwAutoHome: 'واجبات الكابتن بتوصلك هنا',
       secN: '{n} ث', rdFirst: '✅ صح من أول محاولة', rdTries: 'عدد المحاولات: {n}', rdUnsolved: 'لسه ما اتحلّش', rdNotYet: 'لسه ما جاوبش', rdHints: '{n} تلميح', rdFirstAt: 'أول إجابة بعد {s}', rdSolvedIn: 'اتحل في {s}', rdWrong: 'إجاباته الغلط', rdNone: 'لسه ما بعتش أي واجب.', rdOld: 'النتيجة دي من نسخة قديمة من التطبيق، فمفيهاش أوقات كل سؤال.', ghwRemoved: 'اتشال الواجب من عند الطلاب', hwRemovedByCoach: 'الكابتن شال واجب «{f}»', adFollow: 'متابعة المجموعة (الواجبات والإجابات)',
       hwFromCoach: 'واجب جديد من الكابتن: {f}', hwFromCoachN: '{n} واجبات جديدة من الكابتن', ghwTitle: 'واجبات المجموعة', ghwSub: 'اختار واجب من المكتبة أو ارفع ملف جديد، وهيوصل لكل طلاب المجموعة في واجباتهم.', ghwAdd: 'إضافة واجب للمجموعة', ghwNone: 'لسه ما بعتّش واجبات للمجموعة دي من التطبيق.', ghwSending: 'بيتبعت…', ghwSent: 'اتبعت «{f}» ({n} تمرين) لـ{s} متدرب ✔', ghwBig: 'الملف كبير أوي. قسّمه لأكتر من واجب.', ghwSolved: 'حلّه {d} من {n}', ghwDelSure: 'دوس ✕ تاني عشان تشيل الواجب من عند كل الطلاب',
@@ -1802,6 +1808,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. The academy has not put you in a group yet; once it does, your homework results reach the coach by themselves.',
       vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
       adTab_users: 'Users', adTab_groups: 'Groups', adTab_reports: 'Reports', adCat_pending: 'New requests', adCat_coach: 'Coaches', adCat_student: 'Students', adCat_visitor: 'Visitors', adCat_blocked: 'Suspended', adEmpty: 'Nobody here.', adNoGroup: 'No group', adGroupsN: '{n} groups', adUnconfirmed: 'e-mail not confirmed yet', adUser: 'User', adPerm: 'Permission', adCoachAsk: 'Asked to be a coach. Tap “Coach” to approve.', adGroup: 'Group', adMakeGroupFirst: 'Make a group first under “Groups”.', adBlockUser: 'Suspend account', adUnblock: 'Lift suspension', adDelete: 'Delete user', adDeleteSure: 'Sure? Tap again to delete', adBlockHow: 'A suspended account cannot use the app with its account until you lift it. Deleting removes their academy data.', adSaved: 'Saved ✔', adBlocked: 'Account suspended', adUnblocked: 'Suspension lifted ✔', adDeleted: 'User deleted', adNoGroupN: '{n} students have no group yet. Tap to see them.', adNoGroups: 'No groups yet.', adNoCoach: 'No coach', adStudentsN: '{n} students', adPickCoach: 'Pick the coach', adCoach: 'Coach', adMoveTo: 'Move to', adTakeOut: 'Take out of the group', adPickStudent: 'Pick a student',
+      acErrQuota: 'The academy server reached its free daily limit. Your work is saved; syncing comes back by itself after the daily reset.', usTitle: 'Server use today', usReads: 'Reads', usWrites: 'Writes', usReset: 'Resets at {h} your time.', usNear: 'Close to the free daily limit. If this repeats, move the project to the Blaze plan in Firebase (same data, you pay only for the extra).', usConsole: 'Full details in Firebase',
       hwNoUpload: 'Only coaches and the academy add homework.', libPick: 'Pick from the library', ghwUpload: 'Upload a new file', libTitle: 'Homework library', libSearch: 'Search by name', libBasicsTitle: '♟ Beginners’ homework', libBasics: 'Beginners', libFiles: '📚 Uploaded homework', libNoFiles: 'Nothing yet. Every file sent to a group is kept here.', libSend: 'Send', libAgain: 'Send again', libWasSent: 'already sent to this group', libSent: '“{f}” sent to {s} students ✔', prevEx: 'Previous', hwAutoSub: 'Open the homework and solve the exercises; the app checks every move.', hwAutoHome: 'Your coach’s homework arrives here',
       secN: '{n} s', rdFirst: '✅ right on the first try', rdTries: 'tries: {n}', rdUnsolved: 'not solved yet', rdNotYet: 'not answered yet', rdHints: '{n} hints', rdFirstAt: 'first answer after {s}', rdSolvedIn: 'solved in {s}', rdWrong: 'Wrong answers', rdNone: 'No homework sent yet.', rdOld: 'This result came from an older app version, so it has no time per question.', ghwRemoved: 'Homework removed from the students', hwRemovedByCoach: 'The coach removed “{f}”', adFollow: 'Follow the group (homework and answers)',
       hwFromCoach: 'New homework from the coach: {f}', hwFromCoachN: '{n} new homework sets from the coach', ghwTitle: 'Group homework', ghwSub: 'Pick homework from the library or upload a new file; it reaches every student of the group.', ghwAdd: 'Send homework to the group', ghwNone: 'No homework sent to this group from the app yet.', ghwSending: 'Sending…', ghwSent: '“{f}” ({n} exercises) sent to {s} students ✔', ghwBig: 'The file is too big. Split it into several homework sets.', ghwSolved: 'solved by {d} of {n}', ghwDelSure: 'Tap ✕ again to remove it from every student',
@@ -1955,16 +1962,62 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function decFields(f) { var o = {}; for (var k in f) o[k] = dec(f[k]); return o; }
   function docOut(d) { var o = decFields(d.fields || {}); o._id = d.name.split('/').pop(); if (o.json) { try { o.data = JSON.parse(o.json); } catch (e) { o.data = null; } } return o; }
+  // ---------------------------------------------------------------- usage: what this phone reads and writes, added up per Firebase day
+  /** Firebase's free quota resets at midnight Pacific time. */
+  function quotaDay(d) {
+    try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d || new Date()); }
+    catch (e) { return new Date((d || new Date()).getTime() - 8 * 3600e3).toISOString().slice(0, 10); }
+  }
+  function count(reads, writes) {
+    var u = store.data.usage, day = quotaDay();
+    if (!u || u.day !== day) u = store.data.usage = { day: day, r: 0, w: 0, prev: u && (u.r || u.w) ? { day: u.day, r: u.r, w: u.w } : (u && u.prev) || null };
+    u.r += reads; u.w += writes;
+  }
+  /** Adds this phone's counts to usage/{day} (one write every few minutes, with Firestore's own increment). */
+  var flushing = false;
+  function flushUsage() {
+    var u = store.data.usage, jobs = [];
+    if (flushing || !sess()) return Promise.resolve();
+    [u && u.prev, u].forEach(function (x) {
+      if (!x || !(x.r || x.w)) return;
+      jobs.push({ day: x.day, r: x.r, w: x.w, src: x });
+    });
+    if (!jobs.length) return Promise.resolve();
+    flushing = true;
+    var writes = jobs.map(function (j) {
+      return { transform: { document: 'projects/' + CFG.projectId + '/databases/(default)/documents/usage/' + j.day, fieldTransforms: [
+        { fieldPath: 'reads', increment: { integerValue: String(j.r) } }, { fieldPath: 'writes', increment: { integerValue: String(j.w + 1) } }] } };
+    });
+    return token().then(function (t) {
+      return fetch(DB.replace(/\/documents$/, '/documents:commit'), { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t }, body: JSON.stringify({ writes: writes }) });
+    }).then(function (r) {
+      flushing = false; if (!r.ok) return;
+      jobs.forEach(function (j) { j.src.r -= j.r; j.src.w -= j.w; });
+      if (u && u.prev && !u.prev.r && !u.prev.w) u.prev = null;
+      store.save();
+    }, function () { flushing = false; });
+  }
   function req(method, path, body) {
     return token().then(function (t) {
       return fetch(DB + path, { method: method, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t }, body: body ? JSON.stringify(body) : undefined });
     }).then(function (r) {
-      if (method === 'GET' && r.status === 404) return null;
-      return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(errCode(j)); e.status = r.status; throw e; } return j; });
+      if (method === 'GET' && r.status === 404) { count(1, 0); return null; }
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) {
+          var e = new Error(errCode(j)); e.status = r.status;
+          if (r.status === 429 || /RESOURCE_EXHAUSTED|[Qq]uota/.test(e.message)) { e.message = 'QUOTA ' + e.message; C.quotaHit = Date.now(); }
+          throw e;
+        }
+        if (method === 'GET') count(1, 0);
+        else if (/:runQuery$/.test(path)) count(Math.max(1, (j || []).filter(function (x) { return x.document; }).length), 0);
+        else count(0, 1);
+        return j;
+      });
     });
   }
   var C = HCC.cloud = {
     enc: enc, dec: dec, emailOf: emailOf,
+    quotaDay: quotaDay, flushUsage: flushUsage,
     signedIn: function () { return !!(sess() && sess().uid); },
     uid: function () { return (sess() || {}).uid; },
     email: function () { return (sess() || {}).email || ''; },
@@ -2064,6 +2117,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (/WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET/.test(m)) return 'acErrWeak';
     if (/BAD_USERNAME/.test(m)) return 'acErrUser';
     if (/BAD_EMAIL/.test(m)) return 'acErrMail';
+    if (/QUOTA|RESOURCE_EXHAUSTED|[Qq]uota exceeded/.test(m) || (e && e.status === 429)) return 'acErrQuota';
     if (/TOO_MANY/.test(m)) return 'acErrMany';
     if (/PERMISSION|403/.test(m)) return 'acErrPerm';
     return 'acErrNet';
@@ -4498,12 +4552,13 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         if (p && p.role === 'coach' && p.approved && !p.blocked) store.data.basicsOpen = true;
         store.save();
       }
-      if (cloudStudent() && !CL.blocked() && !changed && liveN % 3 !== 0 && liveN % 2 === 0) jobs.push(studentHwPull());
-      if (cloudStudent() && !CL.blocked() && (changed || liveN % 3 === 0)) {
+      var groupTick = changed || liveN % 5 === 0 || !store.data.myGroup;   // no group yet: look every minute
+      if (cloudStudent() && !CL.blocked() && !groupTick) jobs.push(studentHwPull());
+      if (cloudStudent() && !CL.blocked() && groupTick) {
         var g0 = JSON.stringify(store.data.myGroup || null);
         jobs.push(myGroupPull().then(function () { return JSON.stringify(store.data.myGroup || null) !== g0; }));
       }
-      if (cloudCoach() && (changed || liveN % 3 === 0)) {
+      if (cloudCoach() && (changed || liveN % 5 === 0)) {
         var d = coachData(), k0 = JSON.stringify(d.groups.map(function (g) { return [g.id, g.name, g.students]; }));
         jobs.push(CL.query('groups', [['coachUid', 'EQUAL', CL.uid()]]).then(function (l) {
           d.groups = l.map(serverGroup).sort(function (a, b) { return a.name.localeCompare(b.name); });
@@ -4553,7 +4608,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     try { if (location.hash !== '#home') location.hash = 'home'; } catch (e) { /* no hash */ }
     renderTabs(); render(); return true;
   };
-  setInterval(liveTick, 15000);
+  setInterval(liveTick, 60000);   // once a minute: keeps the free daily quota for a large academy
+  setInterval(function () { CL.flushUsage(); }, 10 * 60000);
+  if (typeof document !== 'undefined') document.addEventListener('visibilitychange', function () { if (document.hidden) CL.flushUsage(); });
   if (typeof document !== 'undefined') document.addEventListener('visibilitychange', function () { if (!document.hidden) liveTick(); });
   HCC._liveTick = liveTick;
 
@@ -4565,6 +4622,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     page.appendChild(h('div', { class: 'seg ad-tabs', role: 'group' }, ['users', 'groups', 'reports'].map(function (k) {
       return h('button', { type: 'button', 'aria-pressed': String(a.tab === k), 'data-tab': k, text: t('adTab_' + k), onclick: function () { a.tab = k; render(); } });
     })));
+    page.appendChild(usageCard());
     var body = h('div', { class: 'cg' });
     page.appendChild(body);
     mainEl.appendChild(page);
@@ -4577,6 +4635,29 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     else if (a.tab === 'reports') adReports(body);
     else adUsers(body);
     body.appendChild(h('div', { class: 'btns' }, btn(t('acSync'), '', function () { var b = this; b.disabled = true; adminLoad().then(render, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }, 'redo')));
+  }
+  /** Today's use of the free daily quota (all phones, added up), and when it resets. */
+  function usageCard() {
+    var box = h('div', { class: 'card usage' }, h('h3', { text: '📊 ' + t('usTitle') }), h('p', { class: 'muted small', text: t('loading') }));
+    CL.flushUsage().then(function () { return CL.get('usage/' + CL.quotaDay()); }).then(function (d) {
+      var r = (d && d.reads) || 0, w = (d && d.writes) || 0;
+      while (box.childNodes.length > 1) box.removeChild(box.lastChild);
+      function line(label, n, max) {
+        var pct = Math.min(100, Math.round(n / max * 100));
+        return h('div', { class: 'us-line' }, h('div', { class: 'row' }, h('span', { class: 'grow', text: label }), h('b', { class: 'ltr', text: n.toLocaleString('en') + ' / ' + max.toLocaleString('en') })),
+          h('div', { class: 'us-bar' + (pct >= 90 ? ' bad' : pct >= 70 ? ' warn' : '') }, h('i', { style: 'width:' + pct + '%' })));
+      }
+      box.appendChild(line(t('usReads'), r, 50000));
+      box.appendChild(line(t('usWrites'), w, 20000));
+      var reset = new Date(); try {
+        var pt = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })), next = new Date(pt); next.setHours(24, 0, 0, 0);
+        reset = new Date(Date.now() + (next - pt));
+      } catch (e) { /* keep now */ }
+      box.appendChild(h('p', { class: 'muted small', text: t('usReset', { h: reset.toLocaleTimeString(store.data.lang === 'en' ? 'en' : 'ar-EG', { hour: 'numeric', minute: '2-digit' }) }) }));
+      if (r > 40000 || w > 16000) box.appendChild(h('div', { class: 'note bad', text: t('usNear') }));
+      box.appendChild(h('a', { class: 'linkish small', href: 'https://console.firebase.google.com/project/' + HCC.FIREBASE.projectId + '/firestore/databases/-default-/usage', target: '_blank', rel: 'noopener', text: t('usConsole') }));
+    }, function (e) { while (box.childNodes.length > 1) box.removeChild(box.lastChild); box.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+    return box;
   }
   function adminData() { return state.ad || (state.ad = { tab: 'users', filter: '' }); }
   function adminLoad() {
@@ -4792,6 +4873,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (store.data.user) page.appendChild(h('div', { class: 'row hello' }, h('h2', { class: 'grow', dir: 'auto', text: t('hello', { n: store.data.user.name }) }),
       h('button', { type: 'button', class: 'pill role-pill', onclick: function () { if (CL.signedIn()) accountSheet(); else { state.onboard = true; render(); } }, text: t('role' + r.charAt(0).toUpperCase() + r.slice(1)) })));
     if (r === 'visitor') next = null;
+    if (CL.quotaHit && Date.now() - CL.quotaHit < 3 * 3600e3) page.appendChild(h('div', { class: 'note bad', text: t('acErrQuota') }));
     var cp = CL.signedIn() ? CL.profile() : null;
     if (r === 'visitor' && cp && (cp.requested === 'coach' || cp.requested === 'student'))
       page.appendChild(h('div', { class: 'note wait-note' }, h('b', { text: t('acWaitTitle') }), ' ', t('acWaitLong', { r: t(cp.requested === 'coach' ? 'roleCoach' : 'roleStudent') })));
