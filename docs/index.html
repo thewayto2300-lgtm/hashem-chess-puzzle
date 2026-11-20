@@ -561,6 +561,12 @@ textarea#verify-msg { width: 100%; border: 1.5px solid var(--line); border-radiu
 .ac-mail { display: flex; flex-direction: column; gap: 8px; }
 .ac-mail input { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 11px; background: var(--card); width: 100%; }
 
+/* e-mail confirmation */
+.vf-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:18px}
+.vf-ic{font-size:40px;line-height:1}
+.vf-mail{font-size:1.05em;word-break:break-all}
+.vf .btns.col{margin-top:12px}
+
 </style>
 </head>
 <body>
@@ -1501,7 +1507,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.3.4',
+    version: '1.3.5',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1654,6 +1660,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acForgot: 'نسيت كلمة السر؟', acResetSent: 'بعتنا رابط تغيير كلمة السر على البريد.',
       acErrTaken: 'اسم المستخدم ده محجوز، اختار اسم تاني.', acErrLogin: 'البريد أو كلمة السر غلط.', acErrWeak: 'كلمة السر لازم تكون 6 حروف أو أكتر.', acErrUser: 'اسم المستخدم من 3 لـ 30 حرف إنجليزي أو رقم من غير مسافات (ومسموح . و _ و -)، أو اكتب بريدك الإلكتروني.', acErrMany: 'محاولات كتير، استنى شوية وجرّب تاني.', acErrPerm: 'مش مسموح لحسابك يعمل ده.', acErrNet: 'مفيش اتصال بالسيرفر. اتأكد من النت وجرّب تاني.', acErrMatch: 'كلمتين السر مش زي بعض.',
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. ادّيه للكابتن عشان يضيفك لمجموعتك، ونتايج واجبك هتوصله لوحدها.',
+      vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
       acRefresh: 'تحديث', acSignOut: 'خروج', acDelete: 'حذف الحساب وبياناته', acDeleteSure: 'متأكد؟ دوس تاني للحذف النهائي', acDeleted: 'اتمسح الحساب.', acSync: 'تحديث من السيرفر', acSynced: 'اتحدّث ✔',
       cgStudentUser: 'اسم الطالب، أو بريده لو عنده حساب', cgNoUser: 'مفيش متدرب بالحساب {u}.', cgUserAdded: 'اتضاف {n} ✔ ونتايجه هتوصلك لوحدها.',
       rpSendApp: 'ابعت التقرير للأكاديمية (على السيرفر)', rpSentApp: 'التقرير وصل للأكاديمية ✔',
@@ -1754,6 +1761,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acForgot: 'Forgot password?', acResetSent: 'We sent a password reset link to the e-mail.',
       acErrTaken: 'This username is taken; pick another.', acErrLogin: 'Wrong e-mail or password.', acErrWeak: 'The password needs 6 characters or more.', acErrUser: 'Usernames are 3 to 30 English letters or digits without spaces (. _ - allowed), or use your e-mail.', acErrMany: 'Too many attempts; wait a little and try again.', acErrPerm: 'Your account is not allowed to do this.', acErrNet: 'Cannot reach the server. Check the internet and try again.', acErrMatch: 'The two passwords differ.',
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. Give it to your coach so they add you to your group; your homework results reach them by themselves.',
+      vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
       acRefresh: 'Refresh', acSignOut: 'Sign out', acDelete: 'Delete account and its data', acDeleteSure: 'Sure? Tap again to delete for good', acDeleted: 'Account deleted.', acSync: 'Update from the server', acSynced: 'Updated ✔',
       cgStudentUser: 'Student name, or their e-mail if they have an account', cgNoUser: 'No student with the account {u}.', cgUserAdded: '{n} added ✔ Their results will reach you by themselves.',
       rpSendApp: 'Send the report to the academy (server)', rpSentApp: 'The academy received the report ✔',
@@ -1939,15 +1947,32 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var u = normUser(username);
       if (!C.validUser(u) || !C.isEmail(u)) return Promise.reject(new Error('BAD_EMAIL'));
       return post(AUTH + '/accounts:signUp?key=' + CFG.apiKey, { email: emailOf(u), password: password, returnSecureToken: true }).then(function (j) {
-        keep(j);
-        post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'VERIFY_EMAIL', idToken: j.idToken }).catch(function () {});
-        var p = { name: name, username: u, role: role === 'coach' ? 'coach' : 'student', approved: false, at: Date.now() };
+        keep(j); store.data.cloud.verified = false; store.save();
+        C.sendVerify().catch(function () {});
+        var p = { name: name, username: u, role: role === 'coach' ? 'coach' : 'student', approved: false, verified: false, at: Date.now() };
         return C.set('users/' + j.localId, p).then(function () { store.data.cloud.profile = p; store.save(); return p; });
       });
     },
     signIn: function (user, password) {
       return post(AUTH + '/accounts:signInWithPassword?key=' + CFG.apiKey, { email: emailOf(user), password: password, returnSecureToken: true }).then(function (j) {
-        keep(j); return C.refreshProfile();
+        keep(j);
+        if (!C.needsMail()) { store.data.cloud.verified = true; store.save(); return C.refreshProfile(); }
+        return C.checkVerified().then(function () { return C.refreshProfile(); });
+      });
+    },
+    /** A real e-mail account works only after its owner opens the confirmation link (legacy username accounts and the admin are exempt). */
+    needsMail: function () { var e = C.email(); return !!e && !/@hashemchess\.app$/.test(e) && e !== CFG.adminEmail; },
+    verified: function () { var s = sess(); return !!(s && s.uid) && (!C.needsMail() || s.verified === true); },
+    sendVerify: function () { return token().then(function (t) { return post(AUTH + '/accounts:sendOobCode?key=' + CFG.apiKey, { requestType: 'VERIFY_EMAIL', idToken: t }); }); },
+    /** Asks Firebase whether the link was opened; on yes, a fresh token (it carries email_verified) and the profile is marked verified. */
+    checkVerified: function () {
+      return token().then(function (t) { return post(AUTH + '/accounts:lookup?key=' + CFG.apiKey, { idToken: t }); }).then(function (j) {
+        var u = (j.users || [])[0] || {}, v = !!u.emailVerified;
+        store.data.cloud.verified = v; if (v) store.data.cloud.exp = 0; store.save();
+        if (!v) return false;
+        return C.get('users/' + C.uid()).then(function (p) {
+          if (p && p.verified === false) return C.update('users/' + C.uid(), { verified: true });
+        }).then(function () { return true; }, function () { return true; });
       });
     },
     /** The academy admin's own account (his real e-mail). The e-mail must be verified before the rules trust it. */
@@ -3272,7 +3297,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     // Full-screen sections: everything except Home hides the top bar and the bottom tabs; the phone's Back button returns.
     var appEl = document.getElementById('app'); if (appEl) appEl.classList.toggle('immersive', !root.HCC_WEB && (state.tab !== 'home' || !store.data.user || !!state.onboard));
     HCC.clear(mainEl); mainEl.scrollTop = 0;
-    if (!store.data.user || state.onboard) { onboardingView(); return; }
+    if (!store.data.user || state.onboard || (CL.signedIn() && !CL.verified())) { onboardingView(); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
   }
   function timersBox() {
@@ -3312,6 +3337,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   function role() { return store.data.user ? store.data.user.role : 'student'; }
   /** First start: one screen, one password. Sign in, or create an account (coach / student), or browse as a visitor. */
   function onboardingView() {
+    if (CL.signedIn() && !CL.verified()) return verifyView();
     if (state.obOffline || (state.onboard && store.data.user && !CL.signedIn())) return offlineOnboarding();
     var page = h('div', { class: 'page ob' }), msg = h('div'), mode = state.obMode || 'up', pickRole = state.obRole || '';
     function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
@@ -3353,6 +3379,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       goBtn.disabled = true; HCC.clear(msg);
       (mode === 'up' ? CL.signUp(u, pw, name, pickRole) : CL.signIn(u, pw)).then(function (p) {
         if (!p) { CL.signOut(); throw new Error('INVALID_LOGIN'); }
+        if (!CL.verified()) { render(); return; }
         return enterWithAccount();
       }).catch(function (e) { goBtn.disabled = false; fail(e); });
     });
@@ -3366,6 +3393,44 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     } }));
     mainEl.appendChild(page);
   }
+  /** A new account stays locked until its owner opens the confirmation link sent to the e-mail. */
+  var vfAuto = false;
+  function verifyView() {
+    setTop(undefined);
+    var page = h('div', { class: 'page ob vf' }), msg = h('div'), mail = CL.email();
+    function note(cls, k, v) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note ' + cls, text: t(k, v) })); }
+    page.appendChild(h('div', { class: 'ob-head' }, h('div', { class: 'ob-logo' }, HCC.mark()), h('h2', { text: t('vfTitle') })));
+    page.appendChild(h('div', { class: 'card vf-card' }, h('span', { class: 'vf-ic', text: '✉️' }),
+      h('p', { text: t('vfSent') }), h('b', { class: 'ltr vf-mail', text: mail }), h('p', { class: 'muted', text: t('vfHow') })));
+    page.appendChild(msg);
+    function check(quiet) {
+      okB.disabled = true;
+      return CL.checkVerified().then(function (v) {
+        okB.disabled = false;
+        if (!v) { if (!quiet) note('bad', 'vfNotYet'); return; }
+        return CL.refreshProfile().then(function () { return enterWithAccount(); }).then(function () { HCC.toast(t('acWelcome')); });
+      }, function (e) { okB.disabled = false; if (!quiet) note('bad', CL.errKey(e)); });
+    }
+    var okB = btn(t('vfDone'), 'primary', function () { check(false); });
+    var againB = btn(t('vfAgain'), '', function () {
+      againB.disabled = true;
+      CL.sendVerify().then(function () { note('good', 'vfResent', { e: mail }); setTimeout(function () { againB.disabled = false; }, 30000); },
+        function (e) { againB.disabled = false; note('bad', CL.errKey(e)); });
+    });
+    var sure = false;
+    var wrongB = h('button', { type: 'button', class: 'linkish', text: t('vfWrong'), onclick: function () {
+      if (!sure) { sure = true; wrongB.textContent = t('vfWrongSure'); return; }
+      wrongB.disabled = true;
+      CL.deleteAccount().catch(function () { CL.signOut(); }).then(function () { state.obMode = 'up'; render(); });
+    } });
+    page.appendChild(h('div', { class: 'btns col' }, okB, againB));
+    page.appendChild(h('p', { class: 'muted small', text: t('vfSpam') }));
+    page.appendChild(h('div', { class: 'ob-alts' }, wrongB,
+      h('button', { type: 'button', class: 'linkish', text: t('acSignOut'), onclick: function () { CL.signOut(); store.data.user = null; store.save(); state.obMode = 'in'; render(); } })));
+    mainEl.appendChild(page);
+    if (!vfAuto) { vfAuto = true; check(true); }   // an older install that already confirmed goes straight in
+  }
+
   /** Forgot password: an e-mail account gets a reset link; a username account asks the academy on WhatsApp. */
   function forgotSheet(user) {
     var box = h('div', { class: 'list ac' }), msg = h('div');
@@ -4031,6 +4096,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         var p = CL.profile();
         if (!admin && !p) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
         if (admin && !CL.isAdmin()) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
+        if (!CL.verified()) { closeSheet(); render(); return; }
         closeSheet(); return enterWithAccount().then(function () { HCC.toast(t('acWelcome')); });
       }).catch(function (e) { busy(b, false); fail(e); });
     }
@@ -4109,6 +4175,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (!cloudCoach()) { HCC.toast(t('acCoachHint')); return; }
     CL.query('users', [['username', 'EQUAL', user]], 1).then(function (l) {
       var p = l[0]; if (!p || p.role !== 'student') { HCC.toast(t('cgNoUser', { u: user })); return; }
+      if (p.verified === false) { HCC.toast(t('cgNotConfirmed', { u: user })); return; }
       var name = p.name || user, other = groupOf(name);
       if (other && other !== g) { other.students = other.students.filter(function (x) { return normName(x) !== normName(name); }); if (other.uids) delete other.uids[name]; }
       if (g.students.indexOf(name) < 0) g.students.push(name);
@@ -4139,6 +4206,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     Promise.all([CL.query('users', [['role', 'EQUAL', 'coach']]), CL.query('reports', [])]).then(function (res) {
       HCC.clear(body);
       var coaches = res[0], reports = res[1].sort(function (a, b) { return b.at - a.at; });
+      coaches = coaches.filter(function (c) { return c.verified !== false; });
       var pending = coaches.filter(function (c) { return !c.approved; }), ok = coaches.filter(function (c) { return c.approved; });
       body.appendChild(h('div', { class: 'eyebrow', text: t('adPending') + ' (' + pending.length + ')' }));
       if (!pending.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoPending') }));
