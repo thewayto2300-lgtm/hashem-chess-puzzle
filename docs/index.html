@@ -588,7 +588,7 @@ body.gated .tabs{display:none}
 .rd-row.ok{border-inline-start-color:#2e7d32}.rd-row.bad{border-inline-start-color:#c62828}
 .rd-n{font-weight:700;white-space:nowrap}.rd-q{display:block;margin-bottom:2px}
 .rd-wrong{color:#b3261e}.rd-hw summary{cursor:pointer;padding:4px 0}.rd-hw .rd{margin-top:8px}
-.hw-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.hw-bar{display:flex;align-items:center;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
 .hw-nav{display:flex;align-items:center;gap:6px;flex:1}
 .hw-nav .btn{min-height:36px;padding:6px 12px}
 .hw-pos{flex:1;text-align:center}
@@ -1543,7 +1543,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.8.1',
+    version: '1.8.2',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -5073,7 +5073,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       if (index + 1 < course.units.length) actions.appendChild(btn(t('nextLesson'), 'primary', function () { L.unit = index + 1; render(); }));
       actions.appendChild(btn(t('restart'), '', function () { render(); }, 'redo'));
       actions.appendChild(btn(t('backToList'), '', function () { L.unit = -1; render(); }));
-      if (index + 1 >= course.units.length) actions.appendChild(h('a', { class: 'btn wa', href: '#', onclick: function (e) { e.preventDefault(); sendHomework(course); } }, icon('chat'), t('hwSend')));
       HCC.clear(resultEl);
       resultEl.appendChild(h('div', { class: 'result' }, h('h3', { text: t('lessonDone') }), h('div', { class: 'stars', text: stars(st) }), actions));
       T.later(function () { resultEl.scrollIntoView({ block: 'end', behavior: 'smooth' }); }, 150);
@@ -5161,7 +5160,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('div', { style: 'text-align:end' }, h('div', { class: 'stars', text: stars(sc.done ? Math.max(1, Math.round(3 * sc.pct / 100)) : 0) }),
           h('span', { class: 'muted', text: t('hwSolved', { d: sc.done, n: sc.n }) }))),
       sc.time ? h('span', { class: 'muted small', text: t('hwTime') + ': ' + sc.minutes + ' ' + t('hwMin') }) : null,
-      h('a', { class: 'btn wa', href: '#', onclick: function (e) { e.preventDefault(); sendHomework(course); } }, icon('chat'), t('hwSend')),
       h('span', { class: 'muted small', text: t('hwFirstTry') })));
     course.units.forEach(function (u, i) {
       var st = prog[u.id] || 0;
@@ -5306,7 +5304,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       if (index === 0) navTop.firstChild.disabled = true;
       if (index + 1 >= course.units.length) navTop.lastChild.disabled = true;
     }
-    mainEl.appendChild(h('div', { class: 'work' }, isHw ? h('div', { class: 'hw-bar' }, navTop, clockEl) : null, h('div', { class: 'board-wrap' }, host), statusEl, say, btns, resultEl));
+    mainEl.appendChild(h('div', { class: 'work' }, h('div', { class: 'board-wrap' }, host), statusEl, say, btns, isHw ? h('div', { class: 'hw-bar' }, navTop, clockEl) : null, resultEl));   // previous / next and the clock under the hint box
 
     function status(note) {
       HCC.clear(statusEl);
@@ -5468,7 +5466,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       actions.appendChild(btn(t('restart'), '', function () { render(); }, 'redo'));
       actions.appendChild(btn(t('share'), '', function () { shareSheet(chess, pick(unit.title)); }, 'share'));
       actions.appendChild(btn(t('backToList'), '', function () { L.unit = -1; render(); }));
-      if (index + 1 >= course.units.length) actions.appendChild(h('a', { class: 'btn wa', href: '#', onclick: function (e) { e.preventDefault(); sendHomework(course); } }, icon('chat'), t('hwSend')));
       HCC.clear(resultEl);
       resultEl.appendChild(h('div', { class: 'result' }, h('h3', { text: t('lessonDone') }), h('div', { class: 'stars', text: stars(st) }), nav2, actions));
       T.later(function () { resultEl.scrollIntoView({ block: 'end', behavior: 'smooth' }); }, 150);
