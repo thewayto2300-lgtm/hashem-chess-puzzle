@@ -588,6 +588,12 @@ body.gated .tabs{display:none}
 .rd-row.ok{border-inline-start-color:#2e7d32}.rd-row.bad{border-inline-start-color:#c62828}
 .rd-n{font-weight:700;white-space:nowrap}.rd-q{display:block;margin-bottom:2px}
 .rd-wrong{color:#b3261e}.rd-hw summary{cursor:pointer;padding:4px 0}.rd-hw .rd{margin-top:8px}
+.hw-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.hw-nav{display:flex;align-items:center;gap:6px;flex:1}
+.hw-nav .btn{min-height:36px;padding:6px 12px}
+.hw-pos{flex:1;text-align:center}
+.hw-clock{font-variant-numeric:tabular-nums;font-weight:700;background:var(--frame,#0b1f4a);color:#fff}
+.hw-clock.done{background:#2e7d32}
 
 </style>
 </head>
@@ -1529,7 +1535,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.7.0',
+    version: '1.7.1',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1684,6 +1690,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. لسه الإدارة ما حطّتكش في مجموعة؛ أول ما تتحط نتايج واجبك هتوصل للكابتن لوحدها.',
       vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
       adTab_users: 'المستخدمين', adTab_groups: 'المجموعات', adTab_reports: 'التقارير', adCat_pending: 'طلبات جديدة', adCat_coach: 'مدربين', adCat_student: 'متدربين', adCat_visitor: 'زوار', adCat_blocked: 'موقوفين', adEmpty: 'مفيش حد هنا.', adNoGroup: 'بدون مجموعة', adGroupsN: '{n} مجموعة', adUnconfirmed: 'لسه ما أكّدش الإيميل', adUser: 'المستخدم', adPerm: 'الصلاحية', adCoachAsk: 'طالب يبقى مدرب. دوس «مدرب» للموافقة.', adGroup: 'المجموعة', adMakeGroupFirst: 'اعمل مجموعة الأول من «المجموعات».', adBlockUser: 'إيقاف الحساب', adUnblock: 'إلغاء الإيقاف', adDelete: 'حذف المستخدم', adDeleteSure: 'متأكد؟ دوس تاني للحذف', adBlockHow: 'الحساب الموقوف ما يقدرش يستخدم التطبيق بحسابه لحد ما تلغي الإيقاف. الحذف بيمسح بياناته من الأكاديمية.', adSaved: 'اتحفظ ✔', adBlocked: 'اتوقف الحساب', adUnblocked: 'اتلغى الإيقاف ✔', adDeleted: 'اتمسح المستخدم', adNoGroupN: '{n} متدرب لسه من غير مجموعة. دوس عشان تشوفهم.', adNoGroups: 'لسه مفيش مجموعات.', adNoCoach: 'من غير مدرب', adStudentsN: '{n} متدرب', adPickCoach: 'اختار المدرب', adCoach: 'المدرب', adMoveTo: 'انقل إلى', adTakeOut: 'شيله من المجموعة', adPickStudent: 'اختار المتدرب',
+      hwAuto: 'واجباتك بتوصلك من الكابتن هنا لوحدها، مش محتاج تضيف ملفات.', prevEx: 'السابق', hwAutoSub: 'الكابتن بيبعتلك واجب كل حصة هنا. افتحه وحلّ التمارين، والتطبيق بيصحّحلك نقلة بنقلة.', hwAutoHome: 'واجبات الكابتن بتوصلك هنا',
       secN: '{n} ث', rdFirst: '✅ صح من أول محاولة', rdTries: 'عدد المحاولات: {n}', rdUnsolved: 'لسه ما اتحلّش', rdNotYet: 'لسه ما جاوبش', rdHints: '{n} تلميح', rdFirstAt: 'أول إجابة بعد {s}', rdSolvedIn: 'اتحل في {s}', rdWrong: 'إجاباته الغلط', rdNone: 'لسه ما بعتش أي واجب.', rdOld: 'النتيجة دي من نسخة قديمة من التطبيق، فمفيهاش أوقات كل سؤال.', ghwRemoved: 'اتشال الواجب من عند الطلاب', hwRemovedByCoach: 'الكابتن شال واجب «{f}»', adFollow: 'متابعة المجموعة (الواجبات والإجابات)',
       hwFromCoach: 'واجب جديد من الكابتن: {f}', hwFromCoachN: '{n} واجبات جديدة من الكابتن', ghwTitle: 'واجبات المجموعة', ghwSub: 'ارفع ملف الواجب (PGN) هنا، وهيوصل لكل طلاب المجموعة في التطبيق لوحده.', ghwAdd: 'إضافة واجب للمجموعة', ghwNone: 'لسه ما بعتّش واجبات للمجموعة دي من التطبيق.', ghwSending: 'بيتبعت…', ghwSent: 'اتبعت «{f}» ({n} تمرين) لـ{s} متدرب ✔', ghwBig: 'الملف كبير أوي. قسّمه لأكتر من واجب.', ghwSolved: 'حلّه {d} من {n}', ghwDelSure: 'دوس ✕ تاني عشان تشيل الواجب من عند كل الطلاب',
       adReqN: '{n} طلب جديد', adReqOne: 'طلب جديد: {n} عايز يبقى {r}', adApproveAs: 'موافقة كـ{r}', adDecline: 'رفض', adApproved: 'اتوافق على الطلب ✔', adDeclined: 'اترفض الطلب وفضل زائر',
@@ -1792,6 +1799,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. The academy has not put you in a group yet; once it does, your homework results reach the coach by themselves.',
       vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
       adTab_users: 'Users', adTab_groups: 'Groups', adTab_reports: 'Reports', adCat_pending: 'New requests', adCat_coach: 'Coaches', adCat_student: 'Students', adCat_visitor: 'Visitors', adCat_blocked: 'Suspended', adEmpty: 'Nobody here.', adNoGroup: 'No group', adGroupsN: '{n} groups', adUnconfirmed: 'e-mail not confirmed yet', adUser: 'User', adPerm: 'Permission', adCoachAsk: 'Asked to be a coach. Tap “Coach” to approve.', adGroup: 'Group', adMakeGroupFirst: 'Make a group first under “Groups”.', adBlockUser: 'Suspend account', adUnblock: 'Lift suspension', adDelete: 'Delete user', adDeleteSure: 'Sure? Tap again to delete', adBlockHow: 'A suspended account cannot use the app with its account until you lift it. Deleting removes their academy data.', adSaved: 'Saved ✔', adBlocked: 'Account suspended', adUnblocked: 'Suspension lifted ✔', adDeleted: 'User deleted', adNoGroupN: '{n} students have no group yet. Tap to see them.', adNoGroups: 'No groups yet.', adNoCoach: 'No coach', adStudentsN: '{n} students', adPickCoach: 'Pick the coach', adCoach: 'Coach', adMoveTo: 'Move to', adTakeOut: 'Take out of the group', adPickStudent: 'Pick a student',
+      hwAuto: 'Your homework arrives here from the coach by itself; no need to add files.', prevEx: 'Previous', hwAutoSub: 'Your coach sends your homework here after each class. Open it and solve the exercises; the app checks every move.', hwAutoHome: 'Your coach’s homework arrives here',
       secN: '{n} s', rdFirst: '✅ right on the first try', rdTries: 'tries: {n}', rdUnsolved: 'not solved yet', rdNotYet: 'not answered yet', rdHints: '{n} hints', rdFirstAt: 'first answer after {s}', rdSolvedIn: 'solved in {s}', rdWrong: 'Wrong answers', rdNone: 'No homework sent yet.', rdOld: 'This result came from an older app version, so it has no time per question.', ghwRemoved: 'Homework removed from the students', hwRemovedByCoach: 'The coach removed “{f}”', adFollow: 'Follow the group (homework and answers)',
       hwFromCoach: 'New homework from the coach: {f}', hwFromCoachN: '{n} new homework sets from the coach', ghwTitle: 'Group homework', ghwSub: 'Upload the homework file (PGN) here and it reaches every student of the group in the app by itself.', ghwAdd: 'Send homework to the group', ghwNone: 'No homework sent to this group from the app yet.', ghwSending: 'Sending…', ghwSent: '“{f}” ({n} exercises) sent to {s} students ✔', ghwBig: 'The file is too big. Split it into several homework sets.', ghwSolved: 'solved by {d} of {n}', ghwDelSure: 'Tap ✕ again to remove it from every student',
       adReqN: '{n} new requests', adReqOne: 'New request: {n} asks to be {r}', adApproveAs: 'Approve as {r}', adDecline: 'Decline', adApproved: 'Request approved ✔', adDeclined: 'Request declined; stays a visitor',
@@ -4785,7 +4793,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       page.appendChild(h('button', { type: 'button', class: 'card tap academy-card', onclick: function () { state.lessons = { track: 'academy', course: null, unit: -1 }; go('lessons'); } },
         h('div', { class: 'grow', style: 'display:flex;flex-direction:column;gap:6px' },
           h('h3', { text: t('homework') }),
-          h('span', { class: 'muted', text: units.length ? p.done + ' ' + t('of') + ' ' + p.total + ' ' + t('exercises') : t('homeworkHomeSub') }),
+          h('span', { class: 'muted', text: units.length ? p.done + ' ' + t('of') + ' ' + p.total + ' ' + t('exercises') : t(studentNoUpload() ? 'hwAutoHome' : 'homeworkHomeSub') }),
           units.length ? bar(p.done, p.total) : null), chev()));
     })();
     page.appendChild(h('button', { type: 'button', class: 'card tap', onclick: function () { go('analysis'); } },
@@ -4815,7 +4823,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return;
     }
     page.appendChild(h('h2', { text: t('homework') }));
-    page.appendChild(h('p', { class: 'muted', text: t('homeworkSub') }));
+    page.appendChild(h('p', { class: 'muted', text: t(studentNoUpload() ? 'hwAutoSub' : 'homeworkSub') }));
     var fileIn = h('input', { type: 'file', id: 'hw-file', accept: '.pgn,.txt,application/x-chess-pgn,text/plain,application/octet-stream', style: 'position:absolute;opacity:0;width:1px;height:1px', onchange: function () {
       var file = fileIn.files && fileIn.files[0];
       if (!file) return;
@@ -4824,7 +4832,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       reader.onerror = function () { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t('importErr') })); };
       reader.readAsText(file);
     } });
-    page.appendChild(h('label', { for: 'hw-file', class: 'btn primary hw-add' }, icon('upload'), t('addHomework'), fileIn));
+    if (studentNoUpload()) page.appendChild(h('div', { class: 'note hw-auto', text: '📚 ' + t('hwAuto') }));
+    else page.appendChild(h('label', { for: 'hw-file', class: 'btn primary hw-add' }, icon('upload'), t('addHomework'), fileIn));
     page.appendChild(msg);
     page.appendChild(h('button', { type: 'button', class: 'card tap basics-card', onclick: openBasics },
       h('span', { class: 'basics-ic', text: store.data.basicsOpen ? '♟' : '🔒' }),
@@ -4839,10 +4848,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
           h('button', { type: 'button', class: 'grow hw-open', onclick: function () { L.course = c; L.unit = -1; render(); } },
             h('h3', { text: pick(c.title) }), bar(p.done, p.total),
             h('span', { class: 'muted', text: p.done + ' ' + t('of') + ' ' + p.total + ' ' + t('exercises') + (homeworkScore(c).done ? ' · ' + t('hwScore') + ' ' + homeworkScore(c).pct + '%' : '') })),
-          h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), title: t('remove'), onclick: function () { removeHomework(c); } }, icon('close'))));
+          studentNoUpload() ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), title: t('remove'), onclick: function () { removeHomework(c); } }, icon('close'))));
       });
     }
-    page.appendChild(homeworkTutorial(!courses.length));
+    if (!studentNoUpload()) page.appendChild(homeworkTutorial(!courses.length));
     mainEl.appendChild(page);
   }
 
@@ -4983,8 +4992,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       h('div', { class: 'note', text: t('hwTip') }));
   }
   /** Adds a homework PGN (from the picker, or handed over by WhatsApp through the Android app). */
+  /** Students get their homework from the coach through the app; they cannot add files themselves. */
+  function studentNoUpload() { return role() === 'student' && !state.testNoAuth; }
   function importHomework(name, text, msgEl) {
     if (isResultText(text)) return receiveResults(text, msgEl);
+    if (studentNoUpload()) { HCC.toast(t('hwAuto')); return false; }
     var res;
     try { res = content.ingest('lessons', name, text); } catch (e) { res = { count: 0, bad: 0 }; }
     var say = function (cls, txt) {
@@ -5145,11 +5157,24 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var t0 = Date.now(), i = 0, mistakes = 0, hints = 0, hintStage = 0, locked = true, prompt = { text: '', arrows: [], marks: [] }, T = timersBox();
     var dead = false, asked = 0, wrongs = [];   // wrong moves of this attempt, for the coach's report
     setTop({ title: pick(unit.title), back: function () { L.unit = -1; render(); } });
-    state.cleanup = function () { dead = true; T.clear(); };
+    state.cleanup = function () { dead = true; T.clear(); if (tick) clearInterval(tick); };
     var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
     var statusEl = h('div', { class: 'status' }), say = sayBox(), btns = h('div', { class: 'btns' }), resultEl = h('div');
     board.chess = chess; board.setOrient(unit.heroWhite ? 'w' : 'b'); HCC._board = board;
-    mainEl.appendChild(h('div', { class: 'work' }, h('div', { class: 'board-wrap' }, host), statusEl, say, btns, resultEl));
+    // homework: the clock runs while solving, and the student can move to the previous / next exercise at any time
+    var isHw = !unit.watch && !course.basics, clockEl = null, navTop = null, tick = null;
+    if (isHw) {
+      clockEl = h('span', { class: 'pill hw-clock ltr', 'aria-live': 'off' });
+      var showClock = function () { var s = Math.floor((Date.now() - t0) / 1000); clockEl.textContent = '⏱ ' + Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); };
+      showClock(); tick = setInterval(showClock, 1000);
+      navTop = h('div', { class: 'hw-nav' },
+        btn(t('prevEx'), '', function () { L.unit = index - 1; render(); }, 'back'),
+        h('span', { class: 'muted small hw-pos', text: t('exerciseN', { i: index + 1, n: course.units.length }) }),
+        btn(t('nextEx'), '', function () { L.unit = index + 1; render(); }));
+      if (index === 0) navTop.firstChild.disabled = true;
+      if (index + 1 >= course.units.length) navTop.lastChild.disabled = true;
+    }
+    mainEl.appendChild(h('div', { class: 'work' }, isHw ? h('div', { class: 'hw-bar' }, navTop, clockEl) : null, h('div', { class: 'board-wrap' }, host), statusEl, say, btns, resultEl));
 
     function status(note) {
       HCC.clear(statusEl);
@@ -5299,6 +5324,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     }
     function finish() {
       locked = true; board.movable = null; buttons([]);
+      if (tick) { clearInterval(tick); tick = null; if (clockEl) clockEl.classList.add('done'); }
+      if (navTop && navTop.parentNode) navTop.parentNode.removeChild(navTop);   // the result below has its own previous / next
       var st = mistakes + hints === 0 ? 3 : (mistakes + hints <= 2 ? 2 : 1);
       if (st > (store.data.progress[unit.id] || 0)) store.data.progress[unit.id] = st;
       if (!unit.watch) hwSolved(unit.id, hints, t0);   // the first answer counts (see hwMiss)

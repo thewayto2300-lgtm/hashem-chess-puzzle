@@ -1,5 +1,5 @@
-/* Offline cache for Hashem Chess Puzzle 1.7.0. A new version replaces the old cache. */
-var CACHE = 'hcp-1.7.0', FILES = ["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png","apple-touch-icon.png","engine/COPYING.txt","engine/engine.json","engine/stockfish-19-lite-single.js","engine/stockfish-19-lite-single.wasm"];
+/* Offline cache for Hashem Chess Puzzle 1.7.1. A new version replaces the old cache. */
+var CACHE = 'hcp-1.7.1', FILES = ["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png","apple-touch-icon.png","engine/COPYING.txt","engine/engine.json","engine/stockfish-19-lite-single.js","engine/stockfish-19-lite-single.wasm"];
 self.addEventListener('install', function (e) { e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener('activate', function (e) { e.waitUntil(caches.keys().then(function (ks) { return Promise.all(ks.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); })); });
 self.addEventListener('fetch', function (e) {
