@@ -566,6 +566,15 @@ textarea#verify-msg { width: 100%; border: 1.5px solid var(--line); border-radiu
 .vf-ic{font-size:40px;line-height:1}
 .vf-mail{font-size:1.05em;word-break:break-all}
 .vf .btns.col{margin-top:12px}
+.ad-tabs{margin:6px 0 12px}
+.ad-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.ad-chips .chip.warn:not([aria-pressed="true"]){border-color:#e0a100;color:#8a5a00}
+.ad-user .grow{display:flex;flex-direction:column;gap:2px}
+.ad-sub{color:var(--muted,#5b6475)} .ad-sub.warn{color:#b3261e}
+.ad-sheet select,.cg-add select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line,#d6dbe6);font:inherit;background:var(--card,#fff);color:inherit}
+.ad-member{gap:8px;align-items:center} .ad-member select{max-width:48%;padding:6px;border-radius:8px;border:1px solid var(--line,#d6dbe6);font:inherit;font-size:.85em}
+.ad-nogroup{display:block;width:100%;text-align:start;cursor:pointer;font:inherit}
+.ad-roles{margin-bottom:8px}
 
 </style>
 </head>
@@ -1507,7 +1516,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.3.5',
+    version: '1.4.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1650,7 +1659,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       instTitle: 'نزّل التطبيق على موبايلك', instIos: 'من Safari: دوس زرار المشاركة ⬆️ تحت، وبعدين «إضافة إلى الشاشة الرئيسية» (Add to Home Screen). هتلاقي أيقونة التطبيق على الشاشة وبيفتح زي أي تطبيق.', instOther: 'من قايمة المتصفح اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».',
       fgHow: 'اكتب البريد اللي عملت بيه الحساب، وهيوصلك عليه رابط تعمل منه كلمة سر جديدة.', fgSend: 'ترجيع كلمة السر', fgSent: 'بعتنا رابط تغيير كلمة السر على {e}. افتحه من البريد واختار كلمة سر جديدة، وبعدين ادخل بيها.', fgNoMail: 'الحساب ده باسم مستخدم من غير بريد، فمينفعش يترجّع برابط. هيتفتح واتساب برسالة للأكاديمية، وهي هتمسح الحساب القديم عشان تعمل حساب جديد بنفس الاسم، والكابتن يضيفك تاني.', fgWaText: 'السلام عليكم، نسيت كلمة السر بتاعة تطبيق Hashem Chess Puzzle. اسم المستخدم: {u}', fgTip: 'نصيحة: لو عملت حساب ببريدك الإلكتروني بدل اسم المستخدم، تقدر ترجّع كلمة السر بنفسك في أي وقت.',
       acMailTitle: 'اربط بريدك', acMailWhy: 'عشان لو نسيت كلمة السر تقدر ترجّعها بنفسك. هيوصلك رابط على البريد، وبعد ما تفتحه بتدخل بالبريد بدل اسم المستخدم.', acLinkMail: 'ابعت رابط التأكيد', acLinkSent: 'بعتنا رابط على {e}. افتحه، وبعدين ادخل بالبريد ده وكلمة السر نفسها.',
-      obName: 'اسمك', obUserRule: 'لو نسيت كلمة السر، هيوصلك على البريد ده رابط تعمل منه كلمة سر جديدة. وادّيه للكابتن عشان يضيفك لمجموعتك.', obVisitor: 'تصفّح كزائر', obOffline: 'استخدام من غير حساب (البيانات على الموبايل بس)', obBackAccount: 'رجوع لتسجيل الدخول',
+      obName: 'اسمك', obUserRule: 'لو نسيت كلمة السر، هيوصلك على البريد ده رابط تعمل منه كلمة سر جديدة. والإدارة هتحطك في مجموعتك.', obVisitor: 'تصفّح كزائر', obOffline: 'استخدام من غير حساب (البيانات على الموبايل بس)', obBackAccount: 'رجوع لتسجيل الدخول',
       pwShow: 'إظهار كلمة السر', pwHide: 'إخفاء كلمة السر',
       acMake: 'حسابك على سيرفر الأكاديمية', acMine: 'حسابي', acCardStudent: 'اعمل حساب، ونتايج واجبك هتوصل للكابتن لوحدها', acCardCoach: 'اعمل حساب عشان مجموعاتك وحضورك يتحفظوا على السيرفر ونتايج الطلاب توصلك لوحدها', acOn: 'متصل', acPending: 'مستني موافقة الأكاديمية',
       acPendingLong: 'حسابك كمدرب مستني موافقة الأكاديمية. لحد ما يتوافق عليه بياناتك بتتحفظ على الموبايل بس.', acCoachHint: 'اعمل حساب على سيرفر الأكاديمية عشان بياناتك تتحفظ ونتايج الطلاب توصلك لوحدها.',
@@ -1659,12 +1668,15 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acAdminHow: 'حساب إدارة الأكاديمية بالبريد ده بس. أول مرة: «إنشاء حساب الإدارة»، وبعدين افتح رسالة التفعيل اللي هتوصل على البريد ودوس «فعّلت البريد».', acAdminFirst: 'إنشاء حساب الإدارة (أول مرة)', acVerifySent: 'بعتنا رسالة تفعيل على بريدك. افتحها ودوس على اللينك، وبعدين ارجع هنا ودوس «فعّلت البريد».', acVerified: 'فعّلت البريد', acNotVerified: 'البريد لسه ما اتفعّلش. افتح رسالة التفعيل الأول.',
       acForgot: 'نسيت كلمة السر؟', acResetSent: 'بعتنا رابط تغيير كلمة السر على البريد.',
       acErrTaken: 'اسم المستخدم ده محجوز، اختار اسم تاني.', acErrLogin: 'البريد أو كلمة السر غلط.', acErrWeak: 'كلمة السر لازم تكون 6 حروف أو أكتر.', acErrUser: 'اسم المستخدم من 3 لـ 30 حرف إنجليزي أو رقم من غير مسافات (ومسموح . و _ و -)، أو اكتب بريدك الإلكتروني.', acErrMany: 'محاولات كتير، استنى شوية وجرّب تاني.', acErrPerm: 'مش مسموح لحسابك يعمل ده.', acErrNet: 'مفيش اتصال بالسيرفر. اتأكد من النت وجرّب تاني.', acErrMatch: 'كلمتين السر مش زي بعض.',
-      acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. ادّيه للكابتن عشان يضيفك لمجموعتك، ونتايج واجبك هتوصله لوحدها.',
+      acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. لسه الإدارة ما حطّتكش في مجموعة؛ أول ما تتحط نتايج واجبك هتوصل للكابتن لوحدها.',
       vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
+      adTab_users: 'المستخدمين', adTab_groups: 'المجموعات', adTab_reports: 'التقارير', adCat_pending: 'طلبات مدربين', adCat_coach: 'مدربين', adCat_student: 'متدربين', adCat_visitor: 'زوار', adCat_blocked: 'موقوفين', adEmpty: 'مفيش حد هنا.', adNoGroup: 'بدون مجموعة', adGroupsN: '{n} مجموعة', adUnconfirmed: 'لسه ما أكّدش الإيميل', adUser: 'المستخدم', adPerm: 'الصلاحية', adCoachAsk: 'طالب يبقى مدرب. دوس «مدرب» للموافقة.', adGroup: 'المجموعة', adMakeGroupFirst: 'اعمل مجموعة الأول من «المجموعات».', adBlockUser: 'إيقاف الحساب', adUnblock: 'إلغاء الإيقاف', adDelete: 'حذف المستخدم', adDeleteSure: 'متأكد؟ دوس تاني للحذف', adBlockHow: 'الحساب الموقوف ما يقدرش يستخدم التطبيق بحسابه لحد ما تلغي الإيقاف. الحذف بيمسح بياناته من الأكاديمية.', adSaved: 'اتحفظ ✔', adBlocked: 'اتوقف الحساب', adUnblocked: 'اتلغى الإيقاف ✔', adDeleted: 'اتمسح المستخدم', adNoGroupN: '{n} متدرب لسه من غير مجموعة. دوس عشان تشوفهم.', adNoGroups: 'لسه مفيش مجموعات.', adNoCoach: 'من غير مدرب', adStudentsN: '{n} متدرب', adPickCoach: 'اختار المدرب', adCoach: 'المدرب', adMoveTo: 'انقل إلى', adTakeOut: 'شيله من المجموعة', adPickStudent: 'اختار المتدرب',
+      acMyGroup: 'مجموعة {g}', acNoGroup: 'لسه الإدارة ما حطّتكش في مجموعة', acInGroup: 'إنت في مجموعة «{g}» مع الكابتن {c}. نتايج واجبك بتوصله لوحدها.', cgByAdmin: 'المجموعات والطلاب اللي فيها بتحددهم إدارة الأكاديمية.', cgNoneYet: 'لسه الإدارة ما حطّتش مجموعات ليك. أول ما تتحط هتظهر هنا.',
+      blTitle: 'الحساب موقوف', blText: 'إدارة الأكاديمية أوقفت الحساب ده. كلّمهم على واتساب لو فيه حاجة.', blAsk: 'كلّم الأكاديمية على واتساب', blRetry: 'اتلغى الإيقاف؟ جرّب تاني', blStill: 'لسه موقوف.', blWaText: 'السلام عليكم، حسابي على تطبيق Hashem Chess Puzzle موقوف ({e}).',
       acRefresh: 'تحديث', acSignOut: 'خروج', acDelete: 'حذف الحساب وبياناته', acDeleteSure: 'متأكد؟ دوس تاني للحذف النهائي', acDeleted: 'اتمسح الحساب.', acSync: 'تحديث من السيرفر', acSynced: 'اتحدّث ✔',
       cgStudentUser: 'اسم الطالب، أو بريده لو عنده حساب', cgNoUser: 'مفيش متدرب بالحساب {u}.', cgUserAdded: 'اتضاف {n} ✔ ونتايجه هتوصلك لوحدها.',
       rpSendApp: 'ابعت التقرير للأكاديمية (على السيرفر)', rpSentApp: 'التقرير وصل للأكاديمية ✔',
-      adTitle: 'إدارة الأكاديمية', adSub: 'موافقة المدربين والتقارير الشهرية', adPending: 'مدربين مستنيين موافقة', adNoPending: 'مفيش طلبات جديدة.', adApprove: 'موافقة', adCoaches: 'المدربين', adReportsN: '{n} تقرير', adBlock: 'إيقاف', adReports: 'التقارير الشهرية', adNoReports: 'لسه مفيش تقارير.',
+      adTitle: 'إدارة الأكاديمية', adSub: 'المستخدمين والصلاحيات والمجموعات والتقارير', adPending: 'مدربين مستنيين موافقة', adNoPending: 'مفيش طلبات جديدة.', adApprove: 'موافقة', adCoaches: 'المدربين', adReportsN: '{n} تقرير', adBlock: 'إيقاف', adReports: 'التقارير الشهرية', adNoReports: 'لسه مفيش تقارير.',
       ssTitle: 'الحصص والحضور', ssToday: 'تسجيل حصة النهارده', ssNone: 'لسه مفيش حصص متسجلة للمجموعة دي.', ssNoStudents: 'ضيف طلاب للمجموعة الأول.', ssRowSub: 'حضر {p} من {n}', ssAbsentN: 'غاب {n}', ssAll: 'كل الحصص ({n})',
       ssDate: 'تاريخ الحصة', ssTopic: 'موضوع الحصة', ssTopicHint: 'اختياري، مثلاً: الشوكة', ssHow: 'علّم حضور كل طالب، وقيّم اللي حضر من 1 لـ 5 (1 ضعيف · 5 ممتاز). كل حاجة بتتحفظ أول بأول.',
       ssAllPresent: 'علّم الكل حاضر', ssSum: 'حضر {p} من {n} · متأخر {l} · غايب {a} · بعذر {x}', ssAttendance: 'حضور', ssUnmarked: 'لسه', ssNoteHint: 'ملاحظة على الطالب (اختياري)', ssDone: 'تم', ssSaved: 'اتحفظت الحصة ✔', ssDelete: 'حذف الحصة',
@@ -1751,7 +1763,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       instTitle: 'Install the app on your phone', instIos: 'In Safari: tap the Share button ⬆️ at the bottom, then “Add to Home Screen”. The app gets its own icon and opens like any app.', instOther: 'From the browser menu choose “Install app” or “Add to Home screen”.',
       fgHow: 'Type the e-mail you created the account with; a link to set a new password is sent to it.', fgSend: 'Reset my password', fgSent: 'We sent a password reset link to {e}. Open it, choose a new password, then sign in with it.', fgNoMail: 'This account uses a username without an e-mail, so it cannot be reset by a link. WhatsApp opens with a message to the academy; they delete the old account so you can make a new one with the same name, and your coach adds you again.', fgWaText: 'Hello, I forgot my Hashem Chess Puzzle password. Username: {u}', fgTip: 'Tip: an account made with your e-mail instead of a username can reset its password by itself at any time.',
       acMailTitle: 'Link your e-mail', acMailWhy: 'So you can reset the password yourself if you forget it. We send a link to the e-mail; after you open it you sign in with the e-mail instead of the username.', acLinkMail: 'Send the confirmation link', acLinkSent: 'We sent a link to {e}. Open it, then sign in with this e-mail and the same password.',
-      obName: 'Your name', obUserRule: 'If you forget the password, a link to set a new one is sent to this e-mail. Give it to your coach so they add you to your group.', obVisitor: 'Browse as a visitor', obOffline: 'Use without an account (data stays on this phone)', obBackAccount: 'Back to sign-in',
+      obName: 'Your name', obUserRule: 'If you forget the password, a link to set a new one is sent to this e-mail. The academy puts you in your group.', obVisitor: 'Browse as a visitor', obOffline: 'Use without an account (data stays on this phone)', obBackAccount: 'Back to sign-in',
       pwShow: 'Show password', pwHide: 'Hide password',
       acMake: 'Your academy account', acMine: 'My account', acCardStudent: 'Create an account and your homework results reach your coach by themselves', acCardCoach: 'Create an account so your groups and attendance are kept on the server and students’ results reach you by themselves', acOn: 'connected', acPending: 'waiting for the academy’s approval',
       acPendingLong: 'Your coach account is waiting for the academy’s approval. Until then your data stays on this phone only.', acCoachHint: 'Create an account on the academy server so your data is kept safe and students’ results reach you by themselves.',
@@ -1760,12 +1772,15 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acAdminHow: 'The academy admin account uses this e-mail only. First time: “Create the admin account”, then open the verification e-mail, tap its link and come back to tap “I verified my e-mail”.', acAdminFirst: 'Create the admin account (first time)', acVerifySent: 'We sent a verification e-mail. Open it and tap the link, then come back and tap “I verified my e-mail”.', acVerified: 'I verified my e-mail', acNotVerified: 'The e-mail is not verified yet. Open the verification e-mail first.',
       acForgot: 'Forgot password?', acResetSent: 'We sent a password reset link to the e-mail.',
       acErrTaken: 'This username is taken; pick another.', acErrLogin: 'Wrong e-mail or password.', acErrWeak: 'The password needs 6 characters or more.', acErrUser: 'Usernames are 3 to 30 English letters or digits without spaces (. _ - allowed), or use your e-mail.', acErrMany: 'Too many attempts; wait a little and try again.', acErrPerm: 'Your account is not allowed to do this.', acErrNet: 'Cannot reach the server. Check the internet and try again.', acErrMatch: 'The two passwords differ.',
-      acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. Give it to your coach so they add you to your group; your homework results reach them by themselves.',
+      acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. The academy has not put you in a group yet; once it does, your homework results reach the coach by themselves.',
       vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
+      adTab_users: 'Users', adTab_groups: 'Groups', adTab_reports: 'Reports', adCat_pending: 'Coach requests', adCat_coach: 'Coaches', adCat_student: 'Students', adCat_visitor: 'Visitors', adCat_blocked: 'Suspended', adEmpty: 'Nobody here.', adNoGroup: 'No group', adGroupsN: '{n} groups', adUnconfirmed: 'e-mail not confirmed yet', adUser: 'User', adPerm: 'Permission', adCoachAsk: 'Asked to be a coach. Tap “Coach” to approve.', adGroup: 'Group', adMakeGroupFirst: 'Make a group first under “Groups”.', adBlockUser: 'Suspend account', adUnblock: 'Lift suspension', adDelete: 'Delete user', adDeleteSure: 'Sure? Tap again to delete', adBlockHow: 'A suspended account cannot use the app with its account until you lift it. Deleting removes their academy data.', adSaved: 'Saved ✔', adBlocked: 'Account suspended', adUnblocked: 'Suspension lifted ✔', adDeleted: 'User deleted', adNoGroupN: '{n} students have no group yet. Tap to see them.', adNoGroups: 'No groups yet.', adNoCoach: 'No coach', adStudentsN: '{n} students', adPickCoach: 'Pick the coach', adCoach: 'Coach', adMoveTo: 'Move to', adTakeOut: 'Take out of the group', adPickStudent: 'Pick a student',
+      acMyGroup: 'Group {g}', acNoGroup: 'The academy has not put you in a group yet', acInGroup: 'You are in group “{g}” with coach {c}. Your homework results reach them by themselves.', cgByAdmin: 'Groups and their students are set by the academy admin.', cgNoneYet: 'The academy has not given you groups yet. They appear here once it does.',
+      blTitle: 'Account suspended', blText: 'The academy admin suspended this account. Message them on WhatsApp if needed.', blAsk: 'Message the academy on WhatsApp', blRetry: 'Lifted? Try again', blStill: 'Still suspended.', blWaText: 'Hello, my Hashem Chess Puzzle account is suspended ({e}).',
       acRefresh: 'Refresh', acSignOut: 'Sign out', acDelete: 'Delete account and its data', acDeleteSure: 'Sure? Tap again to delete for good', acDeleted: 'Account deleted.', acSync: 'Update from the server', acSynced: 'Updated ✔',
       cgStudentUser: 'Student name, or their e-mail if they have an account', cgNoUser: 'No student with the account {u}.', cgUserAdded: '{n} added ✔ Their results will reach you by themselves.',
       rpSendApp: 'Send the report to the academy (server)', rpSentApp: 'The academy received the report ✔',
-      adTitle: 'Academy admin', adSub: 'Approve coaches and read monthly reports', adPending: 'Coaches waiting for approval', adNoPending: 'No new requests.', adApprove: 'Approve', adCoaches: 'Coaches', adReportsN: '{n} reports', adBlock: 'Suspend', adReports: 'Monthly reports', adNoReports: 'No reports yet.',
+      adTitle: 'Academy admin', adSub: 'Users, permissions, groups and reports', adPending: 'Coaches waiting for approval', adNoPending: 'No new requests.', adApprove: 'Approve', adCoaches: 'Coaches', adReportsN: '{n} reports', adBlock: 'Suspend', adReports: 'Monthly reports', adNoReports: 'No reports yet.',
       ssTitle: 'Classes and attendance', ssToday: 'Record today’s class', ssNone: 'No classes recorded for this group yet.', ssNoStudents: 'Add students to the group first.', ssRowSub: '{p} of {n} came', ssAbsentN: '{n} absent', ssAll: 'All classes ({n})',
       ssDate: 'Class date', ssTopic: 'Class topic', ssTopicHint: 'Optional, e.g. Forks', ssHow: 'Mark each student’s attendance and rate those who came from 1 to 5 (1 weak · 5 excellent). Everything is saved as you go.',
       ssAllPresent: 'Mark everyone present', ssSum: '{p} of {n} came · {l} late · {a} absent · {x} excused', ssAttendance: 'Attendance', ssUnmarked: 'Not marked', ssNoteHint: 'Note on the student (optional)', ssDone: 'Done', ssSaved: 'Class saved ✔', ssDelete: 'Delete class',
@@ -1949,7 +1964,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return post(AUTH + '/accounts:signUp?key=' + CFG.apiKey, { email: emailOf(u), password: password, returnSecureToken: true }).then(function (j) {
         keep(j); store.data.cloud.verified = false; store.save();
         C.sendVerify().catch(function () {});
-        var p = { name: name, username: u, role: role === 'coach' ? 'coach' : 'student', approved: false, verified: false, at: Date.now() };
+        var p = { name: name, username: u, role: role === 'coach' || role === 'visitor' ? role : 'student', approved: false, verified: false, at: Date.now() };
         return C.set('users/' + j.localId, p).then(function () { store.data.cloud.profile = p; store.save(); return p; });
       });
     },
@@ -1994,6 +2009,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       if (C.isAdmin()) { store.data.cloud.profile = { name: 'Hashem Chess Castle', role: 'admin', approved: true }; store.save(); return Promise.resolve(store.data.cloud.profile); }
       return C.get('users/' + C.uid()).then(function (p) { store.data.cloud.profile = p; store.save(); return p; });
     },
+    /** Suspended by the academy admin. */
+    blocked: function () { var p = C.profile(); return !!(p && p.blocked === true && !C.isAdmin()); },
     signOut: function () { delete store.data.cloud; store.save(); },
     /** Deletes the user's data and account (Google Play requires this to be possible in the app). */
     deleteAccount: function () {
@@ -3297,7 +3314,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     // Full-screen sections: everything except Home hides the top bar and the bottom tabs; the phone's Back button returns.
     var appEl = document.getElementById('app'); if (appEl) appEl.classList.toggle('immersive', !root.HCC_WEB && (state.tab !== 'home' || !store.data.user || !!state.onboard));
     HCC.clear(mainEl); mainEl.scrollTop = 0;
-    if (!store.data.user || state.onboard || (CL.signedIn() && !CL.verified())) { onboardingView(); return; }
+    if (!store.data.user || state.onboard || (CL.signedIn() && (!CL.verified() || CL.blocked()))) { onboardingView(); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
   }
   function timersBox() {
@@ -3338,6 +3355,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   /** First start: one screen, one password. Sign in, or create an account (coach / student), or browse as a visitor. */
   function onboardingView() {
     if (CL.signedIn() && !CL.verified()) return verifyView();
+    if (CL.signedIn() && CL.blocked()) return blockedView();
     if (state.obOffline || (state.onboard && store.data.user && !CL.signedIn())) return offlineOnboarding();
     var page = h('div', { class: 'page ob' }), msg = h('div'), mode = state.obMode || 'up', pickRole = state.obRole || '';
     function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
@@ -3351,7 +3369,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var pwIn = h('input', { type: 'password', id: 'ob-pass', autocomplete: mode === 'up' ? 'new-password' : 'current-password', dir: 'ltr' });
     if (mode === 'up') {
       var roles = h('div', { class: 'ob-roles', role: 'radiogroup', 'aria-label': t('obWho') });
-      [['coach', '♔'], ['student', '♙']].forEach(function (r) {
+      [['coach', '♔'], ['student', '♙'], ['visitor', '👋']].forEach(function (r) {
         var R = r[0].charAt(0).toUpperCase() + r[0].slice(1);
         roles.appendChild(h('button', { type: 'button', class: 'card tap ob-role', role: 'radio', 'aria-checked': String(pickRole === r[0]), 'data-role': r[0], onclick: function () {
           pickRole = state.obRole = r[0];
@@ -3379,7 +3397,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       goBtn.disabled = true; HCC.clear(msg);
       (mode === 'up' ? CL.signUp(u, pw, name, pickRole) : CL.signIn(u, pw)).then(function (p) {
         if (!p) { CL.signOut(); throw new Error('INVALID_LOGIN'); }
-        if (!CL.verified()) { render(); return; }
+        if (!CL.verified() || CL.blocked()) { render(); return; }
         return enterWithAccount();
       }).catch(function (e) { goBtn.disabled = false; fail(e); });
     });
@@ -3466,10 +3484,24 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     try { if (location.hash !== '#home') location.hash = 'home'; } catch (e) { /* no hash */ }
     renderTabs(); render();
   }
+  function localRole(p) { return p && p.role === 'coach' ? 'coach' : p && p.role === 'visitor' ? 'visitor' : 'student'; }
+  /** The academy admin suspended this account. */
+  function blockedView() {
+    setTop(undefined);
+    var page = h('div', { class: 'page ob vf' });
+    page.appendChild(h('div', { class: 'ob-head' }, h('div', { class: 'ob-logo' }, HCC.mark()), h('h2', { text: t('blTitle') })));
+    page.appendChild(h('div', { class: 'card vf-card' }, h('span', { class: 'vf-ic', text: '⛔' }), h('p', { text: t('blText') }), h('b', { class: 'ltr vf-mail', text: CL.email() })));
+    var num = String(HCC.APP.whatsapp || '').replace(/\D/g, '');
+    page.appendChild(h('div', { class: 'btns col' },
+      btn(t('blAsk'), 'primary', function () { var a = h('a', { href: 'https://wa.me/' + num + '?text=' + encodeURIComponent(t('blWaText', { e: CL.email() })), target: '_blank', rel: 'noopener' }); document.body.appendChild(a); a.click(); a.remove(); }),
+      btn(t('blRetry'), '', function () { var b = this; b.disabled = true; CL.refreshProfile().then(function () { b.disabled = false; if (!CL.blocked()) enterWithAccount(); else HCC.toast(t('blStill')); }, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); })));
+    page.appendChild(h('div', { class: 'ob-alts' }, h('button', { type: 'button', class: 'linkish', text: t('acSignOut'), onclick: function () { CL.signOut(); store.data.user = null; store.save(); state.obMode = 'in'; render(); } })));
+    mainEl.appendChild(page);
+  }
   /** After signing in or creating an account: the account decides who uses the app. */
   function enterWithAccount() {
     var p = CL.profile() || {};
-    var user = CL.isAdmin() ? { role: 'coach', name: (store.data.user && store.data.user.name) || p.name } : { role: p.role === 'coach' ? 'coach' : 'student', name: p.name || '' };
+    var user = CL.isAdmin() ? { role: 'coach', name: (store.data.user && store.data.user.name) || p.name } : { role: localRole(p), name: p.name || '' };
     if (CL.isAdmin() || (p.role === 'coach' && p.approved)) store.data.basicsOpen = true;
     finishOnboard(user);
     return cloudStart();
@@ -3638,7 +3670,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('span', { class: 'cg-ic', text: '👥' }),
         h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: g.name }), h('span', { class: 'muted', text: t('cgGroupSub', { s: g.students.length, r: res.length }) })), chev()));
     });
-    page.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'cg-new', text: t('cgNewGroup') }), h('div', { class: 'row' }, nameIn,
+    if (cloudCoach()) page.appendChild(h('div', { class: 'note', text: t(d.groups.length ? 'cgByAdmin' : 'cgNoneYet') }));
+    else page.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'cg-new', text: t('cgNewGroup') }), h('div', { class: 'row' }, nameIn,
       btn(t('cgCreate'), '', function () {
         var n = nameIn.value.trim(); if (!n) { nameIn.focus(); return; }
         d.groups.push({ id: 'g' + Date.now().toString(36), name: n, students: [] }); store.save(); render();
@@ -3690,9 +3723,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var mine = res.filter(function (r) { return normName(r.name) === normName(s); });
       var u = (g.uids || {})[s];
       list.appendChild(h('div', { class: 'unit' }, h('span', { class: 'grow', dir: 'auto' }, s, u ? h('span', { class: 'muted small ltr', text: ' ' + uname(u.username) }) : null), h('span', { class: 'muted small', text: t('cgSent', { n: mine.length }) }),
-        h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () { g.students = g.students.filter(function (x) { return x !== s; }); if (g.uids) delete g.uids[s]; store.save(); render(); } }, icon('close'))));
+        g.server ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () { g.students = g.students.filter(function (x) { return x !== s; }); if (g.uids) delete g.uids[s]; store.save(); render(); } }, icon('close'))));
     });
     page.appendChild(list);
+    if (g.server) { page.appendChild(h('p', { class: 'muted small', text: t('cgByAdmin') })); mainEl.appendChild(page); return; }
     var stIn = h('input', { type: 'text', id: 'cg-student', dir: 'auto', placeholder: t(cloudCoach() ? 'cgStudentUser' : 'cgStudentName') });
     page.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'cg-student', text: t('cgAddStudent') }), h('div', { class: 'row' }, stIn,
       btn(t('cgAdd'), '', function () {
@@ -4013,6 +4047,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var p = CL.profile(), sub;
     if (!CL.signedIn()) sub = t(role() === 'coach' ? 'acCardCoach' : 'acCardStudent');
     else if (CL.isAdmin()) sub = CL.email();
+    else if (p && p.role === 'student') sub = store.data.myGroup ? t('acMyGroup', { g: store.data.myGroup.name }) + (store.data.myGroup.coach ? ' · ' + store.data.myGroup.coach : '') : t('acNoGroup');
     else sub = (p ? uname(p.username) : '') + (p && p.role === 'coach' && !p.approved ? ' · ' + t('acPending') : ' · ' + t('acOn'));
     return h('button', { type: 'button', class: 'card tap acct-card' + (CL.signedIn() ? '' : ' off'), onclick: accountSheet },
       h('span', { class: 'cg-ic', text: CL.signedIn() ? '☁️' : '👤' }),
@@ -4034,8 +4069,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var p = CL.profile() || {};
       box.appendChild(h('div', { class: 'card' }, h('h3', { dir: 'auto', text: p.name || CL.email() }),
         h('p', { class: 'muted ltr', text: p.username ? uname(p.username) : CL.email() }),
-        h('p', { class: 'small', text: t(CL.isAdmin() ? 'acRoleAdmin' : p.role === 'coach' ? (p.approved ? 'acRoleCoach' : 'acPendingLong') : 'acRoleStudent') })));
-      if (p.role === 'student') box.appendChild(h('div', { class: 'note', text: t('acStudentInfo', { u: p.username }) }));
+        h('p', { class: 'small', text: t(CL.isAdmin() ? 'acRoleAdmin' : p.role === 'coach' ? (p.approved ? 'acRoleCoach' : 'acPendingLong') : p.role === 'visitor' ? 'roleVisitor' : 'acRoleStudent') })));
+      if (p.role === 'student') box.appendChild(h('div', { class: 'note', text: store.data.myGroup ? t('acInGroup', { g: store.data.myGroup.name, c: store.data.myGroup.coach || '—' }) : t('acStudentInfo', { u: p.username }) }));
       if (!CL.isAdmin() && /@hashemchess\.app$/.test(CL.email())) {
         var emIn = h('input', { type: 'email', id: 'ac-mail', dir: 'ltr', autocapitalize: 'none', placeholder: 'name@gmail.com' });
         var emMsg = h('div');
@@ -4096,7 +4131,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         var p = CL.profile();
         if (!admin && !p) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
         if (admin && !CL.isAdmin()) { CL.signOut(); busy(b, false); return fail('acErrLogin'); }
-        if (!CL.verified()) { closeSheet(); render(); return; }
+        if (!CL.verified() || CL.blocked()) { closeSheet(); render(); return; }
         closeSheet(); return enterWithAccount().then(function () { HCC.toast(t('acWelcome')); });
       }).catch(function (e) { busy(b, false); fail(e); });
     }
@@ -4145,11 +4180,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   function coachPull() {
     if (!cloudCoach()) return Promise.resolve();
     var uid = CL.uid(), d = coachData(); pulling = true;
-    return Promise.all([CL.get('coachdata/' + uid), CL.query('sessions', [['coachUid', 'EQUAL', uid]])]).then(function (res) {
+    return Promise.all([CL.get('coachdata/' + uid), CL.query('sessions', [['coachUid', 'EQUAL', uid]]), CL.query('groups', [['coachUid', 'EQUAL', uid]])]).then(function (res) {
       var main = res[0], ss = res[1];
       if (main && main.data) { d.groups = main.data.groups || []; d.notes = main.data.notes || {}; d.sent = main.data.sent || {}; }
       else if (d.groups.length) lastPush = null;   // first sign-in on this phone: upload what is here
       if (main || ss.length) d.sessions = ss.map(function (x) { return x.data; }).filter(Boolean);
+      d.groups = res[2].map(serverGroup).sort(function (a, b) { return a.name.localeCompare(b.name); });   // the academy admin decides the groups
       store.save(); pulling = false;
       if (main) lastPush = coachSnap();
       return fetchResults();
@@ -4183,14 +4219,29 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       store.save(); return fetchResults().then(function () { HCC.toast(t('cgUserAdded', { n: name })); render(); });
     }, function (e) { HCC.toast(t(CL.errKey(e))); });
   }
+  /** Student: the group the academy put them in (and its coach). */
+  function myGroupPull() {
+    return CL.query('groups', [['memberUids', 'ARRAY_CONTAINS', CL.uid()]], 1).then(function (l) {
+      var g = l[0]; store.data.myGroup = g ? { name: g.name, coach: g.coachName || '' } : null; store.save();
+    });
+  }
+  function serverGroup(x) {
+    var g = { id: x._id, name: x.name, students: [], uids: {}, server: true };
+    (x.members || []).forEach(function (m) { g.students.push(m.name); g.uids[m.name] = { uid: m.uid, username: m.username }; });
+    return g;
+  }
   /** On start and after signing in. */
   function cloudStart() {
     if (!CL.signedIn()) return Promise.resolve();
+    var was = store.data.user && store.data.user.role;
     return CL.refreshProfile().then(function () {
+      var p = CL.profile();
+      // the admin may have changed this account's permission since the last start
+      if (p && !CL.isAdmin() && store.data.user && store.data.user.role !== localRole(p)) { store.data.user.role = localRole(p); store.save(); renderTabs(); }
       if (cloudCoach() || CL.isAdmin()) { store.data.basicsOpen = true; store.save(); }
       if (cloudCoach()) return coachPull();
-      if (cloudStudent()) return HCC._uploadHomework();
-    }).then(function () { if (!state.onboard && state.tab === 'home') render(); }, function () { /* offline: keep working locally */ });
+      if (cloudStudent()) return Promise.all([HCC._uploadHomework(), myGroupPull()]);
+    }).then(function () { if (CL.blocked() || (store.data.user && store.data.user.role !== was) || (!state.onboard && state.tab === 'home')) render(); }, function () { /* offline: keep working locally */ });
   }
   // every save of the coach's data is pushed a moment later
   (function () { var save0 = store.save; store.save = function () { var r = save0.apply(store, arguments); if (cloudCoach() && !pulling) pushSoon(); return r; }; })();
@@ -4199,36 +4250,179 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   // ---------------------------------------------------------------- the academy admin: approve coaches, read the monthly reports
   function adminView() {
     setTop({ title: t('adTitle'), back: function () { state.cv = null; render(); } });
-    var page = h('div', { class: 'page cg ad' }), body = h('div', { class: 'cg' }, h('p', { class: 'muted', text: t('loading') }));
+    var a = adminData(), page = h('div', { class: 'page cg ad' });
     page.appendChild(h('h2', { text: t('adTitle') }));
+    page.appendChild(h('div', { class: 'seg ad-tabs', role: 'group' }, ['users', 'groups', 'reports'].map(function (k) {
+      return h('button', { type: 'button', 'aria-pressed': String(a.tab === k), 'data-tab': k, text: t('adTab_' + k), onclick: function () { a.tab = k; render(); } });
+    })));
+    var body = h('div', { class: 'cg' });
     page.appendChild(body);
     mainEl.appendChild(page);
-    Promise.all([CL.query('users', [['role', 'EQUAL', 'coach']]), CL.query('reports', [])]).then(function (res) {
-      HCC.clear(body);
-      var coaches = res[0], reports = res[1].sort(function (a, b) { return b.at - a.at; });
-      coaches = coaches.filter(function (c) { return c.verified !== false; });
-      var pending = coaches.filter(function (c) { return !c.approved; }), ok = coaches.filter(function (c) { return c.approved; });
-      body.appendChild(h('div', { class: 'eyebrow', text: t('adPending') + ' (' + pending.length + ')' }));
-      if (!pending.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoPending') }));
-      pending.forEach(function (c) {
-        body.appendChild(h('div', { class: 'card row' }, h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: c.name }), h('span', { class: 'muted small ltr', text: uname(c.username) })),
-          btn(t('adApprove'), 'primary', function () { var b = this; b.disabled = true; CL.update('users/' + c._id, { approved: true }).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }),
-          btn(t('remove'), 'danger', function () { var b = this; b.disabled = true; CL.del('users/' + c._id).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); })));
-      });
-      body.appendChild(h('div', { class: 'eyebrow', text: t('adCoaches') + ' (' + ok.length + ')' }));
-      ok.forEach(function (c) {
-        var mine = reports.filter(function (r) { return r.coachUid === c._id; });
-        body.appendChild(h('div', { class: 'card row' }, h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: c.name }), h('span', { class: 'muted small' }, h('span', { class: 'ltr', text: uname(c.username) }), ' · ' + t('adReportsN', { n: mine.length }))),
-          btn(t('adBlock'), '', function () { var b = this; b.disabled = true; CL.update('users/' + c._id, { approved: false }).then(adminView, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); })));
-      });
-      body.appendChild(h('div', { class: 'eyebrow', text: t('adReports') }));
-      if (!reports.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoReports') }));
-      reports.forEach(function (r) {
-        var copyB = btn(t('rpCopy'), '', function () { copyText(r.text, copyB, t('rpCopy')); });
-        body.appendChild(h('details', { class: 'card ad-rep' }, h('summary', {}, h('b', { dir: 'auto', text: r.coachName + ' · ' + monthName(r.month) }), h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(r.at)) })),
-          h('pre', { class: 'hw-preview', dir: 'auto', text: r.text }), h('div', { class: 'btns' }, copyB), h('div', { class: 'sh-manual', hidden: 'hidden' }, h('textarea', { readonly: 'readonly', rows: '4' }))));
-      });
-    }, function (e) { HCC.clear(body); body.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+    if (!a.users) {
+      body.appendChild(h('p', { class: 'muted', text: t('loading') }));
+      adminLoad().then(function () { if (state.cv && state.cv.page === 'admin') render(); }, function (e) { HCC.clear(body); body.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+      return;
+    }
+    if (a.tab === 'groups') adGroups(body);
+    else if (a.tab === 'reports') adReports(body);
+    else adUsers(body);
+    body.appendChild(h('div', { class: 'btns' }, btn(t('acSync'), '', function () { var b = this; b.disabled = true; adminLoad().then(render, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }, 'redo')));
+  }
+  function adminData() { return state.ad || (state.ad = { tab: 'users', filter: '' }); }
+  function adminLoad() {
+    var a = adminData();
+    return Promise.all([CL.query('users', []), CL.query('groups', []), CL.query('reports', [])]).then(function (r) {
+      a.users = r[0].sort(function (x, y) { return String(x.name).localeCompare(String(y.name)); });
+      a.groups = r[1].sort(function (x, y) { return String(x.name).localeCompare(String(y.name)); });
+      a.reports = r[2].sort(function (x, y) { return y.at - x.at; });
+    });
+  }
+  function adCat(u) { if (u.blocked) return 'blocked'; if (u.role === 'coach') return u.approved ? 'coach' : 'pending'; return u.role === 'visitor' ? 'visitor' : 'student'; }
+  function adGroupOf(uid) { return (adminData().groups || []).filter(function (g) { return (g.memberUids || []).indexOf(uid) >= 0; })[0] || null; }
+  function adErr(b) { return function (e) { if (b) b.disabled = false; HCC.toast(t(CL.errKey(e))); }; }
+  function adDone(k) { return function () { return adminLoad().then(function () { if (k) HCC.toast(t(k)); render(); }); }; }
+  function adSaveGroup(g) {
+    g.members = g.members || [];
+    return CL.set('groups/' + g._id, { name: g.name, coachUid: g.coachUid || '', coachName: g.coachName || '', members: g.members, memberUids: g.members.map(function (m) { return m.uid; }), at: Date.now() });
+  }
+  /** Puts a student in one group (gid) or in none (''), taking them out of any other. */
+  function adMove(u, gid) {
+    var jobs = [];
+    (adminData().groups || []).forEach(function (g) {
+      var inIt = (g.members || []).some(function (m) { return m.uid === u._id; });
+      if (inIt && g._id !== gid) { g.members = g.members.filter(function (m) { return m.uid !== u._id; }); jobs.push(adSaveGroup(g)); }
+      if (!inIt && g._id === gid) { g.members = (g.members || []).concat([{ uid: u._id, name: u.name || u.username, username: u.username || '' }]); jobs.push(adSaveGroup(g)); }
+    });
+    return Promise.all(jobs);
+  }
+  function adUsers(body) {
+    var a = adminData(), cats = ['pending', 'coach', 'student', 'visitor', 'blocked'], n = {};
+    cats.forEach(function (c) { n[c] = 0; }); a.users.forEach(function (u) { n[adCat(u)]++; });
+    if (!a.filter) a.filter = n.pending ? 'pending' : 'student';
+    body.appendChild(h('div', { class: 'ad-chips' }, cats.filter(function (c) { return c !== 'pending' || n.pending; }).map(function (c) {
+      return h('button', { type: 'button', class: 'chip' + (c === 'pending' ? ' warn' : ''), 'aria-pressed': String(a.filter === c), 'data-cat': c, onclick: function () { a.filter = c; render(); } }, t('adCat_' + c) + ' (' + n[c] + ')');
+    })));
+    var list = a.users.filter(function (u) { return adCat(u) === a.filter; });
+    if (!list.length) body.appendChild(h('p', { class: 'muted', text: t('adEmpty') }));
+    list.forEach(function (u) {
+      var g = adGroupOf(u._id), sub = [];
+      if (u.role === 'student' && !u.blocked) sub.push(g ? t('acMyGroup', { g: g.name }) : t('adNoGroup'));
+      if (u.role === 'coach') sub.push(t('adGroupsN', { n: (a.groups || []).filter(function (x) { return x.coachUid === u._id; }).length }));
+      if (u.verified === false) sub.push(t('adUnconfirmed'));
+      body.appendChild(h('button', { type: 'button', class: 'card tap ad-user', 'data-uid': u._id, onclick: function () { adUserSheet(u); } },
+        h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: u.name || u.username }), h('span', { class: 'muted small ltr', text: uname(u.username) }),
+          sub.length ? h('span', { class: 'small ad-sub' + (u.role === 'student' && !g ? ' warn' : ''), text: sub.join(' · ') }) : null), chev()));
+    });
+  }
+  function adUserSheet(u) {
+    var a = adminData(), box = h('div', { class: 'list ad-sheet' }), cat = adCat(u);
+    box.appendChild(h('div', { class: 'card' }, h('h3', { dir: 'auto', text: u.name || u.username }), h('p', { class: 'muted ltr', text: uname(u.username) }),
+      h('p', { class: 'small', text: t('adCat_' + cat) + (u.verified === false ? ' · ' + t('adUnconfirmed') : '') })));
+    if (!u.blocked) {
+      box.appendChild(h('div', { class: 'eyebrow', text: t('adPerm') }));
+      box.appendChild(h('div', { class: 'seg ad-roles', role: 'group' }, ['coach', 'student', 'visitor'].map(function (r) {
+        var on = u.role === r && (r !== 'coach' || u.approved);
+        return h('button', { type: 'button', 'aria-pressed': String(on), 'data-role': r, text: t('role' + r.charAt(0).toUpperCase() + r.slice(1)), onclick: function () {
+          if (on) return; var b = this; b.disabled = true;
+          var jobs = [CL.update('users/' + u._id, { role: r, approved: r === 'coach' })];
+          if (r !== 'student') jobs.push(adMove(u, ''));
+          Promise.all(jobs).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(b));
+        } });
+      })));
+      if (u.role === 'coach' && !u.approved) box.appendChild(h('p', { class: 'note', text: t('adCoachAsk') }));
+      if (u.role === 'student') {
+        var g = adGroupOf(u._id);
+        var sel = h('select', { id: 'ad-group', onchange: function () { sel.disabled = true; adMove(u, sel.value).then(function () { closeSheet(); }).then(adDone('adSaved'), function (e) { sel.disabled = false; HCC.toast(t(CL.errKey(e))); }); } },
+          h('option', { value: '', text: t('adNoGroup') }),
+          (a.groups || []).map(function (x) { return h('option', { value: x._id, selected: g && g._id === x._id ? 'selected' : null, text: x.name + (x.coachName ? ' — ' + x.coachName : '') }); }));
+        box.appendChild(h('div', { class: 'field' }, h('label', { for: 'ad-group', text: t('adGroup') }), sel));
+        if (!(a.groups || []).length) box.appendChild(h('p', { class: 'muted small', text: t('adMakeGroupFirst') }));
+      }
+    }
+    var sure = false;
+    box.appendChild(h('div', { class: 'btns col' },
+      btn(t(u.blocked ? 'adUnblock' : 'adBlockUser'), u.blocked ? 'primary' : '', function () {
+        var b = this; b.disabled = true;
+        var jobs = [CL.update('users/' + u._id, { blocked: !u.blocked })];
+        if (!u.blocked) jobs.push(adMove(u, ''));
+        Promise.all(jobs).then(function () { closeSheet(); }).then(adDone(u.blocked ? 'adUnblocked' : 'adBlocked'), adErr(b));
+      }),
+      btn(t('adDelete'), 'danger', function () {
+        var b = this; if (!sure) { sure = true; b.textContent = t('adDeleteSure'); return; }
+        b.disabled = true;
+        adMove(u, '').then(function () { return CL.del('users/' + u._id); }).then(function () { closeSheet(); }).then(adDone('adDeleted'), adErr(b));
+      })));
+    box.appendChild(h('p', { class: 'muted small', text: t('adBlockHow') }));
+    openSheet(t('adUser'), box);
+  }
+  function adGroups(body) {
+    var a = adminData(), coaches = a.users.filter(function (u) { return adCat(u) === 'coach'; });
+    var noGroup = a.users.filter(function (u) { return adCat(u) === 'student' && !adGroupOf(u._id); });
+    if (noGroup.length) body.appendChild(h('button', { type: 'button', class: 'note bad ad-nogroup', onclick: function () { a.tab = 'users'; a.filter = 'student'; render(); } }, t('adNoGroupN', { n: noGroup.length })));
+    if (!a.groups.length) body.appendChild(h('p', { class: 'muted', text: t('adNoGroups') }));
+    a.groups.forEach(function (g) {
+      body.appendChild(h('button', { type: 'button', class: 'card tap ad-group', 'data-gid': g._id, onclick: function () { adGroupSheet(g); } },
+        h('span', { class: 'cg-ic', text: '👥' }),
+        h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: g.name }), h('span', { class: 'muted small', text: (g.coachName || t('adNoCoach')) + ' · ' + t('adStudentsN', { n: (g.members || []).length }) })), chev()));
+    });
+    var nameIn = h('input', { type: 'text', id: 'ad-gname', dir: 'auto', placeholder: t('cgGroupName') });
+    var coachSel = h('select', { id: 'ad-gcoach' }, h('option', { value: '', text: t('adPickCoach') }), coaches.map(function (c) { return h('option', { value: c._id, text: c.name || c.username }); }));
+    body.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'ad-gname', text: t('cgNewGroup') }), nameIn,
+      h('label', { for: 'ad-gcoach', text: t('adCoach') }), coachSel,
+      h('div', { class: 'btns' }, btn(t('cgCreate'), 'primary', function () {
+        var n = nameIn.value.replace(/\s+/g, ' ').trim(); if (!n) { nameIn.focus(); return; }
+        var c = coaches.filter(function (x) { return x._id === coachSel.value; })[0], b = this; b.disabled = true;
+        adSaveGroup({ _id: 'g' + Date.now().toString(36), name: n, coachUid: c ? c._id : '', coachName: c ? c.name : '', members: [] }).then(adDone('adSaved'), adErr(b));
+      }))));
+  }
+  function adGroupSheet(g) {
+    var a = adminData(), box = h('div', { class: 'list ad-sheet' });
+    var coaches = a.users.filter(function (u) { return adCat(u) === 'coach'; });
+    var nameIn = h('input', { type: 'text', id: 'adg-name', dir: 'auto', value: g.name });
+    var coachSel = h('select', { id: 'adg-coach' }, h('option', { value: '', text: t('adNoCoach') }),
+      coaches.map(function (c) { return h('option', { value: c._id, selected: c._id === g.coachUid ? 'selected' : null, text: c.name || c.username }); }));
+    function save(b) {
+      var c = coaches.filter(function (x) { return x._id === coachSel.value; })[0];
+      g.name = nameIn.value.replace(/\s+/g, ' ').trim() || g.name; g.coachUid = c ? c._id : ''; g.coachName = c ? c.name : '';
+      return adSaveGroup(g).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(b));
+    }
+    box.appendChild(h('div', { class: 'field' }, h('label', { for: 'adg-name', text: t('cgGroupName') }), nameIn));
+    box.appendChild(h('div', { class: 'field' }, h('label', { for: 'adg-coach', text: t('adCoach') }), coachSel));
+    box.appendChild(h('div', { class: 'btns' }, btn(t('save'), 'primary', function () { this.disabled = true; save(this); })));
+    box.appendChild(h('div', { class: 'eyebrow', text: t('cgStudents') + ' (' + (g.members || []).length + ')' }));
+    (g.members || []).forEach(function (m) {
+      var u = a.users.filter(function (x) { return x._id === m.uid; })[0] || { _id: m.uid, name: m.name, username: m.username };
+      var mv = h('select', { 'aria-label': t('adMoveTo'), class: 'ad-move', onchange: function () { mv.disabled = true; adMove(u, mv.value).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(mv)); } },
+        a.groups.map(function (x) { return h('option', { value: x._id, selected: x._id === g._id ? 'selected' : null, text: x._id === g._id ? x.name : t('adMoveTo') + ' ' + x.name }); }),
+        h('option', { value: '', text: t('adTakeOut') }));
+      box.appendChild(h('div', { class: 'unit ad-member' }, h('span', { class: 'grow', dir: 'auto' }, m.name, h('span', { class: 'muted small ltr', text: ' ' + uname(m.username) })), mv));
+    });
+    var others = a.users.filter(function (u) { return adCat(u) === 'student' && (g.memberUids || []).indexOf(u._id) < 0; });
+    if (others.length) {
+      var addSel = h('select', { id: 'adg-add' }, h('option', { value: '', text: t('adPickStudent') }), others.map(function (u) {
+        var og = adGroupOf(u._id); return h('option', { value: u._id, text: (u.name || u.username) + (og ? ' (' + og.name + ')' : '') });
+      }));
+      box.appendChild(h('div', { class: 'card cg-add' }, h('label', { for: 'adg-add', text: t('cgAddStudent') }), addSel,
+        h('div', { class: 'btns' }, btn(t('cgAdd'), '', function () {
+          var u = others.filter(function (x) { return x._id === addSel.value; })[0]; if (!u) { addSel.focus(); return; }
+          var b = this; b.disabled = true; adMove(u, g._id).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(b));
+        }))));
+    }
+    var sure = false;
+    box.appendChild(h('div', { class: 'btns' }, btn(t('cgDeleteGroup'), 'danger', function () {
+      var b = this; if (!sure) { sure = true; b.textContent = t('cgDeleteSure'); return; }
+      b.disabled = true; CL.del('groups/' + g._id).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(b));
+    })));
+    openSheet(g.name, box);
+  }
+  function adReports(body) {
+    var a = adminData();
+    if (!a.reports.length) body.appendChild(h('p', { class: 'muted small', text: t('adNoReports') }));
+    a.reports.forEach(function (r) {
+      var copyB = btn(t('rpCopy'), '', function () { copyText(r.text, copyB, t('rpCopy')); });
+      body.appendChild(h('details', { class: 'card ad-rep' }, h('summary', {}, h('b', { dir: 'auto', text: r.coachName + ' · ' + monthName(r.month) }), h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(r.at)) })),
+        h('pre', { class: 'hw-preview', dir: 'auto', text: r.text }), h('div', { class: 'btns' }, copyB), h('div', { class: 'sh-manual', hidden: 'hidden' }, h('textarea', { readonly: 'readonly', rows: '4' }))));
+    });
   }
 
   function homeView() {
@@ -4258,9 +4452,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('span', { class: 'muted', text: pz.solved + ' ' + t('solved') })),
       h('button', { type: 'button', class: 'card tap', style: 'flex-direction:column;align-items:flex-start;gap:4px', onclick: function () { go('play'); } },
         h('span', { class: 'eyebrow', text: t('play') }), h('h3', { text: t('playComputer') }), h('span', { class: 'muted', text: t('playSub') }))));
-    if (HCC.cloud.isAdmin()) page.appendChild(h('button', { type: 'button', class: 'card tap rp-card admin-card', onclick: function () { state.cv = { page: 'admin' }; render(); } },
+    if (HCC.cloud.isAdmin()) page.appendChild(h('button', { type: 'button', class: 'card tap rp-card admin-card', onclick: function () { state.cv = { page: 'admin' }; state.ad = null; render(); } },
       h('span', { class: 'cg-ic', text: '🏰' }), h('div', { class: 'grow' }, h('h3', { text: t('adTitle') }), h('span', { class: 'muted', text: t('adSub') })), chev()));
-    if (r !== 'visitor') page.appendChild(accountCard());
+    if (r !== 'visitor' || CL.signedIn()) page.appendChild(accountCard());
     if (r === 'coach') {
       var cd = coachData();
       page.appendChild(h('button', { type: 'button', class: 'card tap coach-card', onclick: function () { state.cv = { page: 'groups' }; render(); } },
