@@ -576,6 +576,9 @@ textarea#verify-msg { width: 100%; border: 1.5px solid var(--line); border-radiu
 .ad-nogroup{display:block;width:100%;text-align:start;cursor:pointer;font:inherit}
 .ad-roles{margin-bottom:8px}
 
+body.gated .tabs{display:none}
+.ob-must{text-align:center;margin:-4px 0 10px}
+
 </style>
 </head>
 <body>
@@ -1516,7 +1519,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.4.1',
+    version: '1.4.2',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1671,7 +1674,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. لسه الإدارة ما حطّتكش في مجموعة؛ أول ما تتحط نتايج واجبك هتوصل للكابتن لوحدها.',
       vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
       adTab_users: 'المستخدمين', adTab_groups: 'المجموعات', adTab_reports: 'التقارير', adCat_pending: 'طلبات مدربين', adCat_coach: 'مدربين', adCat_student: 'متدربين', adCat_visitor: 'زوار', adCat_blocked: 'موقوفين', adEmpty: 'مفيش حد هنا.', adNoGroup: 'بدون مجموعة', adGroupsN: '{n} مجموعة', adUnconfirmed: 'لسه ما أكّدش الإيميل', adUser: 'المستخدم', adPerm: 'الصلاحية', adCoachAsk: 'طالب يبقى مدرب. دوس «مدرب» للموافقة.', adGroup: 'المجموعة', adMakeGroupFirst: 'اعمل مجموعة الأول من «المجموعات».', adBlockUser: 'إيقاف الحساب', adUnblock: 'إلغاء الإيقاف', adDelete: 'حذف المستخدم', adDeleteSure: 'متأكد؟ دوس تاني للحذف', adBlockHow: 'الحساب الموقوف ما يقدرش يستخدم التطبيق بحسابه لحد ما تلغي الإيقاف. الحذف بيمسح بياناته من الأكاديمية.', adSaved: 'اتحفظ ✔', adBlocked: 'اتوقف الحساب', adUnblocked: 'اتلغى الإيقاف ✔', adDeleted: 'اتمسح المستخدم', adNoGroupN: '{n} متدرب لسه من غير مجموعة. دوس عشان تشوفهم.', adNoGroups: 'لسه مفيش مجموعات.', adNoCoach: 'من غير مدرب', adStudentsN: '{n} متدرب', adPickCoach: 'اختار المدرب', adCoach: 'المدرب', adMoveTo: 'انقل إلى', adTakeOut: 'شيله من المجموعة', adPickStudent: 'اختار المتدرب',
-      acChanged: 'إدارة الأكاديمية حدّثت صلاحيات حسابك ✔', acMyGroup: 'مجموعة {g}', acNoGroup: 'لسه الإدارة ما حطّتكش في مجموعة', acInGroup: 'إنت في مجموعة «{g}» مع الكابتن {c}. نتايج واجبك بتوصله لوحدها.', cgByAdmin: 'المجموعات والطلاب اللي فيها بتحددهم إدارة الأكاديمية.', cgNoneYet: 'لسه الإدارة ما حطّتش مجموعات ليك. أول ما تتحط هتظهر هنا.',
+      obMust: 'لازم تعمل حساب أو تسجّل دخول عشان تستخدم التطبيق.', acChanged: 'إدارة الأكاديمية حدّثت صلاحيات حسابك ✔', acMyGroup: 'مجموعة {g}', acNoGroup: 'لسه الإدارة ما حطّتكش في مجموعة', acInGroup: 'إنت في مجموعة «{g}» مع الكابتن {c}. نتايج واجبك بتوصله لوحدها.', cgByAdmin: 'المجموعات والطلاب اللي فيها بتحددهم إدارة الأكاديمية.', cgNoneYet: 'لسه الإدارة ما حطّتش مجموعات ليك. أول ما تتحط هتظهر هنا.',
       blTitle: 'الحساب موقوف', blText: 'إدارة الأكاديمية أوقفت الحساب ده. كلّمهم على واتساب لو فيه حاجة.', blAsk: 'كلّم الأكاديمية على واتساب', blRetry: 'اتلغى الإيقاف؟ جرّب تاني', blStill: 'لسه موقوف.', blWaText: 'السلام عليكم، حسابي على تطبيق Hashem Chess Puzzle موقوف ({e}).',
       acRefresh: 'تحديث', acSignOut: 'خروج', acDelete: 'حذف الحساب وبياناته', acDeleteSure: 'متأكد؟ دوس تاني للحذف النهائي', acDeleted: 'اتمسح الحساب.', acSync: 'تحديث من السيرفر', acSynced: 'اتحدّث ✔',
       cgStudentUser: 'اسم الطالب، أو بريده لو عنده حساب', cgNoUser: 'مفيش متدرب بالحساب {u}.', cgUserAdded: 'اتضاف {n} ✔ ونتايجه هتوصلك لوحدها.',
@@ -1775,7 +1778,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. The academy has not put you in a group yet; once it does, your homework results reach the coach by themselves.',
       vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
       adTab_users: 'Users', adTab_groups: 'Groups', adTab_reports: 'Reports', adCat_pending: 'Coach requests', adCat_coach: 'Coaches', adCat_student: 'Students', adCat_visitor: 'Visitors', adCat_blocked: 'Suspended', adEmpty: 'Nobody here.', adNoGroup: 'No group', adGroupsN: '{n} groups', adUnconfirmed: 'e-mail not confirmed yet', adUser: 'User', adPerm: 'Permission', adCoachAsk: 'Asked to be a coach. Tap “Coach” to approve.', adGroup: 'Group', adMakeGroupFirst: 'Make a group first under “Groups”.', adBlockUser: 'Suspend account', adUnblock: 'Lift suspension', adDelete: 'Delete user', adDeleteSure: 'Sure? Tap again to delete', adBlockHow: 'A suspended account cannot use the app with its account until you lift it. Deleting removes their academy data.', adSaved: 'Saved ✔', adBlocked: 'Account suspended', adUnblocked: 'Suspension lifted ✔', adDeleted: 'User deleted', adNoGroupN: '{n} students have no group yet. Tap to see them.', adNoGroups: 'No groups yet.', adNoCoach: 'No coach', adStudentsN: '{n} students', adPickCoach: 'Pick the coach', adCoach: 'Coach', adMoveTo: 'Move to', adTakeOut: 'Take out of the group', adPickStudent: 'Pick a student',
-      acChanged: 'The academy updated your account’s permissions ✔', acMyGroup: 'Group {g}', acNoGroup: 'The academy has not put you in a group yet', acInGroup: 'You are in group “{g}” with coach {c}. Your homework results reach them by themselves.', cgByAdmin: 'Groups and their students are set by the academy admin.', cgNoneYet: 'The academy has not given you groups yet. They appear here once it does.',
+      obMust: 'Create an account or sign in to use the app.', acChanged: 'The academy updated your account’s permissions ✔', acMyGroup: 'Group {g}', acNoGroup: 'The academy has not put you in a group yet', acInGroup: 'You are in group “{g}” with coach {c}. Your homework results reach them by themselves.', cgByAdmin: 'Groups and their students are set by the academy admin.', cgNoneYet: 'The academy has not given you groups yet. They appear here once it does.',
       blTitle: 'Account suspended', blText: 'The academy admin suspended this account. Message them on WhatsApp if needed.', blAsk: 'Message the academy on WhatsApp', blRetry: 'Lifted? Try again', blStill: 'Still suspended.', blWaText: 'Hello, my Hashem Chess Puzzle account is suspended ({e}).',
       acRefresh: 'Refresh', acSignOut: 'Sign out', acDelete: 'Delete account and its data', acDeleteSure: 'Sure? Tap again to delete for good', acDeleted: 'Account deleted.', acSync: 'Update from the server', acSynced: 'Updated ✔',
       cgStudentUser: 'Student name, or their e-mail if they have an account', cgNoUser: 'No student with the account {u}.', cgUserAdded: '{n} added ✔ Their results will reach you by themselves.',
@@ -3312,9 +3315,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     leave();
     document.body.className = store.data.theme && store.data.theme !== 'blue' ? 'theme-' + store.data.theme : '';
     // Full-screen sections: everything except Home hides the top bar and the bottom tabs; the phone's Back button returns.
-    var appEl = document.getElementById('app'); if (appEl) appEl.classList.toggle('immersive', !root.HCC_WEB && (state.tab !== 'home' || !store.data.user || !!state.onboard));
+    // nobody gets past the sign-in / sign-up screen without an account (confirmed, not suspended)
+    var gated = !store.data.user || state.onboard || (!CL.signedIn() && !state.testNoAuth) || (CL.signedIn() && (!CL.verified() || CL.blocked()));
+    var appEl = document.getElementById('app'); if (appEl) appEl.classList.toggle('immersive', !root.HCC_WEB && (state.tab !== 'home' || gated));
+    document.body.classList.toggle('gated', gated);
     HCC.clear(mainEl); mainEl.scrollTop = 0;
-    if (!store.data.user || state.onboard || (CL.signedIn() && (!CL.verified() || CL.blocked()))) { onboardingView(); return; }
+    if (gated) { onboardingView(); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
   }
   function timersBox() {
@@ -3356,11 +3362,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   function onboardingView() {
     if (CL.signedIn() && !CL.verified()) return verifyView();
     if (CL.signedIn() && CL.blocked()) return blockedView();
-    if (state.obOffline || (state.onboard && store.data.user && !CL.signedIn())) return offlineOnboarding();
     var page = h('div', { class: 'page ob' }), msg = h('div'), mode = state.obMode || 'up', pickRole = state.obRole || '';
     function fail(e) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(typeof e === 'string' ? e : CL.errKey(e)) })); }
-    setTop(state.onboard && store.data.user ? { title: t('account'), back: function () { state.onboard = false; render(); } } : undefined);
+    setTop(state.onboard && store.data.user && CL.signedIn() ? { title: t('account'), back: function () { state.onboard = false; render(); } } : undefined);
     page.appendChild(h('div', { class: 'ob-head' }, h('div', { class: 'ob-logo' }, HCC.mark()), h('h2', { text: t('obWelcome') })));
+    page.appendChild(h('p', { class: 'muted ob-must', text: t('obMust') }));
     page.appendChild(h('div', { class: 'seg ob-mode', role: 'group' },
       h('button', { type: 'button', 'aria-pressed': String(mode === 'up'), text: t('acNew'), onclick: function () { state.obMode = 'up'; render(); } }),
       h('button', { type: 'button', 'aria-pressed': String(mode === 'in'), text: t('acSignIn'), onclick: function () { state.obMode = 'in'; render(); } })));
@@ -3402,9 +3408,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       }).catch(function (e) { goBtn.disabled = false; fail(e); });
     });
     page.appendChild(h('div', { class: 'btns' }, goBtn));
-    page.appendChild(h('div', { class: 'ob-alts' },
-      h('button', { type: 'button', class: 'btn', text: t('obVisitor'), onclick: function () { finishOnboard({ role: 'visitor', name: t('roleVisitor') }); } }),
-      h('button', { type: 'button', class: 'linkish', text: t('obOffline'), onclick: function () { state.obOffline = true; render(); } })));
     page.appendChild(h('button', { type: 'button', class: 'lang-btn ob-lang', text: store.data.lang === 'ar' ? 'English' : 'العربية', onclick: function () {
       store.data.lang = store.data.lang === 'ar' ? 'en' : 'ar'; store.save(); HCC.applyLang(); renderTabs(); render();
     } }));
@@ -6502,8 +6505,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
 
   HCC.start = function () {
     store.load(); HCC.applyLang();
-    var tu = /[?&]u=(student|visitor)\b/.exec(location.search || '');   // used by the automated tests
-    if (tu && !store.data.user) { store.data.user = { role: tu[1], name: 'Test' }; store.save(); }
+    var tu = /[?&]u=(student|visitor|coach)\b/.exec(location.search || '');   // used by the automated tests
+    if (tu) { state.testNoAuth = true; if (!store.data.user) { store.data.user = { role: tu[1], name: 'Test' }; store.save(); } }
     var app = document.getElementById('app');
     HCC.clear(app);
     topEl = h('header', { class: 'top' }); mainEl = h('main'); tabsEl = h('nav', { class: 'tabs' });
