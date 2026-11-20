@@ -594,6 +594,9 @@ body.gated .tabs{display:none}
 .hw-pos{flex:1;text-align:center}
 .hw-clock{font-variant-numeric:tabular-nums;font-weight:700;background:var(--frame,#0b1f4a);color:#fff}
 .hw-clock.done{background:#2e7d32}
+.lib input[type=search]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line,#d6dbe6);font:inherit;margin-bottom:8px}
+.lib-row{gap:8px;align-items:center}
+.lib-row .btn{min-height:34px;padding:6px 12px}
 
 </style>
 </head>
@@ -1535,7 +1538,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '1.7.1',
+    version: '1.8.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -1690,9 +1693,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'تم الدخول ✔', acRoleAdmin: 'إدارة الأكاديمية', acRoleCoach: 'مدرب (مفعّل)', acRoleStudent: 'متدرب', acStudentInfo: 'حسابك: {u}. لسه الإدارة ما حطّتكش في مجموعة؛ أول ما تتحط نتايج واجبك هتوصل للكابتن لوحدها.',
       vfTitle: 'أكّد بريدك الإلكتروني', vfSent: 'بعتنالك رسالة تأكيد على:', vfHow: 'افتح الرسالة ودوس على اللينك اللي فيها، وبعدين ارجع هنا ودوس «أكّدت بريدي». الحساب مش هيشتغل قبل التأكيد.', vfDone: 'أكّدت بريدي', vfAgain: 'ابعت رسالة التأكيد تاني', vfResent: 'اتبعتت رسالة جديدة على {e}', vfNotYet: 'لسه البريد ما اتأكّدش. افتح رسالة التأكيد ودوس على اللينك الأول.', vfSpam: 'مش لاقي الرسالة؟ دوّر في Spam أو الرسائل غير المرغوب فيها. المرسل: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'كتبت الإيميل غلط؟ ابدأ من الأول', vfWrongSure: 'متأكد؟ دوس تاني (هيتمسح الحساب ده وتعمل واحد جديد)', cgNotConfirmed: '{u} لسه ما أكّدش بريده. خليه يفتح رسالة التأكيد الأول.',
       adTab_users: 'المستخدمين', adTab_groups: 'المجموعات', adTab_reports: 'التقارير', adCat_pending: 'طلبات جديدة', adCat_coach: 'مدربين', adCat_student: 'متدربين', adCat_visitor: 'زوار', adCat_blocked: 'موقوفين', adEmpty: 'مفيش حد هنا.', adNoGroup: 'بدون مجموعة', adGroupsN: '{n} مجموعة', adUnconfirmed: 'لسه ما أكّدش الإيميل', adUser: 'المستخدم', adPerm: 'الصلاحية', adCoachAsk: 'طالب يبقى مدرب. دوس «مدرب» للموافقة.', adGroup: 'المجموعة', adMakeGroupFirst: 'اعمل مجموعة الأول من «المجموعات».', adBlockUser: 'إيقاف الحساب', adUnblock: 'إلغاء الإيقاف', adDelete: 'حذف المستخدم', adDeleteSure: 'متأكد؟ دوس تاني للحذف', adBlockHow: 'الحساب الموقوف ما يقدرش يستخدم التطبيق بحسابه لحد ما تلغي الإيقاف. الحذف بيمسح بياناته من الأكاديمية.', adSaved: 'اتحفظ ✔', adBlocked: 'اتوقف الحساب', adUnblocked: 'اتلغى الإيقاف ✔', adDeleted: 'اتمسح المستخدم', adNoGroupN: '{n} متدرب لسه من غير مجموعة. دوس عشان تشوفهم.', adNoGroups: 'لسه مفيش مجموعات.', adNoCoach: 'من غير مدرب', adStudentsN: '{n} متدرب', adPickCoach: 'اختار المدرب', adCoach: 'المدرب', adMoveTo: 'انقل إلى', adTakeOut: 'شيله من المجموعة', adPickStudent: 'اختار المتدرب',
-      hwAuto: 'واجباتك بتوصلك من الكابتن هنا لوحدها، مش محتاج تضيف ملفات.', prevEx: 'السابق', hwAutoSub: 'الكابتن بيبعتلك واجب كل حصة هنا. افتحه وحلّ التمارين، والتطبيق بيصحّحلك نقلة بنقلة.', hwAutoHome: 'واجبات الكابتن بتوصلك هنا',
+      hwNoUpload: 'إضافة الواجبات للمدرب والإدارة بس.', libPick: 'اختار من المكتبة', ghwUpload: 'رفع ملف جديد', libTitle: 'مكتبة الواجبات', libSearch: 'دوّر باسم الواجب', libBasicsTitle: '♟ واجبات المبتدئين', libBasics: 'مبتدئين', libFiles: '📚 الواجبات المرفوعة', libNoFiles: 'لسه مفيش. أي ملف يترفع لمجموعة بيتحفظ هنا لوحده.', libSend: 'ابعت', libAgain: 'ابعت تاني', libWasSent: 'اتبعت للمجموعة دي', libSent: 'اتبعت «{f}» لـ{s} متدرب ✔', prevEx: 'السابق', hwAutoSub: 'افتح الواجب وحلّ التمارين، والتطبيق بيصحّحلك نقلة بنقلة.', hwAutoHome: 'واجبات الكابتن بتوصلك هنا',
       secN: '{n} ث', rdFirst: '✅ صح من أول محاولة', rdTries: 'عدد المحاولات: {n}', rdUnsolved: 'لسه ما اتحلّش', rdNotYet: 'لسه ما جاوبش', rdHints: '{n} تلميح', rdFirstAt: 'أول إجابة بعد {s}', rdSolvedIn: 'اتحل في {s}', rdWrong: 'إجاباته الغلط', rdNone: 'لسه ما بعتش أي واجب.', rdOld: 'النتيجة دي من نسخة قديمة من التطبيق، فمفيهاش أوقات كل سؤال.', ghwRemoved: 'اتشال الواجب من عند الطلاب', hwRemovedByCoach: 'الكابتن شال واجب «{f}»', adFollow: 'متابعة المجموعة (الواجبات والإجابات)',
-      hwFromCoach: 'واجب جديد من الكابتن: {f}', hwFromCoachN: '{n} واجبات جديدة من الكابتن', ghwTitle: 'واجبات المجموعة', ghwSub: 'ارفع ملف الواجب (PGN) هنا، وهيوصل لكل طلاب المجموعة في التطبيق لوحده.', ghwAdd: 'إضافة واجب للمجموعة', ghwNone: 'لسه ما بعتّش واجبات للمجموعة دي من التطبيق.', ghwSending: 'بيتبعت…', ghwSent: 'اتبعت «{f}» ({n} تمرين) لـ{s} متدرب ✔', ghwBig: 'الملف كبير أوي. قسّمه لأكتر من واجب.', ghwSolved: 'حلّه {d} من {n}', ghwDelSure: 'دوس ✕ تاني عشان تشيل الواجب من عند كل الطلاب',
+      hwFromCoach: 'واجب جديد من الكابتن: {f}', hwFromCoachN: '{n} واجبات جديدة من الكابتن', ghwTitle: 'واجبات المجموعة', ghwSub: 'اختار واجب من المكتبة أو ارفع ملف جديد، وهيوصل لكل طلاب المجموعة في واجباتهم.', ghwAdd: 'إضافة واجب للمجموعة', ghwNone: 'لسه ما بعتّش واجبات للمجموعة دي من التطبيق.', ghwSending: 'بيتبعت…', ghwSent: 'اتبعت «{f}» ({n} تمرين) لـ{s} متدرب ✔', ghwBig: 'الملف كبير أوي. قسّمه لأكتر من واجب.', ghwSolved: 'حلّه {d} من {n}', ghwDelSure: 'دوس ✕ تاني عشان تشيل الواجب من عند كل الطلاب',
       adReqN: '{n} طلب جديد', adReqOne: 'طلب جديد: {n} عايز يبقى {r}', adApproveAs: 'موافقة كـ{r}', adDecline: 'رفض', adApproved: 'اتوافق على الطلب ✔', adDeclined: 'اترفض الطلب وفضل زائر',
       acWaitShort: 'مستني موافقة الإدارة كـ{r}', acWaitTitle: 'طلبك وصل للإدارة ⏳', acWaitLong: 'حسابك دلوقتي زائر لحد ما إدارة الأكاديمية توافق إنك {r}. أول ما توافق، التطبيق هيتحوّل لوحده.', adAsks: 'عايز يبقى {r}', adAskHow: 'طالب يبقى {r}. دوس على «{r}» للموافقة، أو «زائر» للرفض.',
       obMust: 'لازم تعمل حساب أو تسجّل دخول عشان تستخدم التطبيق.', acChanged: 'إدارة الأكاديمية حدّثت صلاحيات حسابك ✔', acMyGroup: 'مجموعة {g}', acNoGroup: 'لسه الإدارة ما حطّتكش في مجموعة', acInGroup: 'إنت في مجموعة «{g}» مع الكابتن {c}. نتايج واجبك بتوصله لوحدها.', cgByAdmin: 'المجموعات والطلاب اللي فيها بتحددهم إدارة الأكاديمية.', cgNoneYet: 'لسه الإدارة ما حطّتش مجموعات ليك. أول ما تتحط هتظهر هنا.',
@@ -1799,9 +1802,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       acWelcome: 'Signed in ✔', acRoleAdmin: 'Academy admin', acRoleCoach: 'Coach (approved)', acRoleStudent: 'Student', acStudentInfo: 'Your account: {u}. The academy has not put you in a group yet; once it does, your homework results reach the coach by themselves.',
       vfTitle: 'Confirm your e-mail', vfSent: 'We sent a confirmation e-mail to:', vfHow: 'Open it and tap its link, then come back here and tap “I confirmed my e-mail”. The account does not work before that.', vfDone: 'I confirmed my e-mail', vfAgain: 'Send the confirmation e-mail again', vfResent: 'A new e-mail was sent to {e}', vfNotYet: 'The e-mail is not confirmed yet. Open the confirmation e-mail and tap its link first.', vfSpam: 'No e-mail? Look in Spam / Junk. Sender: noreply@hashem-chess-castle.firebaseapp.com', vfWrong: 'Wrong e-mail? Start over', vfWrongSure: 'Sure? Tap again (this account is deleted and you make a new one)', cgNotConfirmed: '{u} has not confirmed the e-mail yet. Ask them to open the confirmation e-mail first.',
       adTab_users: 'Users', adTab_groups: 'Groups', adTab_reports: 'Reports', adCat_pending: 'New requests', adCat_coach: 'Coaches', adCat_student: 'Students', adCat_visitor: 'Visitors', adCat_blocked: 'Suspended', adEmpty: 'Nobody here.', adNoGroup: 'No group', adGroupsN: '{n} groups', adUnconfirmed: 'e-mail not confirmed yet', adUser: 'User', adPerm: 'Permission', adCoachAsk: 'Asked to be a coach. Tap “Coach” to approve.', adGroup: 'Group', adMakeGroupFirst: 'Make a group first under “Groups”.', adBlockUser: 'Suspend account', adUnblock: 'Lift suspension', adDelete: 'Delete user', adDeleteSure: 'Sure? Tap again to delete', adBlockHow: 'A suspended account cannot use the app with its account until you lift it. Deleting removes their academy data.', adSaved: 'Saved ✔', adBlocked: 'Account suspended', adUnblocked: 'Suspension lifted ✔', adDeleted: 'User deleted', adNoGroupN: '{n} students have no group yet. Tap to see them.', adNoGroups: 'No groups yet.', adNoCoach: 'No coach', adStudentsN: '{n} students', adPickCoach: 'Pick the coach', adCoach: 'Coach', adMoveTo: 'Move to', adTakeOut: 'Take out of the group', adPickStudent: 'Pick a student',
-      hwAuto: 'Your homework arrives here from the coach by itself; no need to add files.', prevEx: 'Previous', hwAutoSub: 'Your coach sends your homework here after each class. Open it and solve the exercises; the app checks every move.', hwAutoHome: 'Your coach’s homework arrives here',
+      hwNoUpload: 'Only coaches and the academy add homework.', libPick: 'Pick from the library', ghwUpload: 'Upload a new file', libTitle: 'Homework library', libSearch: 'Search by name', libBasicsTitle: '♟ Beginners’ homework', libBasics: 'Beginners', libFiles: '📚 Uploaded homework', libNoFiles: 'Nothing yet. Every file sent to a group is kept here.', libSend: 'Send', libAgain: 'Send again', libWasSent: 'already sent to this group', libSent: '“{f}” sent to {s} students ✔', prevEx: 'Previous', hwAutoSub: 'Open the homework and solve the exercises; the app checks every move.', hwAutoHome: 'Your coach’s homework arrives here',
       secN: '{n} s', rdFirst: '✅ right on the first try', rdTries: 'tries: {n}', rdUnsolved: 'not solved yet', rdNotYet: 'not answered yet', rdHints: '{n} hints', rdFirstAt: 'first answer after {s}', rdSolvedIn: 'solved in {s}', rdWrong: 'Wrong answers', rdNone: 'No homework sent yet.', rdOld: 'This result came from an older app version, so it has no time per question.', ghwRemoved: 'Homework removed from the students', hwRemovedByCoach: 'The coach removed “{f}”', adFollow: 'Follow the group (homework and answers)',
-      hwFromCoach: 'New homework from the coach: {f}', hwFromCoachN: '{n} new homework sets from the coach', ghwTitle: 'Group homework', ghwSub: 'Upload the homework file (PGN) here and it reaches every student of the group in the app by itself.', ghwAdd: 'Send homework to the group', ghwNone: 'No homework sent to this group from the app yet.', ghwSending: 'Sending…', ghwSent: '“{f}” ({n} exercises) sent to {s} students ✔', ghwBig: 'The file is too big. Split it into several homework sets.', ghwSolved: 'solved by {d} of {n}', ghwDelSure: 'Tap ✕ again to remove it from every student',
+      hwFromCoach: 'New homework from the coach: {f}', hwFromCoachN: '{n} new homework sets from the coach', ghwTitle: 'Group homework', ghwSub: 'Pick homework from the library or upload a new file; it reaches every student of the group.', ghwAdd: 'Send homework to the group', ghwNone: 'No homework sent to this group from the app yet.', ghwSending: 'Sending…', ghwSent: '“{f}” ({n} exercises) sent to {s} students ✔', ghwBig: 'The file is too big. Split it into several homework sets.', ghwSolved: 'solved by {d} of {n}', ghwDelSure: 'Tap ✕ again to remove it from every student',
       adReqN: '{n} new requests', adReqOne: 'New request: {n} asks to be {r}', adApproveAs: 'Approve as {r}', adDecline: 'Decline', adApproved: 'Request approved ✔', adDeclined: 'Request declined; stays a visitor',
       acWaitShort: 'Waiting for the academy to approve you as {r}', acWaitTitle: 'Your request reached the academy ⏳', acWaitLong: 'Your account is a visitor until the academy approves you as {r}. Once it does, the app switches by itself.', adAsks: 'Asks to be {r}', adAskHow: 'Asks to be {r}. Tap “{r}” to approve, or “Visitor” to decline.',
       obMust: 'Create an account or sign in to use the app.', acChanged: 'The academy updated your account’s permissions ✔', acMyGroup: 'Group {g}', acNoGroup: 'The academy has not put you in a group yet', acInGroup: 'You are in group “{g}” with coach {c}. Your homework results reach them by themselves.', cgByAdmin: 'Groups and their students are set by the academy admin.', cgNoneYet: 'The academy has not given you groups yet. They appear here once it does.',
@@ -3829,7 +3832,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     } });
     box.appendChild(h('h3', { text: '📚 ' + t('ghwTitle') }));
     box.appendChild(h('p', { class: 'muted small', text: t('ghwSub') }));
-    box.appendChild(h('div', { class: 'btns' }, btn(t('ghwAdd'), 'primary', function () { file.click(); }, 'upload'), file));
+    box.appendChild(h('div', { class: 'btns' }, btn(t('libPick'), 'primary', function () { librarySheet(g, msg, function () { load(); }); }, 'book'),
+      btn(t('ghwUpload'), '', function () { file.click(); }, 'upload'), file));
     box.appendChild(msg);
     box.appendChild(list);
     function load() {
@@ -3846,12 +3850,56 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
             if (!sure) { sure = true; HCC.toast(t('ghwDelSure')); return; }
             del.disabled = true; CL.update('groups/' + g.id + '/homework/' + x._id, { removed: true, pgn: '', at: Date.now() }).then(function () { HCC.toast(t('ghwRemoved')); load(); }, function (e) { del.disabled = false; HCC.toast(t(CL.errKey(e))); });
           } }, icon('close'));
-          list.appendChild(h('div', { class: 'unit ghw-row' }, h('span', { class: 'grow', dir: 'auto' }, x.title, h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(x.at)) + ' · ' + t('ghwSolved', { d: solved, n: g.students.length }) })), del));
+          list.appendChild(h('div', { class: 'unit ghw-row' }, h('span', { class: 'grow', dir: 'auto' }, (x.basics ? '♟ ' : '') + x.title, h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(x.at)) + ' · ' + t('ghwSolved', { d: solved, n: g.students.length }) })), del));
         });
       }, function (e) { HCC.clear(list); list.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
     }
     load();
     return box;
+  }
+  /** The academy's homework library: the beginners' sets plus every file ever sent to a group. Pick one and send it. */
+  function librarySheet(g, msgEl, after) {
+    var box = h('div', { class: 'list lib' }), list = h('div', { class: 'list' }), q = h('input', { type: 'search', id: 'lib-q', dir: 'auto', placeholder: t('libSearch') });
+    var docs = [], sent = {};
+    function sendIt(item, b) {
+      b.disabled = true;
+      var p = CL.profile() || {}, doc = { gid: g.id, coachUid: CL.uid(), coachName: p.name || '', title: item.title, at: Date.now() };
+      if (item.basics) doc.basics = item.basics; else doc.pgn = item.pgn;
+      CL.set('groups/' + g.id + '/homework/h' + Date.now().toString(36), doc).then(function () {
+        closeSheet(); HCC.clear(msgEl); msgEl.appendChild(h('div', { class: 'note good', text: t('libSent', { f: item.title, s: g.students.length }) })); if (after) after();
+      }, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); });
+    }
+    function row(item) {
+      var b = btn(sent[item.title] ? t('libAgain') : t('libSend'), sent[item.title] ? '' : 'primary', function () { sendIt(item, this); });
+      return h('div', { class: 'unit lib-row' }, h('div', { class: 'grow' }, h('b', { dir: 'auto', text: item.title }),
+        h('div', { class: 'muted small', text: item.sub + (sent[item.title] ? ' · ✔ ' + t('libWasSent') : '') })), b);
+    }
+    function draw() {
+      HCC.clear(list);
+      var f = q.value.trim().toLowerCase(), match = function (x) { return !f || x.title.toLowerCase().indexOf(f) >= 0; };
+      var basics = (HCC.basics || []).map(function (c) { return { basics: c.id, title: pick(c.title), sub: t('libBasics') + ' · ' + c.units.length + ' ' + t('exercises') }; }).filter(match);
+      var files = docs.filter(match);
+      list.appendChild(h('div', { class: 'eyebrow', text: t('libBasicsTitle') }));
+      basics.forEach(function (x) { list.appendChild(row(x)); });
+      list.appendChild(h('div', { class: 'eyebrow', text: t('libFiles') + ' (' + files.length + ')' }));
+      if (!files.length) list.appendChild(h('p', { class: 'muted small', text: t('libNoFiles') }));
+      files.forEach(function (x) { list.appendChild(row(x)); });
+    }
+    q.addEventListener('input', draw);
+    box.appendChild(q); box.appendChild(list);
+    list.appendChild(h('p', { class: 'muted', text: t('loading') }));
+    openSheet(t('libTitle'), box);
+    Promise.all([CL.query('library', []), CL.query('homework', [], 200, 'groups/' + g.id)]).then(function (r) {
+      r[1].forEach(function (x) { if (!x.removed) sent[x.title] = 1; });
+      docs = r[0].map(function (x) { return { title: x.title, pgn: x.pgn, at: x.at, sub: (x.byName ? x.byName + ' · ' : '') + fmtDay(isoOf(x.at)) + (x.n ? ' · ' + x.n + ' ' + t('exercises') : '') }; })
+        .sort(function (a, b) { return b.at - a.at; });
+      draw();
+    }, function (e) { HCC.clear(list); list.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+  }
+  /** Every file sent to a group also goes into the library (one copy per title). */
+  function toLibrary(title, text, n) {
+    var p = CL.profile() || {};
+    return CL.set('library/l' + HCC.hash(title), { title: title, pgn: text, n: n, byUid: CL.uid(), byName: p.name || '', at: Date.now() }).catch(function () { /* the group got it anyway */ });
   }
   function sendGroupHw(g, name, text, msgEl, after) {
     function say(cls, k, v) { HCC.clear(msgEl); msgEl.appendChild(h('div', { class: 'note ' + cls, text: t(k, v) })); }
@@ -3861,7 +3909,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     say('', 'ghwSending');
     var p = CL.profile() || {};
     CL.set('groups/' + g.id + '/homework/h' + Date.now().toString(36), { gid: g.id, coachUid: CL.uid(), coachName: p.name || '', title: title, pgn: text, at: Date.now() })
-      .then(function () { say('good', 'ghwSent', { f: title, n: n, s: g.students.length }); if (after) after(); }, function (e) { HCC.clear(msgEl); msgEl.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+      .then(function () { toLibrary(title, text, n); say('good', 'ghwSent', { f: title, n: n, s: g.students.length }); if (after) after(); }, function (e) { HCC.clear(msgEl); msgEl.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
   }
   /** The heart of it: for one group and one homework, every exercise with who missed it and the wrong moves, most common first. */
   function coachHwSummary() {
@@ -4264,7 +4312,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   var hwTimer = null, hwPending = {};
   function hwChanged(unitId) {
     if (!cloudStudent()) return;
-    content.courses.forEach(function (c) { if (c.units.some(function (u) { return u.id === unitId; })) hwPending[c.id || pick(c.title)] = c; });
+    content.courses.concat(HCC.basics || []).forEach(function (c) { if (c.units.some(function (u) { return u.id === unitId; })) hwPending[c.id || pick(c.title)] = c; });
     clearTimeout(hwTimer); hwTimer = setTimeout(uploadHomework, 1500);
   }
   function uploadHomework() {
@@ -4372,16 +4420,18 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     hwPulling = true;
     return CL.query('homework', [['at', 'GREATER_THAN', since]], 50, 'groups/' + g.id).then(function (l) {
       l.sort(function (a, b) { return a.at - b.at; });
-      var got = store.data.hwGot || (store.data.hwGot = {}), fresh = l.filter(function (x) { return !got[x._id] && x.pgn && !x.removed; });
+      var got = store.data.hwGot || (store.data.hwGot = {}), fresh = l.filter(function (x) { return !got[x._id] && (x.pgn || x.basics) && !x.removed; });
       var gone = l.filter(function (x) { return x.removed && got[x._id]; });
-      gone.forEach(function (x) { delete got[x._id]; });
-      var jobs = fresh.map(function (x) {
+      var hb = store.data.hwBasics || (store.data.hwBasics = {});
+      gone.forEach(function (x) { delete got[x._id]; if (x.basics) delete hb[x.basics]; });
+      fresh.filter(function (x) { return x.basics; }).forEach(function (x) { got[x._id] = 1; hb[x.basics] = x._id; });
+      var jobs = fresh.filter(function (x) { return !x.basics; }).map(function (x) {
         got[x._id] = 1;
         return HCC.files.put({ kind: 'lessons', name: x.title + '.pgn', text: x.pgn, added: Date.now(), cloud: x._id });
       });
       if (l.length) { store.data.hwSince = store.data.hwSince || {}; store.data.hwSince[g.id] = l[l.length - 1].at; }
       store.save();
-      jobs = jobs.concat(gone.map(function (x) { return HCC.files.remove(x.title + '.pgn'); }));
+      jobs = jobs.concat(gone.filter(function (x) { return !x.basics; }).map(function (x) { return HCC.files.remove(x.title + '.pgn'); }));
       return Promise.all(jobs).then(function () {
         hwPulling = false; studentWatchNative();
         if (!fresh.length && !gone.length) return false;
@@ -4832,14 +4882,14 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       reader.onerror = function () { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t('importErr') })); };
       reader.readAsText(file);
     } });
-    if (studentNoUpload()) page.appendChild(h('div', { class: 'note hw-auto', text: '📚 ' + t('hwAuto') }));
-    else page.appendChild(h('label', { for: 'hw-file', class: 'btn primary hw-add' }, icon('upload'), t('addHomework'), fileIn));
+    if (!studentNoUpload()) page.appendChild(h('label', { for: 'hw-file', class: 'btn primary hw-add' }, icon('upload'), t('addHomework'), fileIn));
     page.appendChild(msg);
-    page.appendChild(h('button', { type: 'button', class: 'card tap basics-card', onclick: openBasics },
+    if (!studentNoUpload()) page.appendChild(h('button', { type: 'button', class: 'card tap basics-card', onclick: openBasics },
       h('span', { class: 'basics-ic', text: store.data.basicsOpen ? '♟' : '🔒' }),
       h('div', { class: 'grow' }, h('h3', { text: t('basicsTitle') }), h('span', { class: 'muted', text: t('basicsSub') })), chev()));
     // the homework files added so far, newest first
-    var courses = content.courses.slice().reverse();
+    var sentBasics = (HCC.basics || []).filter(function (c) { return (store.data.hwBasics || {})[c.id]; });
+    var courses = content.courses.slice().reverse().concat(sentBasics);
     if (courses.length) {
       page.appendChild(h('div', { class: 'eyebrow', text: t('myHomework') }));
       courses.forEach(function (c) {
@@ -4996,7 +5046,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   function studentNoUpload() { return role() === 'student' && !state.testNoAuth; }
   function importHomework(name, text, msgEl) {
     if (isResultText(text)) return receiveResults(text, msgEl);
-    if (studentNoUpload()) { HCC.toast(t('hwAuto')); return false; }
+    if (studentNoUpload()) { HCC.toast(t('hwNoUpload')); return false; }
     var res;
     try { res = content.ingest('lessons', name, text); } catch (e) { res = { count: 0, bad: 0 }; }
     var say = function (cls, txt) {
