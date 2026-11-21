@@ -941,6 +941,17 @@ body.app-night .gclock.run { background: #8fb4ff; color: #0a0f1f; }
 .pattern-card { display: flex; gap: 12px; align-items: center; }
 .pattern-board { width: 42%; flex: none; }
 .pattern-board .mb { width: 100%; }
+.bd-sq .pre { box-shadow: inset 0 0 0 200px rgba(205, 50, 50, .42); }
+.sheet-bg.top { align-items: flex-start; }
+.sheet-bg.top > .sheet { border-radius: 0 0 18px 18px; animation: sheetDownIn .28s cubic-bezier(.2, .9, .25, 1) both; }
+@keyframes sheetDownIn { from { transform: translateY(-100%); } to { transform: none; } }
+.chip.pre-chain[aria-pressed="true"] { background: var(--frame); color: #fff; }
+.ill-row { display: flex; align-items: center; gap: 10px; background: var(--soft); border-radius: 12px; padding: 8px 10px; }
+.ill-row .grow small { display: block; color: var(--ink-2); }
+.switch { position: relative; width: 46px; height: 26px; border-radius: 13px; border: 0; background: #b9c2d6; flex: none; transition: background .2s; }
+.switch::after { content: ''; position: absolute; top: 3px; inset-inline-start: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: inset-inline-start .2s; box-shadow: 0 1px 2px rgba(0,0,0,.3); }
+.switch[aria-pressed="true"] { background: var(--good); }
+.switch[aria-pressed="true"]::after { inset-inline-start: 23px; }
 
 </style>
 </head>
@@ -1913,7 +1924,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '2.7.0',
+    version: '2.8.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -2253,6 +2264,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"miniTitle": "أنواع الشطرنج (Chess Variants)", "miniSub": "ألعاب شطرنج بقواعد مختلفة، فيها ألعاب سهلة للمبتدئين", "miniIntro": "نفس حركة القطع، بس طريقة الكسب مختلفة. فيه ألعاب مخصوص للمبتدئين. العبوا على نفس الموبايل، أو ضد الكمبيوتر، أو تحدّى حد أونلاين.", "mg_army": "جيش ضد جيش", "mgr_army": "كل واحد معاه وزير وطابيتين وفيلين بس ومفيش ملك. اللي ياكل كل قطع خصمه يكسب.", "mg_kingcap": "كُل الملك", "mgr_kingcap": "شطرنج عادي بكل القطع، بس مفيش كش ولا كش مات: الملك بيتاكل عادي، واللي ياكل ملك خصمه يكسب.", "mg_coords": "مين يلاقي المربع الأول؟", "mgr_coords": "يظهر اسم مربع (زي e4) ودوس عليه على الرقعة بأسرع ما يمكن. معاك 30 ثانية، وتقدر تتحدى صاحبك.", "mwCapAll": "كل القطع اتاكلت", "mwKingCap": "الملك اتاكل", "cdSolo": "العب لوحدك", "cdTwo": "اتنين", "cdFind": "دوّر على المربع", "cdGo": "ابدأ", "cdHow": "دوس على المربع اللي اسمه ظاهر فوق", "cdSoloHow": "معاك 30 ثانية. كل مربع صح = نقطة.", "cdTwoHow": "اللاعب الأول يلعب 30 ثانية، وبعده الموبايل للاعب التاني. اللي يجمع أكتر يكسب.", "cdBlack": "شوف الرقعة من ناحية الأسود", "cdScore": "جبت {n} مربع", "cdRecord": "رقم قياسي جديد! 🎉", "cdBest": "أحسن نتيجة ليك: {n}", "cdPass": "ادّي الموبايل للاعب التاني", "cdNext": "دور اللاعب التاني", "cdPlayer": "اللاعب {n}", "cdWinner": "اللاعب {n} كسب!", "playAgain": "العب تاني", "playHubTitle": "عايز تلعب إيه؟", "ptCpuSub": "8 مستويات، وبيتحسب في تقييمك", "ptOnline": "أونلاين", "ptOnlineSub": "التحديات المفتوحة وتحدّى صاحبك", "ptLocal": "مع صاحبك", "ptLocalSub": "اتنين على نفس الموبايل", "ptLocalVar": "كل أنواع الشطرنج تتلعب كمان على نفس الموبايل", "ptToursSub": "مسابقات الأكاديمية", "lobbyTitle": "التحديات المفتوحة", "lobbySub": "تحديات لسه محدش قبلها. دوس «العب» على أي واحد وابدأ على طول.", "lobbyNone": "مفيش تحديات مفتوحة دلوقتي. اعمل واحد!", "seekNew": "تحدّي مفتوح للكل", "seekNewHow": "التحدي هيظهر لكل اللاعيبة في «التحديات المفتوحة»، وأول واحد يقبله هيلعب معاك.", "seekLink": "تحدّي بلينك", "seekLinkHow": "هنعملك لينك تبعته لأي حد على واتساب. أول ما يفتحه ويقبل، الماتش يبدأ.", "seekPost": "انشر التحدي", "seekMakeLink": "اعمل اللينك", "seekPosted": "التحدي اتنشر، مستنيين حد يقبله", "seekLinkReady": "اللينك جاهز! ابعته لصاحبك:", "seekCode": "أو قوله الكود ده يكتبه في «أونلاين»: {c}", "seekLinkWait": "أول ما صاحبك يقبل، الماتش هيفتح عندك لوحده (خليك في صفحة «أونلاين»).", "seekWaText": "{n} بيتحداك في ماتش شطرنج ({v} · {c}) ♟️ افتح اللينك واقبل:", "shareOther": "شارك بطريقة تانية", "seekCodeHint": "الصق لينك تحدي أو اكتب الكود", "seekJoin": "افتح", "seekMine": "تحدّي بتاعك", "seekPlay": "العب", "cfSeek": "متأكد إنك عايز تلغي التحدي ده؟", "seekOwn": "ده التحدي بتاعك 🙂", "seekTaken": "للأسف حد تاني قبل التحدي ده قبلك.", "seekTook": "{n} قبل التحدي بتاعك! الماتش بدأ.", "seekSignIn": "سجّل دخول الأول عشان تقبل التحدي.", "seekGone": "التحدي ده مبقاش موجود (اتلعب أو اتلغى).", "seekFrom": "تحدي من {n}", "seekInvite": "{n} (تقييمه {r}) بيتحداك: {v} · {c}", "seekColR": "اللون هيتحدد عشوائي.", "seekCol": "إنت هتلعب بـ{c}.", "basicsOrderNote": "إنت الإدارة: رتّب الواجبات بالأسهم، والترتيب هيظهر كده عند كل الطلاب.", "orderSaved": "الترتيب اتحفظ", "kbBoardTitle": "ترتيب كابوكي", "kbRatingNow": "تقييم كابوكي: {d} ← {r}", "tt_kb": "كابوكي فرق", "kbtTitle": "مسابقة كابوكي للفرق", "kbtNew": "مسابقة كابوكي فرق", "kbtHow": "كل فريق اتنين. كل فريق بيقابل كل الفرق مرة. الفوز = نقطة.", "kbtTeams": "الفرق", "kbtAddTeam": "ضيف فريق", "kbtNeedTeams": "لازم فريقين على الأقل، وكل فريق فيه لاعبين مختلفين.", "kbtTwice": "في لاعب متكرر في أكتر من فريق.", "kbtTeamsN": "{n} فرق", "kbtPlayed": "{g} ماتش", "kbtWatch": "اتفرج"}, "en": {"miniTitle": "Chess Variants", "miniSub": "Chess with different rules — including easy games for beginners", "miniIntro": "Same piece moves, a different way to win; some are made for beginners. Play on one phone, against the computer, or challenge someone online.", "mg_army": "Army vs army", "mgr_army": "Each side has only a queen, two rooks and two bishops — no king. Take all your opponent's pieces to win.", "mg_kingcap": "Take the king", "mgr_kingcap": "Normal chess with every piece, but no check or checkmate: the king can be taken like any piece, and taking it wins.", "mg_coords": "Find the square first", "mgr_coords": "A square name shows (like e4): tap it on the board as fast as you can. You have 30 seconds — or race a friend.", "mwCapAll": "every piece was taken", "mwKingCap": "the king was taken", "cdSolo": "Play alone", "cdTwo": "Two players", "cdFind": "Find the square", "cdGo": "Start", "cdHow": "Tap the square named above", "cdSoloHow": "30 seconds. Every right square is a point.", "cdTwoHow": "Player 1 plays 30 seconds, then passes the phone to player 2. Most squares wins.", "cdBlack": "See the board from Black's side", "cdScore": "{n} squares", "cdRecord": "New record! 🎉", "cdBest": "Your best: {n}", "cdPass": "Pass the phone to player 2", "cdNext": "Player 2's turn", "cdPlayer": "Player {n}", "cdWinner": "Player {n} wins!", "playAgain": "Play again", "playHubTitle": "What do you want to play?", "ptCpuSub": "8 levels, counts for your rating", "ptOnline": "Online", "ptOnlineSub": "Open challenges and friends", "ptLocal": "With a friend", "ptLocalSub": "Two players, one phone", "ptLocalVar": "All the variants can be played on one phone too", "ptToursSub": "Academy tournaments", "lobbyTitle": "Open challenges", "lobbySub": "Challenges nobody has taken yet. Tap “Play” on any of them to start at once.", "lobbyNone": "No open challenges right now. Make one!", "seekNew": "Open challenge", "seekNewHow": "Your challenge shows to every player under “Open challenges”; the first to accept plays you.", "seekLink": "Challenge by link", "seekLinkHow": "You get a link to send to anyone on WhatsApp. As soon as they open it and accept, the game starts.", "seekPost": "Post challenge", "seekMakeLink": "Make the link", "seekPosted": "Challenge posted — waiting for someone to accept", "seekLinkReady": "The link is ready! Send it to your friend:", "seekCode": "Or tell them this code to type under “Online”: {c}", "seekLinkWait": "When your friend accepts, the game opens here by itself (stay on the “Online” page).", "seekWaText": "{n} challenges you to a chess game ({v} · {c}) ♟️ Open the link and accept:", "shareOther": "Share another way", "seekCodeHint": "Paste a challenge link or type the code", "seekJoin": "Open", "seekMine": "Your challenge", "seekPlay": "Play", "cfSeek": "Cancel this challenge?", "seekOwn": "That's your own challenge 🙂", "seekTaken": "Sorry, someone else took this challenge first.", "seekTook": "{n} accepted your challenge! The game has started.", "seekSignIn": "Sign in first to accept the challenge.", "seekGone": "This challenge no longer exists (played or cancelled).", "seekFrom": "Challenge from {n}", "seekInvite": "{n} (rated {r}) challenges you: {v} · {c}", "seekColR": "Colours are chosen at random.", "seekCol": "You play {c}.", "basicsOrderNote": "As the admin, order the homework with the arrows; every student sees this order.", "orderSaved": "Order saved", "kbBoardTitle": "Kabuki ranking", "kbRatingNow": "Kabuki rating: {d} → {r}", "tt_kb": "Kabuki teams", "kbtTitle": "Kabuki team tournament", "kbtNew": "Kabuki team tournament", "kbtHow": "Teams of two. Every team meets every other team once. A win = 1 point.", "kbtTeams": "Teams", "kbtAddTeam": "Add team", "kbtNeedTeams": "You need at least two teams, each with two different players.", "kbtTwice": "A player is in more than one team.", "kbtTeamsN": "{n} teams", "kbtPlayed": "{g} played", "kbtWatch": "Watch"}, "fr": {"miniTitle": "Variantes d’échecs", "miniSub": "Les échecs avec d’autres règles — dont des jeux faciles pour débutants", "miniIntro": "Mêmes déplacements, autre façon de gagner ; certains jeux sont pour les débutants. Jouez sur un téléphone, contre l’ordinateur ou en ligne.", "mg_army": "Armée contre armée", "mgr_army": "Chaque camp n’a qu’une dame, deux tours et deux fous — pas de roi. Prends toutes les pièces adverses pour gagner.", "mg_kingcap": "Prends le roi", "mgr_kingcap": "Échecs normaux avec toutes les pièces, mais sans échec ni mat : le roi se prend comme une autre pièce, et le prendre fait gagner.", "mg_coords": "Trouve la case le premier", "mgr_coords": "Un nom de case s’affiche (comme e4) : touche-la au plus vite. Tu as 30 secondes — ou défie un ami.", "mwCapAll": "toutes les pièces ont été prises", "mwKingCap": "le roi a été pris", "cdSolo": "Jouer seul", "cdTwo": "À deux", "cdFind": "Trouve la case", "cdGo": "Commencer", "cdHow": "Touche la case nommée en haut", "cdSoloHow": "30 secondes. Chaque bonne case = un point.", "cdTwoHow": "Le joueur 1 joue 30 secondes, puis passe le téléphone au joueur 2. Le plus de cases gagne.", "cdBlack": "Voir l’échiquier côté Noirs", "cdScore": "{n} cases", "cdRecord": "Nouveau record ! 🎉", "cdBest": "Ton record : {n}", "cdPass": "Passe le téléphone au joueur 2", "cdNext": "Au joueur 2", "cdPlayer": "Joueur {n}", "cdWinner": "Le joueur {n} gagne !", "playAgain": "Rejouer", "playHubTitle": "À quoi veux-tu jouer ?", "ptCpuSub": "8 niveaux, compte pour ton classement", "ptOnline": "En ligne", "ptOnlineSub": "Défis ouverts et amis", "ptLocal": "Avec un ami", "ptLocalSub": "Deux joueurs, un téléphone", "ptLocalVar": "Toutes les variantes se jouent aussi sur un téléphone", "ptToursSub": "Tournois de l’académie", "lobbyTitle": "Défis ouverts", "lobbySub": "Des défis que personne n’a encore pris. Touche « Jouer » pour commencer tout de suite.", "lobbyNone": "Aucun défi ouvert. Crée le tien !", "seekNew": "Défi ouvert", "seekNewHow": "Ton défi apparaît chez tous les joueurs dans « Défis ouverts » ; le premier qui accepte joue contre toi.", "seekLink": "Défi par lien", "seekLinkHow": "Tu obtiens un lien à envoyer sur WhatsApp. Dès qu’il l’ouvre et accepte, la partie commence.", "seekPost": "Publier le défi", "seekMakeLink": "Créer le lien", "seekPosted": "Défi publié — en attente", "seekLinkReady": "Le lien est prêt ! Envoie-le :", "seekCode": "Ou donne-lui ce code à taper dans « En ligne » : {c}", "seekLinkWait": "Quand ton ami accepte, la partie s’ouvre ici toute seule (reste sur « En ligne »).", "seekWaText": "{n} te défie aux échecs ({v} · {c}) ♟️ Ouvre le lien et accepte :", "shareOther": "Partager autrement", "seekCodeHint": "Colle un lien de défi ou tape le code", "seekJoin": "Ouvrir", "seekMine": "Ton défi", "seekPlay": "Jouer", "cfSeek": "Annuler ce défi ?", "seekOwn": "C’est ton propre défi 🙂", "seekTaken": "Désolé, quelqu’un a pris ce défi avant toi.", "seekTook": "{n} a accepté ton défi ! La partie commence.", "seekSignIn": "Connecte-toi d’abord pour accepter le défi.", "seekGone": "Ce défi n’existe plus (joué ou annulé).", "seekFrom": "Défi de {n}", "seekInvite": "{n} (classé {r}) te défie : {v} · {c}", "seekColR": "Les couleurs sont tirées au sort.", "seekCol": "Tu as les {c}.", "basicsOrderNote": "En tant qu’admin, range les devoirs avec les flèches ; tous les élèves voient cet ordre.", "orderSaved": "Ordre enregistré", "kbBoardTitle": "Classement Kabuki", "kbRatingNow": "Classement Kabuki : {d} → {r}", "tt_kb": "Kabuki par équipes", "kbtTitle": "Tournoi Kabuki par équipes", "kbtNew": "Tournoi Kabuki par équipes", "kbtHow": "Équipes de deux. Chaque équipe rencontre toutes les autres une fois. Victoire = 1 point.", "kbtTeams": "Équipes", "kbtAddTeam": "Ajouter une équipe", "kbtNeedTeams": "Il faut au moins deux équipes, chacune avec deux joueurs différents.", "kbtTwice": "Un joueur est dans plusieurs équipes.", "kbtTeamsN": "{n} équipes", "kbtPlayed": "{g} jouées", "kbtWatch": "Regarder"}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"tabLessons": "واجب الأكاديمية", "notifs": "الإشعارات", "notifsNone": "مفيش إشعارات لسه.", "notifsClear": "امسح الإشعارات", "notifNow": "دلوقتي", "notifMin": "من {n} دقيقة", "notifHr": "من {n} ساعة", "sqWas": "وزير {c} السري كان العسكري اللي على {s}", "sqStill": "لسه مستخبي على {s}", "sqShown": "ظهر واتلعب بيه", "sqTaken": "اتاكل وهو مستخبي", "pzMates": "أنماط الكش مات (Mating patterns)", "pzMatesSub": "مات الصف الأخير، المخنوق، العربي، أناستازيا، بودن وغيرهم", "pzEndgames": "ألغاز النهايات (Endgames)", "pzEndgamesSub": "نهايات البيادق والطوابي والأفيال والأحصنة والوزير", "libRename": "غيّر اسم الدرس", "libNewName": "الاسم الجديد", "libRenamed": "الاسم اتغيّر", "kbPartnerBoard": "رقعة زميلك"}, "en": {"tabLessons": "Homework", "notifs": "Notifications", "notifsNone": "No notifications yet.", "notifsClear": "Clear notifications", "notifNow": "just now", "notifMin": "{n} min ago", "notifHr": "{n} h ago", "sqWas": "{c}'s secret queen was the pawn on {s}", "sqStill": "still hidden on {s}", "sqShown": "it showed itself and played", "sqTaken": "taken while still hidden", "pzMates": "Mating patterns", "pzMatesSub": "Back rank, smothered, Arabian, Anastasia, Boden and more", "pzEndgames": "Endgame puzzles", "pzEndgamesSub": "Pawn, rook, bishop, knight and queen endgames", "libRename": "Rename lesson", "libNewName": "New name", "libRenamed": "Renamed", "kbPartnerBoard": "Partner's board"}, "fr": {"tabLessons": "Devoirs", "notifs": "Notifications", "notifsNone": "Pas encore de notifications.", "notifsClear": "Effacer les notifications", "notifNow": "à l’instant", "notifMin": "il y a {n} min", "notifHr": "il y a {n} h", "sqWas": "La dame secrète des {c} était le pion de {s}", "sqStill": "encore cachée en {s}", "sqShown": "elle s’est révélée et a joué", "sqTaken": "prise encore cachée", "pzMates": "Motifs de mat", "pzMatesSub": "Dernière rangée, étouffé, arabe, Anastasia, Boden et plus", "pzEndgames": "Problèmes de finales", "pzEndgamesSub": "Finales de pions, tours, fous, cavaliers et dames", "libRename": "Renommer la leçon", "libNewName": "Nouveau nom", "libRenamed": "Renommée", "kbPartnerBoard": "Échiquier du partenaire"}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"easySet": "وضع المبتدئين: نقط النقلات تظهر في الماتشات ومينفعش تحط قطعة في مربع غلط", "patternHow": "إزاي النمط ده بيتعمل؟"}, "en": {"easySet": "Beginner mode: show move dots in games and don't allow wrong squares", "patternHow": "How this pattern works"}, "fr": {"easySet": "Mode débutant : points des coups en partie, pas de case interdite", "patternHow": "Comment marche ce motif ?"}});
+  (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"abortGame": "إلغاء الماتش", "preChain": "بري موف متتالي", "preChainHow": "لما يكون شغال تقدر تعمل كذا بري موف ورا بعض", "preChainOn": "البري موف المتتالي اشتغل: اعمل كذا نقلة ورا بعض وخصمك بيفكر", "preChainOff": "البري موف بقى نقلة واحدة بس", "illMode": "قاعدة النقلة الغلط (illegal move)", "illModeHow": "لو شغالة: تقدر تحط القطعة في أي مربع، والنقلة الغلط بتدّي خصمك وقت زيادة، والتانية تخسّرك الماتش", "illOn": "قاعدة النقلة الغلط شغالة في الماتش ده"}, "en": {"abortGame": "Abort game", "preChain": "Chain premoves", "preChainHow": "When on, you can queue several premoves", "preChainOn": "Chained premoves on: queue several moves while your opponent thinks", "preChainOff": "Premove: one move only", "illMode": "Illegal-move rule", "illModeHow": "When on: a piece can be put on any square; an illegal move gives the opponent extra time and a second one loses", "illOn": "The illegal-move rule is on in this game"}, "fr": {"abortGame": "Annuler la partie", "preChain": "Prémoves en chaîne", "preChainHow": "Activé : plusieurs prémoves d’avance", "preChainOn": "Prémoves en chaîne : joue plusieurs coups pendant que l’adversaire réfléchit", "preChainOff": "Prémove : un seul coup", "illMode": "Règle du coup illégal", "illModeHow": "Activée : une pièce peut aller sur n’importe quelle case ; un coup illégal donne du temps à l’adversaire et le deuxième fait perdre", "illOn": "La règle du coup illégal est active dans cette partie"}});
   HCC.t = function (key, vars) {
     var s = (STR[HCC.store.data.lang] || STR.ar)[key];
     if (s === undefined) s = STR.en[key] !== undefined ? STR.en[key] : key;
@@ -2630,6 +2642,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     this.chess = null; this.movable = null; this.orient = 'w';
     this.sel = -1; this.legal = []; this.lastMove = 0; this.drag = null; this.promo = null;
     this.arrows = []; this.marks = []; this.flash = null; this.hintSq = -1;
+    this.premoveSide = null; this.premoveChain = false; this.premoves = [];   // premoves: moves made while the opponent thinks
     host.classList.add('bd');
     this.sqLayer = h('div', { class: 'bd-sq' });
     this.pcLayer = h('div', { class: 'bd-pc' });
@@ -2705,10 +2718,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   /** Applies square highlights, target dots, marks and arrows without touching the pieces. */
   Board.prototype.paint = function () {
     var c = this.chess, sq, el, i;
-    for (sq in this.sqEls) { el = this.sqEls[sq]; el.classList.remove('last', 'sel', 'tgt', 'cap', 'chk', 'hint', 'good', 'bad'); el.removeAttribute('data-mk'); }
+    for (sq in this.sqEls) { el = this.sqEls[sq]; el.classList.remove('last', 'sel', 'tgt', 'cap', 'chk', 'hint', 'good', 'bad', 'pre'); el.removeAttribute('data-mk'); }
     if (this.lastMove) { this.sqEls[C.mFrom(this.lastMove)].classList.add('last'); this.sqEls[C.mTo(this.lastMove)].classList.add('last'); }
     if (c.inCheck()) this.sqEls[c.kingSq[c.turn >> 3]].classList.add('chk');
     if (this.hintSq >= 0) this.sqEls[this.hintSq].classList.add('hint');
+    for (i = 0; i < this.premoves.length; i++) { this.sqEls[this.premoves[i].from].classList.add('pre'); this.sqEls[this.premoves[i].to].classList.add('pre'); }
     if (this.flash) this.sqEls[this.flash.sq].classList.add(this.flash.kind);
     if (this.sel >= 0) {
       this.sqEls[this.sel].classList.add('sel');
@@ -2770,9 +2784,55 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     return out;
   };
 
+  // ---------------------------------------------------------------- premoves
+  /** True while it is the opponent's turn in a game where premoves are on. */
+  Board.prototype.preCtx = function () { return !!(this.premoveSide && this.chess && (this.chess.turn === 0 ? 'w' : 'b') !== this.premoveSide); };
+  /** The position as it will be after the premoves already queued, with my side to move. */
+  Board.prototype.virt = function () {
+    var c = new C.Chess(this.chess.fen()); c.pseudoOK = true;
+    this.premoves.forEach(function (pm) { var p = c.board[pm.from]; c.board[pm.to] = p; c.board[pm.from] = 0; if ((p & 7) === C.KING) c.kingSq[p >> 3] = pm.to; });
+    c.turn = this.premoveSide === 'w' ? 0 : 8; c.ep = -1;
+    return c;
+  };
+  /** Where a piece may be premoved: like a move, and also onto a square of my own (to take back what gets taken there). */
+  Board.prototype.preTargets = function (sq) {
+    var v = this.virt(), side = this.premoveSide === 'w' ? 0 : 8;
+    for (var q = 0; q < 120; q++) { if (q & 0x88) { q += 7; continue; } var p = v.board[q]; if (q !== sq && p && (p & 8) === side && (p & 7) !== C.KING) v.board[q] = p ^ 8; }
+    return v.genPseudo(false).filter(function (m) { return C.mFrom(m) === sq; });
+  };
+  Board.prototype.addPremove = function (from, to) {
+    var v = this.virt(), p = v.board[from], promo = (p & 7) === C.PAWN && ((to >> 4) === 0 || (to >> 4) === 7);
+    var pm = { from: from, to: to, promo: promo };
+    if (this.premoveChain) this.premoves.push(pm); else this.premoves = [pm];
+    this.sel = -1; this.legal = []; this.update();
+  };
+  Board.prototype.clearPremoves = function () { this.premoves = []; this.paint(); };
+  /** The next premove, if it can be played now (else every premove is dropped). Returns a move or 0. */
+  Board.prototype.takePremove = function () {
+    if (!this.premoves.length || !this.chess) return 0;
+    var pm = this.premoves.shift(), list = this.pseudo ? this.chess.genPseudo(false) : this.chess.legalMoves();
+    var m = list.filter(function (x) { return C.mFrom(x) === pm.from && C.mTo(x) === pm.to && (!C.mPromo(x) || C.mPromo(x) === C.QUEEN); })[0];
+    if (!m) { this.premoves = []; this.paint(); return 0; }
+    return m;
+  };
+  Board.prototype.preDown = function (e, sq) {
+    if (this.sel >= 0 && this.legal.some(function (m) { return C.mTo(m) === sq; })) { this.addPremove(this.sel, sq); return; }
+    var v = this.virt(), p = v.board[sq];
+    if (p && ((p & 8) ? 'b' : 'w') === this.premoveSide) {
+      this.sel = sq; this.legal = this.preTargets(sq); this.paint();
+      this.drag = { sq: sq, x: e.clientX, y: e.clientY, el: this.premoves.length ? null : this.pcEls[sq], moved: false, id: e.pointerId, pre: true };
+      try { this.host.setPointerCapture(e.pointerId); } catch (err) { /* older WebView */ }
+      return;
+    }
+    this.sel = -1; this.legal = []; this.premoves = []; this.paint();   // a tap elsewhere cancels the premoves
+  };
+
   Board.prototype.down = function (e) {
-    if (!this.movable || this.promo || !this.chess) return;
-    var sq = this.sqAt(e.clientX, e.clientY);
+    if (this.promo || !this.chess) return;
+    var sq0 = this.sqAt(e.clientX, e.clientY);
+    if (sq0 >= 0 && this.preCtx()) { this.preDown(e, sq0); return; }
+    if (!this.movable) return;
+    var sq = sq0;
     if (sq < 0) return;
     if (this.dropPiece && this.opts.onDrop) { if (!this.chess.board[sq]) { this.opts.onDrop(sq); return; } this.dropPiece = null; if (this.opts.onDropCancel) this.opts.onDropCancel(); }
     if (this.sel >= 0 && this.movesTo(sq).length) { this.attempt(sq); return; }
@@ -2796,6 +2856,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     this.drag = null;
     if (!d.moved) return;                       // a tap: the piece stays selected for tap-tap moves
     var sq = this.sqAt(e.clientX, e.clientY);
+    if (d.pre) { if (sq >= 0 && this.legal.some(function (m) { return C.mTo(m) === sq; })) this.addPremove(d.sq, sq); else this.update(); return; }
     if (sq >= 0 && this.movesTo(sq).length) this.attempt(sq);
     else if (!(sq >= 0 && this.wrongTo(sq))) this.update();
   };
@@ -3902,6 +3963,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     l.forEach(function (x) { x.read = true; }); store.save();
     var bn = topEl.querySelector('.bell-n'); if (bn) bn.remove();
     openSheet('🔔 ' + t('notifs'), box);
+    if (sheetEl) sheetEl.classList.add('top');
   }
   function notifGo(a) {
     if (!a) return;
@@ -7379,12 +7441,16 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     }
     var topClock = h('span', { class: 'gclock' }), botClock = h('span', { class: 'gclock' }), topName = h('span', { class: 'grow gname' }), botName = h('span', { class: 'grow gname' });
     var bottom = local ? 'w' : g.you;
-    board.chess = chess; board.setOrient(bottom); board.pseudo = true; HCC._board = board;
-    board.anyMove = g.variant === 'std' && !store.data.easyPlay;   // a piece can be put on a wrong square too: the illegal-move rule deals with it (not in beginner mode)
+    board.chess = chess; board.setOrient(bottom); HCC._board = board;
+    // illegal-move mode (chosen before the game, off by default): any square can be tried and the FIDE rule punishes it
+    board.pseudo = !!g.illegal || !!(M && M.pseudo);
+    board.anyMove = !!g.illegal && g.variant === 'std';
+    if (!local) { board.premoveSide = g.you; board.premoveChain = !!store.data.preChain; }
     board.opts.onIllegal = function () { if (!myTurn() || g.result) return; illegal(chess.turn === 0 ? 'w' : 'b'); };
     mainEl.appendChild(h('div', { class: 'work' },
       M ? h('div', { class: 'note mini-rule', text: M.ic + ' ' + t('mg_' + M.id) + ': ' + t('mgr_' + M.id) }) : null,
       SQ ? h('div', { class: 'note mini-rule', text: '🤫 ' + t('sqTitle') + ': ' + t('sqRule') }) : null,
+      g.illegal ? h('div', { class: 'note ill-note', text: '⚖️ ' + t('illOn') }) : null,
       actEl,
       h('div', { class: 'gbar gtop' }, topName, timed ? topClock : null),
       h('div', { class: 'board-wrap' }, host),
@@ -7442,6 +7508,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       if (!over) {
         if (!local && !timed && !SQ) btns.appendChild(btn(t('takeback'), '', takeback, 'undo'));
         // resign and draw sit above the board; the board can't be flipped while the game is on
+        if (g.moves.length < 2) actEl.appendChild(btn('✖ ' + t('abortGame'), 'small', askFirst('cfAbort', function () {
+          var gv = g; store.data.play = null; store.save(); token++; T.clear();
+          if (gv.variant && gv.variant !== 'std') { state.mini = true; state.playPage = null; } else state.playPage = gv.opp === 'local' ? 'local' : 'cpu';
+          state.playMenu = true; HCC.toast(t('duelAborted')); render();
+        })));
+        if (!local) actEl.appendChild(preChainBtn(board));
         actEl.appendChild(btn('🤝 ' + t('offerDraw'), 'small', offerDraw));
         actEl.appendChild(btn(t('resign'), 'danger small', askFirst('cfResign', function () { end({ win: local ? (chess.turn === 0 ? 'b' : 'w') : (g.you === 'w' ? 'b' : 'w'), why: 'byResign' }); }), 'flag'));
         return;
@@ -7494,7 +7566,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
           state.analysis = { fen: g.fen, moves: g.moves.slice(), cursor: g.moves.length, engine: true, panel: 'moves' };
           go('analysis');
         }, 'chart'), btn(t('rematch'), '', function () {
-          store.data.play = { fen: g.fen, moves: [], you: local ? 'w' : (g.you === 'w' ? 'b' : 'w'), opp: g.opp, level: g.level, variant: g.variant, tc: g.tc, clock: timed ? { w: g.tc[0] * 60000, b: g.tc[0] * 60000, run: null, since: 0 } : null, result: null };
+          store.data.play = { fen: g.variant === 'army' ? startFen('army') : g.fen, moves: [], you: local ? 'w' : (g.you === 'w' ? 'b' : 'w'), opp: g.opp, level: g.level, variant: g.variant, tc: g.tc, illegal: !!g.illegal, clock: timed ? { w: g.tc[0] * 60000, b: g.tc[0] * 60000, run: null, since: 0 } : null, result: null };
           store.save(); lastScreen = null; render();
         }, 'redo'))));
       status(t('gameOver'));
@@ -7511,7 +7583,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
         if (need) { picking = need; board.movable = null; board.draw([], []); status(t(local ? (need === 'w' ? 'sqPickW' : 'sqPickB') : 'sqPick')); return; }
         board.draw([], SQ.marks(local ? (chess.turn === 0 ? 'w' : 'b') : g.you));
       }
-      if (myTurn()) { board.movable = local ? (chess.turn === 0 ? 'w' : 'b') : g.you; board.paint(); status(local ? t(chess.turn === 0 ? 'whiteToMove' : 'blackToMove') : t('yourTurn')); }
+      if (myTurn()) {
+        board.movable = local ? (chess.turn === 0 ? 'w' : 'b') : g.you; board.paint(); status(local ? t(chess.turn === 0 ? 'whiteToMove' : 'blackToMove') : t('yourTurn'));
+        var pm = !local && board.takePremove();
+        if (pm) T.later(function () { if (myTurn() && !g.result) onUser(pm); }, 40);
+      }
       else think();
     }
     function think() {
@@ -7587,12 +7663,25 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   }
   function newGame(opts) {
     var tc = opts.tc || [0, 0], fen = startFen(opts.variant || 'std');
-    store.data.play = { fen: fen, moves: [], you: opts.you || 'w', opp: opts.opp, level: opts.level || 2, variant: opts.variant || 'std', tc: tc,
+    store.data.play = { fen: fen, moves: [], you: opts.you || 'w', opp: opts.opp, level: opts.level || 2, variant: opts.variant || 'std', tc: tc, illegal: !!opts.illegal,
       clock: tc[0] ? { w: tc[0] * 60000, b: tc[0] * 60000, run: null, since: 0 } : null, result: null };
     store.save(); state.mini = false; state.coords = null; state.kabuki = null; state.kbTour = null; state.playMenu = false; lastScreen = null; go('play'); render();
   }
   HCC._newGame = newGame;
 
+  /** The button that turns chained premoves on (several moves ahead) or off (one premove). */
+  function preChainBtn(bd) {
+    var b = h('button', { type: 'button', class: 'chip pre-chain', 'aria-pressed': String(!!store.data.preChain), title: t('preChainHow'), text: '⏩ ' + t('preChain'), onclick: function () {
+      store.data.preChain = !store.data.preChain; store.save(); bd.premoveChain = store.data.preChain; if (!bd.premoveChain && bd.premoves.length > 1) bd.premoves.length = 1; bd.paint();
+      b.setAttribute('aria-pressed', String(store.data.preChain)); HCC.toast(t(store.data.preChain ? 'preChainOn' : 'preChainOff'));
+    } });
+    return b;
+  }
+  /** The illegal-move mode switch shown before a game (off by default). */
+  function illegalSwitch(obj, key) {
+    var sw = h('button', { type: 'button', class: 'switch', id: 'ill-' + key, 'aria-pressed': String(!!obj[key]), 'aria-label': t('illMode'), onclick: function () { obj[key] = !obj[key]; sw.setAttribute('aria-pressed', String(obj[key])); } });
+    return h('div', { class: 'ill-row' }, h('div', { class: 'grow' }, h('b', { text: '⚖️ ' + t('illMode') }), h('small', { text: t('illModeHow') })), sw);
+  }
   function resumeCard() {
     var cur = store.data.play;
     if (!cur || cur.result) return null;
@@ -7654,22 +7743,24 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       h('div', { class: 'field' }, h('label', { text: t('color') }), seg),
       h('div', { class: 'field' }, h('label', { for: 'play-level', text: t('level') }), h('div', { class: 'bot-row' }, bot, h('div', { class: 'grow' }, levelName, h('div', { class: 'level' }, range, levelNote)))),
       h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(choice.tc, function (tc) { choice.tc = tc; })),
+      illegalSwitch(choice, 'illegal'),
       h('p', { class: 'muted small', text: t('ratedNote') }),
       btn(t('start'), 'primary', function () {
         var you = choice.color;
         store.data.lastLevel = choice.level; store.data.lastTc = choice.tc; store.data.lastColor = you;
-        newGame({ opp: 'cpu', you: you, level: choice.level, tc: choice.tc });
+        newGame({ opp: 'cpu', you: you, level: choice.level, tc: choice.tc, illegal: choice.illegal });
       })));
     mainEl.appendChild(page);
   }
   function localPage() {
     subTop(t('ptLocal'));
-    var page = h('div', { class: 'page play-local' }), ltc = store.data.lastTc || [0, 0];
+    var page = h('div', { class: 'page play-local' }), ltc = store.data.lastTc || [0, 0], lopt = { illegal: false };
     var rc = resumeCard(); if (rc) page.appendChild(rc);
     page.appendChild(h('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:10px' },
       h('h3', { text: '👫 ' + t('playLocal') }), h('p', { class: 'muted small', text: t('playLocalSub') }),
       tcPicker(ltc, function (tc) { ltc = tc; }),
-      btn(t('start'), 'primary', function () { newGame({ opp: 'local', tc: ltc }); })));
+      illegalSwitch(lopt, 'illegal'),
+      btn(t('start'), 'primary', function () { newGame({ opp: 'local', tc: ltc, illegal: lopt.illegal }); })));
     page.appendChild(h('button', { type: 'button', class: 'card tap mini-card', onclick: function () { state.playPage = null; state.mini = true; render(); } },
       h('span', { class: 'rush-ic', text: '🎲' }), h('div', { class: 'grow' }, h('h3', { text: t('miniTitle') }), h('span', { class: 'muted small', text: t('ptLocalVar') })), chev()));
     mainEl.appendChild(page);
@@ -8028,7 +8119,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       pBoard.setOrient(mc === 'w' ? 'b' : 'w'); mBoard.setOrient(mc);
       pBoard.update({ last: S[ob].last }); mBoard.update({ last: S[bd].last });
       var myTurn = seat && toMove(S[bd]) === mc && room.st === 'play' && !room.res;
+      mBoard.premoveSide = seat && room.st === 'play' && !room.res ? mc : null; mBoard.premoveChain = !!store.data.preChain;
       mBoard.movable = myTurn ? mc : null; pBoard.movable = null; mBoard.paint();
+      if (myTurn) { var pmk = mBoard.takePremove(); if (pmk) setTimeout(function () { onMove(pmk); }, 40); }
       drawBars(); drawHands();
       if (room.st === 'play' && !room.res) checkMates();
       HCC.clear(statusEl);
@@ -8221,7 +8314,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
         CL.set('tours/T' + Date.now().toString(36), doc).then(function () { closeSheet(); HCC.toast('🏆 ' + t('tourMade')); render(); }, function (e) { b.disabled = false; bad(CL.errKey(e)); });
       }))));
   }
-  HCC.openPlay = function (pg) { go('play'); state.playPage = pg || null; state.mini = false; state.duel = null; state.tour = null; render(); };
+  HCC.openPlay = function (pg) { go('play'); state.playPage = pg || null; state.playMenu = true; state.mini = false; state.duel = null; state.tour = null; render(); };
   HCC.openMini = function () { state.mini = true; go('play'); render(); };
 
   // ---------------------------------------------------------------- challenges between academy members (online, through the academy's server)
@@ -8302,7 +8395,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   function duelSheet(variant) {
     if (!ratingsCache.length && onlineOn() && !duelSheet.tried) { duelSheet.tried = 1; ratingsPull().then(function () { duelSheet(variant); }); return; }
     var ops = opponents(), box = h('div', { class: 'list duel-sheet' }), msg = h('div');
-    var pick = { uid: '', color: 'r', tc: store.data.lastDuelTc || [5, 0], variant: variant || 'std' };
+    var pick = { uid: '', color: 'r', tc: store.data.lastDuelTc || [5, 0], variant: variant || 'std', illegal: false };
     if (!ops.length) { openSheet(t('duelNew'), h('p', { class: 'muted', text: t('duelNoOpp') })); return; }
     var sel = h('select', { id: 'duel-opp', onchange: function () { pick.uid = sel.value; } }, h('option', { value: '', text: t('duelPickOpp') }), ops.map(function (o) { return h('option', { value: o.uid, text: o.name }); }));
     var vsel = h('select', { id: 'duel-var', onchange: function () { pick.variant = vsel.value; } }, [h('option', { value: 'std', text: t('stdChess'), selected: pick.variant === 'std' ? 'selected' : null }),
@@ -8314,6 +8407,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     box.appendChild(h('div', { class: 'field' }, h('label', { for: 'duel-var', text: t('duelVariant') }), vsel));
     box.appendChild(h('div', { class: 'field' }, h('label', { text: t('color') }), cseg));
     box.appendChild(h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(pick.tc, function (tc) { pick.tc = tc; })));
+    box.appendChild(illegalSwitch(pick, 'illegal'));
     box.appendChild(msg);
     box.appendChild(h('div', { class: 'btns' }, btn(t('duelSend'), 'primary', function () {
       if (!pick.uid) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t('duelPickOpp') })); return; }
@@ -8322,7 +8416,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       var p = CL.profile() || {}, myName = p.name || (store.data.user || {}).name || '';
       var d = { members: [me, o.uid], from: me, w: col === 'w' ? me : o.uid, b: col === 'w' ? o.uid : me, wn: col === 'w' ? myName : o.name, bn: col === 'w' ? o.name : myName,
         wr: col === 'w' ? myRating().r : 0, br: col === 'b' ? myRating().r : 0, status: 'pending', variant: pick.variant, fen0: startFen(pick.variant),
-        tcM: pick.tc[0], tcI: pick.tc[1], wt: pick.tc[0] * 60000, bt: pick.tc[0] * 60000, moves: '', last: 0, result: '', why: '', seen: [], at: Date.now() };
+        tcM: pick.tc[0], tcI: pick.tc[1], wt: pick.tc[0] * 60000, bt: pick.tc[0] * 60000, moves: '', last: 0, result: '', why: '', seen: [], at: Date.now(), illegal: !!pick.illegal };
       store.data.lastDuelTc = pick.tc; store.save();
       CL.set('games/g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), d).then(function () {
         closeSheet(); HCC.toast('⚔️ ' + t('duelSent', { n: o.name })); state.mini = false; go('play'); render();
@@ -8350,7 +8444,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     sel.value = cur; return sel;
   }
   function seekSheet(link) {
-    var pick = { color: 'r', tc: store.data.lastDuelTc || [5, 0], variant: 'std' }, box = h('div', { class: 'list seek-sheet' }), msg = h('div');
+    var pick = { color: 'r', tc: store.data.lastDuelTc || [5, 0], variant: 'std', illegal: false }, box = h('div', { class: 'list seek-sheet' }), msg = h('div');
     var cseg = h('div', { class: 'seg', role: 'group' });
     function drawC() { HCC.clear(cseg); [['w', 'white'], ['b', 'black'], ['r', 'random']].forEach(function (o) { cseg.appendChild(h('button', { type: 'button', 'aria-pressed': String(pick.color === o[0]), text: t(o[1]), onclick: function () { pick.color = o[0]; drawC(); } })); }); }
     drawC();
@@ -8358,11 +8452,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     box.appendChild(h('div', { class: 'field' }, h('label', { for: 'seek-var', text: t('duelVariant') }), variantSelect('seek-var', 'std', function (v) { pick.variant = v; })));
     box.appendChild(h('div', { class: 'field' }, h('label', { text: t('color') }), cseg));
     box.appendChild(h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(pick.tc, function (tc) { pick.tc = tc; })));
+    box.appendChild(illegalSwitch(pick, 'illegal'));
     box.appendChild(msg);
     box.appendChild(h('div', { class: 'btns' }, btn(t(link ? 'seekMakeLink' : 'seekPost'), 'primary', function () {
       var b = this; b.disabled = true;
       var p = CL.profile() || {}, id = 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-      var x = { from: CL.uid(), name: p.name || (store.data.user || {}).name || '', r: myRating().r, variant: pick.variant, tcM: pick.tc[0], tcI: pick.tc[1], color: pick.color, link: !!link, at: Date.now() };
+      var x = { from: CL.uid(), name: p.name || (store.data.user || {}).name || '', r: myRating().r, variant: pick.variant, tcM: pick.tc[0], tcI: pick.tc[1], color: pick.color, link: !!link, illegal: !!pick.illegal, at: Date.now() };
       store.data.lastDuelTc = pick.tc; store.save();
       CL.set('seeks/' + id, x).then(function () {
         x._id = id; seekList.unshift(x);
@@ -8394,7 +8489,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     var hc = x.color === 'r' ? (Math.random() < 0.5 ? 'w' : 'b') : x.color, gid = 'gs_' + x._id;
     var d = { members: [x.from, me], from: me, seek: x._id, w: hc === 'w' ? x.from : me, b: hc === 'w' ? me : x.from, wn: hc === 'w' ? x.name : myName, bn: hc === 'w' ? myName : x.name,
       wr: hc === 'w' ? x.r : myRating().r, br: hc === 'w' ? myRating().r : x.r, status: 'active', variant: x.variant || 'std', fen0: startFen(x.variant || 'std'),
-      tcM: x.tcM, tcI: x.tcI, wt: x.tcM * 60000, bt: x.tcM * 60000, moves: '', last: Date.now(), result: '', why: '', seen: [], at: Date.now() };
+      tcM: x.tcM, tcI: x.tcI, wt: x.tcM * 60000, bt: x.tcM * 60000, moves: '', last: Date.now(), result: '', why: '', seen: [], at: Date.now(), illegal: !!x.illegal };
     CL.create('games/' + gid, d).then(function () { CL.del('seeks/' + x._id).catch(function () {}); seekList = seekList.filter(function (y) { return y._id !== x._id; }); closeSheet(); state.duel = gid; go('play'); render(); },
       function (e) { if (b) b.disabled = false; HCC.toast(/ALREADY_EXISTS|409/.test(String(e && e.message || e)) ? t('seekTaken') : t(CL.errKey(e))); seeksPull().then(function () { if (state.playPage === 'online') render(); }); });
   }
@@ -8423,7 +8518,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       if (!mine.length && !open.length) list.appendChild(h('p', { class: 'muted small', text: t('lobbyNone') }));
       open.forEach(function (x) {
         list.appendChild(h('div', { class: 'unit seek-row', 'data-seek': x._id }, photoOf(x.from, 'sm'),
-          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: x.name + ' · ' + x.r }), h('div', { class: 'muted small', text: variantName(x.variant) + ' · ' + tcName([x.tcM, x.tcI]) + ' · ' + (x.color === 'r' ? t('random') : t(x.color === 'w' ? 'white' : 'black')) })),
+          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: x.name + ' · ' + x.r }), h('div', { class: 'muted small', text: variantName(x.variant) + ' · ' + tcName([x.tcM, x.tcI]) + ' · ' + (x.color === 'r' ? t('random') : t(x.color === 'w' ? 'white' : 'black')) + (x.illegal ? ' · ⚖️ illegal' : '') })),
           btn(t('seekPlay'), 'primary small', function () { seekAccept(x, this); })));
       });
       mine.forEach(function (x) {
@@ -8451,7 +8546,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
     state.cleanup = function () { closed = true; clearTimeout(pollT); clearInterval(tickI); T.clear(); if (live) live.close(); };
     var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
     var LIVE_KEYS = ['moves', 'wt', 'bt', 'last', 'status', 'result', 'why', 'drawBy', 'iw', 'ib', 'rev', 'sw', 'sb'];   // rev: +1 on every write, so offers and penalties are seen at once too
-    board.pseudo = true;
+    var pmBusy = false;
     board.opts.extraMoves = function (sq) { return d && d.variant === 'secret' && chess && sq === mySecret() ? secretMoves(chess, sq) : []; };
     var sqKey = 'sq_' + gid, picking = false;
     function mySecret() { var s0 = (store.data.secrets || {})[sqKey]; return s0 ? secretCur(d.fen0, movesOf(d), s0) : -1; }
@@ -8514,9 +8609,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
         board.update({ last: last, animate: shownN >= 0 && mv.length > shownN });
         shownN = mv.length;
       }
-      board.anyMove = d.variant === 'std' && !store.data.easyPlay;
+      board.pseudo = !!d.illegal || !!(miniOf(d.variant) || {}).pseudo;
+      board.anyMove = !!d.illegal && d.variant === 'std';
+      board.premoveSide = d.status === 'active' && !d.result ? myC : null; board.premoveChain = !!store.data.preChain;
       var M = miniOf(d.variant); HCC.clear(ruleEl); if (M) ruleEl.appendChild(h('div', { class: 'note mini-rule', text: M.ic + ' ' + t('mg_' + M.id) + ': ' + t('mgr_' + M.id) }));
       if (d.variant === 'secret') ruleEl.appendChild(h('div', { class: 'note mini-rule', text: '🤫 ' + t('sqTitle') + ': ' + t('sqRule') }));
+      if (d.illegal) ruleEl.appendChild(h('div', { class: 'note ill-note', text: '⚖️ ' + t('illOn') }));
       var oc = myC === 'w' ? 'b' : 'w';
       if (!phDone) { phDone = true; var drawPh = function () { HCC.clear(topPh); HCC.clear(botPh); topPh.appendChild(photoOf(d[oc], 'sm')); botPh.appendChild(photoOf(me, 'sm')); }; drawPh(); if (!ratingsCache.length) ratingsPull().then(drawPh); }
       topName.textContent = d[oc + 'n'] + (d.variant === 'std' && d[oc + 'r'] ? ' · ' + d[oc + 'r'] : ''); botName.textContent = d[myC + 'n'] + (d.variant === 'std' ? ' · ' + myRating().r : '');
@@ -8535,12 +8633,14 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
       }
       if (d.variant === 'secret') { var ms = mySecret(); board.draw([], ms >= 0 ? [{ sq: C.sqName(ms), color: 'Y' }] : []); }
       board.movable = mine ? myC : null; board.paint();
+      if (mine && !pmBusy) { var pm = board.takePremove(); if (pm) { pmBusy = true; setTimeout(function () { pmBusy = false; if (d && toMove(d) === myC && !d.result) onUser(pm); }, 40); } }
       status(mine ? t('yourTurn') : t('duelTheirTurn', { n: d[oc + 'n'] }));
       if (d.drawBy && d.drawBy !== myC) drawEl.appendChild(h('div', { class: 'note draw-offer' }, h('span', { class: 'grow', text: '🤝 ' + t('drawOffered', { n: d[oc + 'n'] }) }),
         btn(t('drawAccept'), 'primary small', function () { write({ status: 'done', result: 'd', why: 'byAgree', drawBy: '' }); }),
         btn(t('drawDecline'), 'small', function () { write({ drawBy: '' }); })));
       if (mv.length >= 2) actEl.appendChild(d.drawBy === myC ? h('span', { class: 'pill', text: '🤝 ' + t('drawSent') }) : btn('🤝 ' + t('offerDraw'), 'small', function () { write({ drawBy: myC }); HCC.toast(t('drawSent')); }));
-      if (mv.length < 2 && !d.tour) btns.appendChild(btn(t('duelAbort'), '', askFirst('cfAbort', function () { write({ status: 'done', result: '', why: 'byAbort' }); })));
+      if (mv.length < 2 && !d.tour) actEl.appendChild(btn('✖ ' + t('abortGame'), 'small', askFirst('cfAbort', function () { write({ status: 'done', result: '', why: 'byAbort' }); })));
+      actEl.appendChild(preChainBtn(board));
       if (d.tour && !running(d) && !mine && Date.now() - (d.last || d.at) > 180000)
         btns.appendChild(btn(t('tourNoShow'), 'primary', askFirst('cfNoShow', function () { write({ status: 'done', result: myC, why: 'byNoShow' }); })));
       if (d.tname) statusEl.appendChild(h('span', { class: 'pill accent', text: '🏆 ' + d.tname }));
@@ -9379,7 +9479,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
   function liveBrowser() {
     leave();
     HCC.clear(mainEl); mainEl.scrollTop = 0;
-    setTop({ title: t('liveTitle'), back: function () { render(); } });
+    setTop({ title: t('liveTitle'), back: function () { var A = state.analysis; if (A && A.tourId) { A.players = null; A.tourId = null; A.live = null; } if (state.tab !== 'home') go('home'); else render(); } });
     var page = h('div', { class: 'lv-page' }), body = h('div');
     page.appendChild(body);
     page.appendChild(h('p', { class: 'muted small lv-credit', text: t('liveCredit') }));
@@ -9910,7 +10010,6 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFo
           h('span', { class: 'sw-pcs' }, pc(2, 'w'), pc(6, 'b')), h('span', { class: 'sw-name', text: t('ps_' + ps) }));
       }))),
       h('label', { class: 'row', for: 'set-sound' }, h('input', { type: 'checkbox', id: 'set-sound', checked: d.sound !== false ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.sound = e.target.checked; store.save(); if (d.sound) HCC.sfx('good'); } }), h('span', { text: t('soundSet') })),
-      h('label', { class: 'row', for: 'set-easy' }, h('input', { type: 'checkbox', id: 'set-easy', checked: d.easyPlay ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.easyPlay = e.target.checked; store.save(); } }), h('span', { text: t('easySet') })),
       h('label', { class: 'row', for: 'set-motion' }, h('input', { type: 'checkbox', id: 'set-motion', checked: d.motion !== false ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.motion = e.target.checked; store.save(); applyLooks(); } }), h('span', { text: t('motionSet') })),
       h('label', { class: 'row', for: 'set-coords' }, h('input', { type: 'checkbox', id: 'set-coords', checked: d.coords ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.coords = e.target.checked; store.save(); render(); } }), h('span', { text: t('coords') })),
       h('label', { class: 'row', for: 'set-tb' }, h('input', { type: 'checkbox', id: 'set-tb', checked: d.tablebase ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.tablebase = e.target.checked; store.save(); } }), h('span', { text: t('tbSetting') })),
