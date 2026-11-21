@@ -719,6 +719,75 @@ body.app-night .warn-t { color: #fbbf24; }
 .ar-period { margin-bottom: 4px; }
 body.no-motion .bdg.on .bd-ic { animation: none; }
 
+/* report charts */
+.ar-scope { margin-bottom: 6px; }
+.ar-scope button { font-size: 13px; }
+#ar-pick { width: 100%; }
+.ar-who { display: flex; flex-direction: column; gap: 2px; margin: 4px 0; }
+.chart-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 8px; margin: 8px 0; }
+.radar, .trend { direction: ltr; }
+.radar { width: 100%; max-width: 340px; display: block; margin: 0 auto; overflow: visible; }
+.rd-grid { fill: none; stroke: var(--line); stroke-width: 1; }
+.rd-axis { stroke: var(--line); stroke-width: 1; }
+.rd-shape { fill: rgba(245,197,24,.28); stroke: #e0b000; stroke-width: 2.5; stroke-linejoin: round; }
+body:not(.no-motion) .rd-shape { animation: rdGrow .7s cubic-bezier(.2,.8,.2,1) both; transform-origin: 150px 140px; }
+@keyframes rdGrow { from { transform: scale(.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.rd-dot { stroke: #fff; stroke-width: 1.5; }
+.rd-dot.hi, .tr-bar.hi { fill: #22a06b; } .rd-dot.mid, .tr-bar.mid { fill: #e0a400; } .rd-dot.lo, .tr-bar.lo { fill: #e5484d; } .rd-dot.na { fill: #9aa4b8; }
+.rd-lbl { font-size: 12.5px; font-weight: 700; fill: var(--ink); }
+.rd-val { font-size: 12px; font-weight: 800; }
+.rd-val.hi, .mb-val.hi { fill: #22a06b; color: #22a06b; } .rd-val.mid, .mb-val.mid { fill: #c78f00; color: #c78f00; } .rd-val.lo, .mb-val.lo { fill: #e5484d; color: #e5484d; } .rd-val.na { fill: #9aa4b8; }
+.mbars { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 10px; }
+.mbar { display: grid; grid-template-columns: 96px 1fr 44px; align-items: center; gap: 8px; }
+.mb-name { font-size: 13px; font-weight: 700; }
+.mb-track { height: 10px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.mb-track i { display: block; height: 100%; border-radius: 99px; transition: width .6s ease; }
+.mb-track i.hi { background: #22a06b; } .mb-track i.mid { background: #e0a400; } .mb-track i.lo { background: #e5484d; }
+.mb-val { text-align: end; font-size: 13px; }
+.trend { width: 100%; display: block; }
+.tr-grid { stroke: var(--line); stroke-dasharray: 3 4; }
+.tr-val { font-size: 10px; font-weight: 700; fill: var(--ink); }
+.tr-x { font-size: 9.5px; fill: var(--muted, #7a8299); }
+.insights { display: flex; flex-direction: column; gap: 6px; }
+.heat { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 10px; }
+.ht-row { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(5, minmax(0, 1fr)); gap: 4px; align-items: center; background: none; border: 0; padding: 0; font: inherit; color: inherit; text-align: start; }
+.ht-head .ht-c { background: none; font-size: 11px; color: var(--muted, #7a8299); font-weight: 700; }
+.ht-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ht-c { text-align: center; font-size: 12px; font-weight: 800; border-radius: 8px; padding: 6px 0; }
+.ht-c.hi { background: rgba(34,160,107,.18); color: #138a58; } .ht-c.mid { background: rgba(224,164,0,.2); color: #9a6f00; } .ht-c.lo { background: rgba(229,72,77,.16); color: #c4282d; } .ht-c.na { background: var(--line); color: #8a93a8; }
+body.app-night .ht-c.hi { color: #5cd69b; } body.app-night .ht-c.mid { color: #ffd166; } body.app-night .ht-c.lo { color: #ff8b8f; }
+
+/* Puzzle Rush */
+.rush-card, .rush-mode { gap: 12px; align-items: center; }
+.rush-card { background: linear-gradient(135deg, #021542, #0b2a6e); color: #fff; border-color: transparent; }
+.rush-card .muted { color: rgba(255,255,255,.75); }
+.rush-ic { font-size: 30px; }
+.rush-best { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+.rush-best b { font-size: 22px; }
+.rush-hero { text-align: center; padding: 8px 0; }
+.rush-bolt { font-size: 46px; display: inline-block; }
+body:not(.no-motion) .rush-bolt { animation: bolt 1.6s ease-in-out infinite; }
+@keyframes bolt { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.12) rotate(-6deg); } }
+.rush-bar { display: flex; align-items: center; gap: 10px; justify-content: space-between; padding: 4px 2px; }
+.rush-sc { display: flex; flex-direction: column; align-items: center; }
+.rush-score { font-size: 34px; line-height: 1; }
+.rush-score.pop { animation: scPop .35s ease; }
+@keyframes scPop { 0% { transform: scale(1); } 40% { transform: scale(1.35); color: #22a06b; } 100% { transform: scale(1); } }
+.rush-clock { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; padding: 4px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); direction: ltr; }
+.rush-clock.low { color: #fff; background: #e5484d; border-color: #e5484d; }
+body:not(.no-motion) .rush-clock.low { animation: lowPulse 1s ease-in-out infinite; }
+@keyframes lowPulse { 50% { transform: scale(1.08); } }
+.rush-strikes { display: flex; gap: 6px; }
+.rush-x { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--line); color: var(--line); font-weight: 900; }
+.rush-x.on { background: #e5484d; border-color: #e5484d; color: #fff; }
+body:not(.no-motion) .rush-x.on { animation: scPop .35s ease; }
+.rush-log { display: flex; gap: 4px; overflow-x: auto; padding: 4px 0; min-height: 34px; }
+.rush-cell { min-width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; font-size: 12px; font-weight: 800; color: #fff; }
+.rush-cell.ok { background: #22a06b; } .rush-cell.bad { background: #e5484d; }
+.rush-end { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.rush-end-sc { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.rush-end-sc b { font-size: 52px; line-height: 1; }
+
 </style>
 </head>
 <body>
@@ -1683,7 +1752,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '2.0.1',
+    version: '2.1.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -2015,6 +2084,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   };
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"schDays": "أيام الحصص", "schTime": "ميعاد الحصة", "schNone": "لسه مفيش مواعيد", "nextClass": "حصتك الجاية", "today": "النهاردة", "tomorrow": "بكرة", "day0": "الأحد", "day1": "الاتنين", "day2": "التلات", "day3": "الأربع", "day4": "الخميس", "day5": "الجمعة", "day6": "السبت", "pendHw": "لسه عندك {n} واجب مخلصتهوش", "pendNone": "واجباتك كلها خلصانة 👏", "remToast": "⏰ حصتك النهاردة الساعة {t} ولسه عندك {n} واجب مخلصتهوش", "lbTitle": "ترتيب المجموعة", "lbMonth": "نقط شهر {m}", "lbHow": "كل تمرين واجب صح = 10 نقط، وصح من أول مرة +5، وكل لغز = 2.", "lbEmpty": "لسه محدش جمع نقط الشهر ده", "lbYou": "انت", "pts": "نقطة", "lbRankShort": "ترتيبك #{r} من {n}", "myBadges": "أوسمتي", "badgesN": "{n} من {m} وسام", "newBadge": "وسام جديد: {b}", "bd_first": "أول واجب", "bdd_first": "خلّص أول واجب", "bd_hw5": "شاطر", "bdd_hw5": "خلّص 5 واجبات", "bd_hw20": "نجم الأكاديمية", "bdd_hw20": "خلّص 20 واجب", "bd_perfect": "العلامة الكاملة", "bdd_perfect": "واجب كامل صح من أول مرة", "bd_perfect5": "المحترف", "bdd_perfect5": "5 واجبات كاملة", "bd_fast": "البرق", "bdd_fast": "10 تمارين صح من أول مرة في أقل من 20 ثانية", "bd_streak3": "نار", "bdd_streak3": "اتمرن 3 أيام ورا بعض", "bd_streak7": "صاروخ", "bdd_streak7": "اتمرن 7 أيام ورا بعض", "bd_pz50": "صياد الألغاز", "bdd_pz50": "حل 50 لغز", "bd_pz200": "العقل المدبر", "bdd_pz200": "حل 200 لغز", "bd_pz1000": "ملك الألغاز", "bdd_pz1000": "حل 1000 لغز", "bd_top": "الأول", "bdd_top": "كن الأول في ترتيب مجموعتك", "adTab_reports": "التقرير", "arWeek": "آخر أسبوع", "arMonth": "آخر 30 يوم", "arAuto": "بيتعمل لوحده من الواجبات والحضور، من غير ما المدرب يبعت أي حاجة.", "arGroups": "مجموعة", "arStudents": "طالب", "arSolved": "واجب اتحل", "arAtt": "نسبة الحضور", "arTop": "أنشط المجموعات", "arGroupLine": "حل الواجبات {c} · الحضور {a} · الدرجات {s}", "arBehind": "طلاب محتاجين متابعة", "arNoBehind": "كله ماشي تمام 👏", "arWhyHw": "{n} واجب مخلصهوش", "arWhyLow": "درجاته {p}%", "arWhyAbs": "غاب {n} مرات", "arWhyIdle": "مفيش أي نشاط", "arCopy": "نسخ التقرير", "arSessions": "{n} حصة", "ps_ge": "هندسي", "ps_ki": "كرتون", "cgHow": "نتايج واجبات طلابك بتوصلك هنا لوحدها، والإدارة بتشوف الحضور والواجبات أول بأول من غير ما تبعت تقارير."}, "en": {"schDays": "Class days", "schTime": "Class time", "schNone": "No class times yet", "nextClass": "Your next class", "today": "Today", "tomorrow": "Tomorrow", "day0": "Sun", "day1": "Mon", "day2": "Tue", "day3": "Wed", "day4": "Thu", "day5": "Fri", "day6": "Sat", "pendHw": "{n} homework still to finish", "pendNone": "All your homework is done 👏", "remToast": "⏰ Class today at {t} and {n} homework still to finish", "lbTitle": "Group leaderboard", "lbMonth": "Points for {m}", "lbHow": "Each homework exercise solved = 10 points, +5 if right first time, each puzzle = 2.", "lbEmpty": "Nobody has points yet this month", "lbYou": "you", "pts": "pts", "lbRankShort": "You are #{r} of {n}", "myBadges": "My badges", "badgesN": "{n} of {m} badges", "newBadge": "New badge: {b}", "bd_first": "First homework", "bdd_first": "Finish your first homework", "bd_hw5": "Hard worker", "bdd_hw5": "Finish 5 homework sets", "bd_hw20": "Academy star", "bdd_hw20": "Finish 20 homework sets", "bd_perfect": "Perfect score", "bdd_perfect": "A whole homework right first time", "bd_perfect5": "Pro", "bdd_perfect5": "5 perfect homework sets", "bd_fast": "Lightning", "bdd_fast": "10 exercises right first time in under 20 s", "bd_streak3": "On fire", "bdd_streak3": "Practise 3 days in a row", "bd_streak7": "Rocket", "bdd_streak7": "Practise 7 days in a row", "bd_pz50": "Puzzle hunter", "bdd_pz50": "Solve 50 puzzles", "bd_pz200": "Mastermind", "bdd_pz200": "Solve 200 puzzles", "bd_pz1000": "Puzzle king", "bdd_pz1000": "Solve 1000 puzzles", "bd_top": "Number one", "bdd_top": "Be first in your group", "adTab_reports": "Report", "arWeek": "Last 7 days", "arMonth": "Last 30 days", "arAuto": "Made by itself from homework and attendance — coaches don’t send anything.", "arGroups": "groups", "arStudents": "students", "arSolved": "homework solved", "arAtt": "attendance", "arTop": "Most active groups", "arGroupLine": "Homework done {c} · attendance {a} · scores {s}", "arBehind": "Students who need follow-up", "arNoBehind": "Everyone is on track 👏", "arWhyHw": "{n} homework not finished", "arWhyLow": "score {p}%", "arWhyAbs": "absent {n} times", "arWhyIdle": "no activity at all", "arCopy": "Copy report", "arSessions": "{n} classes", "ps_ge": "Geometric", "ps_ki": "Cartoon", "cgHow": "Your students’ homework results arrive here by themselves, and the academy sees attendance and homework as they happen — no reports to send."}, "fr": {"schDays": "Jours de cours", "schTime": "Heure du cours", "schNone": "Pas encore d’horaire", "nextClass": "Ton prochain cours", "today": "Aujourd’hui", "tomorrow": "Demain", "day0": "dim", "day1": "lun", "day2": "mar", "day3": "mer", "day4": "jeu", "day5": "ven", "day6": "sam", "pendHw": "Il te reste {n} devoir(s) à finir", "pendNone": "Tous tes devoirs sont finis 👏", "remToast": "⏰ Cours aujourd’hui à {t} et {n} devoir(s) à finir", "lbTitle": "Classement du groupe", "lbMonth": "Points de {m}", "lbHow": "Chaque exercice de devoir réussi = 10 points, +5 du premier coup, chaque puzzle = 2.", "lbEmpty": "Personne n’a encore de points ce mois-ci", "lbYou": "toi", "pts": "pts", "lbRankShort": "Tu es n°{r} sur {n}", "myBadges": "Mes badges", "badgesN": "{n} badges sur {m}", "newBadge": "Nouveau badge : {b}", "bd_first": "Premier devoir", "bdd_first": "Termine ton premier devoir", "bd_hw5": "Travailleur", "bdd_hw5": "Termine 5 devoirs", "bd_hw20": "Étoile de l’académie", "bdd_hw20": "Termine 20 devoirs", "bd_perfect": "Sans faute", "bdd_perfect": "Un devoir entier juste du premier coup", "bd_perfect5": "Pro", "bdd_perfect5": "5 devoirs sans faute", "bd_fast": "Éclair", "bdd_fast": "10 exercices justes du premier coup en moins de 20 s", "bd_streak3": "En feu", "bdd_streak3": "Entraîne-toi 3 jours de suite", "bd_streak7": "Fusée", "bdd_streak7": "Entraîne-toi 7 jours de suite", "bd_pz50": "Chasseur de puzzles", "bdd_pz50": "Résous 50 puzzles", "bd_pz200": "Cerveau", "bdd_pz200": "Résous 200 puzzles", "bd_pz1000": "Roi des puzzles", "bdd_pz1000": "Résous 1000 puzzles", "bd_top": "Numéro un", "bdd_top": "Sois premier de ton groupe", "adTab_reports": "Rapport", "arWeek": "7 derniers jours", "arMonth": "30 derniers jours", "arAuto": "Généré tout seul à partir des devoirs et des présences — les entraîneurs n’envoient rien.", "arGroups": "groupes", "arStudents": "élèves", "arSolved": "devoirs résolus", "arAtt": "présence", "arTop": "Groupes les plus actifs", "arGroupLine": "Devoirs faits {c} · présence {a} · notes {s}", "arBehind": "Élèves à suivre", "arNoBehind": "Tout le monde suit 👏", "arWhyHw": "{n} devoir(s) non fini(s)", "arWhyLow": "note {p} %", "arWhyAbs": "absent {n} fois", "arWhyIdle": "aucune activité", "arCopy": "Copier le rapport", "arSessions": "{n} cours", "ps_ge": "Géométrique", "ps_ki": "Cartoon", "cgHow": "Les résultats des devoirs arrivent ici tout seuls, et l’académie voit les présences et les devoirs en direct — aucun rapport à envoyer."}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"libMgrSub": "ارفع الواجب مرة واحدة هنا، وبعدين ابعته لأي مجموعة وقت ما تحب.", "libUpload": "رفع واجب للمكتبة", "libAdded": "اتضاف «{f}» للمكتبة ({n} تمرين).", "libSendTo": "ابعت لمجموعة", "libDelSure": "دوس تاني عشان تمسحه من المكتبة", "libBack": "رجوع للمكتبة", "libCardSub": "ارفع واجبات واختار منها وابعتها للمجموعات"}, "en": {"libMgrSub": "Upload a homework once here, then send it to any group whenever you like.", "libUpload": "Upload homework to the library", "libAdded": "“{f}” added to the library ({n} exercises).", "libSendTo": "Send to a group", "libDelSure": "Tap again to delete it from the library", "libBack": "Back to the library", "libCardSub": "Upload homework, pick from it and send it to groups"}, "fr": {"libMgrSub": "Ajoute un devoir une seule fois ici, puis envoie-le à n’importe quel groupe.", "libUpload": "Ajouter un devoir à la bibliothèque", "libAdded": "« {f} » ajouté à la bibliothèque ({n} exercices).", "libSendTo": "Envoyer à un groupe", "libDelSure": "Touche encore pour le supprimer de la bibliothèque", "libBack": "Retour à la bibliothèque", "libCardSub": "Ajoute des devoirs, choisis et envoie-les aux groupes"}});
+  (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"mt_perf": "الأداء", "mt_beh": "السلوك", "mt_hw": "الواجب", "mt_acc": "الدقة", "mt_time": "إدارة الوقت", "mts_perf": "أداء", "mts_beh": "سلوك", "mts_hw": "واجب", "mts_acc": "دقة", "mts_time": "وقت", "arS_all": "الأكاديمية", "arS_coach": "مدرب", "arS_group": "مجموعة", "arS_student": "طالب", "arPick_coach": "اختار المدرب", "arPick_group": "اختار المجموعة", "arPick_student": "اختار الطالب", "arPickFirst": "اختار من فوق عشان يطلعلك التقرير.", "arNoData": "مفيش بيانات للفترة دي.", "arScore": "متوسط الدرجات", "arAvgTime": "متوسط وقت التمرين", "secShort": "ث", "arInsights": "ملاحظات", "arTrend": "درجات الواجبات", "arAllAnswers": "كل إجاباته بالتفصيل", "arStudentsTbl": "الطلاب (دوس على أي طالب لتقريره)", "arWhyRush": "بيستعجل", "inRush": "بيستعجل: غلط في {n} تمرين في أقل من 8 ثواني وبعدين حلّه صح. يعني عارف الحل، بس محتاج يهدى ويتأكد قبل ما يلعب النقلة.", "inFastUnknown": "غلط بسرعة في {n} تمرين ومعرفش يحلهم بعدها: دي نقط محتاجة شرح، مش استعجال.", "inSlow": "بياخد وقت طويل في التفكير (متوسط {s} ثانية للتمرين). محتاج تمرين على السرعة.", "inTimeGood": "بيدير وقته كويس (متوسط {s} ثانية للتمرين).", "inAccGood": "دقته ممتازة: أغلب التمارين صح من أول مرة 👏", "inSteady": "مستواه ماشي كويس في الفترة دي.", "inNoData": "مفيش نشاط كفاية في الفترة دي عشان نحكم.", "soundSet": "الأصوات", "rushTitle": "Puzzle Rush", "rushCardSub": "حل أكبر عدد ألغاز، والألغاز بتصعب كل مرة", "rushRules": "الألغاز بتبدأ سهلة وبتصعب مع كل حل. 3 غلطات واللعبة بتخلص. كل لغز صح = نقطة.", "rush_3": "3 دقايق", "rush_5": "5 دقايق", "rush_s": "سيرفايفال", "rushd_3": "أسرع ما يمكن قبل ما الوقت يخلص", "rushd_5": "وقت أطول وألغاز أصعب", "rushd_s": "من غير وقت، لحد 3 غلطات", "rushBest": "أحسن نتيجة", "rushBoard": "لوحة الصدارة", "rushNoScores": "لسه محدش لعب الوضع ده.", "rushSignIn": "سجّل دخول عشان تظهر في لوحة الصدارة.", "rushScore": "النتيجة", "rushOver": "خلصت! نتيجتك", "rushNewBest": "رقم قياسي جديد", "rushMissed": "الألغاز اللي غلطت فيها (تصنيفها): {r}", "rushAgain": "العب تاني"}, "en": {"mt_perf": "Performance", "mt_beh": "Behaviour", "mt_hw": "Homework", "mt_acc": "Accuracy", "mt_time": "Time management", "mts_perf": "Perf.", "mts_beh": "Beh.", "mts_hw": "HW", "mts_acc": "Acc.", "mts_time": "Time", "arS_all": "Academy", "arS_coach": "Coach", "arS_group": "Group", "arS_student": "Student", "arPick_coach": "Choose the coach", "arPick_group": "Choose the group", "arPick_student": "Choose the student", "arPickFirst": "Choose above to see the report.", "arNoData": "No data for this period.", "arScore": "average score", "arAvgTime": "average time per exercise", "secShort": "s", "arInsights": "Notes", "arTrend": "Homework scores", "arAllAnswers": "All their answers in detail", "arStudentsTbl": "Students (tap one for their report)", "arWhyRush": "rushes", "inRush": "Rushes: got {n} exercises wrong in under 8 seconds, then solved them. They know it — they need to slow down and check before moving.", "inFastUnknown": "Answered {n} exercises wrong quickly and could not solve them after: these need explaining, it is not rushing.", "inSlow": "Takes a long time to think (average {s} s per exercise). Needs speed practice.", "inTimeGood": "Manages time well (average {s} s per exercise).", "inAccGood": "Excellent accuracy: most exercises right first time 👏", "inSteady": "Doing steadily in this period.", "inNoData": "Not enough activity in this period to judge.", "soundSet": "Sounds", "rushTitle": "Puzzle Rush", "rushCardSub": "Solve as many puzzles as you can, harder each time", "rushRules": "Puzzles start easy and get harder with every solve. Three mistakes and it is over. Each puzzle solved = one point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survival", "rushd_3": "As fast as you can before time runs out", "rushd_5": "More time, harder puzzles", "rushd_s": "No clock, until 3 mistakes", "rushBest": "best", "rushBoard": "Leaderboard", "rushNoScores": "Nobody has played this mode yet.", "rushSignIn": "Sign in to appear on the leaderboard.", "rushScore": "score", "rushOver": "Done! Your score", "rushNewBest": "New record", "rushMissed": "Puzzles you missed (rating): {r}", "rushAgain": "Play again"}, "fr": {"mt_perf": "Performance", "mt_beh": "Comportement", "mt_hw": "Devoirs", "mt_acc": "Précision", "mt_time": "Gestion du temps", "mts_perf": "Perf.", "mts_beh": "Comp.", "mts_hw": "Dev.", "mts_acc": "Préc.", "mts_time": "Temps", "arS_all": "Académie", "arS_coach": "Entraîneur", "arS_group": "Groupe", "arS_student": "Élève", "arPick_coach": "Choisis l’entraîneur", "arPick_group": "Choisis le groupe", "arPick_student": "Choisis l’élève", "arPickFirst": "Choisis ci-dessus pour voir le rapport.", "arNoData": "Pas de données pour cette période.", "arScore": "note moyenne", "arAvgTime": "temps moyen par exercice", "secShort": "s", "arInsights": "Remarques", "arTrend": "Notes des devoirs", "arAllAnswers": "Toutes ses réponses en détail", "arStudentsTbl": "Élèves (touche-en un pour son rapport)", "arWhyRush": "se précipite", "inRush": "Se précipite : {n} exercices faux en moins de 8 secondes, puis résolus. Il sait — il doit ralentir et vérifier avant de jouer.", "inFastUnknown": "{n} exercices faux rapidement et non résolus ensuite : à réexpliquer, ce n’est pas de la précipitation.", "inSlow": "Réfléchit longtemps (en moyenne {s} s par exercice). À entraîner sur la vitesse.", "inTimeGood": "Gère bien son temps (en moyenne {s} s par exercice).", "inAccGood": "Excellente précision : la plupart des exercices justes du premier coup 👏", "inSteady": "Progression régulière sur cette période.", "inNoData": "Pas assez d’activité sur cette période.", "soundSet": "Sons", "rushTitle": "Puzzle Rush", "rushCardSub": "Résous un maximum de puzzles, de plus en plus durs", "rushRules": "Les puzzles commencent faciles et se corsent à chaque réussite. Trois erreurs et c’est fini. Chaque puzzle résolu = un point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survie", "rushd_3": "Le plus vite possible avant la fin du temps", "rushd_5": "Plus de temps, puzzles plus durs", "rushd_s": "Sans chrono, jusqu’à 3 erreurs", "rushBest": "record", "rushBoard": "Classement", "rushNoScores": "Personne n’a encore joué à ce mode.", "rushSignIn": "Connecte-toi pour apparaître au classement.", "rushScore": "score", "rushOver": "Terminé ! Ton score", "rushNewBest": "Nouveau record", "rushMissed": "Puzzles ratés (classement) : {r}", "rushAgain": "Rejouer"}});
   HCC.t = function (key, vars) {
     var s = (STR[HCC.store.data.lang] || STR.ar)[key];
     if (s === undefined) s = STR.en[key] !== undefined ? STR.en[key] : key;
@@ -2041,6 +2111,55 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var h = 5381;
     for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
     return (h >>> 0).toString(36);
+  };
+})(window);
+
+/* Sounds made on the fly with Web Audio (no files): moves, captures, check, right / wrong, wins, the Puzzle Rush clock.
+   Off when the user turns "Sounds" off in the settings. */
+(function (root) {
+  'use strict';
+  var HCC = root.HCC, ctx = null, master = null;
+  function on() { var d = HCC.store && HCC.store.data; return !d || d.sound !== false; }
+  function ac() {
+    if (ctx) { if (ctx.state === 'suspended') try { ctx.resume(); } catch (e) { /* */ } return ctx; }
+    var A = root.AudioContext || root.webkitAudioContext; if (!A) return null;
+    try { ctx = new A(); master = ctx.createGain(); master.gain.value = 0.55; master.connect(ctx.destination); } catch (e) { ctx = null; }
+    return ctx;
+  }
+  // phones only let sound start after a touch: wake the audio on the first one
+  ['pointerdown', 'touchstart', 'keydown'].forEach(function (ev) { root.addEventListener(ev, function wake() { if (on()) ac(); }, { once: true, passive: true }); });
+  function tone(f, t0, dur, type, vol, f2) {
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(f, t0);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol || 0.3, t0 + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + dur + 0.02);
+  }
+  var noiseBuf = null;
+  function knock(t0, freq, vol, dur) {   // a wooden "tock": filtered noise + a low thump
+    if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.2, ctx.sampleRate); var d = noiseBuf.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3); }
+    var s = ctx.createBufferSource(), bp = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = noiseBuf; bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = 1.4;
+    g.gain.setValueAtTime(vol, t0); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(t0); s.stop(t0 + dur + 0.02);
+    tone(freq / 9, t0, dur * 0.9, 'sine', vol * 0.7);
+  }
+  var SFX = {
+    move: function (t0) { knock(t0, 1700, 0.9, 0.07); },
+    capture: function (t0) { knock(t0, 1100, 1.1, 0.11); knock(t0 + 0.035, 2300, 0.5, 0.06); },
+    check: function (t0) { knock(t0, 1700, 0.9, 0.07); tone(988, t0 + 0.05, 0.16, 'triangle', 0.18); },
+    good: function (t0) { tone(1047, t0, 0.16, 'triangle', 0.22); tone(1568, t0 + 0.08, 0.26, 'triangle', 0.2); },
+    bad: function (t0) { tone(233, t0, 0.22, 'square', 0.07, 175); tone(117, t0, 0.24, 'sine', 0.2, 88); },
+    win: function (t0) { [523, 659, 784, 1047].forEach(function (f, i) { tone(f, t0 + i * 0.09, 0.32, 'triangle', 0.2); }); tone(1319, t0 + 0.36, 0.5, 'sine', 0.12); },
+    tick: function (t0) { tone(1250, t0, 0.04, 'square', 0.05); },
+    end: function (t0) { [784, 659, 523].forEach(function (f, i) { tone(f, t0 + i * 0.13, 0.3, 'triangle', 0.2); }); },
+    start: function (t0) { tone(660, t0, 0.12, 'triangle', 0.2); tone(990, t0 + 0.12, 0.2, 'triangle', 0.22); }
+  };
+  HCC.sfx = function (name) {
+    if (!on() || !SFX[name]) return;
+    var c = ac(); if (!c) return;
+    try { SFX[name](c.currentTime + 0.01); } catch (e) { /* no sound is fine */ }
+    HCC._lastSfx = name;
   };
 })(window);
 
@@ -2361,6 +2480,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       el.style.left = (xy[0] * 12.5) + '%'; el.style.top = (xy[1] * 12.5) + '%';
       this.pcLayer.appendChild(el); this.pcEls[sq] = el;
     }
+    var n = 0; for (k in this.pcEls) n++;
+    if (opts.animate && this.lastMove && this.lastMove !== this._sndMove && HCC.sfx) HCC.sfx(c.inCheck() ? 'check' : this._pcN !== undefined && n < this._pcN ? 'capture' : 'move');
+    this._sndMove = this.lastMove; this._pcN = n;
     if (opts.animate && this.lastMove) {
       var from = C.mFrom(this.lastMove), to = C.mTo(this.lastMove), a = this.xy(from), b = this.xy(to), mover = this.pcEls[to];
       if (mover) {
@@ -2416,6 +2538,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   /** Briefly colours a square: kind is 'good' or 'bad'. */
   Board.prototype.blink = function (sq, kind) {
     var self = this, f = { sq: sq, kind: kind };
+    if (HCC.sfx) setTimeout(function () { HCC.sfx(kind === 'good' ? 'good' : 'bad'); }, 90);
     this.flash = f; this.paint();
     setTimeout(function () { if (self.flash === f) { self.flash = null; self.paint(); } }, 700);
   };
@@ -3553,11 +3676,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function render() {
     leave();
-    var bodyCls = [];
-    if (store.data.theme && store.data.theme !== 'blue') bodyCls.push('theme-' + store.data.theme);
-    if (store.data.appTheme && store.data.appTheme !== 'academy') bodyCls.push('app-' + store.data.appTheme);
-    if (store.data.motion === false) bodyCls.push('no-motion');
-    document.body.className = bodyCls.join(' ');
+    applyLooks();
     // Full-screen sections: everything except Home hides the top bar and the bottom tabs; the phone's Back button returns.
     // nobody gets past the sign-in / sign-up screen without an account (confirmed, not suspended)
     var gated = !store.data.user || state.onboard || (!CL.signedIn() && !state.testNoAuth) || (CL.signedIn() && (!CL.verified() || CL.blocked()));
@@ -3567,10 +3686,25 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (gated) { onboardingView(); enterAnim('ob' + (CL.signedIn() ? (CL.verified() ? 'b' : 'v') : '') + (state.obMode || '')); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
     var L = state.lessons || {};
-    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view].join('|'));
+    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view, state.pz && state.pz.rushMenu, state.pz && state.pz.rush && state.pz.rush.mode].join('|'));
+  }
+  function applyLooks() {
+    var bodyCls = [], keep = document.body.classList.contains('gated') ? ['gated'] : [];
+    if (store.data.theme && store.data.theme !== 'blue') bodyCls.push('theme-' + store.data.theme);
+    if (store.data.appTheme && store.data.appTheme !== 'academy') bodyCls.push('app-' + store.data.appTheme);
+    if (store.data.motion === false) bodyCls.push('no-motion');
+    document.body.className = bodyCls.concat(keep).join(' ');
+  }
+  /** A new piece set, without rebuilding the screen. */
+  function applyPieces() {
+    var set = store.data.pieces || 'pc';
+    document.querySelectorAll('#app use').forEach(function (u) {
+      var hr = u.getAttribute('href') || '', m = /^#(pc|st|fl|ge|ki)-(\d)$/.exec(hr);
+      if (m) u.setAttribute('href', '#' + set + '-' + m[2]);
+    });
   }
   /** Motion: the new screen slides in (only when the screen really changes, not on every refresh). */
-  var lastScreen = null;
+  var lastScreen = null, enterTimer = null;
   function motionOn() { return store.data.motion !== false && !(root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches); }
   function enterAnim(key) {
     if (key === lastScreen) return;
@@ -3579,9 +3713,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (!motionOn()) return;
     mainEl.classList.remove('enter', 'enter-back'); void mainEl.offsetWidth;
     mainEl.classList.add(back ? 'enter-back' : 'enter');
+    // only this one entrance: a later refresh of the same screen must not play it again (that was the flicker)
+    clearTimeout(enterTimer); enterTimer = setTimeout(function () { mainEl.classList.remove('enter', 'enter-back'); }, 750);
   }
   /** Motion: a burst of confetti over an element (solved lesson, puzzle, homework). */
   HCC.celebrate = function (el) {
+    if (HCC.sfx) HCC.sfx('win');
     if (!motionOn() || !el) return;
     var box = h('div', { class: 'confetti', 'aria-hidden': 'true' }), cols = ['#f8d400', '#2a6fbe', '#22884e', '#e53935', '#ffffff', '#8b72b5'];
     for (var i = 0; i < 26; i++) {
@@ -5174,89 +5311,238 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function resFinished(r) { var ex = r.ex || []; return ex.length ? ex.every(function (e) { return e.solved || e.tries; }) : true; }
   /** Numbers per group and the students who need following, for the last `days` days. */
-  function adReportCalc() {
-    var a = adminData(), R = a.rep, now = Date.now(), since = now - R.days * 864e5, sinceIso = isoOf(since);
-    var groups = [], behind = [], tot = { solved: 0, came: 0, base: 0, students: 0 };
-    a.groups.forEach(function (g) {
-      var members = g.members || [], due = (R.hw[g._id] || []).filter(function (x) { return x.at < now - 2 * 864e5; });
-      var ss = R.sessions.filter(function (s) { return s.gid === g._id && s.date >= sinceIso; });
-      var gr = { g: g, n: members.length, sessions: ss.length, solved: 0, came: 0, base: 0, doneHw: 0, dueHw: due.length * members.length, scores: [] };
-      members.forEach(function (m) {
-        var res = R.results.filter(function (d) { return d.studentUid === m.uid && d.data; }).map(function (d) { var x = d.data; x.at = d.at || x.at; x.hid = d.hid || x.hid; x.name = m.name; return x; });
-        var inP = res.filter(function (x) { return x.at >= since; });
-        var unfinished = due.filter(function (h) { return !res.some(function (x) { return (x.hid === h._id || x.title === h.title || x.title + '.pgn' === h.title) && resFinished(x); }); });
-        var came = 0, abs = 0;
-        ss.forEach(function (s) { var v = (s.att || {})[m.name]; if (v === 'p' || v === 'l') came++; else if (v === 'a') abs++; });
-        var sc = inP.filter(function (x) { return x.max; }).map(function (x) { return x.got / x.max; }), avgS = sc.length ? Math.round(100 * avg(sc)) : null;
-        gr.solved += inP.length; gr.came += came; gr.base += came + abs; gr.doneHw += due.length - unfinished.length; gr.scores = gr.scores.concat(sc);
-        var why = [];
-        if (unfinished.length) why.push(t('arWhyHw', { n: unfinished.length }));
-        if (avgS !== null && avgS < 50) why.push(t('arWhyLow', { p: avgS }));
-        if (abs >= 2) why.push(t('arWhyAbs', { n: abs }));
-        if (!inP.length && !came && !unfinished.length && (due.length || ss.length)) why.push(t('arWhyIdle'));
-        if (why.length) behind.push({ m: m, g: g, why: why, res: res, w: unfinished.length * 2 + abs + (avgS !== null && avgS < 50 ? 1 : 0) });
+  var METRICS = ['perf', 'beh', 'hw', 'acc', 'time'];
+  function mix(xs) { xs = xs.filter(function (x) { return x !== null && x !== undefined && !isNaN(x); }); return xs.length ? Math.round(avg(xs)) : null; }
+  function clamp100(x) { return Math.max(0, Math.min(100, x)); }
+  /** One student in one group over the period: the five measures (0-100, null = no data) and what lies behind them. */
+  function stuMetrics(m, g, R, since) {
+    var now = Date.now(), sinceIso = isoOf(since);
+    var res = R.results.filter(function (d) { return d.studentUid === m.uid && d.data; }).map(function (d) { var x = d.data; x.at = d.at || x.at; x.hid = d.hid || x.hid; x.name = m.name; return x; });
+    var inP = res.filter(function (x) { return x.at >= since; }).sort(function (a, b) { return a.at - b.at; });
+    var due = (R.hw[g._id] || []).filter(function (x) { return x.at < now - 2 * 864e5 && x.at >= since - 2 * 864e5; });
+    var unfinished = due.filter(function (h) { return !res.some(function (x) { return (x.hid === h._id || x.title === h.title || x.title + '.pgn' === h.title) && resFinished(x); }); });
+    var came = 0, abs = 0, rt = { eng: [], beh: [], acc: [], hw: [] };
+    R.sessions.filter(function (s) { return s.gid === g._id && s.date >= sinceIso; }).forEach(function (s) {
+      var v = (s.att || {})[m.name]; if (v === 'p' || v === 'l') came++; else if (v === 'a') abs++;
+      var r = (s.rate || {})[m.name] || {}; CRIT.forEach(function (c) { if (r[c]) rt[c].push(r[c] * 20); });
+    });
+    var ra = {}; CRIT.forEach(function (c) { ra[c] = rt[c].length ? avg(rt[c]) : null; });
+    var sc = inP.filter(function (x) { return x.max; }).map(function (x) { return 100 * x.got / x.max; });
+    var tried = 0, first = 0, rushed = 0, fastWrong = 0, slow = 0, secs = [];
+    inP.forEach(function (x) {
+      (x.ex || []).forEach(function (e) {
+        if (!e.solved && !e.tries) return;
+        tried++;
+        var f = e.first || (e.solved && e.tries === 1);
+        if (f) first++;
+        if (typeof e.sec === 'number') {
+          secs.push(e.sec);
+          if (!f && e.sec <= 8) { fastWrong++; if (e.solved) rushed++; }
+          if (e.sec >= 180) slow++;
+        }
       });
-      gr.comp = gr.dueHw ? Math.round(100 * gr.doneHw / gr.dueHw) : null;
-      gr.att = gr.base ? Math.round(100 * gr.came / gr.base) : null;
-      gr.score = gr.scores.length ? Math.round(100 * avg(gr.scores)) : null;
+    });
+    var timed = secs.length;
+    var o = {
+      m: m, g: g, res: res, inP: inP, due: due.length, unfinished: unfinished.length, came: came, abs: abs, tried: tried, rushed: rushed, fastWrong: fastWrong, slow: slow,
+      avgSec: timed ? Math.round(avg(secs)) : null, score: sc.length ? Math.round(avg(sc)) : null,
+      att: came + abs ? Math.round(100 * came / (came + abs)) : null
+    };
+    o.perf = mix([o.score, ra.eng]);
+    o.beh = mix([ra.beh, o.att]);
+    o.hw = mix([due.length ? 100 * (due.length - unfinished.length) / due.length : null, ra.hw]);
+    o.acc = mix([tried ? 100 * first / tried : null, ra.acc]);
+    o.time = timed ? Math.round(clamp100(100 - 150 * rushed / timed - 50 * slow / timed)) : null;
+    var why = [];
+    if (o.unfinished) why.push(t('arWhyHw', { n: o.unfinished }));
+    if (o.score !== null && o.score < 50) why.push(t('arWhyLow', { p: o.score }));
+    if (abs >= 2) why.push(t('arWhyAbs', { n: abs }));
+    if (rushed >= 2 && rushed >= 0.2 * timed) why.push(t('arWhyRush'));
+    if (!inP.length && !came && !o.unfinished && (due.length || o.att !== null)) why.push(t('arWhyIdle'));
+    o.why = why; o.w = o.unfinished * 2 + abs + (o.score !== null && o.score < 50 ? 1 : 0) + (rushed >= 2 ? 1 : 0);
+    return o;
+  }
+  function avgMetrics(list) { var o = {}; METRICS.forEach(function (k) { o[k] = mix(list.map(function (s) { return s[k]; })); }); return o; }
+  /** The students (and their groups) a report looks at. */
+  function repPeople(scope, id) {
+    var a = adminData(), gs = a.groups;
+    if (scope === 'coach') gs = gs.filter(function (g) { return g.coachUid === id; });
+    else if (scope === 'group') gs = gs.filter(function (g) { return g._id === id; });
+    var out = [];
+    gs.forEach(function (g) { (g.members || []).forEach(function (m) { if (scope !== 'student' || m.uid === id) out.push({ m: m, g: g }); }); });
+    if (scope === 'student') gs = gs.filter(function (g) { return out.some(function (x) { return x.g === g; }); });
+    return { groups: gs, people: out };
+  }
+  function adReportCalc(scope, id) {
+    var a = adminData(), R = a.rep, since = Date.now() - R.days * 864e5, P = repPeople(scope || 'all', id);
+    var studs = P.people.map(function (x) { return stuMetrics(x.m, x.g, R, since); });
+    var groups = P.groups.map(function (g) {
+      var ss = studs.filter(function (s) { return s.g === g; }), mm = avgMetrics(ss);
+      var dueAll = 0, doneAll = 0, came = 0, base = 0, sc = [];
+      ss.forEach(function (s) { dueAll += s.due; doneAll += s.due - s.unfinished; came += s.came; base += s.came + s.abs; if (s.score !== null) sc.push(s.score); });
+      var gr = { g: g, n: ss.length, m: mm, solved: ss.reduce(function (n, s) { return n + s.inP.length; }, 0),
+        sessions: R.sessions.filter(function (s) { return s.gid === g._id && s.date >= isoOf(since); }).length,
+        comp: dueAll ? Math.round(100 * doneAll / dueAll) : null, att: base ? Math.round(100 * came / base) : null, score: sc.length ? Math.round(avg(sc)) : null };
       var parts = [gr.comp, gr.att].filter(function (x) { return x !== null; });
       gr.rank = (parts.length ? avg(parts) : 0) * 1000 + gr.solved / Math.max(1, gr.n);
-      groups.push(gr);
-      tot.solved += gr.solved; tot.came += gr.came; tot.base += gr.base; tot.students += gr.n;
-    });
-    groups.sort(function (x, y) { return y.rank - x.rank; });
-    behind.sort(function (x, y) { return y.w - x.w; });
-    return { groups: groups, behind: behind, tot: tot };
+      return gr;
+    }).sort(function (x, y) { return y.rank - x.rank; });
+    var tot = { solved: 0, came: 0, base: 0, students: studs.length };
+    studs.forEach(function (s) { tot.solved += s.inP.length; tot.came += s.came; tot.base += s.came + s.abs; });
+    return { groups: groups, studs: studs, behind: studs.filter(function (s) { return s.why.length; }).sort(function (x, y) { return y.w - x.w; }), tot: tot, m: avgMetrics(studs) };
   }
   HCC._adReportCalc = adReportCalc;
-  function pctOr(x) { return x === null ? '–' : x + '%'; }
+  function pctOr(x) { return x === null || x === undefined ? '–' : x + '%'; }
+  function mClass(v) { return v === null || v === undefined ? 'na' : v >= 75 ? 'hi' : v >= 50 ? 'mid' : 'lo'; }
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function sv(tag, attrs, kids) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    (kids || []).forEach(function (c) { if (c) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return e;
+  }
+  /** The five measures as a radar: the shape shows at a glance where the student is strong and weak. */
+  function radarChart(m) {
+    var W = 300, cx = 150, cy = 140, R = 92, n = METRICS.length, g = sv('svg', { viewBox: '0 0 ' + W + ' 290', class: 'radar', role: 'img', 'aria-label': METRICS.map(function (k) { return t('mt_' + k) + ' ' + pctOr(m[k]); }).join(', ') });
+    function pt(i, r) { var a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+    [25, 50, 75, 100].forEach(function (lv) {
+      g.appendChild(sv('polygon', { class: 'rd-grid', points: METRICS.map(function (k, i) { return pt(i, R * lv / 100).join(','); }).join(' ') }));
+    });
+    METRICS.forEach(function (k, i) { var p = pt(i, R); g.appendChild(sv('line', { class: 'rd-axis', x1: cx, y1: cy, x2: p[0], y2: p[1] })); });
+    var poly = sv('polygon', { class: 'rd-shape', points: METRICS.map(function (k, i) { return pt(i, R * (m[k] || 0) / 100).join(','); }).join(' ') });
+    g.appendChild(poly);
+    METRICS.forEach(function (k, i) {
+      var p = pt(i, R * (m[k] || 0) / 100); g.appendChild(sv('circle', { class: 'rd-dot ' + mClass(m[k]), cx: p[0], cy: p[1], r: 4.5 }));
+      var q = pt(i, R + 26), anchor = Math.abs(q[0] - cx) < 10 ? 'middle' : q[0] > cx ? 'start' : 'end';
+      if (Math.abs(q[0] - cx) >= 10) q[0] += q[0] > cx ? -14 : 14;
+      g.appendChild(sv('text', { class: 'rd-lbl', x: q[0], y: q[1] - 2, 'text-anchor': anchor }, [t('mt_' + k)]));
+      g.appendChild(sv('text', { class: 'rd-val ' + mClass(m[k]), x: q[0], y: q[1] + 14, 'text-anchor': anchor }, [pctOr(m[k])]));
+    });
+    return h('div', { class: 'chart-card' }, g);
+  }
+  HCC._radar = function (m) { return h('div', {}, radarChart(m), metricBars(m), trendChart([{ got: 7, max: 10, at: Date.now() - 5e8 }, { got: 9, max: 10, at: Date.now() - 2e8 }, { got: 4, max: 10, at: Date.now() }])); };
+  function metricBars(m) {
+    return h('div', { class: 'mbars' }, METRICS.map(function (k) {
+      return h('div', { class: 'mbar', 'data-m': k }, h('span', { class: 'mb-name', text: t('mt_' + k) }),
+        h('div', { class: 'mb-track' }, h('i', { class: mClass(m[k]), style: 'width:' + (m[k] || 0) + '%' })), h('b', { class: 'mb-val ' + mClass(m[k]), text: pctOr(m[k]) }));
+    }));
+  }
+  /** Each homework's score in the period, oldest first. */
+  function trendChart(list) {
+    if (!list.length) return null;
+    var W = 320, H = 150, bw = Math.min(34, (W - 20) / list.length - 6), g = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'trend', role: 'img', 'aria-label': t('arTrend') });
+    [0, 50, 100].forEach(function (v) { var y = 120 - v; g.appendChild(sv('line', { class: 'tr-grid', x1: 10, x2: W - 10, y1: y, y2: y })); });
+    list.forEach(function (x, i) {
+      var p = x.max ? Math.round(100 * x.got / x.max) : 0, xx = 14 + i * ((W - 24) / list.length), y = 120 - p;
+      g.appendChild(sv('rect', { class: 'tr-bar ' + mClass(p), x: xx, y: y, width: bw, height: Math.max(2, p), rx: 4 }));
+      g.appendChild(sv('text', { class: 'tr-val', x: xx + bw / 2, y: y - 4, 'text-anchor': 'middle' }, [p + '%']));
+      g.appendChild(sv('text', { class: 'tr-x', x: xx + bw / 2, y: 138, 'text-anchor': 'middle' }, [shortDay(isoOf(x.at))]));
+    });
+    return h('div', { class: 'chart-card' }, h('div', { class: 'eyebrow', text: '📈 ' + t('arTrend') }), g);
+  }
+  /** What the numbers mean for one student, in words. */
+  function insights(s) {
+    var L = [];
+    if (s.rushed >= 1 && s.rushed >= 0.15 * Math.max(1, s.tried)) L.push(['warn', t('inRush', { n: s.rushed })]);
+    else if (s.fastWrong - s.rushed >= 2) L.push(['', t('inFastUnknown', { n: s.fastWrong - s.rushed })]);
+    if (s.avgSec !== null && s.avgSec >= 90) L.push(['', t('inSlow', { s: s.avgSec })]);
+    else if (s.avgSec !== null && s.time !== null && s.time >= 80) L.push(['good', t('inTimeGood', { s: s.avgSec })]);
+    if (s.acc !== null && s.acc >= 85) L.push(['good', t('inAccGood')]);
+    if (s.unfinished) L.push(['warn', t('arWhyHw', { n: s.unfinished })]);
+    if (s.abs >= 2) L.push(['warn', t('arWhyAbs', { n: s.abs })]);
+    if (!L.length) L.push(['', t(s.tried || s.came ? 'inSteady' : 'inNoData')]);
+    return h('div', { class: 'insights' }, L.map(function (x) { return h('div', { class: 'note ' + (x[0] === 'warn' ? 'bad' : x[0]), text: x[1] }); }));
+  }
+  /** One row per student: five coloured cells. */
+  function heatTable(studs) {
+    var tb = h('div', { class: 'heat' });
+    tb.appendChild(h('div', { class: 'ht-row ht-head' }, h('span', { class: 'ht-name' }), METRICS.map(function (k) { return h('span', { class: 'ht-c', text: t('mts_' + k) }); })));
+    studs.slice().sort(function (x, y) { return (mix(METRICS.map(function (k) { return y[k]; })) || 0) - (mix(METRICS.map(function (k) { return x[k]; })) || 0); }).forEach(function (s) {
+      tb.appendChild(h('button', { type: 'button', class: 'ht-row', 'data-uid': s.m.uid, onclick: function () { var a = adminData(); a.repScope = 'student'; a.repId = s.m.uid; render(); } },
+        h('span', { class: 'ht-name', dir: 'auto', text: s.m.name }), METRICS.map(function (k) { return h('span', { class: 'ht-c ' + mClass(s[k]), text: s[k] === null ? '–' : String(s[k]) }); })));
+    });
+    return tb;
+  }
   function adReport(body) {
-    var a = adminData(), days = (a.rep && a.rep.days) || 7;
-    body.appendChild(h('div', { class: 'seg ar-period', role: 'group' }, [7, 30].map(function (d) {
-      return h('button', { type: 'button', 'aria-pressed': String(days === d), 'data-days': String(d), text: t(d === 7 ? 'arWeek' : 'arMonth'), onclick: function () { if (a.rep) a.rep.days = d; else a.repDays = d; render(); } });
+    var a = adminData(), days = (a.rep && a.rep.days) || a.repDays || 7, scope = a.repScope || 'all', id = a.repId || '';
+    body.appendChild(h('div', { class: 'seg ar-scope', role: 'group' }, ['all', 'coach', 'group', 'student'].map(function (s) {
+      return h('button', { type: 'button', 'aria-pressed': String(scope === s), 'data-scope': s, text: t('arS_' + s), onclick: function () { a.repScope = s; a.repId = ''; render(); } });
     })));
-    body.appendChild(h('p', { class: 'muted small', text: t('arAuto') }));
+    if (scope !== 'all') {
+      var opts = scope === 'coach' ? (a.users || []).filter(function (u) { return u.role === 'coach' && u.approved; }).map(function (u) { return [u._id, u.name]; })
+        : scope === 'group' ? a.groups.map(function (g) { return [g._id, g.name]; })
+        : [].concat.apply([], a.groups.map(function (g) { return (g.members || []).map(function (m) { return [m.uid, m.name + ' — ' + g.name]; }); }));
+      opts.sort(function (x, y) { return String(x[1]).localeCompare(String(y[1])); });
+      var sel = h('select', { id: 'ar-pick', onchange: function () { a.repId = sel.value; render(); } }, h('option', { value: '', text: t('arPick_' + scope) }),
+        opts.map(function (o) { return h('option', { value: o[0], selected: o[0] === id ? 'selected' : null, text: o[1] }); }));
+      body.appendChild(h('div', { class: 'field' }, sel));
+    }
+    body.appendChild(h('div', { class: 'seg ar-period', role: 'group' }, [7, 30].map(function (d) {
+      return h('button', { type: 'button', 'aria-pressed': String(days === d), 'data-days': String(d), text: t(d === 7 ? 'arWeek' : 'arMonth'), onclick: function () { if (a.rep) a.rep.days = d; a.repDays = d; render(); } });
+    })));
+    if (scope !== 'all' && !id) { body.appendChild(h('p', { class: 'muted', text: t('arPickFirst') })); return; }
     if (!a.rep || Date.now() - a.rep.at > 10 * 60000) {
-      days = a.repDays || days;
       body.appendChild(h('p', { class: 'muted', text: t('loading') }));
       adReportLoad(days).then(function () { if (state.cv && state.cv.page === 'admin' && a.tab === 'reports') render(); }, function (e) { HCC.clear(body); body.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
       return;
     }
-    var C = adReportCalc(), T = C.tot;
-    body.appendChild(h('div', { class: 'ar-tiles' },
-      [[a.groups.length, 'arGroups'], [T.students, 'arStudents'], [T.solved, 'arSolved'], [pctOr(T.base ? Math.round(100 * T.came / T.base) : null), 'arAtt']].map(function (x) {
+    var C = adReportCalc(scope, id), T = C.tot, lines = [];
+    var periodTxt = t(days === 7 ? 'arWeek' : 'arMonth');
+    if (scope === 'student') {
+      var s = C.studs[0];
+      if (!s) { body.appendChild(h('p', { class: 'muted', text: t('arNoData') })); return; }
+      body.appendChild(h('div', { class: 'ar-who' }, h('h3', { dir: 'auto', text: s.m.name }), h('span', { class: 'muted small', dir: 'auto', text: s.g.name + (s.g.coachName ? ' · ' + s.g.coachName : '') })));
+      body.appendChild(h('div', { class: 'ar-tiles' }, [[s.inP.length, 'arSolved'], [pctOr(s.score), 'arScore'], [pctOr(s.att), 'arAtt'], [s.avgSec === null ? '–' : s.avgSec + t('secShort'), 'arAvgTime']].map(function (x) {
         return h('div', { class: 'ar-tile' }, h('b', { text: String(x[0]) }), h('span', { class: 'small muted', text: t(x[1]) }));
       })));
-    body.appendChild(h('div', { class: 'eyebrow', text: '🏅 ' + t('arTop') }));
-    if (!C.groups.length) body.appendChild(h('p', { class: 'muted', text: t('adNoGroups') }));
-    C.groups.forEach(function (gr, i) {
-      body.appendChild(h('button', { type: 'button', class: 'card tap ar-group', 'data-gid': gr.g._id, onclick: function () { state.cv = { page: 'adgroup', gid: gr.g._id }; render(); } },
-        h('span', { class: 'lb-rank', text: ['🥇', '🥈', '🥉'][i] || String(i + 1) }),
-        h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: gr.g.name }),
-          h('span', { class: 'small muted', text: (gr.g.coachName || t('adNoCoach')) + ' · ' + t('adStudentsN', { n: gr.n }) + ' · ' + t('arSessions', { n: gr.sessions }) }),
-          h('span', { class: 'small', text: t('arGroupLine', { c: pctOr(gr.comp), a: pctOr(gr.att), s: pctOr(gr.score) }) })), chev()));
-    });
-    body.appendChild(h('div', { class: 'eyebrow', text: '⚠️ ' + t('arBehind') + (C.behind.length ? ' (' + C.behind.length + ')' : '') }));
-    if (!C.behind.length) body.appendChild(h('div', { class: 'note good', text: t('arNoBehind') }));
-    C.behind.forEach(function (b) {
-      body.appendChild(h('button', { type: 'button', class: 'card tap ar-behind', onclick: function () { studentResultsSheet(b.m.name, b.res); } },
-        h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: b.m.name }), h('span', { class: 'small muted', dir: 'auto', text: b.g.name }),
-          h('span', { class: 'small warn-t', text: b.why.join(' · ') })), chev()));
-    });
-    function text() {
-      var L = ['♟️ ' + HCC.APP.academy + ' — ' + t('adTab_reports') + ' (' + t(days === 7 ? 'arWeek' : 'arMonth') + ')', '📅 ' + fmtDay(todayIso()), ''];
-      L.push('🏅 ' + t('arTop'));
-      C.groups.forEach(function (gr, i) { L.push((i + 1) + ') ' + gr.g.name + ' — ' + t('arGroupLine', { c: pctOr(gr.comp), a: pctOr(gr.att), s: pctOr(gr.score) })); });
-      L.push(''); L.push('⚠️ ' + t('arBehind'));
-      if (!C.behind.length) L.push(t('arNoBehind'));
-      C.behind.forEach(function (b) { L.push('• ' + b.m.name + ' (' + b.g.name + '): ' + b.why.join('، ')); });
-      return L.join('\n');
+      body.appendChild(radarChart(s));
+      body.appendChild(metricBars(s));
+      body.appendChild(h('div', { class: 'eyebrow', text: '💡 ' + t('arInsights') }));
+      body.appendChild(insights(s));
+      var tr = trendChart(s.inP); if (tr) body.appendChild(tr);
+      body.appendChild(h('div', { class: 'btns' }, btn(t('arAllAnswers'), '', function () { studentResultsSheet(s.m.name, s.res); }, 'list')));
+      lines.push('👤 ' + s.m.name + ' (' + s.g.name + ')');
+      METRICS.forEach(function (k) { lines.push('• ' + t('mt_' + k) + ': ' + pctOr(s[k])); });
+      body.querySelectorAll('.insights .note').forEach(function (n) { lines.push('– ' + n.textContent); });
+    } else {
+      body.appendChild(h('div', { class: 'ar-tiles' },
+        [[C.groups.length, 'arGroups'], [T.students, 'arStudents'], [T.solved, 'arSolved'], [pctOr(T.base ? Math.round(100 * T.came / T.base) : null), 'arAtt']].map(function (x) {
+          return h('div', { class: 'ar-tile' }, h('b', { text: String(x[0]) }), h('span', { class: 'small muted', text: t(x[1]) }));
+        })));
+      body.appendChild(radarChart(C.m));
+      body.appendChild(metricBars(C.m));
+      if (scope !== 'group') {
+        body.appendChild(h('div', { class: 'eyebrow', text: '🏅 ' + t('arTop') }));
+        if (!C.groups.length) body.appendChild(h('p', { class: 'muted', text: t('adNoGroups') }));
+        C.groups.forEach(function (gr, i) {
+          body.appendChild(h('button', { type: 'button', class: 'card tap ar-group', 'data-gid': gr.g._id, onclick: function () { a.repScope = 'group'; a.repId = gr.g._id; render(); } },
+            h('span', { class: 'lb-rank', text: ['🥇', '🥈', '🥉'][i] || String(i + 1) }),
+            h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: gr.g.name }),
+              h('span', { class: 'small muted', text: (gr.g.coachName || t('adNoCoach')) + ' · ' + t('adStudentsN', { n: gr.n }) + ' · ' + t('arSessions', { n: gr.sessions }) }),
+              h('span', { class: 'small', text: t('arGroupLine', { c: pctOr(gr.comp), a: pctOr(gr.att), s: pctOr(gr.score) }) })), chev()));
+          lines.push((i + 1) + ') ' + gr.g.name + ' — ' + t('arGroupLine', { c: pctOr(gr.comp), a: pctOr(gr.att), s: pctOr(gr.score) }));
+        });
+      }
+      if (scope !== 'all' && C.studs.length) {
+        body.appendChild(h('div', { class: 'eyebrow', text: '👥 ' + t('arStudentsTbl') }));
+        body.appendChild(heatTable(C.studs));
+      }
+      body.appendChild(h('div', { class: 'eyebrow', text: '⚠️ ' + t('arBehind') + (C.behind.length ? ' (' + C.behind.length + ')' : '') }));
+      if (!C.behind.length) body.appendChild(h('div', { class: 'note good', text: t('arNoBehind') }));
+      C.behind.forEach(function (b) {
+        body.appendChild(h('button', { type: 'button', class: 'card tap ar-behind', onclick: function () { a.repScope = 'student'; a.repId = b.m.uid; render(); } },
+          h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: b.m.name }), h('span', { class: 'small muted', dir: 'auto', text: b.g.name }),
+            h('span', { class: 'small warn-t', text: b.why.join(' · ') })), chev()));
+        lines.push('• ' + b.m.name + ' (' + b.g.name + '): ' + b.why.join('، '));
+      });
+      METRICS.forEach(function (k) { lines.unshift('• ' + t('mt_' + k) + ': ' + pctOr(C.m[k])); });
     }
-    var copyB = btn(t('arCopy'), '', function () { copyText(text(), copyB, t('arCopy')); }, 'share');
+    var head = scope === 'all' ? HCC.APP.academy : scope === 'student' ? '' : (body.querySelector('#ar-pick option:checked') || {}).textContent || '';
+    lines.unshift('♟️ ' + t('adTab_reports') + ' — ' + t('arS_' + scope) + (head ? ': ' + head : '') + ' (' + periodTxt + ') · ' + fmtDay(todayIso()), '');
+    var copyB = btn(t('arCopy'), '', function () { copyText(lines.join('\n'), copyB, t('arCopy')); }, 'share');
     body.appendChild(h('div', { class: 'btns' }, copyB, btn(t('acSync'), '', function () { a.rep.at = 0; render(); }, 'redo')));
     body.appendChild(h('div', { class: 'sh-manual', hidden: 'hidden' }, h('textarea', { readonly: 'readonly', rows: '4' })));
   }
-
   function homeView() {
     if (state.cv && (role() === 'coach' || (/^ad/.test(state.cv.page) && HCC.cloud.isAdmin()))) return coachView();
     setTop();
@@ -5974,8 +6260,175 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     return [{ key: 'themes', name: t('pzThemes'), groups: groups }, { key: 'levels', name: t('pzLevels'), groups: null, topics: levels }];
   }
 
+  // ---------------------------------------------------------------- Puzzle Rush: as many puzzles as you can, harder and harder; three mistakes and it is over
+  var RUSH_MODES = [['3', 180, '⏱'], ['5', 300, '⏳'], ['s', 0, '♾️']];
+  function rushData() { return store.data.rush || (store.data.rush = {}); }
+  function rushBest(mode) { return (rushData()[mode] || {}).best || 0; }
+  function rushMenu() {
+    var nav = pzNav();
+    setTop({ title: t('rushTitle'), back: function () { nav.rushMenu = false; render(); } });
+    var page = h('div', { class: 'page rush-menu' });
+    page.appendChild(h('div', { class: 'rush-hero' }, h('span', { class: 'rush-bolt', text: '⚡' }), h('h2', { text: t('rushTitle') }), h('p', { class: 'muted', text: t('rushRules') })));
+    RUSH_MODES.forEach(function (M) {
+      page.appendChild(h('button', { type: 'button', class: 'card tap rush-mode', 'data-mode': M[0], onclick: function () { nav.rush = { mode: M[0] }; render(); } },
+        h('span', { class: 'rush-ic', text: M[2] }),
+        h('div', { class: 'grow' }, h('h3', { text: t('rush_' + M[0]) }), h('span', { class: 'muted small', text: t('rushd_' + M[0]) })),
+        h('div', { class: 'rush-best' }, h('b', { text: String(rushBest(M[0])) }), h('span', { class: 'small muted', text: t('rushBest') }))));
+    });
+    page.appendChild(h('div', { class: 'eyebrow', text: '🏆 ' + t('rushBoard') }));
+    var mode = nav.rushBoard || '3', list = h('div', { class: 'list lb-list rush-lb' });
+    page.appendChild(h('div', { class: 'seg', role: 'group' }, RUSH_MODES.map(function (M) {
+      return h('button', { type: 'button', 'aria-pressed': String(mode === M[0]), 'data-board': M[0], text: t('rush_' + M[0]), onclick: function () { nav.rushBoard = M[0]; render(); } });
+    })));
+    page.appendChild(list);
+    mainEl.appendChild(page);
+    rushBoardFill(list, mode);
+  }
+  function rushBoardFill(list, mode) {
+    var me = CL.signedIn() ? CL.uid() : null, mine = rushBest(mode);
+    function draw(rows) {
+      HCC.clear(list);
+      if (!rows.length) { list.appendChild(h('p', { class: 'muted', text: t('rushNoScores') })); return; }
+      rows.slice(0, 50).forEach(function (x, i) {
+        var isMe = x.uid === me || x.me;
+        list.appendChild(h('div', { class: 'unit lb-row' + (isMe ? ' me' : '') }, h('span', { class: 'lb-rank', text: ['🥇', '🥈', '🥉'][i] || String(i + 1) }),
+          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: (x.name || t('lbYou')) + (isMe && x.name ? ' (' + t('lbYou') + ')' : '') })),
+          h('span', { class: 'lb-pts' }, h('b', { text: String(x.best) }))));
+      });
+    }
+    if (!me || !CL.verified()) { draw(mine ? [{ me: true, best: mine }] : []); if (!me) list.appendChild(h('p', { class: 'muted small', text: t('rushSignIn') })); return; }
+    list.appendChild(h('p', { class: 'muted small', text: t('loading') }));
+    CL.query('rush', [['mode', 'EQUAL', mode]], 300).then(function (l) {
+      draw(l.filter(function (x) { return x.best > 0; }).sort(function (a, b) { return b.best - a.best || a.at - b.at; }));
+    }, function () { draw(mine ? [{ me: true, best: mine }] : []); });
+  }
+  HCC._rushBoardFill = rushBoardFill; HCC._rushPush = function (m) { return rushPush(m); };
+  function rushPush(mode) {
+    var best = rushBest(mode);
+    if (!best || !CL.signedIn() || !CL.verified() || CL.blocked()) return Promise.resolve();
+    var p = CL.profile() || {};
+    return CL.set('rush/' + mode + '_' + CL.uid(), { mode: mode, uid: CL.uid(), name: p.name || (store.data.user || {}).name || '', best: best, at: Date.now() }).catch(function () { /* next time */ });
+  }
+  function rushPlayer() {
+    var nav = pzNav(), mode = nav.rush.mode, M = RUSH_MODES.filter(function (x) { return x[0] === mode; })[0], T = timersBox(), token = 0, clockI = null;
+    var all = content.puzzles;
+    if (!all.length) { nav.rush = null; return rushMenu(); }
+    setTop({ title: t('rushTitle') + ' · ' + t('rush_' + mode), back: function () { nav.rush = null; render(); } });
+    state.cleanup = function () { T.clear(); clearInterval(clockI); token++; };
+    var used = {}, score = 0, strikes = 0, target = 450, running = true, endAt = M[1] ? Date.now() + M[1] * 1000 : 0, lastSec = -1;
+    var cur = null, chess = null, idx = 0, side = 'w', locked = true, log = [];
+    var scoreEl = h('b', { class: 'rush-score', text: '0' }), clockEl = h('span', { class: 'rush-clock' + (M[1] ? '' : ' surv'), text: M[1] ? fmtClock(M[1]) : '♾️' });
+    var strikeEl = h('span', { class: 'rush-strikes' }), logEl = h('div', { class: 'rush-log' }), statusEl = h('div', { class: 'status' });
+    var host = h('div'), board = new HCC.Board(host, { onMove: onUser }), endEl = h('div');
+    HCC._board = board;
+    mainEl.appendChild(h('div', { class: 'work rush' },
+      h('div', { class: 'rush-bar' }, h('div', { class: 'rush-sc' }, scoreEl, h('span', { class: 'small muted', text: t('rushScore') })), strikeEl, clockEl),
+      h('div', { class: 'board-wrap' }, host), statusEl, logEl, endEl));
+    function fmtClock(s) { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ':' + pad2(s % 60); }
+    function drawStrikes() { HCC.clear(strikeEl); for (var i = 0; i < 3; i++) strikeEl.appendChild(h('span', { class: 'rush-x' + (i < strikes ? ' on' : ''), text: '✕' })); }
+    function pickNext() {
+      var lo = target - 90, hi = target + 90, c = [];
+      for (var tries = 0; !c.length && tries < 6; tries++) {
+        c = all.filter(function (p) { return !used[p.id] && p.rating >= lo && p.rating < hi; });
+        lo -= 120; hi += 120;
+      }
+      if (!c.length) c = all.filter(function (p) { return !used[p.id]; });
+      return c[Math.floor(Math.random() * c.length)] || null;
+    }
+    function next() {
+      if (!running) return;
+      token++;
+      cur = pickNext(); if (!cur) return end();
+      used[cur.id] = 1; idx = 0;
+      chess = new C.Chess(cur.fen); side = chess.turn === 0 ? 'w' : 'b';
+      board.chess = chess; board.setOrient(side); board.arrows = []; board.marks = []; board.hintSq = -1;
+      board._sndMove = undefined; board._pcN = undefined;
+      board.update({ last: cur.last ? moveFromUci(cur.last) : 0 });
+      locked = false; board.movable = side;
+      HCC.clear(statusEl);
+      statusEl.appendChild(h('span', { class: 'dot ' + side }));
+      statusEl.appendChild(h('span', { class: 'grow', text: t(side === 'w' ? 'whiteToMove' : 'blackToMove') }));
+      statusEl.appendChild(h('span', { class: 'pill ltr', text: String(cur.rating) }));
+    }
+    function mark(ok) {
+      log.push({ ok: ok, p: cur });
+      logEl.appendChild(h('span', { class: 'rush-cell ' + (ok ? 'ok' : 'bad'), title: String(cur.rating), text: ok ? String(score) : '✕' }));
+      logEl.scrollLeft = logEl.scrollWidth;
+    }
+    function solved() {
+      score++; scoreEl.textContent = String(score); scoreEl.classList.remove('pop'); void scoreEl.offsetWidth; scoreEl.classList.add('pop');
+      target += score < 10 ? 45 : score < 25 ? 35 : 25;
+      mark(true); locked = true; board.movable = null;
+      T.later(next, 250);
+    }
+    function miss(m) {
+      strikes++; drawStrikes(); mark(false); locked = true; board.movable = null;
+      target = Math.max(400, target - 20);
+      var u = cur.moves[idx];
+      board.arrows = [{ color: 'G', from: u.slice(0, 2), to: u.slice(2, 4) }]; board.paint();
+      if (strikes >= 3) { T.later(end, 900); return; }
+      T.later(next, 1000);
+    }
+    function onUser(m) {
+      if (locked || !running) return;
+      var want = cur.moves[idx], mine = token;
+      chess.make(m);
+      var mate = chess.isCheckmate();
+      if (C.uci(m) === want || mate) {
+        idx++;
+        board.update({ last: m, animate: true });
+        if (mate || idx >= cur.moves.length) { HCC.sfx('good'); solved(); return; }
+        locked = true; board.movable = null;
+        T.later(function () {
+          if (mine !== token) return;
+          var r = chess.play(cur.moves[idx]); idx++;
+          board.update({ last: r, animate: true });
+          if (idx >= cur.moves.length) { HCC.sfx('good'); solved(); return; }
+          locked = false; board.movable = side;
+        }, 260);
+        return;
+      }
+      board.update({ last: m, animate: true }); board.blink(C.mTo(m), 'bad');
+      chess.undo();
+      miss(m);
+    }
+    function tickClock() {
+      if (!running || !M[1]) return;
+      var left = (endAt - Date.now()) / 1000, sec = Math.ceil(left);
+      clockEl.textContent = fmtClock(left);
+      clockEl.classList.toggle('low', left <= 10);
+      if (left <= 10 && sec !== lastSec && sec > 0) { lastSec = sec; HCC.sfx('tick'); }
+      if (left <= 0) end();
+    }
+    function end() {
+      if (!running) return;
+      running = false; locked = true; board.movable = null; clearInterval(clockI); token++;
+      var d = rushData(), rec = d[mode] || (d[mode] = { best: 0, plays: 0 }), isBest = score > rec.best;
+      rec.plays++; rec.last = score; if (isBest) rec.best = score;
+      store.save();
+      if (score) { markActive(); badgesSoon(); }
+      if (isBest && score) HCC.celebrate(document.querySelector('.board-wrap')); else HCC.sfx('end');
+      rushPush(mode);
+      var missed = log.filter(function (x) { return !x.ok; });
+      HCC.clear(endEl);
+      endEl.appendChild(h('div', { class: 'card rush-end' },
+        h('div', { class: 'rush-end-sc' }, h('span', { class: 'small muted', text: t('rushOver') }), h('b', { text: String(score) }),
+          h('span', { class: isBest && score ? 'pill accent' : 'pill', text: isBest && score ? '🎉 ' + t('rushNewBest') : t('rushBest') + ' ' + rec.best })),
+        missed.length ? h('div', { class: 'small muted', text: t('rushMissed', { r: missed.map(function (x) { return x.p.rating; }).join('، ') }) }) : null,
+        h('div', { class: 'btns' }, btn(t('rushAgain'), 'primary', function () { nav.rush = { mode: mode }; lastScreen = null; render(); }, 'redo'),
+          btn(t('rushBoard'), '', function () { nav.rush = null; nav.rushMenu = true; nav.rushBoard = mode; render(); }))));
+      if (endEl.scrollIntoView) try { endEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) { /* */ }
+    }
+    HCC._rushEnd = end;
+    drawStrikes();
+    HCC.sfx('start');
+    next();
+    if (M[1]) clockI = setInterval(tickClock, 200);
+  }
   function puzzlesView() {
     var nav = pzNav();
+    if (nav.rush) return rushPlayer();
+    if (nav.rushMenu) return rushMenu();
     if (nav.play) return puzzlePlayer();
     if (nav.topic) return puzzleTopic();
     if (nav.sec) return puzzleSection();
@@ -5990,6 +6443,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       h('span', { class: 'pill', text: t('puzzleRating') + ' ' }, h('b', { class: 'ltr', text: String(pz.rating) })),
       h('span', { class: 'pill', text: pz.solved + ' ' + t('solved') }),
       pz.streak > 1 ? h('span', { class: 'pill accent', text: t('streak') + ' ' + pz.streak }) : null));
+    page.appendChild(h('button', { type: 'button', class: 'card tap rush-card', onclick: function () { nav.rushMenu = true; render(); } },
+      h('span', { class: 'rush-ic', text: '⚡' }),
+      h('div', { class: 'grow' }, h('h3', { text: t('rushTitle') }), h('span', { class: 'muted small', text: t('rushCardSub') })),
+      h('div', { class: 'rush-best' }, h('b', { text: String(Math.max(rushBest('3'), rushBest('5'), rushBest('s'))) }), h('span', { class: 'small muted', text: t('rushBest') }))));
     pzSections().forEach(function (s, i) {
       page.appendChild(h('button', { type: 'button', class: 'card tap pz-sec', onclick: function () { nav.sec = s.key; render(); } },
         h('div', { class: 'grow' }, h('h3', { text: (i + 1) + '. ' + s.name }), pzSplit(pzStats(pzList('all')))), chev()));
@@ -7186,7 +7643,16 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
 
   // ---------------------------------------------------------------- sheets
-  function openSheet(title, children) {
+  function openSheet(title, children, inPlace) {
+    var old = sheetEl && sheetEl.firstChild;
+    if (inPlace && old && old.className === 'sheet') {   // same sheet, new content: no closing / opening animation, same scroll
+      var top = old.scrollTop;
+      while (old.childNodes.length > 1) old.removeChild(old.lastChild);
+      old.firstChild.querySelector('h2').textContent = title;
+      [].concat(children).forEach(function (c) { if (c) old.appendChild(c); });
+      old.scrollTop = top;
+      return;
+    }
     closeSheet();
     var box = h('div', { class: 'sheet', role: 'dialog', 'aria-label': title },
       h('div', { class: 'row' }, h('h2', { class: 'grow', text: title }), h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('close'), onclick: closeSheet }, icon('close'))), children);
@@ -7217,19 +7683,19 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
 
   var APP_THEMES = [['academy', '#021542', '#f8d400'], ['emerald', '#0b3d2e', '#f2c14e'], ['royal', '#2a1450', '#ffb703'], ['night', '#0a0f1f', '#8fb4ff']];
   var BOARD_THEMES = [['blue', '#e8edf7', '#6f8ecb'], ['wood', '#ecdcbf', '#a97a50'], ['green', '#e9edd0', '#71935a'], ['slate', '#dfe3e8', '#7d8ea3'], ['coral', '#f6e7dc', '#d27c6a'], ['purple', '#ece6f5', '#8b72b5']];
-  function settingsSheet() {
+  function settingsSheet(inPlace) {
     var d = store.data, resetBox = h('div', { class: 'btns' });
     function seg(options, current, pickFn) {
       var s = h('div', { class: 'seg', role: 'group' });
       options.forEach(function (o) { s.appendChild(h('button', { type: 'button', 'aria-pressed': String(current === o[0]), text: o[1], onclick: function () { pickFn(o[0]); } })); });
       return s;
     }
-    function reopen() { render(); settingsSheet(); }
+    function reopen(full) { if (full) render(); else { applyLooks(); applyPieces(); } settingsSheet(true); }
     function drawReset(confirming) {
       HCC.clear(resetBox);
       if (!confirming) { resetBox.appendChild(btn(t('resetProgress'), 'danger', function () { drawReset(true); })); return; }
       resetBox.appendChild(h('div', { class: 'note bad', style: 'flex:1 1 100%', text: t('resetAsk') }));
-      resetBox.appendChild(btn(t('resetYes'), 'danger', function () { store.reset(); reopen(); }));
+      resetBox.appendChild(btn(t('resetYes'), 'danger', function () { store.reset(); reopen(true); }));
       resetBox.appendChild(btn(t('cancel'), '', function () { drawReset(false); }));
     }
     var A = HCC.APP, about = h('div', { class: 'card' },
@@ -7248,7 +7714,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       who ? h('div', { class: 'field' }, h('label', { text: t('account') }),
         h('div', { class: 'card row' }, h('div', { class: 'grow' }, h('h3', { dir: 'auto', text: who.name }), h('span', { class: 'muted', text: t('role' + rl.charAt(0).toUpperCase() + rl.slice(1)) })),
           CL.signedIn() ? btn(t('acMine'), '', function () { closeSheet(); accountSheet(); }) : btn(t('changeAccount'), '', function () { closeSheet(); state.onboard = true; render(); }))) : null,
-      h('div', { class: 'field' }, h('label', { text: t('language') }), seg(HCC.LANGS, d.lang, function (v) { d.lang = v; store.save(); HCC.applyLang(); renderTabs(); reopen(); })),
+      h('div', { class: 'field' }, h('label', { text: t('language') }), seg(HCC.LANGS, d.lang, function (v) { d.lang = v; store.save(); HCC.applyLang(); renderTabs(); reopen(true); })),
       h('div', { class: 'eyebrow set-head', text: '🎨 ' + t('looks') }),
       h('div', { class: 'field' }, h('label', { text: t('appTheme') }), h('div', { class: 'swatches', role: 'group' }, APP_THEMES.map(function (th) {
         var on = (d.appTheme || 'academy') === th[0];
@@ -7266,7 +7732,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         return h('button', { type: 'button', class: 'swatch' + (on ? ' on' : ''), 'aria-pressed': String(on), 'data-pieces': ps, onclick: function () { d.pieces = ps; store.save(); reopen(); } },
           h('span', { class: 'sw-pcs' }, pc(2, 'w'), pc(6, 'b')), h('span', { class: 'sw-name', text: t('ps_' + ps) }));
       }))),
-      h('label', { class: 'row', for: 'set-motion' }, h('input', { type: 'checkbox', id: 'set-motion', checked: d.motion !== false ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.motion = e.target.checked; store.save(); render(); } }), h('span', { text: t('motionSet') })),
+      h('label', { class: 'row', for: 'set-sound' }, h('input', { type: 'checkbox', id: 'set-sound', checked: d.sound !== false ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.sound = e.target.checked; store.save(); if (d.sound) HCC.sfx('good'); } }), h('span', { text: t('soundSet') })),
+      h('label', { class: 'row', for: 'set-motion' }, h('input', { type: 'checkbox', id: 'set-motion', checked: d.motion !== false ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.motion = e.target.checked; store.save(); applyLooks(); } }), h('span', { text: t('motionSet') })),
       h('label', { class: 'row', for: 'set-coords' }, h('input', { type: 'checkbox', id: 'set-coords', checked: d.coords ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.coords = e.target.checked; store.save(); render(); } }), h('span', { text: t('coords') })),
       h('label', { class: 'row', for: 'set-tb' }, h('input', { type: 'checkbox', id: 'set-tb', checked: d.tablebase ? true : null, style: 'width:20px;height:20px;accent-color:var(--accent-ink)', onchange: function (e) { d.tablebase = e.target.checked; store.save(); } }), h('span', { text: t('tbSetting') })),
       resetBox,
@@ -7274,7 +7741,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       contact.length ? h('div', { class: 'field' }, h('label', { text: t('contact') }), h('div', { class: 'btns' }, contact)) : null,
       h('div', { class: 'field' }, h('label', { text: t('privacy') }), h('p', { class: 'muted', text: t('privacyText') })),
       btn(t('licenses'), '', licensesSheet)
-    ]);
+    ], inPlace);
   }
 
   /** GPL notices: what the app contains, where its source is, and the full licence text. */
