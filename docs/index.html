@@ -818,6 +818,16 @@ body.app-night .gclock.run { background: #8fb4ff; color: #0a0f1f; }
 .duel-row { gap: 8px; align-items: center; flex-wrap: wrap; }
 .duel-sheet select { width: 100%; }
 
+/* tournaments */
+.tours-box { display: flex; flex-direction: column; gap: 8px; }
+.tour-row { gap: 10px; align-items: center; text-align: start; width: 100%; background: none; border: 0; font: inherit; color: inherit; }
+.tour-mygame { display: flex; flex-direction: column; gap: 10px; border-color: var(--accent, #f5c518); }
+.pair-row { gap: 8px; } .pair-row.me { background: rgba(245,197,24,.14); border-radius: 10px; }
+.arena-box { display: flex; flex-direction: column; gap: 8px; }
+.tn-players { max-height: 240px; overflow: auto; }
+.tn-p { gap: 8px; } .tn-p input { width: 20px; height: 20px; }
+.ad-tabs button { font-size: 13px; }
+
 </style>
 </head>
 <body>
@@ -1782,7 +1792,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '2.2.0',
+    version: '2.3.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -2116,6 +2126,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"libMgrSub": "ارفع الواجب مرة واحدة هنا، وبعدين ابعته لأي مجموعة وقت ما تحب.", "libUpload": "رفع واجب للمكتبة", "libAdded": "اتضاف «{f}» للمكتبة ({n} تمرين).", "libSendTo": "ابعت لمجموعة", "libDelSure": "دوس تاني عشان تمسحه من المكتبة", "libBack": "رجوع للمكتبة", "libCardSub": "ارفع واجبات واختار منها وابعتها للمجموعات"}, "en": {"libMgrSub": "Upload a homework once here, then send it to any group whenever you like.", "libUpload": "Upload homework to the library", "libAdded": "“{f}” added to the library ({n} exercises).", "libSendTo": "Send to a group", "libDelSure": "Tap again to delete it from the library", "libBack": "Back to the library", "libCardSub": "Upload homework, pick from it and send it to groups"}, "fr": {"libMgrSub": "Ajoute un devoir une seule fois ici, puis envoie-le à n’importe quel groupe.", "libUpload": "Ajouter un devoir à la bibliothèque", "libAdded": "« {f} » ajouté à la bibliothèque ({n} exercices).", "libSendTo": "Envoyer à un groupe", "libDelSure": "Touche encore pour le supprimer de la bibliothèque", "libBack": "Retour à la bibliothèque", "libCardSub": "Ajoute des devoirs, choisis et envoie-les aux groupes"}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"mt_perf": "الأداء", "mt_beh": "السلوك", "mt_hw": "الواجب", "mt_acc": "الدقة", "mt_time": "إدارة الوقت", "mts_perf": "أداء", "mts_beh": "سلوك", "mts_hw": "واجب", "mts_acc": "دقة", "mts_time": "وقت", "arS_all": "الأكاديمية", "arS_coach": "مدرب", "arS_group": "مجموعة", "arS_student": "طالب", "arPick_coach": "اختار المدرب", "arPick_group": "اختار المجموعة", "arPick_student": "اختار الطالب", "arPickFirst": "اختار من فوق عشان يطلعلك التقرير.", "arNoData": "مفيش بيانات للفترة دي.", "arScore": "متوسط الدرجات", "arAvgTime": "متوسط وقت التمرين", "secShort": "ث", "arInsights": "ملاحظات", "arTrend": "درجات الواجبات", "arAllAnswers": "كل إجاباته بالتفصيل", "arStudentsTbl": "الطلاب (دوس على أي طالب لتقريره)", "arWhyRush": "بيستعجل", "inRush": "بيستعجل: غلط في {n} تمرين في أقل من 8 ثواني وبعدين حلّه صح. يعني عارف الحل، بس محتاج يهدى ويتأكد قبل ما يلعب النقلة.", "inFastUnknown": "غلط بسرعة في {n} تمرين ومعرفش يحلهم بعدها: دي نقط محتاجة شرح، مش استعجال.", "inSlow": "بياخد وقت طويل في التفكير (متوسط {s} ثانية للتمرين). محتاج تمرين على السرعة.", "inTimeGood": "بيدير وقته كويس (متوسط {s} ثانية للتمرين).", "inAccGood": "دقته ممتازة: أغلب التمارين صح من أول مرة 👏", "inSteady": "مستواه ماشي كويس في الفترة دي.", "inNoData": "مفيش نشاط كفاية في الفترة دي عشان نحكم.", "soundSet": "الأصوات", "rushTitle": "Puzzle Rush", "rushCardSub": "حل أكبر عدد ألغاز، والألغاز بتصعب كل مرة", "rushRules": "الألغاز بتبدأ سهلة وبتصعب مع كل حل. 3 غلطات واللعبة بتخلص. كل لغز صح = نقطة.", "rush_3": "3 دقايق", "rush_5": "5 دقايق", "rush_s": "سيرفايفال", "rushd_3": "أسرع ما يمكن قبل ما الوقت يخلص", "rushd_5": "وقت أطول وألغاز أصعب", "rushd_s": "من غير وقت، لحد 3 غلطات", "rushBest": "أحسن نتيجة", "rushBoard": "لوحة الصدارة", "rushNoScores": "لسه محدش لعب الوضع ده.", "rushSignIn": "سجّل دخول عشان تظهر في لوحة الصدارة.", "rushScore": "النتيجة", "rushOver": "خلصت! نتيجتك", "rushNewBest": "رقم قياسي جديد", "rushMissed": "الألغاز اللي غلطت فيها (تصنيفها): {r}", "rushAgain": "العب تاني"}, "en": {"mt_perf": "Performance", "mt_beh": "Behaviour", "mt_hw": "Homework", "mt_acc": "Accuracy", "mt_time": "Time management", "mts_perf": "Perf.", "mts_beh": "Beh.", "mts_hw": "HW", "mts_acc": "Acc.", "mts_time": "Time", "arS_all": "Academy", "arS_coach": "Coach", "arS_group": "Group", "arS_student": "Student", "arPick_coach": "Choose the coach", "arPick_group": "Choose the group", "arPick_student": "Choose the student", "arPickFirst": "Choose above to see the report.", "arNoData": "No data for this period.", "arScore": "average score", "arAvgTime": "average time per exercise", "secShort": "s", "arInsights": "Notes", "arTrend": "Homework scores", "arAllAnswers": "All their answers in detail", "arStudentsTbl": "Students (tap one for their report)", "arWhyRush": "rushes", "inRush": "Rushes: got {n} exercises wrong in under 8 seconds, then solved them. They know it — they need to slow down and check before moving.", "inFastUnknown": "Answered {n} exercises wrong quickly and could not solve them after: these need explaining, it is not rushing.", "inSlow": "Takes a long time to think (average {s} s per exercise). Needs speed practice.", "inTimeGood": "Manages time well (average {s} s per exercise).", "inAccGood": "Excellent accuracy: most exercises right first time 👏", "inSteady": "Doing steadily in this period.", "inNoData": "Not enough activity in this period to judge.", "soundSet": "Sounds", "rushTitle": "Puzzle Rush", "rushCardSub": "Solve as many puzzles as you can, harder each time", "rushRules": "Puzzles start easy and get harder with every solve. Three mistakes and it is over. Each puzzle solved = one point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survival", "rushd_3": "As fast as you can before time runs out", "rushd_5": "More time, harder puzzles", "rushd_s": "No clock, until 3 mistakes", "rushBest": "best", "rushBoard": "Leaderboard", "rushNoScores": "Nobody has played this mode yet.", "rushSignIn": "Sign in to appear on the leaderboard.", "rushScore": "score", "rushOver": "Done! Your score", "rushNewBest": "New record", "rushMissed": "Puzzles you missed (rating): {r}", "rushAgain": "Play again"}, "fr": {"mt_perf": "Performance", "mt_beh": "Comportement", "mt_hw": "Devoirs", "mt_acc": "Précision", "mt_time": "Gestion du temps", "mts_perf": "Perf.", "mts_beh": "Comp.", "mts_hw": "Dev.", "mts_acc": "Préc.", "mts_time": "Temps", "arS_all": "Académie", "arS_coach": "Entraîneur", "arS_group": "Groupe", "arS_student": "Élève", "arPick_coach": "Choisis l’entraîneur", "arPick_group": "Choisis le groupe", "arPick_student": "Choisis l’élève", "arPickFirst": "Choisis ci-dessus pour voir le rapport.", "arNoData": "Pas de données pour cette période.", "arScore": "note moyenne", "arAvgTime": "temps moyen par exercice", "secShort": "s", "arInsights": "Remarques", "arTrend": "Notes des devoirs", "arAllAnswers": "Toutes ses réponses en détail", "arStudentsTbl": "Élèves (touche-en un pour son rapport)", "arWhyRush": "se précipite", "inRush": "Se précipite : {n} exercices faux en moins de 8 secondes, puis résolus. Il sait — il doit ralentir et vérifier avant de jouer.", "inFastUnknown": "{n} exercices faux rapidement et non résolus ensuite : à réexpliquer, ce n’est pas de la précipitation.", "inSlow": "Réfléchit longtemps (en moyenne {s} s par exercice). À entraîner sur la vitesse.", "inTimeGood": "Gère bien son temps (en moyenne {s} s par exercice).", "inAccGood": "Excellente précision : la plupart des exercices justes du premier coup 👏", "inSteady": "Progression régulière sur cette période.", "inNoData": "Pas assez d’activité sur cette période.", "soundSet": "Sons", "rushTitle": "Puzzle Rush", "rushCardSub": "Résous un maximum de puzzles, de plus en plus durs", "rushRules": "Les puzzles commencent faciles et se corsent à chaque réussite. Trois erreurs et c’est fini. Chaque puzzle résolu = un point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survie", "rushd_3": "Le plus vite possible avant la fin du temps", "rushd_5": "Plus de temps, puzzles plus durs", "rushd_s": "Sans chrono, jusqu’à 3 erreurs", "rushBest": "record", "rushBoard": "Classement", "rushNoScores": "Personne n’a encore joué à ce mode.", "rushSignIn": "Connecte-toi pour apparaître au classement.", "rushScore": "score", "rushOver": "Terminé ! Ton score", "rushNewBest": "Nouveau record", "rushMissed": "Puzzles ratés (classement) : {r}", "rushAgain": "Rejouer"}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"cfYes": "أيوه، متأكد", "cfWrongMail": "متأكد؟ الحساب ده هيتمسح وتعمل حساب جديد بالإيميل الصح.", "cfGroup": "متأكد إنك عايز تمسح المجموعة دي؟ مش هينفع ترجعها.", "cfHw": "متأكد إنك عايز تشيل «{f}»؟ هيتشال من عند كل طلاب المجموعة.", "cfLib": "متأكد إنك عايز تمسح «{f}» من المكتبة نهائيًا؟", "cfSession": "متأكد إنك عايز تمسح الحصة دي بالحضور والتقييمات؟", "cfAccount": "متأكد إنك عايز تمسح حسابك؟ كل بياناتك على السيرفر هتتمسح ومش هينفع ترجعها.", "cfDecline": "متأكد إنك عايز ترفض الطلب ده؟", "cfBlock": "متأكد إنك عايز توقف الحساب ده؟ مش هيقدر يستخدم التطبيق لحد ما ترجعه.", "cfUser": "متأكد إنك عايز تمسح حساب {n} نهائيًا؟", "cfStudent": "متأكد إنك عايز تشيل الطالب ده من المجموعة؟", "cfMyHw": "متأكد إنك عايز تمسح الواجب ده من عندك؟", "cfResign": "متأكد إنك عايز تنسحب؟", "cfAbort": "متأكد إنك عايز تلغي الماتش؟", "cfDuelCancel": "متأكد إنك عايز تلغي التحدي؟", "cfDuelDecline": "متأكد إنك عايز ترفض التحدي؟", "tcNone": "بدون وقت", "timeControl": "الوقت", "rematch": "ماتش تاني", "whiteWins": "الأبيض كسب", "blackWins": "الأسود كسب", "byTime": "الوقت خلص", "byAbort": "اتلغى", "myPlayRating": "تقييمك في اللعب", "ratingNew": "تقييم مبدئي: لسه {n} ماتشات ويثبت", "gamesN": "{n} ماتش", "lvlElo": "تقييمه حوالي {r}", "ratedNote": "الماتشات العادية ضد الكمبيوتر والتحديات بتتحسب في تقييمك: الكسب ضد مستوى أعلى منك بيزوّد أكتر، والخسارة قدام مستوى أقل بتنقّص أكتر. أول 10 ماتشات التقييم بيتحرك أسرع لحد ما يثبت.", "ratingNow": "التقييم: {d} ← {r}", "tbUnrated": "استخدمت التراجع، فالماتش ده مش هيتحسب في التقييم.", "playLocal": "العب مع صاحبك على نفس الموبايل", "playLocalSub": "اتنين على موبايل واحد، كل واحد يلعب دوره، ومعاكم ساعة لو حبيتوا.", "miniTitle": "ألعاب صغيرة للمبتدئين", "miniSub": "ألعاب شطرنج سهلة وممتعة يتحدّى فيها الأولاد بعض", "miniIntro": "نفس حركة القطع، بس طريقة الكسب مختلفة. العبوا مع بعض على نفس الموبايل، أو ضد الكمبيوتر، أو ابعت تحدي لصاحبك في الأكاديمية.", "mg_pawns": "حرب العساكر", "mgr_pawns": "أول عسكري يوصل لآخر الرقعة يكسب. واللي عساكره كلها تتاكل يخسر.", "mg_knights": "الحصنة والعساكر", "mgr_knights": "حصانين وعساكر لكل واحد. أول عسكري يوصل لآخر الرقعة يكسب، واللي عساكره تخلص يخسر.", "mg_rooks": "الطوابي والعساكر", "mgr_rooks": "طابيتين وعساكر لكل واحد. أول عسكري يوصل لآخر الرقعة يكسب، واللي عساكره تخلص يخسر.", "mg_queen": "الوزير ضد 8 عساكر", "mgr_queen": "الأبيض معاه وزير بس، والأسود معاه 8 عساكر. الأسود يكسب لو عسكري وصل للآخر، والأبيض يكسب لو أكل كل العساكر أو عمل كش مات.", "mg_hill": "ملك التل", "mgr_hill": "اللي يوصّل ملكه لواحد من المربعات الأربعة اللي في النص (d4 وe4 وd5 وe5) يكسب، أو بالكش مات العادي.", "mg_check3": "3 كش", "mgr_check3": "أول واحد يدي 3 كش يكسب، أو بالكش مات العادي.", "mwPromote": "عسكري وصل لآخر الرقعة", "mwNoPawns": "العساكر كلها اتاكلت", "mwAllEaten": "الوزير أكل كل العساكر", "mwHill": "الملك وصل للتل", "mwCheck3": "3 كش", "mgVsFriend": "مع صاحبك", "mgVsCpu": "ضد الكمبيوتر", "mgOnline": "تحدّي أونلاين", "mgFromCoach": "الكابتن بعتلك لعبة: {g}", "mgFromCoachPill": "من الكابتن", "mgHomeTitle": "ألعاب من الكابتن", "stdChess": "شطرنج عادي", "duelTitle": "التحديات", "duelNew": "تحدّي جديد", "duelSub": "تحدّى حد من الأكاديمية، والماتش بيتلعب هنا في التطبيق بالوقت اللي تختاره.", "duelNone": "مفيش تحديات دلوقتي.", "duelSignIn": "سجّل دخول عشان تتحدّى أصحابك في الأكاديمية.", "duelResume": "كمّل", "duelWaiting": "مستني يقبل", "duelAccept": "قبول", "duelDecline": "رفض", "duelIncoming": "{n} بيتحداك! ادخل على «اللعب».", "duelNoOpp": "مفيش حد تقدر تتحداه دلوقتي. لازم تكون في مجموعة.", "duelPickOpp": "اختار هتتحدى مين", "duelOpp": "المنافس", "duelVariant": "نوع اللعب", "duelSend": "ابعت التحدي", "duelSent": "التحدي اتبعت لـ {n}", "duelGone": "الماتش ده مبقاش موجود.", "duelWaitingFor": "مستنيين {n} يقبل التحدي…", "duelDeclined": "التحدي اترفض.", "duelTheirTurn": "دور {n}", "duelAbort": "إلغاء الماتش", "duelAborted": "الماتش اتلغى", "duelBack": "رجوع للتحديات", "playBoard": "ترتيب اللعب في الأكاديمية"}, "en": {"cfYes": "Yes, I’m sure", "cfWrongMail": "Sure? This account will be deleted and you make a new one with the right e-mail.", "cfGroup": "Delete this group? This cannot be undone.", "cfHw": "Remove “{f}”? It will be removed for every student in the group.", "cfLib": "Delete “{f}” from the library for good?", "cfSession": "Delete this class with its attendance and ratings?", "cfAccount": "Delete your account? All your data on the server will be deleted for good.", "cfDecline": "Decline this request?", "cfBlock": "Suspend this account? They can’t use the app until you restore it.", "cfUser": "Delete {n}’s account for good?", "cfStudent": "Remove this student from the group?", "cfMyHw": "Delete this homework from your phone?", "cfResign": "Resign this game?", "cfAbort": "Abort this game?", "cfDuelCancel": "Cancel this challenge?", "cfDuelDecline": "Decline this challenge?", "tcNone": "No clock", "timeControl": "Time", "rematch": "Rematch", "whiteWins": "White wins", "blackWins": "Black wins", "byTime": "on time", "byAbort": "aborted", "myPlayRating": "Your play rating", "ratingNew": "Provisional: {n} more games until it settles", "gamesN": "{n} games", "lvlElo": "rated about {r}", "ratedNote": "Normal games against the computer and challenges count for your rating: beating a stronger level gains more, losing to a weaker one costs more. In the first 10 games the rating moves faster until it settles.", "ratingNow": "Rating: {d} → {r}", "tbUnrated": "You took a move back, so this game won’t count for the rating.", "playLocal": "Play a friend on the same phone", "playLocalSub": "Two players, one phone, taking turns — with a clock if you like.", "miniTitle": "Mini games for beginners", "miniSub": "Easy, fun chess games for kids to challenge each other", "miniIntro": "Same piece moves, a different way to win. Play together on one phone, against the computer, or challenge a friend from the academy.", "mg_pawns": "Pawn wars", "mgr_pawns": "First pawn to reach the other end wins. Lose all your pawns and you lose.", "mg_knights": "Knights and pawns", "mgr_knights": "Two knights and pawns each. First pawn to reach the other end wins; lose all your pawns and you lose.", "mg_rooks": "Rooks and pawns", "mgr_rooks": "Two rooks and pawns each. First pawn to reach the other end wins; lose all your pawns and you lose.", "mg_queen": "Queen vs 8 pawns", "mgr_queen": "White has only a queen, Black has 8 pawns. Black wins if a pawn reaches the end; White wins by taking every pawn or by checkmate.", "mg_hill": "King of the hill", "mgr_hill": "Bring your king to one of the four centre squares (d4, e4, d5, e5) to win — or checkmate as usual.", "mg_check3": "Three checks", "mgr_check3": "First to give check three times wins — or checkmate as usual.", "mwPromote": "a pawn reached the end", "mwNoPawns": "all the pawns were taken", "mwAllEaten": "the queen took every pawn", "mwHill": "the king reached the hill", "mwCheck3": "three checks", "mgVsFriend": "With a friend", "mgVsCpu": "Vs computer", "mgOnline": "Online challenge", "mgFromCoach": "Your coach sent you a game: {g}", "mgFromCoachPill": "From the coach", "mgHomeTitle": "Games from the coach", "stdChess": "Normal chess", "duelTitle": "Challenges", "duelNew": "New challenge", "duelSub": "Challenge someone from the academy; the game is played here in the app with the clock you choose.", "duelNone": "No challenges right now.", "duelSignIn": "Sign in to challenge your academy friends.", "duelResume": "Continue", "duelWaiting": "waiting", "duelAccept": "Accept", "duelDecline": "Decline", "duelIncoming": "{n} challenges you! Open “Play”.", "duelNoOpp": "Nobody to challenge yet — you need to be in a group.", "duelPickOpp": "Choose who to challenge", "duelOpp": "Opponent", "duelVariant": "Game", "duelSend": "Send challenge", "duelSent": "Challenge sent to {n}", "duelGone": "This game no longer exists.", "duelWaitingFor": "Waiting for {n} to accept…", "duelDeclined": "The challenge was declined.", "duelTheirTurn": "{n} to move", "duelAbort": "Abort game", "duelAborted": "Game aborted", "duelBack": "Back to challenges", "playBoard": "Academy play ranking"}, "fr": {"cfYes": "Oui, je suis sûr", "cfWrongMail": "Sûr ? Ce compte sera supprimé et tu en créeras un avec la bonne adresse.", "cfGroup": "Supprimer ce groupe ? Impossible d’annuler.", "cfHw": "Retirer « {f} » ? Il disparaîtra pour tous les élèves du groupe.", "cfLib": "Supprimer « {f} » de la bibliothèque définitivement ?", "cfSession": "Supprimer ce cours avec ses présences et évaluations ?", "cfAccount": "Supprimer ton compte ? Toutes tes données sur le serveur seront effacées.", "cfDecline": "Refuser cette demande ?", "cfBlock": "Suspendre ce compte ? Il ne pourra plus utiliser l’app.", "cfUser": "Supprimer le compte de {n} définitivement ?", "cfStudent": "Retirer cet élève du groupe ?", "cfMyHw": "Supprimer ce devoir de ton téléphone ?", "cfResign": "Abandonner la partie ?", "cfAbort": "Annuler la partie ?", "cfDuelCancel": "Annuler ce défi ?", "cfDuelDecline": "Refuser ce défi ?", "tcNone": "Sans pendule", "timeControl": "Cadence", "rematch": "Revanche", "whiteWins": "Les Blancs gagnent", "blackWins": "Les Noirs gagnent", "byTime": "au temps", "byAbort": "annulée", "myPlayRating": "Ton classement de jeu", "ratingNew": "Provisoire : encore {n} parties", "gamesN": "{n} parties", "lvlElo": "classé environ {r}", "ratedNote": "Les parties normales contre l’ordinateur et les défis comptent pour ton classement : battre plus fort rapporte plus, perdre contre plus faible coûte plus. Les 10 premières parties le font bouger plus vite.", "ratingNow": "Classement : {d} → {r}", "tbUnrated": "Tu as repris un coup : cette partie ne compte pas.", "playLocal": "Jouer avec un ami sur le même téléphone", "playLocalSub": "Deux joueurs, un téléphone, chacun son tour — avec pendule si vous voulez.", "miniTitle": "Mini-jeux pour débutants", "miniSub": "Des jeux d’échecs faciles pour que les enfants se défient", "miniIntro": "Mêmes déplacements, autre façon de gagner. Jouez ensemble sur un téléphone, contre l’ordinateur, ou défie un ami de l’académie.", "mg_pawns": "La guerre des pions", "mgr_pawns": "Le premier pion arrivé au bout gagne. Qui perd tous ses pions perd.", "mg_knights": "Cavaliers et pions", "mgr_knights": "Deux cavaliers et des pions chacun. Le premier pion au bout gagne ; qui perd tous ses pions perd.", "mg_rooks": "Tours et pions", "mgr_rooks": "Deux tours et des pions chacun. Le premier pion au bout gagne ; qui perd tous ses pions perd.", "mg_queen": "Dame contre 8 pions", "mgr_queen": "Les Blancs n’ont qu’une dame, les Noirs 8 pions. Les Noirs gagnent si un pion arrive au bout ; les Blancs en prenant tous les pions ou par mat.", "mg_hill": "Roi de la colline", "mgr_hill": "Amène ton roi sur une des quatre cases du centre (d4, e4, d5, e5) — ou fais mat.", "mg_check3": "Trois échecs", "mgr_check3": "Le premier à donner trois échecs gagne — ou par mat.", "mwPromote": "un pion est arrivé au bout", "mwNoPawns": "tous les pions ont été pris", "mwAllEaten": "la dame a pris tous les pions", "mwHill": "le roi est sur la colline", "mwCheck3": "trois échecs", "mgVsFriend": "Avec un ami", "mgVsCpu": "Contre l’ordinateur", "mgOnline": "Défi en ligne", "mgFromCoach": "Ton entraîneur t’envoie un jeu : {g}", "mgFromCoachPill": "De l’entraîneur", "mgHomeTitle": "Jeux de l’entraîneur", "stdChess": "Échecs normaux", "duelTitle": "Défis", "duelNew": "Nouveau défi", "duelSub": "Défie quelqu’un de l’académie ; la partie se joue ici avec la cadence choisie.", "duelNone": "Aucun défi pour l’instant.", "duelSignIn": "Connecte-toi pour défier tes amis de l’académie.", "duelResume": "Continuer", "duelWaiting": "en attente", "duelAccept": "Accepter", "duelDecline": "Refuser", "duelIncoming": "{n} te défie ! Ouvre « Jouer ».", "duelNoOpp": "Personne à défier — il faut être dans un groupe.", "duelPickOpp": "Choisis qui défier", "duelOpp": "Adversaire", "duelVariant": "Jeu", "duelSend": "Envoyer le défi", "duelSent": "Défi envoyé à {n}", "duelGone": "Cette partie n’existe plus.", "duelWaitingFor": "En attente que {n} accepte…", "duelDeclined": "Le défi a été refusé.", "duelTheirTurn": "Au tour de {n}", "duelAbort": "Annuler la partie", "duelAborted": "Partie annulée", "duelBack": "Retour aux défis", "playBoard": "Classement de jeu de l’académie"}});
+  (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"resumeGame": "كمّل الماتش اللي شغال", "toursTitle": "المسابقات", "toursNone": "مفيش مسابقات دلوقتي.", "tourLiveOrDone": "شغالة أو خلصت", "tt_swiss": "سويسري", "tt_ko": "خروج المغلوب", "tt_rr": "دوري", "tt_arena": "أرينا", "ttd_swiss": "كل جولة بيتقابل اللاعبين اللي نقطهم قريبة من بعض، ومحدش بيلعب نفس الخصم مرتين. اللي يجمع نقط أكتر يكسب.", "ttd_ko": "كل ماتش الكسبان يطلع للجولة اللي بعدها والخسران يخرج، لحد النهائي. لو تعادل يطلع الأعلى تصنيفًا.", "ttd_rr": "كل لاعب بيلعب ضد كل اللاعيبة مرة. اللي يجمع نقط أكتر يكسب.", "ttd_arena": "طول وقت المسابقة دوس «دوّر على خصم» والعب أكتر عدد ماتشات. الفوز = 2 نقطة والتعادل = 1.", "tourMin": "{n} دقيقة", "tourRoundsN": "{n} جولات", "tourOpen": "مفتوحة (اللاعب بيسجّل نفسه)", "tourClosed": "مقفولة (الإدارة بتختار اللاعيبة)", "tourWhoAll": "للكل (طلاب ومدربين)", "tourWhoStudents": "للطلاب بس", "tourStarts": "بتبدأ {d}", "tourLive": "شغالة دلوقتي", "tourEnds": "بتخلص {d}", "tourRoundOf": "الجولة {k} من {n}", "tourDone": "المسابقة خلصت", "tourJoin": "سجّل في المسابقة", "tourLeave": "انسحب من المسابقة", "tourStartNow": "ابدأ دلوقتي", "tourDelete": "امسح المسابقة", "tourBye": "الجولة دي إنت مرتاح (بتاخد نقطة).", "tourYourGame": "ماتشك: ضد {n} وإنت بـ{c}", "tourPlay": "العب ماتشك", "tourWaitRound": "ماتشك خلص. مستنيين باقي الماتشات عشان الجولة الجاية.", "tourPairing": "بيتم ترتيب الجولة الأولى…", "tourStand": "الترتيب", "tourNoPlayers": "لسه محدش سجّل.", "tourGames": "{g} ماتش · {w} فوز", "tourRound": "الجولة {k}", "tourByeShort": "راحة", "tourArenaN": "اتلعب {n} ماتش", "tourGone": "المسابقة دي اتمسحت.", "arenaLate": "المسابقة قربت تخلص، مفيش ماتشات جديدة.", "arenaHow": "دوس «دوّر على خصم» والتطبيق يوصلك بأول حد مستني.", "arenaStop": "بطّل تدوير", "arenaFind": "دوّر على خصم", "arenaWaiting": "بندوّر لك على خصم…", "tourNew": "مسابقة جديدة", "tourNameHint": "مثلًا: بطولة الشهر للمبتدئين", "tourRoundsLbl": "عدد الجولات", "tourDurLbl": "مدة الأرينا (دقايق)", "tourName": "اسم المسابقة", "tourType": "نوع المسابقة", "tourWhen": "ميعاد البداية", "tourWho": "مين يلعب", "tourReg": "التسجيل", "tourRegHow": "المفتوحة: أي حد مسموحله بيسجّل من صفحة «اللعب». المقفولة: اختار اللاعيبة من تحت.", "tourCreate": "اعمل المسابقة", "tourNeedName": "اكتب اسم المسابقة.", "tourNeedWhen": "اختار ميعاد البداية.", "tourNeedPlayers": "اختار لاعبين على الأقل.", "tourMade": "المسابقة اتعملت", "tourBack": "رجوع للمسابقة", "tourNoShow": "الخصم مجاش: خد الفوز", "byNoShow": "الخصم مجاش", "tourGameReady": "ماتشك في «{n}» جاهز! ادخل على «اللعب».", "cfTourLeave": "متأكد إنك عايز تنسحب من المسابقة؟", "cfTourStart": "تبدأ المسابقة دلوقتي؟ مش هيقدر حد يسجّل بعد كده.", "cfTourDelete": "متأكد إنك عايز تمسح المسابقة دي؟", "cfNoShow": "متأكد إن الخصم مجاش؟ هتاخد الفوز.", "adTab_tours": "المسابقات"}, "en": {"resumeGame": "Continue the current game", "toursTitle": "Tournaments", "toursNone": "No tournaments right now.", "tourLiveOrDone": "live or finished", "tt_swiss": "Swiss", "tt_ko": "Knockout", "tt_rr": "Round robin", "tt_arena": "Arena", "ttd_swiss": "Each round pairs players with similar points; nobody meets the same opponent twice. Most points wins.", "ttd_ko": "The winner of each game goes through, the loser is out, until the final. A draw sends the higher-rated player through.", "ttd_rr": "Everyone plays everyone once. Most points wins.", "ttd_arena": "During the tournament tap “Find an opponent” and play as many games as you can. Win = 2 points, draw = 1.", "tourMin": "{n} min", "tourRoundsN": "{n} rounds", "tourOpen": "Open (players sign up)", "tourClosed": "Closed (the academy picks the players)", "tourWhoAll": "Everyone (students and coaches)", "tourWhoStudents": "Students only", "tourStarts": "Starts {d}", "tourLive": "Live now", "tourEnds": "ends {d}", "tourRoundOf": "round {k} of {n}", "tourDone": "Tournament finished", "tourJoin": "Join the tournament", "tourLeave": "Leave the tournament", "tourStartNow": "Start now", "tourDelete": "Delete tournament", "tourBye": "You have a bye this round (1 point).", "tourYourGame": "Your game: vs {n}, you play {c}", "tourPlay": "Play your game", "tourWaitRound": "Your game is done. Waiting for the other games before the next round.", "tourPairing": "Pairing round 1…", "tourStand": "Standings", "tourNoPlayers": "Nobody has joined yet.", "tourGames": "{g} games · {w} wins", "tourRound": "Round {k}", "tourByeShort": "bye", "tourArenaN": "{n} games played", "tourGone": "This tournament was deleted.", "arenaLate": "The tournament is about to end: no new games.", "arenaHow": "Tap “Find an opponent” and you are paired with the first player waiting.", "arenaStop": "Stop looking", "arenaFind": "Find an opponent", "arenaWaiting": "Looking for an opponent…", "tourNew": "New tournament", "tourNameHint": "e.g. Beginners’ monthly cup", "tourRoundsLbl": "Rounds", "tourDurLbl": "Arena length (minutes)", "tourName": "Tournament name", "tourType": "Type", "tourWhen": "Start time", "tourWho": "Who plays", "tourReg": "Registration", "tourRegHow": "Open: anyone allowed signs up from “Play”. Closed: choose the players below.", "tourCreate": "Create tournament", "tourNeedName": "Write the tournament’s name.", "tourNeedWhen": "Choose the start time.", "tourNeedPlayers": "Choose at least two players.", "tourMade": "Tournament created", "tourBack": "Back to the tournament", "tourNoShow": "Opponent didn’t show: claim the win", "byNoShow": "the opponent did not show up", "tourGameReady": "Your game in “{n}” is ready! Open “Play”.", "cfTourLeave": "Leave the tournament?", "cfTourStart": "Start the tournament now? Nobody can join after that.", "cfTourDelete": "Delete this tournament?", "cfNoShow": "Sure your opponent didn’t show? You get the win.", "adTab_tours": "Tournaments"}, "fr": {"resumeGame": "Reprendre la partie en cours", "toursTitle": "Tournois", "toursNone": "Aucun tournoi pour l’instant.", "tourLiveOrDone": "en cours ou terminé", "tt_swiss": "Suisse", "tt_ko": "Élimination directe", "tt_rr": "Toutes rondes", "tt_arena": "Arène", "ttd_swiss": "Chaque ronde oppose des joueurs aux points proches, sans revoir le même adversaire. Le plus de points gagne.", "ttd_ko": "Le gagnant de chaque partie passe, le perdant sort, jusqu’à la finale. En cas de nulle, le mieux classé passe.", "ttd_rr": "Chacun joue contre tous une fois. Le plus de points gagne.", "ttd_arena": "Pendant le tournoi, touche « Trouver un adversaire » et joue un maximum de parties. Victoire = 2 points, nulle = 1.", "tourMin": "{n} min", "tourRoundsN": "{n} rondes", "tourOpen": "Ouvert (inscription libre)", "tourClosed": "Fermé (l’académie choisit)", "tourWhoAll": "Tout le monde", "tourWhoStudents": "Élèves seulement", "tourStarts": "Début {d}", "tourLive": "En cours", "tourEnds": "fin {d}", "tourRoundOf": "ronde {k} sur {n}", "tourDone": "Tournoi terminé", "tourJoin": "S’inscrire", "tourLeave": "Quitter le tournoi", "tourStartNow": "Démarrer maintenant", "tourDelete": "Supprimer le tournoi", "tourBye": "Exempt cette ronde (1 point).", "tourYourGame": "Ta partie : contre {n}, tu as les {c}", "tourPlay": "Jouer ta partie", "tourWaitRound": "Ta partie est finie. On attend les autres avant la ronde suivante.", "tourPairing": "Appariement de la ronde 1…", "tourStand": "Classement", "tourNoPlayers": "Personne inscrit.", "tourGames": "{g} parties · {w} victoires", "tourRound": "Ronde {k}", "tourByeShort": "exempt", "tourArenaN": "{n} parties jouées", "tourGone": "Ce tournoi a été supprimé.", "arenaLate": "Le tournoi se termine : plus de nouvelles parties.", "arenaHow": "Touche « Trouver un adversaire » pour jouer contre le premier joueur en attente.", "arenaStop": "Arrêter la recherche", "arenaFind": "Trouver un adversaire", "arenaWaiting": "Recherche d’un adversaire…", "tourNew": "Nouveau tournoi", "tourNameHint": "ex. Coupe mensuelle débutants", "tourRoundsLbl": "Rondes", "tourDurLbl": "Durée de l’arène (minutes)", "tourName": "Nom du tournoi", "tourType": "Type", "tourWhen": "Début", "tourWho": "Qui joue", "tourReg": "Inscription", "tourRegHow": "Ouvert : chacun s’inscrit depuis « Jouer ». Fermé : choisis les joueurs ci-dessous.", "tourCreate": "Créer le tournoi", "tourNeedName": "Écris le nom du tournoi.", "tourNeedWhen": "Choisis l’heure de début.", "tourNeedPlayers": "Choisis au moins deux joueurs.", "tourMade": "Tournoi créé", "tourBack": "Retour au tournoi", "tourNoShow": "Adversaire absent : réclamer la victoire", "byNoShow": "l’adversaire n’est pas venu", "tourGameReady": "Ta partie dans « {n} » est prête ! Ouvre « Jouer ».", "cfTourLeave": "Quitter le tournoi ?", "cfTourStart": "Démarrer maintenant ? Plus personne ne pourra s’inscrire.", "cfTourDelete": "Supprimer ce tournoi ?", "cfNoShow": "Ton adversaire n’est pas venu ? Tu gagnes la partie.", "adTab_tours": "Tournois"}});
   HCC.t = function (key, vars) {
     var s = (STR[HCC.store.data.lang] || STR.ar)[key];
     if (s === undefined) s = STR.en[key] !== undefined ? STR.en[key] : key;
@@ -2331,6 +2342,12 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return req('PATCH', '/' + path + '?' + q.join('&') + '&currentDocument.exists=true', { fields: f }).then(docOut);
     },
     del: function (path) { return req('DELETE', '/' + path); },
+    /** Creates a document only if it does not exist yet (fails with ALREADY_EXISTS otherwise): the first phone wins. */
+    create: function (path, obj) {
+      var f = {}; for (var k in obj) f[k] = enc(obj[k]);
+      var i = path.lastIndexOf('/');
+      return req('POST', '/' + path.slice(0, i) + '?documentId=' + encodeURIComponent(path.slice(i + 1)), { fields: f }).then(docOut);
+    },
     /** where: [[field, op, value]] with op one of EQUAL, IN, GREATER_THAN_OR_EQUAL ... */
     query: function (coll, where, limit, parent) {
       var filters = (where || []).map(function (w) { return { fieldFilter: { field: { fieldPath: w[0] }, op: w[1], value: enc(w[2]) } }; });
@@ -3695,7 +3712,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function go(tab) {
     if (tab === 'puzzles') state.pz = null;
-    if (tab !== 'play') { state.mini = false; state.duel = null; }
+    if (tab !== 'play') { state.mini = false; state.duel = null; state.tour = null; }
     if (tab === 'home') state.cv = null;   // the puzzle book always opens at its contents
     if (state.tab === tab) { if (tab === 'lessons') { state.lessons.course = null; state.lessons.unit = -1; } render(); return; }
     state.tab = tab;
@@ -3718,7 +3735,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (gated) { onboardingView(); enterAnim('ob' + (CL.signedIn() ? (CL.verified() ? 'b' : 'v') : '') + (state.obMode || '')); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
     var L = state.lessons || {};
-    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view, state.pz && state.pz.rushMenu, state.pz && state.pz.rush && state.pz.rush.mode, state.mini, state.duel].join('|'));
+    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view, state.pz && state.pz.rushMenu, state.pz && state.pz.rush && state.pz.rush.mode, state.mini, state.duel, state.tour, state.playMenu].join('|'));
   }
   function applyLooks() {
     var bodyCls = [], keep = document.body.classList.contains('gated') ? ['gated'] : [];
@@ -4920,7 +4937,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     setTop({ title: t('adTitle'), back: function () { state.cv = null; render(); } });
     var a = adminData(), page = h('div', { class: 'page cg ad' });
     page.appendChild(h('h2', { text: t('adTitle') }));
-    page.appendChild(h('div', { class: 'seg ad-tabs', role: 'group' }, ['users', 'groups', 'reports'].map(function (k) {
+    page.appendChild(h('div', { class: 'seg ad-tabs', role: 'group' }, ['users', 'groups', 'reports', 'tours'].map(function (k) {
       return h('button', { type: 'button', 'aria-pressed': String(a.tab === k), 'data-tab': k, text: t('adTab_' + k), onclick: function () { a.tab = k; render(); } });
     })));
     page.appendChild(usageCard());
@@ -4934,6 +4951,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     }
     if (a.tab === 'groups') adGroups(body);
     else if (a.tab === 'reports') { adReport(body); return; }
+    else if (a.tab === 'tours') { adTours(body); return; }
     else adUsers(body);
     body.appendChild(h('div', { class: 'btns' }, btn(t('acSync'), '', function () { var b = this; b.disabled = true; adminLoad().then(render, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }, 'redo')));
   }
@@ -6797,10 +6815,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
 
   function playView() {
     if (state.duel) return duelView();
+    if (state.tour) return tourView();
     if (state.mini) return miniHub();
-    setTop();
     var g = store.data.play;
-    if (!g) return playSetup();
+    if (!g || state.playMenu) { setTop(); return playSetup(); }
+    setTop({ title: t('play'), back: function () { state.playMenu = true; render(); } });
     if (!g.variant) g.variant = 'std';
     if (!g.opp) g.opp = 'cpu';
     if (g.result === 'resign') g.result = { win: g.you === 'w' ? 'b' : 'w', why: 'byResign' };
@@ -6982,7 +7001,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     var tc = opts.tc || [0, 0], fen = startFen(opts.variant || 'std');
     store.data.play = { fen: fen, moves: [], you: opts.you || 'w', opp: opts.opp, level: opts.level || 2, variant: opts.variant || 'std', tc: tc,
       clock: tc[0] ? { w: tc[0] * 60000, b: tc[0] * 60000, run: null, since: 0 } : null, result: null };
-    store.save(); state.mini = false; lastScreen = null; go('play'); render();
+    store.save(); state.mini = false; state.playMenu = false; lastScreen = null; go('play'); render();
   }
   HCC._newGame = newGame;
 
@@ -6999,7 +7018,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     function drawLevel() { levelName.textContent = t('lvl' + choice.level) + ' · ' + t('lvlElo', { r: LEVEL_ELO[choice.level] }); levelNote.textContent = choice.level + ' / ' + maxLevel; }
     var range = h('input', { type: 'range', id: 'play-level', min: '1', max: String(maxLevel), step: '1', value: String(choice.level), oninput: function () { choice.level = +range.value; drawLevel(); } });
     drawSeg(); drawLevel();
-    var R = myRating();
+    var R = myRating(), cur = store.data.play;
+    if (cur && !cur.result) page.appendChild(h('button', { type: 'button', class: 'card tap resume-card', onclick: function () { state.playMenu = false; render(); } },
+      h('span', { class: 'rush-ic', text: '♟️' }), h('div', { class: 'grow' }, h('h3', { text: t('resumeGame') }), h('span', { class: 'muted small', text: (cur.opp === 'local' ? t('playLocal') : t('playComputer')) + ' · ' + tcName(cur.tc) })), chev()));
     page.appendChild(h('section', { class: 'hero' }, h('span', { class: 'eyebrow', text: t('play') }), h('h2', { text: t('playComputer') }),
       h('div', { class: 'row wrap' }, h('span', { class: 'pill accent', text: t('myPlayRating') + ' ' }, h('b', { class: 'ltr', text: String(R.r) })),
         h('span', { class: 'pill', text: R.n < 10 ? t('ratingNew', { n: 10 - R.n }) : t('gamesN', { n: R.n }) }))));
@@ -7020,7 +7041,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       btn(t('start'), '', function () { newGame({ opp: 'local', tc: ltc }); })));
     page.appendChild(h('button', { type: 'button', class: 'card tap mini-card', onclick: function () { state.mini = true; render(); } },
       h('span', { class: 'rush-ic', text: '🎲' }), h('div', { class: 'grow' }, h('h3', { text: t('miniTitle') }), h('span', { class: 'muted small', text: t('miniSub') })), chev()));
-    if (onlineOn()) page.appendChild(duelBox());
+    if (onlineOn()) { page.appendChild(duelBox()); page.appendChild(toursBox()); }
     else page.appendChild(h('p', { class: 'muted small center', text: t('duelSignIn') }));
     mainEl.appendChild(page);
   }
@@ -7036,9 +7057,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('div', { class: 'row' }, h('span', { class: 'rush-ic', text: M.ic }), h('h3', { class: 'grow', text: t('mg_' + M.id) }), sent[M.id] ? h('span', { class: 'pill accent', text: t('mgFromCoachPill') }) : null),
         h('p', { class: 'small', text: t('mgr_' + M.id) }),
         h('div', { class: 'btns' },
-          btn('👫 ' + t('mgVsFriend'), 'primary', function () { newGame({ opp: 'local', variant: M.id }); }),
+          onlineOn() ? btn('⚔️ ' + t('mgOnline'), 'primary', function () { duelSheet(M.id); }) : null,
           btn('🤖 ' + t('mgVsCpu'), '', function () { newGame({ opp: 'cpu', variant: M.id, level: 2, you: 'w' }); }),
-          onlineOn() ? btn('⚔️ ' + t('mgOnline'), '', function () { duelSheet(M.id); }) : null)));
+          btn('👫 ' + t('mgVsFriend'), '', function () { newGame({ opp: 'local', variant: M.id }); }))));
     });
     mainEl.appendChild(page);
   }
@@ -7060,6 +7081,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       duelList = l;
       var me = CL.uid(), seen = store.data.duelSeen || (store.data.duelSeen = {}), fresh = l.filter(function (d) { return d.status === 'pending' && d.from !== me && !seen[d._id]; });
       fresh.forEach(function (d) { seen[d._id] = 1; });
+      var tg = l.filter(function (d) { return d.tour && d.status === 'active' && !seen[d._id]; });
+      tg.forEach(function (d) { seen[d._id] = 1; });
+      if (tg.length) { store.save(); HCC.toast('🏆 ' + t('tourGameReady', { n: tg[0].tname || '' })); HCC.sfx('start'); }
       if (fresh.length) { store.save(); HCC.toast('⚔️ ' + t('duelIncoming', { n: fresh[0].from === fresh[0].w ? fresh[0].wn : fresh[0].bn })); HCC.sfx('start'); }
       // tidy: declined / cancelled challenges I sent, finished games both players have seen
       l.forEach(function (d) {
@@ -7142,7 +7166,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   /** An online game: the side to move writes its move to the server; the other phone reads it. */
   function duelView() {
     var gid = state.duel, me = CL.uid(), T = timersBox(), pollT = null, tickI = null, d = null, chess = null, myC = 'w', shownN = -1, busyW = false, closed = false;
-    setTop({ title: t('duelTitle'), back: function () { state.duel = null; render(); } });
+    setTop({ title: t('duelTitle'), back: function () { if (d && d.tour) state.tour = d.tour; state.duel = null; render(); } });
     state.cleanup = function () { closed = true; clearTimeout(pollT); clearInterval(tickI); T.clear(); };
     var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
     var topName = h('span', { class: 'grow gname' }), botName = h('span', { class: 'grow gname' }), topClock = h('span', { class: 'gclock' }), botClock = h('span', { class: 'gclock' });
@@ -7185,7 +7209,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var mine = toMove(d) === myC;
       board.movable = mine ? myC : null; board.paint();
       status(mine ? t('yourTurn') : t('duelTheirTurn', { n: d[oc + 'n'] }));
-      if (mv.length < 2) btns.appendChild(btn(t('duelAbort'), '', askFirst('cfAbort', function () { write({ status: 'done', result: '', why: 'byAbort' }); })));
+      if (mv.length < 2 && !d.tour) btns.appendChild(btn(t('duelAbort'), '', askFirst('cfAbort', function () { write({ status: 'done', result: '', why: 'byAbort' }); })));
+      if (d.tour && !running(d) && !mine && Date.now() - (d.last || d.at) > 180000)
+        btns.appendChild(btn(t('tourNoShow'), 'primary', askFirst('cfNoShow', function () { write({ status: 'done', result: myC, why: 'byNoShow' }); })));
+      if (d.tname) statusEl.appendChild(h('span', { class: 'pill accent', text: '🏆 ' + d.tname }));
       btns.appendChild(btn(t('resign'), 'danger', askFirst('cfResign', function () { write({ status: 'done', result: oc, why: 'byResign' }); }), 'flag'));
       poll(mine ? 5000 : 1500);
     }
@@ -7220,6 +7247,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
           done[key] = { d: applyRating(d[oc + 'r'] || 800, score) };
         }
         store.save();
+        tourResult(d, res);
         if (res.win === myC) HCC.celebrate(document.querySelector('.board-wrap')); else HCC.sfx('end');
         var seen = (d.seen || []).concat([me]);
         if ((d.seen || []).length) CL.del('games/' + gid).catch(function () {}); else CL.update('games/' + gid, { seen: seen }).catch(function () {});
@@ -7231,12 +7259,355 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         info && info.d !== undefined ? h('p', { class: 'r-delta ' + (info.d >= 0 ? 'up' : 'down'), text: t('ratingNow', { d: (info.d >= 0 ? '+' : '') + info.d, r: myRating().r }) }) : null,
         h('div', { class: 'btns' }, btn(t('analyseGame'), 'primary', function () {
           state.analysis = { fen: d.fen0, moves: movesOf(d), cursor: movesOf(d).length, engine: true, panel: 'moves' }; state.duel = null; go('analysis');
-        }, 'chart'), btn(t('duelBack'), '', function () { state.duel = null; render(); }))));
+        }, 'chart'), btn(t(d.tour ? 'tourBack' : 'duelBack'), '', function () { state.duel = null; if (d.tour) state.tour = d.tour; render(); }))));
     }
     tickI = setInterval(function () { if (d) drawClocks(); }, 250);
     load();
   }
   HCC.openDuel = function (id) { state.duel = id; go('play'); render(); };
+  // ---------------------------------------------------------------- tournaments (made by the academy): Swiss, knockout, round robin, arena.
+  // tours/{id}: the settings (admin only). Under it: players/{uid}, rounds/{k} (pairings), results/{id}, queue/{uid} (arena).
+  // The first phone (a player's or the admin's) that sees a round is due writes it; create-only, so two phones can't make two rounds.
+  var TOUR_TYPES = ['swiss', 'ko', 'rr', 'arena'];
+  function tourTotal(T, n) {
+    if (T.type === 'rr') return n < 2 ? 0 : (n % 2 ? n : n - 1);
+    if (T.type === 'ko') { var r = 0; while ((1 << r) < n) r++; return r; }
+    if (T.type === 'swiss') return Math.max(1, Math.min(T.rounds || 5, Math.max(1, n - 1)));
+    return 0;
+  }
+  function seeded(players) { return players.slice().sort(function (a, b) { return (b.r || 0) - (a.r || 0) || (a._id < b._id ? -1 : 1); }); }
+  function scoreFor(s, side) { return s === 'bye' ? (side === 'w' ? 1 : 0) : s === '½' ? 0.5 : (s === '1') === (side === 'w') ? 1 : 0; }
+  /** Points, games, whites, opponents and byes of every player, from the results. */
+  function tourTable(T, players, results) {
+    var tb = {};
+    players.forEach(function (p) { tb[p._id] = { p: p, pts: 0, g: 0, wins: 0, whites: 0, opps: {}, bye: 0 }; });
+    results.forEach(function (x) {
+      if (x.s === 'bye') { if (tb[x.w]) { tb[x.w].pts += 1; tb[x.w].bye++; } return; }
+      [['w', x.w, x.b], ['b', x.b, x.w]].forEach(function (q) {
+        var e = tb[q[1]]; if (!e) return;
+        var sc = scoreFor(x.s, q[0]);
+        e.pts += T.type === 'arena' ? sc * 2 : sc; e.g++; if (sc === 1) e.wins++; if (q[0] === 'w') e.whites++; e.opps[q[2]] = 1;
+      });
+    });
+    var seedIx = {}; seeded(players).forEach(function (p, i) { seedIx[p._id] = i; });
+    return Object.keys(tb).map(function (k) { return tb[k]; }).sort(function (a, b) { return b.pts - a.pts || b.wins - a.wins || seedIx[a.p._id] - seedIx[b.p._id]; });
+  }
+  HCC._tourTable = tourTable;
+  function koWinner(pair, res, seedIx) {
+    if (!pair.b) return pair.w; if (!pair.w) return pair.b;
+    var x = res; if (!x) return null;
+    if (x.s === '1') return pair.w; if (x.s === '0') return pair.b;
+    return seedIx[pair.w] <= seedIx[pair.b] ? pair.w : pair.b;   // a draw in a knockout: the higher seed goes through
+  }
+  /** The pairings of round k: [{ w, b }] where b === '' is a bye. */
+  function tourPair(T, players, rounds, results, k) {
+    var P = seeded(players).map(function (p) { return p._id; }), seedIx = {}, out = [];
+    P.forEach(function (u, i) { seedIx[u] = i; });
+    if (T.type === 'rr') {
+      var arr = P.slice(); if (arr.length % 2) arr.push('');
+      var n = arr.length, rot = arr.slice(1), s = (k - 1) % (n - 1);
+      rot = rot.slice(rot.length - s).concat(rot.slice(0, rot.length - s));
+      var ring = [arr[0]].concat(rot);
+      for (var i = 0; i < n / 2; i++) {
+        var a = ring[i], b = ring[n - 1 - i];
+        if (!a || !b) { out.push({ w: a || b, b: '' }); continue; }
+        out.push((k + i) % 2 ? { w: a, b: b } : { w: b, b: a });
+      }
+      return out;
+    }
+    if (T.type === 'ko') {
+      var ent;
+      if (k === 1) {
+        var size = 1; while (size < P.length) size *= 2;
+        ent = []; for (var j = 0; j < size / 2; j++) ent.push(P[j] || '', P[size - 1 - j] || '');
+      } else {
+        var prev = rounds.filter(function (r) { return r.k === k - 1; })[0]; ent = [];
+        (prev.pairs || []).forEach(function (pr) { var r = results.filter(function (x) { return x.round === k - 1 && x.w === pr.w && (x.b === pr.b || x.s === 'bye'); })[0]; ent.push(koWinner(pr, r, seedIx) || ''); });
+      }
+      for (var q = 0; q < ent.length; q += 2) {
+        var x1 = ent[q], x2 = ent[q + 1];
+        if (!x1 && !x2) continue;
+        if (!x1 || !x2) { out.push({ w: x1 || x2, b: '' }); continue; }
+        out.push(seedIx[x1] <= seedIx[x2] ? (k % 2 ? { w: x1, b: x2 } : { w: x2, b: x1 }) : (k % 2 ? { w: x2, b: x1 } : { w: x1, b: x2 }));
+      }
+      return out;
+    }
+    // swiss: by points, then seed; no rematches if it can be helped; the bye to the lowest player who has not had one
+    var tb = tourTable(T, players, results), order = tb.map(function (e) { return e.p._id; }), info = {};
+    tb.forEach(function (e) { info[e.p._id] = e; });
+    if (order.length % 2) {
+      for (var z = order.length - 1; z >= 0; z--) if (!info[order[z]].bye) { out.push({ w: order[z], b: '' }); order.splice(z, 1); break; }
+      if (order.length % 2) { out.push({ w: order.pop(), b: '' }); }
+    }
+    if (k === 1) {   // round 1: top half against bottom half
+      var half = order.length / 2;
+      for (var hh = 0; hh < half; hh++) out.push(hh % 2 ? { w: order[hh + half], b: order[hh] } : { w: order[hh], b: order[hh + half] });
+      return out;
+    }
+    var used = {};
+    order.forEach(function (u, ix) {
+      if (used[u]) return;
+      var mate = null;
+      for (var y = ix + 1; y < order.length; y++) { var v = order[y]; if (!used[v] && !info[u].opps[v]) { mate = v; break; } }
+      if (!mate) for (y = ix + 1; y < order.length; y++) { if (!used[order[y]]) { mate = order[y]; break; } }
+      if (!mate) return;
+      used[u] = used[mate] = 1;
+      var wFirst = info[u].whites < info[mate].whites || (info[u].whites === info[mate].whites && k % 2 === 1);
+      out.push(wFirst ? { w: u, b: mate } : { w: mate, b: u });
+    });
+    return out;
+  }
+  HCC._tourPair = tourPair;
+  function tourGameId(tid, k, w) { return 't' + tid + '_' + k + '_' + w; }
+  function tourState(T, n, rounds, results) {
+    var now = Date.now();
+    if (T.type === 'arena') return now < T.start ? 'reg' : now < T.start + (T.dur || 30) * 60000 ? 'live' : 'done';
+    if (now < T.start || !rounds.length) return now < T.start || n < 2 ? 'reg' : 'live';
+    var total = tourTotal(T, n), last = rounds[rounds.length - 1], doneLast = roundDone(last, results);
+    if (T.type === 'ko' && doneLast && (last.pairs || []).length === 1) return 'done';
+    return last.k >= total && doneLast ? 'done' : 'live';
+  }
+  function roundDone(r, results) { return (r.pairs || []).every(function (p) { return results.some(function (x) { return x.round === r.k && x.w === p.w && (p.b ? x.b === p.b : x.s === 'bye'); }); }); }
+  /** Writes the next round when it is due (anyone in the tournament, or the admin). */
+  function tourAdvance(T, players, rounds, results) {
+    var n = players.length, total = tourTotal(T, n), last = rounds[rounds.length - 1], k = last ? last.k + 1 : 1;
+    if (T.type === 'arena' || Date.now() < T.start || n < 2 || k > total) return Promise.resolve(false);
+    if (last && !roundDone(last, results)) return Promise.resolve(false);
+    if (T.type === 'ko' && last && (last.pairs || []).length === 1) return Promise.resolve(false);
+    var pairs = tourPair(T, players, rounds, results, k), names = {};
+    players.forEach(function (p) { names[p._id] = p.name; });
+    var doc = { k: k, pairs: pairs.map(function (p) { return { w: p.w, b: p.b, wn: names[p.w] || '', bn: p.b ? names[p.b] || '' : '' }; }), at: Date.now() };
+    var base = 'tours/' + T._id;
+    return CL.create(base + '/rounds/' + k, doc).then(function () {
+      var jobs = [];
+      pairs.forEach(function (p) {
+        if (!p.b) { jobs.push(CL.create(base + '/results/' + k + '_' + p.w, { round: k, w: p.w, b: '', s: 'bye', at: Date.now() }).catch(function () {})); return; }
+        jobs.push(tourGameCreate(T, k, p, names).catch(function () {}));
+      });
+      return Promise.all(jobs).then(function () { return true; });
+    }, function () { return false; });
+  }
+  function tourGameCreate(T, k, p, names) {
+    var ms = T.tcM * 60000;
+    return CL.create('games/' + tourGameId(T._id, k, p.w), { members: [p.w, p.b], from: p.w, w: p.w, b: p.b, wn: names[p.w] || '', bn: names[p.b] || '', wr: 0, br: 0,
+      status: 'active', variant: T.variant || 'std', fen0: startFen(T.variant || 'std'), tcM: T.tcM, tcI: T.tcI, wt: ms, bt: ms, moves: '', last: Date.now(), result: '', why: '', seen: [], at: Date.now(),
+      tour: T._id, round: k, tname: T.name });
+  }
+  function tourLoad(tid) {
+    var base = 'tours/' + tid;
+    return Promise.all([CL.get(base), CL.query('players', [], 300, base), CL.query('rounds', [], 50, base), CL.query('results', [], 1000, base)]).then(function (r) {
+      if (!r[0]) return null;
+      return { T: r[0], players: r[1], rounds: r[2].sort(function (a, b) { return a.k - b.k; }), results: r[3] };
+    });
+  }
+  function tourEligible(T) {
+    var p = CL.profile() || {};
+    if (CL.isAdmin()) return false;
+    return T.who === 'all' ? (p.role === 'student' || (p.role === 'coach' && p.approved)) : p.role === 'student';
+  }
+  function tourTypeLine(T) {
+    return t('tt_' + T.type) + ' · ' + tcName([T.tcM, T.tcI]) + (T.variant && T.variant !== 'std' ? ' · ' + t('mg_' + T.variant) : '') +
+      (T.type === 'arena' ? ' · ' + t('tourMin', { n: T.dur || 30 }) : T.type === 'swiss' ? ' · ' + t('tourRoundsN', { n: T.rounds || 5 }) : '');
+  }
+  function fmtWhen(ms) { try { return new Date(ms).toLocaleString(locale(), { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit' }); } catch (e) { return new Date(ms).toISOString(); } }
+  /** Play page: the academy's tournaments. */
+  function toursBox() {
+    var box = h('div', { class: 'card tours-box' }), list = h('div', { class: 'list' }, h('p', { class: 'muted small', text: t('loading') }));
+    box.appendChild(h('h3', { text: '🏆 ' + t('toursTitle') }));
+    box.appendChild(list);
+    CL.query('tours', [], 50).then(function (l) {
+      HCC.clear(list);
+      var now = Date.now();
+      l = l.filter(function (T) { return CL.isAdmin() || T.who === 'all' || tourEligible(T); })
+        .filter(function (T) { return T.start + 3 * 864e5 + (T.dur || 0) * 60000 > now || T.type !== 'arena' && T.start + 14 * 864e5 > now; })
+        .sort(function (a, b) { return a.start - b.start; });
+      if (!l.length) list.appendChild(h('p', { class: 'muted small', text: t('toursNone') }));
+      l.forEach(function (T) {
+        var soon = T.start > now;
+        list.appendChild(h('button', { type: 'button', class: 'unit tap tour-row', 'data-tour': T._id, onclick: function () { state.tour = T._id; if (state.tab !== 'play') go('play'); else render(); } },
+          h('span', { class: 'rush-ic', text: { swiss: '🇨🇭', ko: '⚔️', rr: '🔁', arena: '🏟️' }[T.type] || '🏆' }),
+          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: T.name }), h('div', { class: 'muted small', text: tourTypeLine(T) }),
+            h('div', { class: 'small ' + (soon ? 'muted' : 'warn-t'), text: soon ? '📅 ' + fmtWhen(T.start) : '🔴 ' + t('tourLiveOrDone') })), chev()));
+      });
+    }, function (e) { HCC.clear(list); list.appendChild(h('p', { class: 'muted small', text: t(CL.errKey(e)) })); });
+    return box;
+  }
+  function tourView() {
+    var tid = state.tour, me = CL.uid(), pollT = null, closed = false, D = null;
+    setTop({ title: t('toursTitle'), back: function () { state.tour = null; render(); } });
+    state.cleanup = function () { closed = true; clearTimeout(pollT); };
+    var page = h('div', { class: 'page tour' }, h('p', { class: 'muted', text: t('loading') }));
+    mainEl.appendChild(page);
+    function poll(ms) { clearTimeout(pollT); if (!closed) pollT = setTimeout(load, ms); }
+    function load() {
+      tourLoad(tid).then(function (x) {
+        if (closed) return;
+        if (!x) { HCC.toast(t('tourGone')); state.tour = null; render(); return; }
+        D = x;
+        var mine = x.players.some(function (p) { return p._id === me; });
+        if ((mine || CL.isAdmin()) && tourState(x.T, x.players.length, x.rounds, x.results) !== 'done')
+          tourAdvance(x.T, x.players, x.rounds, x.results).then(function (made) { if (made) load(); });
+        draw(); poll(6000);
+      }, function () { poll(8000); });
+    }
+    function draw() {
+      var T = D.T, n = D.players.length, st = tourState(T, n, D.rounds, D.results), mine = D.players.some(function (p) { return p._id === me; });
+      var top = page.scrollTop; HCC.clear(page);
+      page.appendChild(h('h2', { dir: 'auto', text: T.name }));
+      page.appendChild(h('div', { class: 'row wrap' }, h('span', { class: 'pill accent', text: t('tt_' + T.type) }), h('span', { class: 'pill', text: tcName([T.tcM, T.tcI]) }),
+        h('span', { class: 'pill', text: t(T.mode === 'open' ? 'tourOpen' : 'tourClosed') }), h('span', { class: 'pill', text: t(T.who === 'all' ? 'tourWhoAll' : 'tourWhoStudents') }),
+        T.variant && T.variant !== 'std' ? h('span', { class: 'pill', text: miniOf(T.variant).ic + ' ' + t('mg_' + T.variant) }) : null));
+      page.appendChild(h('p', { class: 'muted small', text: t('ttd_' + T.type) }));
+      page.appendChild(h('div', { class: 'note ' + (st === 'live' ? 'good' : ''), text: st === 'reg' ? '📅 ' + t('tourStarts', { d: fmtWhen(T.start) }) : st === 'live' ? '🔴 ' + t('tourLive') + (T.type === 'arena' ? ' · ' + t('tourEnds', { d: fmtWhen(T.start + (T.dur || 30) * 60000) }) : D.rounds.length ? ' · ' + t('tourRoundOf', { k: D.rounds[D.rounds.length - 1].k, n: tourTotal(T, n) }) : '') : '🏁 ' + t('tourDone') }));
+      var btns = h('div', { class: 'btns' });
+      if (st === 'reg' && T.mode === 'open' && tourEligible(T)) {
+        if (!mine) btns.appendChild(btn(t('tourJoin'), 'primary', function () { var b = this; b.disabled = true; var p = CL.profile() || {}; CL.set('tours/' + tid + '/players/' + me, { name: p.name || '', r: myRating().r, at: Date.now() }).then(load, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); }); }));
+        else btns.appendChild(btn(t('tourLeave'), '', askFirst('cfTourLeave', function () { CL.del('tours/' + tid + '/players/' + me).then(load, load); })));
+      }
+      if (CL.isAdmin()) {
+        if (st === 'reg') btns.appendChild(btn(t('tourStartNow'), 'primary', askFirst('cfTourStart', function () { CL.update('tours/' + tid, { start: Date.now() }).then(load, load); })));
+        btns.appendChild(btn(t('tourDelete'), 'danger', askFirst('cfTourDelete', function () { CL.del('tours/' + tid).then(function () { state.tour = null; render(); }); })));
+      }
+      if (btns.childNodes.length) page.appendChild(btns);
+      // my game now
+      if (st === 'live' && mine) {
+        if (T.type === 'arena') page.appendChild(arenaBox(T));
+        else {
+          var last = D.rounds[D.rounds.length - 1], myP = last && (last.pairs || []).filter(function (p) { return p.w === me || p.b === me; })[0];
+          var played = myP && D.results.some(function (x) { return x.round === last.k && x.w === myP.w && (myP.b ? x.b === myP.b : true); });
+          if (myP && !myP.b) page.appendChild(h('div', { class: 'note', text: t('tourBye') }));
+          else if (myP && !played) page.appendChild(h('div', { class: 'card tour-mygame' }, h('b', { text: t('tourYourGame', { n: myP.w === me ? myP.bn : myP.wn, c: t(myP.w === me ? 'white' : 'black') }) }),
+            btn(t('tourPlay'), 'primary', function () {
+              var gid = tourGameId(tid, last.k, myP.w), names = {}; names[myP.w] = myP.wn; names[myP.b] = myP.bn;
+              tourGameCreate(T, last.k, myP, names).catch(function () {}).then(function () { state.duel = gid; state.tour = null; render(); });
+            })));
+          else if (myP) page.appendChild(h('div', { class: 'note good', text: t('tourWaitRound') }));
+          else if (!last) page.appendChild(h('div', { class: 'note', text: t('tourPairing') }));
+        }
+      }
+      // standings
+      var tb = tourTable(T, D.players, D.results);
+      page.appendChild(h('div', { class: 'eyebrow', text: (st === 'done' ? '🏁 ' : '📊 ') + t('tourStand') + ' (' + n + ')' }));
+      if (!n) page.appendChild(h('p', { class: 'muted small', text: t('tourNoPlayers') }));
+      var tbl = h('div', { class: 'list lb-list tour-table' });
+      tb.forEach(function (e, i) {
+        tbl.appendChild(h('div', { class: 'unit lb-row' + (e.p._id === me ? ' me' : '') }, h('span', { class: 'lb-rank', text: st === 'done' ? (['🥇', '🥈', '🥉'][i] || String(i + 1)) : String(i + 1) }),
+          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: e.p.name }), h('div', { class: 'muted small', text: t('tourGames', { g: e.g, w: e.wins }) + (e.p.r ? ' · ' + e.p.r : '') })),
+          h('span', { class: 'lb-pts' }, h('b', { text: String(e.pts) }))));
+      });
+      page.appendChild(tbl);
+      // rounds (latest first)
+      D.rounds.slice().reverse().forEach(function (r) {
+        page.appendChild(h('div', { class: 'eyebrow', text: t('tourRound', { k: r.k }) }));
+        var l = h('div', { class: 'list' });
+        (r.pairs || []).forEach(function (p) {
+          var x = D.results.filter(function (q) { return q.round === r.k && q.w === p.w && (p.b ? q.b === p.b : true); })[0];
+          var res = !p.b ? t('tourByeShort') : !x ? '…' : x.s === '1' ? '1 - 0' : x.s === '0' ? '0 - 1' : '½ - ½';
+          l.appendChild(h('div', { class: 'unit pair-row' + (p.w === me || p.b === me ? ' me' : '') }, h('span', { class: 'grow', dir: 'auto', text: '♔ ' + p.wn + (p.b ? '  —  ♚ ' + p.bn : '') }), h('b', { class: 'ltr', text: res })));
+        });
+        page.appendChild(l);
+      });
+      if (T.type === 'arena' && D.results.length) page.appendChild(h('p', { class: 'muted small', text: t('tourArenaN', { n: D.results.length }) }));
+      page.scrollTop = top;
+    }
+    /** Arena: wait in the queue; the two waiting players are paired, the one with the smaller id writes the game. */
+    function arenaBox(T) {
+      var box = h('div', { class: 'card arena-box' }), q = store.data.arenaQ === tid;
+      var act = duelList.filter(function (d) { return d.tour === tid && d.status === 'active'; })[0];
+      if (act) { box.appendChild(btn(t('duelResume'), 'primary', function () { state.duel = act._id; state.tour = null; render(); })); return box; }
+      if (Date.now() > T.start + (T.dur || 30) * 60000 - 60000) { box.appendChild(h('p', { class: 'muted', text: t('arenaLate') })); return box; }
+      box.appendChild(h('p', { class: 'small muted', text: t('arenaHow') }));
+      box.appendChild(q ? btn(t('arenaStop'), '', function () { store.data.arenaQ = null; store.save(); CL.del('tours/' + tid + '/queue/' + me).then(load, load); })
+        : btn(t('arenaFind'), 'primary', function () {
+          store.data.arenaQ = tid; store.save(); var p = CL.profile() || {};
+          CL.set('tours/' + tid + '/queue/' + me, { name: p.name || '', at: Date.now() }).then(function () { arenaMatch(T); load(); }, load);
+        }));
+      if (q) { box.appendChild(h('p', { class: 'small warn-t', text: '⏳ ' + t('arenaWaiting') })); setTimeout(function () { if (!closed) arenaMatch(T); }, 1500); }
+      return box;
+    }
+    function arenaMatch(T) {
+      if (store.data.arenaQ !== tid) return;
+      Promise.all([CL.query('queue', [], 100, 'tours/' + tid), duelsPull()]).then(function (r) {
+        var act = duelList.filter(function (d) { return d.tour === tid && d.status === 'active'; })[0];
+        if (act) { store.data.arenaQ = null; store.save(); CL.del('tours/' + tid + '/queue/' + me).catch(function () {}); state.duel = act._id; state.tour = null; render(); return; }
+        var wait = r[0].filter(function (x) { return Date.now() - x.at < 10 * 60000; }).map(function (x) { return x._id; }).sort(), i = wait.indexOf(me);
+        if (i < 0) return;
+        var mate = i % 2 === 0 ? wait[i + 1] : null;
+        if (!mate) return;
+        var names = {}; r[0].forEach(function (x) { names[x._id] = x.name; });
+        var w = Math.random() < 0.5 ? me : mate, b = w === me ? mate : me, gid = 'a' + tid + '_' + Date.now().toString(36);
+        var ms = T.tcM * 60000;
+        CL.create('games/' + gid, { members: [w, b], from: me, w: w, b: b, wn: names[w] || '', bn: names[b] || '', wr: 0, br: 0, status: 'active', variant: T.variant || 'std', fen0: startFen(T.variant || 'std'),
+          tcM: T.tcM, tcI: T.tcI, wt: ms, bt: ms, moves: '', last: Date.now(), result: '', why: '', seen: [], at: Date.now(), tour: tid, round: 0, tname: T.name }).then(function () {
+          store.data.arenaQ = null; store.save(); CL.del('tours/' + tid + '/queue/' + me).catch(function () {});
+          state.duel = gid; state.tour = null; render();
+        }, function () {});
+      });
+    }
+    load();
+  }
+  /** After a tournament game: its result (create-only, so both phones can try). */
+  function tourResult(d, res) {
+    if (!d.tour) return;
+    var s = res.win === 'w' ? '1' : res.win === 'b' ? '0' : '½';
+    if (res.why === 'byAbort') return;
+    CL.create('tours/' + d.tour + '/results/' + (d.round ? d.round + '_' + d.w : d._id), { round: d.round || 0, w: d.w, b: d.b, s: s, at: Date.now() }).catch(function () {});
+  }
+  // admin: make a tournament
+  function adTours(body) {
+    body.appendChild(h('div', { class: 'btns' }, btn(t('tourNew'), 'primary', tourNewSheet, 'plus')));
+    body.appendChild(toursBox());
+  }
+  function tourNewSheet() {
+    var a = adminData(), pick = { type: 'swiss', tc: [5, 0], who: 'students', mode: 'open', variant: 'std', chosen: {} }, msg = h('div');
+    var nameIn = h('input', { type: 'text', id: 'tn-name', dir: 'auto', placeholder: t('tourNameHint') });
+    var d0 = new Date(Date.now() + 3600000); d0.setMinutes(0, 0, 0);
+    var whenIn = h('input', { type: 'datetime-local', id: 'tn-when', value: d0.getFullYear() + '-' + pad2(d0.getMonth() + 1) + '-' + pad2(d0.getDate()) + 'T' + pad2(d0.getHours()) + ':00' });
+    var roundsIn = h('input', { type: 'number', id: 'tn-rounds', min: '1', max: '15', value: '5' }), durIn = h('input', { type: 'number', id: 'tn-dur', min: '10', max: '240', value: '30' });
+    var roundsF = h('div', { class: 'field' }, h('label', { for: 'tn-rounds', text: t('tourRoundsLbl') }), roundsIn), durF = h('div', { class: 'field', hidden: 'hidden' }, h('label', { for: 'tn-dur', text: t('tourDurLbl') }), durIn);
+    var typeDesc = h('p', { class: 'muted small', text: t('ttd_swiss') });
+    function seg(opts, key, after) {
+      var s = h('div', { class: 'seg', role: 'group' });
+      function draw() { HCC.clear(s); opts.forEach(function (o) { s.appendChild(h('button', { type: 'button', 'data-v': o[0], 'aria-pressed': String(pick[key] === o[0]), text: o[1], onclick: function () { pick[key] = o[0]; draw(); if (after) after(); } })); }); }
+      draw(); return s;
+    }
+    var playersBox = h('div', { class: 'list tn-players', hidden: 'hidden' });
+    function drawPlayers() {
+      HCC.clear(playersBox);
+      playersBox.hidden = pick.mode !== 'closed';
+      (a.users || []).filter(function (u) { return u.role === 'student' || (pick.who === 'all' && u.role === 'coach' && u.approved); }).forEach(function (u) {
+        playersBox.appendChild(h('label', { class: 'row tn-p' }, h('input', { type: 'checkbox', 'data-uid': u._id, checked: pick.chosen[u._id] ? true : null, onchange: function (e) { if (e.target.checked) pick.chosen[u._id] = u.name; else delete pick.chosen[u._id]; } }), h('span', { dir: 'auto', text: u.name })));
+      });
+    }
+    var box = h('div', { class: 'list tour-new' },
+      h('div', { class: 'field' }, h('label', { for: 'tn-name', text: t('tourName') }), nameIn),
+      h('div', { class: 'field' }, h('label', { text: t('tourType') }), seg(TOUR_TYPES.map(function (x) { return [x, t('tt_' + x)]; }), 'type', function () { typeDesc.textContent = t('ttd_' + pick.type); roundsF.hidden = pick.type !== 'swiss'; durF.hidden = pick.type !== 'arena'; })), typeDesc,
+      roundsF, durF,
+      h('div', { class: 'field' }, h('label', { for: 'tn-when', text: t('tourWhen') }), whenIn),
+      h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(pick.tc, function (tc) { pick.tc = tc; })),
+      h('div', { class: 'field' }, h('label', { for: 'tn-var', text: t('duelVariant') }), h('select', { id: 'tn-var', onchange: function () { pick.variant = this.value; } }, [h('option', { value: 'std', text: t('stdChess') })].concat(MINIS.map(function (M) { return h('option', { value: M.id, text: M.ic + ' ' + t('mg_' + M.id) }); })))),
+      h('div', { class: 'field' }, h('label', { text: t('tourWho') }), seg([['students', t('tourWhoStudents')], ['all', t('tourWhoAll')]], 'who', drawPlayers)),
+      h('div', { class: 'field' }, h('label', { text: t('tourReg') }), seg([['open', t('tourOpen')], ['closed', t('tourClosed')]], 'mode', drawPlayers)),
+      h('p', { class: 'muted small', text: t('tourRegHow') }), playersBox, msg,
+      h('div', { class: 'btns' }, btn(t('tourCreate'), 'primary', function () {
+        var b = this, name = nameIn.value.replace(/\s+/g, ' ').trim(), when = new Date(whenIn.value).getTime();
+        function bad(k) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(k) })); }
+        if (!name) return bad('tourNeedName');
+        if (!when || isNaN(when)) return bad('tourNeedWhen');
+        if (pick.mode === 'closed' && Object.keys(pick.chosen).length < 2) return bad('tourNeedPlayers');
+        b.disabled = true;
+        var tid = 'T' + Date.now().toString(36), doc = { name: name, type: pick.type, tcM: pick.tc[0], tcI: pick.tc[1], rounds: +roundsIn.value || 5, dur: +durIn.value || 30, start: when,
+          who: pick.who, mode: pick.mode, variant: pick.variant, by: CL.uid(), at: Date.now() };
+        if (!doc.tcM) { doc.tcM = 5; doc.tcI = 0; }
+        CL.set('tours/' + tid, doc).then(function () {
+          var users = a.users || [];
+          return Promise.all(Object.keys(pick.chosen).map(function (uid) { return CL.set('tours/' + tid + '/players/' + uid, { name: pick.chosen[uid], r: 0, at: Date.now() }); }));
+        }).then(function () { closeSheet(); HCC.toast('🏆 ' + t('tourMade')); render(); }, function (e) { b.disabled = false; bad(CL.errKey(e)); });
+      })));
+    drawPlayers();
+    openSheet('🏆 ' + t('tourNew'), box);
+  }
+
 
   // ---------------------------------------------------------------- analysis
   // ---------------------------------------------------------------- endgame tablebase (online, Lichess)
