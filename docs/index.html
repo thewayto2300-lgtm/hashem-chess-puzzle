@@ -788,6 +788,36 @@ body:not(.no-motion) .rush-x.on { animation: scPop .35s ease; }
 .rush-end-sc { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .rush-end-sc b { font-size: 52px; line-height: 1; }
 
+/* "are you sure?" */
+.cf-bg { position: fixed; inset: 0; z-index: 9000; background: rgba(2, 10, 35, .55); display: grid; place-items: center; padding: 24px; animation: cfFade .16s ease both; }
+.cf-bg.closing { animation: cfFade .16s ease reverse both; }
+.cf-box { background: var(--card, #fff); color: var(--ink); border-radius: 20px; padding: 20px 18px 14px; width: min(360px, 100%); box-shadow: 0 20px 60px rgba(0,0,0,.35); text-align: center; animation: cfPop .2s cubic-bezier(.2,.8,.2,1) both; }
+.cf-ic { font-size: 34px; }
+.cf-msg { font-size: 16px; font-weight: 700; line-height: 1.6; margin: 8px 0 14px; }
+.cf-btns { justify-content: center; }
+.cf-btns .btn { flex: 1 1 0; }
+body.no-motion .cf-bg, body.no-motion .cf-box { animation: none; }
+@keyframes cfFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cfPop { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* games: player bars, clocks, time controls, mini games, challenges */
+.gbar { display: flex; align-items: center; gap: 8px; padding: 2px 2px; min-height: 34px; }
+.gname { font-weight: 700; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gclock { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; direction: ltr; padding: 3px 10px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); min-width: 74px; text-align: center; }
+.gclock.run { background: #021542; color: #fff; border-color: #021542; }
+body.app-night .gclock.run { background: #8fb4ff; color: #0a0f1f; }
+.gclock.low.run { background: #e5484d; border-color: #e5484d; color: #fff; }
+.tc-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.tc-chips .chip { direction: ltr; min-width: 52px; }
+.r-delta { font-weight: 800; font-size: 17px; }
+.r-delta.up { color: #22a06b; } .r-delta.down { color: #e5484d; }
+.mini-rule { font-size: 13px; }
+.mini-card { gap: 12px; align-items: center; }
+.mini-game { display: flex; flex-direction: column; gap: 8px; }
+.duel-box { display: flex; flex-direction: column; gap: 8px; }
+.duel-row { gap: 8px; align-items: center; flex-wrap: wrap; }
+.duel-sheet select { width: 100%; }
+
 </style>
 </head>
 <body>
@@ -1752,7 +1782,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '2.1.0',
+    version: '2.2.0',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -2085,6 +2115,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"schDays": "أيام الحصص", "schTime": "ميعاد الحصة", "schNone": "لسه مفيش مواعيد", "nextClass": "حصتك الجاية", "today": "النهاردة", "tomorrow": "بكرة", "day0": "الأحد", "day1": "الاتنين", "day2": "التلات", "day3": "الأربع", "day4": "الخميس", "day5": "الجمعة", "day6": "السبت", "pendHw": "لسه عندك {n} واجب مخلصتهوش", "pendNone": "واجباتك كلها خلصانة 👏", "remToast": "⏰ حصتك النهاردة الساعة {t} ولسه عندك {n} واجب مخلصتهوش", "lbTitle": "ترتيب المجموعة", "lbMonth": "نقط شهر {m}", "lbHow": "كل تمرين واجب صح = 10 نقط، وصح من أول مرة +5، وكل لغز = 2.", "lbEmpty": "لسه محدش جمع نقط الشهر ده", "lbYou": "انت", "pts": "نقطة", "lbRankShort": "ترتيبك #{r} من {n}", "myBadges": "أوسمتي", "badgesN": "{n} من {m} وسام", "newBadge": "وسام جديد: {b}", "bd_first": "أول واجب", "bdd_first": "خلّص أول واجب", "bd_hw5": "شاطر", "bdd_hw5": "خلّص 5 واجبات", "bd_hw20": "نجم الأكاديمية", "bdd_hw20": "خلّص 20 واجب", "bd_perfect": "العلامة الكاملة", "bdd_perfect": "واجب كامل صح من أول مرة", "bd_perfect5": "المحترف", "bdd_perfect5": "5 واجبات كاملة", "bd_fast": "البرق", "bdd_fast": "10 تمارين صح من أول مرة في أقل من 20 ثانية", "bd_streak3": "نار", "bdd_streak3": "اتمرن 3 أيام ورا بعض", "bd_streak7": "صاروخ", "bdd_streak7": "اتمرن 7 أيام ورا بعض", "bd_pz50": "صياد الألغاز", "bdd_pz50": "حل 50 لغز", "bd_pz200": "العقل المدبر", "bdd_pz200": "حل 200 لغز", "bd_pz1000": "ملك الألغاز", "bdd_pz1000": "حل 1000 لغز", "bd_top": "الأول", "bdd_top": "كن الأول في ترتيب مجموعتك", "adTab_reports": "التقرير", "arWeek": "آخر أسبوع", "arMonth": "آخر 30 يوم", "arAuto": "بيتعمل لوحده من الواجبات والحضور، من غير ما المدرب يبعت أي حاجة.", "arGroups": "مجموعة", "arStudents": "طالب", "arSolved": "واجب اتحل", "arAtt": "نسبة الحضور", "arTop": "أنشط المجموعات", "arGroupLine": "حل الواجبات {c} · الحضور {a} · الدرجات {s}", "arBehind": "طلاب محتاجين متابعة", "arNoBehind": "كله ماشي تمام 👏", "arWhyHw": "{n} واجب مخلصهوش", "arWhyLow": "درجاته {p}%", "arWhyAbs": "غاب {n} مرات", "arWhyIdle": "مفيش أي نشاط", "arCopy": "نسخ التقرير", "arSessions": "{n} حصة", "ps_ge": "هندسي", "ps_ki": "كرتون", "cgHow": "نتايج واجبات طلابك بتوصلك هنا لوحدها، والإدارة بتشوف الحضور والواجبات أول بأول من غير ما تبعت تقارير."}, "en": {"schDays": "Class days", "schTime": "Class time", "schNone": "No class times yet", "nextClass": "Your next class", "today": "Today", "tomorrow": "Tomorrow", "day0": "Sun", "day1": "Mon", "day2": "Tue", "day3": "Wed", "day4": "Thu", "day5": "Fri", "day6": "Sat", "pendHw": "{n} homework still to finish", "pendNone": "All your homework is done 👏", "remToast": "⏰ Class today at {t} and {n} homework still to finish", "lbTitle": "Group leaderboard", "lbMonth": "Points for {m}", "lbHow": "Each homework exercise solved = 10 points, +5 if right first time, each puzzle = 2.", "lbEmpty": "Nobody has points yet this month", "lbYou": "you", "pts": "pts", "lbRankShort": "You are #{r} of {n}", "myBadges": "My badges", "badgesN": "{n} of {m} badges", "newBadge": "New badge: {b}", "bd_first": "First homework", "bdd_first": "Finish your first homework", "bd_hw5": "Hard worker", "bdd_hw5": "Finish 5 homework sets", "bd_hw20": "Academy star", "bdd_hw20": "Finish 20 homework sets", "bd_perfect": "Perfect score", "bdd_perfect": "A whole homework right first time", "bd_perfect5": "Pro", "bdd_perfect5": "5 perfect homework sets", "bd_fast": "Lightning", "bdd_fast": "10 exercises right first time in under 20 s", "bd_streak3": "On fire", "bdd_streak3": "Practise 3 days in a row", "bd_streak7": "Rocket", "bdd_streak7": "Practise 7 days in a row", "bd_pz50": "Puzzle hunter", "bdd_pz50": "Solve 50 puzzles", "bd_pz200": "Mastermind", "bdd_pz200": "Solve 200 puzzles", "bd_pz1000": "Puzzle king", "bdd_pz1000": "Solve 1000 puzzles", "bd_top": "Number one", "bdd_top": "Be first in your group", "adTab_reports": "Report", "arWeek": "Last 7 days", "arMonth": "Last 30 days", "arAuto": "Made by itself from homework and attendance — coaches don’t send anything.", "arGroups": "groups", "arStudents": "students", "arSolved": "homework solved", "arAtt": "attendance", "arTop": "Most active groups", "arGroupLine": "Homework done {c} · attendance {a} · scores {s}", "arBehind": "Students who need follow-up", "arNoBehind": "Everyone is on track 👏", "arWhyHw": "{n} homework not finished", "arWhyLow": "score {p}%", "arWhyAbs": "absent {n} times", "arWhyIdle": "no activity at all", "arCopy": "Copy report", "arSessions": "{n} classes", "ps_ge": "Geometric", "ps_ki": "Cartoon", "cgHow": "Your students’ homework results arrive here by themselves, and the academy sees attendance and homework as they happen — no reports to send."}, "fr": {"schDays": "Jours de cours", "schTime": "Heure du cours", "schNone": "Pas encore d’horaire", "nextClass": "Ton prochain cours", "today": "Aujourd’hui", "tomorrow": "Demain", "day0": "dim", "day1": "lun", "day2": "mar", "day3": "mer", "day4": "jeu", "day5": "ven", "day6": "sam", "pendHw": "Il te reste {n} devoir(s) à finir", "pendNone": "Tous tes devoirs sont finis 👏", "remToast": "⏰ Cours aujourd’hui à {t} et {n} devoir(s) à finir", "lbTitle": "Classement du groupe", "lbMonth": "Points de {m}", "lbHow": "Chaque exercice de devoir réussi = 10 points, +5 du premier coup, chaque puzzle = 2.", "lbEmpty": "Personne n’a encore de points ce mois-ci", "lbYou": "toi", "pts": "pts", "lbRankShort": "Tu es n°{r} sur {n}", "myBadges": "Mes badges", "badgesN": "{n} badges sur {m}", "newBadge": "Nouveau badge : {b}", "bd_first": "Premier devoir", "bdd_first": "Termine ton premier devoir", "bd_hw5": "Travailleur", "bdd_hw5": "Termine 5 devoirs", "bd_hw20": "Étoile de l’académie", "bdd_hw20": "Termine 20 devoirs", "bd_perfect": "Sans faute", "bdd_perfect": "Un devoir entier juste du premier coup", "bd_perfect5": "Pro", "bdd_perfect5": "5 devoirs sans faute", "bd_fast": "Éclair", "bdd_fast": "10 exercices justes du premier coup en moins de 20 s", "bd_streak3": "En feu", "bdd_streak3": "Entraîne-toi 3 jours de suite", "bd_streak7": "Fusée", "bdd_streak7": "Entraîne-toi 7 jours de suite", "bd_pz50": "Chasseur de puzzles", "bdd_pz50": "Résous 50 puzzles", "bd_pz200": "Cerveau", "bdd_pz200": "Résous 200 puzzles", "bd_pz1000": "Roi des puzzles", "bdd_pz1000": "Résous 1000 puzzles", "bd_top": "Numéro un", "bdd_top": "Sois premier de ton groupe", "adTab_reports": "Rapport", "arWeek": "7 derniers jours", "arMonth": "30 derniers jours", "arAuto": "Généré tout seul à partir des devoirs et des présences — les entraîneurs n’envoient rien.", "arGroups": "groupes", "arStudents": "élèves", "arSolved": "devoirs résolus", "arAtt": "présence", "arTop": "Groupes les plus actifs", "arGroupLine": "Devoirs faits {c} · présence {a} · notes {s}", "arBehind": "Élèves à suivre", "arNoBehind": "Tout le monde suit 👏", "arWhyHw": "{n} devoir(s) non fini(s)", "arWhyLow": "note {p} %", "arWhyAbs": "absent {n} fois", "arWhyIdle": "aucune activité", "arCopy": "Copier le rapport", "arSessions": "{n} cours", "ps_ge": "Géométrique", "ps_ki": "Cartoon", "cgHow": "Les résultats des devoirs arrivent ici tout seuls, et l’académie voit les présences et les devoirs en direct — aucun rapport à envoyer."}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"libMgrSub": "ارفع الواجب مرة واحدة هنا، وبعدين ابعته لأي مجموعة وقت ما تحب.", "libUpload": "رفع واجب للمكتبة", "libAdded": "اتضاف «{f}» للمكتبة ({n} تمرين).", "libSendTo": "ابعت لمجموعة", "libDelSure": "دوس تاني عشان تمسحه من المكتبة", "libBack": "رجوع للمكتبة", "libCardSub": "ارفع واجبات واختار منها وابعتها للمجموعات"}, "en": {"libMgrSub": "Upload a homework once here, then send it to any group whenever you like.", "libUpload": "Upload homework to the library", "libAdded": "“{f}” added to the library ({n} exercises).", "libSendTo": "Send to a group", "libDelSure": "Tap again to delete it from the library", "libBack": "Back to the library", "libCardSub": "Upload homework, pick from it and send it to groups"}, "fr": {"libMgrSub": "Ajoute un devoir une seule fois ici, puis envoie-le à n’importe quel groupe.", "libUpload": "Ajouter un devoir à la bibliothèque", "libAdded": "« {f} » ajouté à la bibliothèque ({n} exercices).", "libSendTo": "Envoyer à un groupe", "libDelSure": "Touche encore pour le supprimer de la bibliothèque", "libBack": "Retour à la bibliothèque", "libCardSub": "Ajoute des devoirs, choisis et envoie-les aux groupes"}});
   (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"mt_perf": "الأداء", "mt_beh": "السلوك", "mt_hw": "الواجب", "mt_acc": "الدقة", "mt_time": "إدارة الوقت", "mts_perf": "أداء", "mts_beh": "سلوك", "mts_hw": "واجب", "mts_acc": "دقة", "mts_time": "وقت", "arS_all": "الأكاديمية", "arS_coach": "مدرب", "arS_group": "مجموعة", "arS_student": "طالب", "arPick_coach": "اختار المدرب", "arPick_group": "اختار المجموعة", "arPick_student": "اختار الطالب", "arPickFirst": "اختار من فوق عشان يطلعلك التقرير.", "arNoData": "مفيش بيانات للفترة دي.", "arScore": "متوسط الدرجات", "arAvgTime": "متوسط وقت التمرين", "secShort": "ث", "arInsights": "ملاحظات", "arTrend": "درجات الواجبات", "arAllAnswers": "كل إجاباته بالتفصيل", "arStudentsTbl": "الطلاب (دوس على أي طالب لتقريره)", "arWhyRush": "بيستعجل", "inRush": "بيستعجل: غلط في {n} تمرين في أقل من 8 ثواني وبعدين حلّه صح. يعني عارف الحل، بس محتاج يهدى ويتأكد قبل ما يلعب النقلة.", "inFastUnknown": "غلط بسرعة في {n} تمرين ومعرفش يحلهم بعدها: دي نقط محتاجة شرح، مش استعجال.", "inSlow": "بياخد وقت طويل في التفكير (متوسط {s} ثانية للتمرين). محتاج تمرين على السرعة.", "inTimeGood": "بيدير وقته كويس (متوسط {s} ثانية للتمرين).", "inAccGood": "دقته ممتازة: أغلب التمارين صح من أول مرة 👏", "inSteady": "مستواه ماشي كويس في الفترة دي.", "inNoData": "مفيش نشاط كفاية في الفترة دي عشان نحكم.", "soundSet": "الأصوات", "rushTitle": "Puzzle Rush", "rushCardSub": "حل أكبر عدد ألغاز، والألغاز بتصعب كل مرة", "rushRules": "الألغاز بتبدأ سهلة وبتصعب مع كل حل. 3 غلطات واللعبة بتخلص. كل لغز صح = نقطة.", "rush_3": "3 دقايق", "rush_5": "5 دقايق", "rush_s": "سيرفايفال", "rushd_3": "أسرع ما يمكن قبل ما الوقت يخلص", "rushd_5": "وقت أطول وألغاز أصعب", "rushd_s": "من غير وقت، لحد 3 غلطات", "rushBest": "أحسن نتيجة", "rushBoard": "لوحة الصدارة", "rushNoScores": "لسه محدش لعب الوضع ده.", "rushSignIn": "سجّل دخول عشان تظهر في لوحة الصدارة.", "rushScore": "النتيجة", "rushOver": "خلصت! نتيجتك", "rushNewBest": "رقم قياسي جديد", "rushMissed": "الألغاز اللي غلطت فيها (تصنيفها): {r}", "rushAgain": "العب تاني"}, "en": {"mt_perf": "Performance", "mt_beh": "Behaviour", "mt_hw": "Homework", "mt_acc": "Accuracy", "mt_time": "Time management", "mts_perf": "Perf.", "mts_beh": "Beh.", "mts_hw": "HW", "mts_acc": "Acc.", "mts_time": "Time", "arS_all": "Academy", "arS_coach": "Coach", "arS_group": "Group", "arS_student": "Student", "arPick_coach": "Choose the coach", "arPick_group": "Choose the group", "arPick_student": "Choose the student", "arPickFirst": "Choose above to see the report.", "arNoData": "No data for this period.", "arScore": "average score", "arAvgTime": "average time per exercise", "secShort": "s", "arInsights": "Notes", "arTrend": "Homework scores", "arAllAnswers": "All their answers in detail", "arStudentsTbl": "Students (tap one for their report)", "arWhyRush": "rushes", "inRush": "Rushes: got {n} exercises wrong in under 8 seconds, then solved them. They know it — they need to slow down and check before moving.", "inFastUnknown": "Answered {n} exercises wrong quickly and could not solve them after: these need explaining, it is not rushing.", "inSlow": "Takes a long time to think (average {s} s per exercise). Needs speed practice.", "inTimeGood": "Manages time well (average {s} s per exercise).", "inAccGood": "Excellent accuracy: most exercises right first time 👏", "inSteady": "Doing steadily in this period.", "inNoData": "Not enough activity in this period to judge.", "soundSet": "Sounds", "rushTitle": "Puzzle Rush", "rushCardSub": "Solve as many puzzles as you can, harder each time", "rushRules": "Puzzles start easy and get harder with every solve. Three mistakes and it is over. Each puzzle solved = one point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survival", "rushd_3": "As fast as you can before time runs out", "rushd_5": "More time, harder puzzles", "rushd_s": "No clock, until 3 mistakes", "rushBest": "best", "rushBoard": "Leaderboard", "rushNoScores": "Nobody has played this mode yet.", "rushSignIn": "Sign in to appear on the leaderboard.", "rushScore": "score", "rushOver": "Done! Your score", "rushNewBest": "New record", "rushMissed": "Puzzles you missed (rating): {r}", "rushAgain": "Play again"}, "fr": {"mt_perf": "Performance", "mt_beh": "Comportement", "mt_hw": "Devoirs", "mt_acc": "Précision", "mt_time": "Gestion du temps", "mts_perf": "Perf.", "mts_beh": "Comp.", "mts_hw": "Dev.", "mts_acc": "Préc.", "mts_time": "Temps", "arS_all": "Académie", "arS_coach": "Entraîneur", "arS_group": "Groupe", "arS_student": "Élève", "arPick_coach": "Choisis l’entraîneur", "arPick_group": "Choisis le groupe", "arPick_student": "Choisis l’élève", "arPickFirst": "Choisis ci-dessus pour voir le rapport.", "arNoData": "Pas de données pour cette période.", "arScore": "note moyenne", "arAvgTime": "temps moyen par exercice", "secShort": "s", "arInsights": "Remarques", "arTrend": "Notes des devoirs", "arAllAnswers": "Toutes ses réponses en détail", "arStudentsTbl": "Élèves (touche-en un pour son rapport)", "arWhyRush": "se précipite", "inRush": "Se précipite : {n} exercices faux en moins de 8 secondes, puis résolus. Il sait — il doit ralentir et vérifier avant de jouer.", "inFastUnknown": "{n} exercices faux rapidement et non résolus ensuite : à réexpliquer, ce n’est pas de la précipitation.", "inSlow": "Réfléchit longtemps (en moyenne {s} s par exercice). À entraîner sur la vitesse.", "inTimeGood": "Gère bien son temps (en moyenne {s} s par exercice).", "inAccGood": "Excellente précision : la plupart des exercices justes du premier coup 👏", "inSteady": "Progression régulière sur cette période.", "inNoData": "Pas assez d’activité sur cette période.", "soundSet": "Sons", "rushTitle": "Puzzle Rush", "rushCardSub": "Résous un maximum de puzzles, de plus en plus durs", "rushRules": "Les puzzles commencent faciles et se corsent à chaque réussite. Trois erreurs et c’est fini. Chaque puzzle résolu = un point.", "rush_3": "3 minutes", "rush_5": "5 minutes", "rush_s": "Survie", "rushd_3": "Le plus vite possible avant la fin du temps", "rushd_5": "Plus de temps, puzzles plus durs", "rushd_s": "Sans chrono, jusqu’à 3 erreurs", "rushBest": "record", "rushBoard": "Classement", "rushNoScores": "Personne n’a encore joué à ce mode.", "rushSignIn": "Connecte-toi pour apparaître au classement.", "rushScore": "score", "rushOver": "Terminé ! Ton score", "rushNewBest": "Nouveau record", "rushMissed": "Puzzles ratés (classement) : {r}", "rushAgain": "Rejouer"}});
+  (function (X) { ['ar', 'en', 'fr'].forEach(function (l) { for (var k in X[l]) STR[l][k] = X[l][k]; }); })({"ar": {"cfYes": "أيوه، متأكد", "cfWrongMail": "متأكد؟ الحساب ده هيتمسح وتعمل حساب جديد بالإيميل الصح.", "cfGroup": "متأكد إنك عايز تمسح المجموعة دي؟ مش هينفع ترجعها.", "cfHw": "متأكد إنك عايز تشيل «{f}»؟ هيتشال من عند كل طلاب المجموعة.", "cfLib": "متأكد إنك عايز تمسح «{f}» من المكتبة نهائيًا؟", "cfSession": "متأكد إنك عايز تمسح الحصة دي بالحضور والتقييمات؟", "cfAccount": "متأكد إنك عايز تمسح حسابك؟ كل بياناتك على السيرفر هتتمسح ومش هينفع ترجعها.", "cfDecline": "متأكد إنك عايز ترفض الطلب ده؟", "cfBlock": "متأكد إنك عايز توقف الحساب ده؟ مش هيقدر يستخدم التطبيق لحد ما ترجعه.", "cfUser": "متأكد إنك عايز تمسح حساب {n} نهائيًا؟", "cfStudent": "متأكد إنك عايز تشيل الطالب ده من المجموعة؟", "cfMyHw": "متأكد إنك عايز تمسح الواجب ده من عندك؟", "cfResign": "متأكد إنك عايز تنسحب؟", "cfAbort": "متأكد إنك عايز تلغي الماتش؟", "cfDuelCancel": "متأكد إنك عايز تلغي التحدي؟", "cfDuelDecline": "متأكد إنك عايز ترفض التحدي؟", "tcNone": "بدون وقت", "timeControl": "الوقت", "rematch": "ماتش تاني", "whiteWins": "الأبيض كسب", "blackWins": "الأسود كسب", "byTime": "الوقت خلص", "byAbort": "اتلغى", "myPlayRating": "تقييمك في اللعب", "ratingNew": "تقييم مبدئي: لسه {n} ماتشات ويثبت", "gamesN": "{n} ماتش", "lvlElo": "تقييمه حوالي {r}", "ratedNote": "الماتشات العادية ضد الكمبيوتر والتحديات بتتحسب في تقييمك: الكسب ضد مستوى أعلى منك بيزوّد أكتر، والخسارة قدام مستوى أقل بتنقّص أكتر. أول 10 ماتشات التقييم بيتحرك أسرع لحد ما يثبت.", "ratingNow": "التقييم: {d} ← {r}", "tbUnrated": "استخدمت التراجع، فالماتش ده مش هيتحسب في التقييم.", "playLocal": "العب مع صاحبك على نفس الموبايل", "playLocalSub": "اتنين على موبايل واحد، كل واحد يلعب دوره، ومعاكم ساعة لو حبيتوا.", "miniTitle": "ألعاب صغيرة للمبتدئين", "miniSub": "ألعاب شطرنج سهلة وممتعة يتحدّى فيها الأولاد بعض", "miniIntro": "نفس حركة القطع، بس طريقة الكسب مختلفة. العبوا مع بعض على نفس الموبايل، أو ضد الكمبيوتر، أو ابعت تحدي لصاحبك في الأكاديمية.", "mg_pawns": "حرب العساكر", "mgr_pawns": "أول عسكري يوصل لآخر الرقعة يكسب. واللي عساكره كلها تتاكل يخسر.", "mg_knights": "الحصنة والعساكر", "mgr_knights": "حصانين وعساكر لكل واحد. أول عسكري يوصل لآخر الرقعة يكسب، واللي عساكره تخلص يخسر.", "mg_rooks": "الطوابي والعساكر", "mgr_rooks": "طابيتين وعساكر لكل واحد. أول عسكري يوصل لآخر الرقعة يكسب، واللي عساكره تخلص يخسر.", "mg_queen": "الوزير ضد 8 عساكر", "mgr_queen": "الأبيض معاه وزير بس، والأسود معاه 8 عساكر. الأسود يكسب لو عسكري وصل للآخر، والأبيض يكسب لو أكل كل العساكر أو عمل كش مات.", "mg_hill": "ملك التل", "mgr_hill": "اللي يوصّل ملكه لواحد من المربعات الأربعة اللي في النص (d4 وe4 وd5 وe5) يكسب، أو بالكش مات العادي.", "mg_check3": "3 كش", "mgr_check3": "أول واحد يدي 3 كش يكسب، أو بالكش مات العادي.", "mwPromote": "عسكري وصل لآخر الرقعة", "mwNoPawns": "العساكر كلها اتاكلت", "mwAllEaten": "الوزير أكل كل العساكر", "mwHill": "الملك وصل للتل", "mwCheck3": "3 كش", "mgVsFriend": "مع صاحبك", "mgVsCpu": "ضد الكمبيوتر", "mgOnline": "تحدّي أونلاين", "mgFromCoach": "الكابتن بعتلك لعبة: {g}", "mgFromCoachPill": "من الكابتن", "mgHomeTitle": "ألعاب من الكابتن", "stdChess": "شطرنج عادي", "duelTitle": "التحديات", "duelNew": "تحدّي جديد", "duelSub": "تحدّى حد من الأكاديمية، والماتش بيتلعب هنا في التطبيق بالوقت اللي تختاره.", "duelNone": "مفيش تحديات دلوقتي.", "duelSignIn": "سجّل دخول عشان تتحدّى أصحابك في الأكاديمية.", "duelResume": "كمّل", "duelWaiting": "مستني يقبل", "duelAccept": "قبول", "duelDecline": "رفض", "duelIncoming": "{n} بيتحداك! ادخل على «اللعب».", "duelNoOpp": "مفيش حد تقدر تتحداه دلوقتي. لازم تكون في مجموعة.", "duelPickOpp": "اختار هتتحدى مين", "duelOpp": "المنافس", "duelVariant": "نوع اللعب", "duelSend": "ابعت التحدي", "duelSent": "التحدي اتبعت لـ {n}", "duelGone": "الماتش ده مبقاش موجود.", "duelWaitingFor": "مستنيين {n} يقبل التحدي…", "duelDeclined": "التحدي اترفض.", "duelTheirTurn": "دور {n}", "duelAbort": "إلغاء الماتش", "duelAborted": "الماتش اتلغى", "duelBack": "رجوع للتحديات", "playBoard": "ترتيب اللعب في الأكاديمية"}, "en": {"cfYes": "Yes, I’m sure", "cfWrongMail": "Sure? This account will be deleted and you make a new one with the right e-mail.", "cfGroup": "Delete this group? This cannot be undone.", "cfHw": "Remove “{f}”? It will be removed for every student in the group.", "cfLib": "Delete “{f}” from the library for good?", "cfSession": "Delete this class with its attendance and ratings?", "cfAccount": "Delete your account? All your data on the server will be deleted for good.", "cfDecline": "Decline this request?", "cfBlock": "Suspend this account? They can’t use the app until you restore it.", "cfUser": "Delete {n}’s account for good?", "cfStudent": "Remove this student from the group?", "cfMyHw": "Delete this homework from your phone?", "cfResign": "Resign this game?", "cfAbort": "Abort this game?", "cfDuelCancel": "Cancel this challenge?", "cfDuelDecline": "Decline this challenge?", "tcNone": "No clock", "timeControl": "Time", "rematch": "Rematch", "whiteWins": "White wins", "blackWins": "Black wins", "byTime": "on time", "byAbort": "aborted", "myPlayRating": "Your play rating", "ratingNew": "Provisional: {n} more games until it settles", "gamesN": "{n} games", "lvlElo": "rated about {r}", "ratedNote": "Normal games against the computer and challenges count for your rating: beating a stronger level gains more, losing to a weaker one costs more. In the first 10 games the rating moves faster until it settles.", "ratingNow": "Rating: {d} → {r}", "tbUnrated": "You took a move back, so this game won’t count for the rating.", "playLocal": "Play a friend on the same phone", "playLocalSub": "Two players, one phone, taking turns — with a clock if you like.", "miniTitle": "Mini games for beginners", "miniSub": "Easy, fun chess games for kids to challenge each other", "miniIntro": "Same piece moves, a different way to win. Play together on one phone, against the computer, or challenge a friend from the academy.", "mg_pawns": "Pawn wars", "mgr_pawns": "First pawn to reach the other end wins. Lose all your pawns and you lose.", "mg_knights": "Knights and pawns", "mgr_knights": "Two knights and pawns each. First pawn to reach the other end wins; lose all your pawns and you lose.", "mg_rooks": "Rooks and pawns", "mgr_rooks": "Two rooks and pawns each. First pawn to reach the other end wins; lose all your pawns and you lose.", "mg_queen": "Queen vs 8 pawns", "mgr_queen": "White has only a queen, Black has 8 pawns. Black wins if a pawn reaches the end; White wins by taking every pawn or by checkmate.", "mg_hill": "King of the hill", "mgr_hill": "Bring your king to one of the four centre squares (d4, e4, d5, e5) to win — or checkmate as usual.", "mg_check3": "Three checks", "mgr_check3": "First to give check three times wins — or checkmate as usual.", "mwPromote": "a pawn reached the end", "mwNoPawns": "all the pawns were taken", "mwAllEaten": "the queen took every pawn", "mwHill": "the king reached the hill", "mwCheck3": "three checks", "mgVsFriend": "With a friend", "mgVsCpu": "Vs computer", "mgOnline": "Online challenge", "mgFromCoach": "Your coach sent you a game: {g}", "mgFromCoachPill": "From the coach", "mgHomeTitle": "Games from the coach", "stdChess": "Normal chess", "duelTitle": "Challenges", "duelNew": "New challenge", "duelSub": "Challenge someone from the academy; the game is played here in the app with the clock you choose.", "duelNone": "No challenges right now.", "duelSignIn": "Sign in to challenge your academy friends.", "duelResume": "Continue", "duelWaiting": "waiting", "duelAccept": "Accept", "duelDecline": "Decline", "duelIncoming": "{n} challenges you! Open “Play”.", "duelNoOpp": "Nobody to challenge yet — you need to be in a group.", "duelPickOpp": "Choose who to challenge", "duelOpp": "Opponent", "duelVariant": "Game", "duelSend": "Send challenge", "duelSent": "Challenge sent to {n}", "duelGone": "This game no longer exists.", "duelWaitingFor": "Waiting for {n} to accept…", "duelDeclined": "The challenge was declined.", "duelTheirTurn": "{n} to move", "duelAbort": "Abort game", "duelAborted": "Game aborted", "duelBack": "Back to challenges", "playBoard": "Academy play ranking"}, "fr": {"cfYes": "Oui, je suis sûr", "cfWrongMail": "Sûr ? Ce compte sera supprimé et tu en créeras un avec la bonne adresse.", "cfGroup": "Supprimer ce groupe ? Impossible d’annuler.", "cfHw": "Retirer « {f} » ? Il disparaîtra pour tous les élèves du groupe.", "cfLib": "Supprimer « {f} » de la bibliothèque définitivement ?", "cfSession": "Supprimer ce cours avec ses présences et évaluations ?", "cfAccount": "Supprimer ton compte ? Toutes tes données sur le serveur seront effacées.", "cfDecline": "Refuser cette demande ?", "cfBlock": "Suspendre ce compte ? Il ne pourra plus utiliser l’app.", "cfUser": "Supprimer le compte de {n} définitivement ?", "cfStudent": "Retirer cet élève du groupe ?", "cfMyHw": "Supprimer ce devoir de ton téléphone ?", "cfResign": "Abandonner la partie ?", "cfAbort": "Annuler la partie ?", "cfDuelCancel": "Annuler ce défi ?", "cfDuelDecline": "Refuser ce défi ?", "tcNone": "Sans pendule", "timeControl": "Cadence", "rematch": "Revanche", "whiteWins": "Les Blancs gagnent", "blackWins": "Les Noirs gagnent", "byTime": "au temps", "byAbort": "annulée", "myPlayRating": "Ton classement de jeu", "ratingNew": "Provisoire : encore {n} parties", "gamesN": "{n} parties", "lvlElo": "classé environ {r}", "ratedNote": "Les parties normales contre l’ordinateur et les défis comptent pour ton classement : battre plus fort rapporte plus, perdre contre plus faible coûte plus. Les 10 premières parties le font bouger plus vite.", "ratingNow": "Classement : {d} → {r}", "tbUnrated": "Tu as repris un coup : cette partie ne compte pas.", "playLocal": "Jouer avec un ami sur le même téléphone", "playLocalSub": "Deux joueurs, un téléphone, chacun son tour — avec pendule si vous voulez.", "miniTitle": "Mini-jeux pour débutants", "miniSub": "Des jeux d’échecs faciles pour que les enfants se défient", "miniIntro": "Mêmes déplacements, autre façon de gagner. Jouez ensemble sur un téléphone, contre l’ordinateur, ou défie un ami de l’académie.", "mg_pawns": "La guerre des pions", "mgr_pawns": "Le premier pion arrivé au bout gagne. Qui perd tous ses pions perd.", "mg_knights": "Cavaliers et pions", "mgr_knights": "Deux cavaliers et des pions chacun. Le premier pion au bout gagne ; qui perd tous ses pions perd.", "mg_rooks": "Tours et pions", "mgr_rooks": "Deux tours et des pions chacun. Le premier pion au bout gagne ; qui perd tous ses pions perd.", "mg_queen": "Dame contre 8 pions", "mgr_queen": "Les Blancs n’ont qu’une dame, les Noirs 8 pions. Les Noirs gagnent si un pion arrive au bout ; les Blancs en prenant tous les pions ou par mat.", "mg_hill": "Roi de la colline", "mgr_hill": "Amène ton roi sur une des quatre cases du centre (d4, e4, d5, e5) — ou fais mat.", "mg_check3": "Trois échecs", "mgr_check3": "Le premier à donner trois échecs gagne — ou par mat.", "mwPromote": "un pion est arrivé au bout", "mwNoPawns": "tous les pions ont été pris", "mwAllEaten": "la dame a pris tous les pions", "mwHill": "le roi est sur la colline", "mwCheck3": "trois échecs", "mgVsFriend": "Avec un ami", "mgVsCpu": "Contre l’ordinateur", "mgOnline": "Défi en ligne", "mgFromCoach": "Ton entraîneur t’envoie un jeu : {g}", "mgFromCoachPill": "De l’entraîneur", "mgHomeTitle": "Jeux de l’entraîneur", "stdChess": "Échecs normaux", "duelTitle": "Défis", "duelNew": "Nouveau défi", "duelSub": "Défie quelqu’un de l’académie ; la partie se joue ici avec la cadence choisie.", "duelNone": "Aucun défi pour l’instant.", "duelSignIn": "Connecte-toi pour défier tes amis de l’académie.", "duelResume": "Continuer", "duelWaiting": "en attente", "duelAccept": "Accepter", "duelDecline": "Refuser", "duelIncoming": "{n} te défie ! Ouvre « Jouer ».", "duelNoOpp": "Personne à défier — il faut être dans un groupe.", "duelPickOpp": "Choisis qui défier", "duelOpp": "Adversaire", "duelVariant": "Jeu", "duelSend": "Envoyer le défi", "duelSent": "Défi envoyé à {n}", "duelGone": "Cette partie n’existe plus.", "duelWaitingFor": "En attente que {n} accepte…", "duelDeclined": "Le défi a été refusé.", "duelTheirTurn": "Au tour de {n}", "duelAbort": "Annuler la partie", "duelAborted": "Partie annulée", "duelBack": "Retour aux défis", "playBoard": "Classement de jeu de l’académie"}});
   HCC.t = function (key, vars) {
     var s = (STR[HCC.store.data.lang] || STR.ar)[key];
     if (s === undefined) s = STR.en[key] !== undefined ? STR.en[key] : key;
@@ -3664,6 +3695,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   }
   function go(tab) {
     if (tab === 'puzzles') state.pz = null;
+    if (tab !== 'play') { state.mini = false; state.duel = null; }
     if (tab === 'home') state.cv = null;   // the puzzle book always opens at its contents
     if (state.tab === tab) { if (tab === 'lessons') { state.lessons.course = null; state.lessons.unit = -1; } render(); return; }
     state.tab = tab;
@@ -3686,7 +3718,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     if (gated) { onboardingView(); enterAnim('ob' + (CL.signedIn() ? (CL.verified() ? 'b' : 'v') : '') + (state.obMode || '')); return; }
     ({ home: homeView, lessons: lessonsView, puzzles: puzzlesView, play: playView, analysis: analysisView }[state.tab] || homeView)();
     var L = state.lessons || {};
-    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view, state.pz && state.pz.rushMenu, state.pz && state.pz.rush && state.pz.rush.mode].join('|'));
+    enterAnim([state.tab, state.cv && state.cv.page, state.cv && state.cv.gid, L.track, L.course && (L.course.id || L.course.title), L.unit, L.basics, state.pz && state.pz.view, state.pz && state.pz.rushMenu, state.pz && state.pz.rush && state.pz.rush.mode, state.mini, state.duel].join('|'));
   }
   function applyLooks() {
     var bodyCls = [], keep = document.body.classList.contains('gated') ? ['gated'] : [];
@@ -3843,7 +3875,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     });
     var sure = false;
     var wrongB = h('button', { type: 'button', class: 'linkish', text: t('vfWrong'), onclick: function () {
-      if (!sure) { sure = true; wrongB.textContent = t('vfWrongSure'); return; }
+      if (!sure) { return confirmBox(t('cfWrongMail'), t('cfYes'), function () { sure = true; wrongB.click(); }); }
       wrongB.disabled = true;
       CL.deleteAccount().catch(function () { CL.signOut(); }).then(function () { state.obMode = 'up'; render(); });
     } });
@@ -4120,7 +4152,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var mine = res.filter(function (r) { return normName(r.name) === normName(s); });
       var u = (g.uids || {})[s];
       list.appendChild(h('div', { class: 'unit tap st-row', onclick: function (ev) { if (ev.target.closest('.icon-btn')) return; studentResultsSheet(s, mine); } }, h('span', { class: 'grow', dir: 'auto' }, s, u ? h('span', { class: 'muted small ltr', text: ' ' + uname(u.username) }) : null), h('span', { class: 'muted small', text: t('cgSent', { n: mine.length }) + ' ›' }),
-        g.server ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () { g.students = g.students.filter(function (x) { return x !== s; }); if (g.uids) delete g.uids[s]; store.save(); render(); } }, icon('close'))));
+        g.server ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: askFirst('cfStudent', function () { g.students = g.students.filter(function (x) { return x !== s; }); if (g.uids) delete g.uids[s]; store.save(); render(); }) }, icon('close'))));
     });
     page.appendChild(list);
     if (g.server) {
@@ -4138,7 +4170,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         g.students.push(n); store.save(); render();
       }))));
     page.appendChild(h('div', { class: 'btns' }, btn(t('cgDeleteGroup'), 'danger', function () {
-      if (!confirmDelete) { confirmDelete = true; this.textContent = t('cgDeleteSure'); return; }
+      if (!confirmDelete) { var me1 = this; return confirmBox(t('cfGroup'), t('cfYes'), function () { confirmDelete = true; me1.click(); }); }
       d.groups = d.groups.filter(function (x) { return x !== g; }); d.sessions = d.sessions.filter(function (x) { return x.gid !== g.id; });
       store.save(); state.cv = { page: 'groups' }; render();
     })));
@@ -4207,10 +4239,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         l.forEach(function (x) {
           var solved = res.filter(function (r) { return r.title === x.title; }).length, sure = false;
           var del = h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () {
-            if (!sure) { sure = true; HCC.toast(t('ghwDelSure')); return; }
+            if (!sure) { return confirmBox(t('cfHw', { f: x.title }), t('cfYes'), function () { sure = true; del.click(); }); }
             del.disabled = true; CL.update('groups/' + g.id + '/homework/' + x._id, { removed: true, pgn: '', at: Date.now() }).then(function () { HCC.toast(t('ghwRemoved')); load(); }, function (e) { del.disabled = false; HCC.toast(t(CL.errKey(e))); });
           } }, icon('close'));
-          list.appendChild(h('div', { class: 'unit ghw-row' }, h('span', { class: 'grow', dir: 'auto' }, (x.basics ? '♟ ' : '') + x.title, h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(x.at)) + ' · ' + t('ghwSolved', { d: solved, n: g.students.length }) })), del));
+          list.appendChild(h('div', { class: 'unit ghw-row' }, h('span', { class: 'grow', dir: 'auto' }, (x.mini ? '🎲 ' : x.basics ? '♟ ' : '') + x.title, h('span', { class: 'muted small', text: ' · ' + fmtDay(isoOf(x.at)) + ' · ' + t('ghwSolved', { d: solved, n: g.students.length }) })), del));
         });
       }, function (e) { HCC.clear(list); list.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
     }
@@ -4278,7 +4310,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     function row(item) {
       var del = null, sure = false;
       if (item.id && CL.isAdmin()) del = h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), onclick: function () {
-        if (!sure) { sure = true; HCC.toast(t('libDelSure')); return; }
+        if (!sure) { return confirmBox(t('cfLib', { f: item.title }), t('cfYes'), function () { sure = true; del.click(); }); }
         del.disabled = true; CL.del('library/' + item.id).then(function () { HCC.toast(t('ghwRemoved')); load(); }, function (e) { del.disabled = false; HCC.toast(t(CL.errKey(e))); });
       } }, icon('close'));
       return h('div', { class: 'unit lib-row' }, h('div', { class: 'grow' }, h('b', { dir: 'auto', text: item.title }), h('div', { class: 'muted small', text: item.sub })),
@@ -4293,6 +4325,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       files.forEach(function (x) { list.appendChild(row(x)); });
       list.appendChild(h('div', { class: 'eyebrow', text: t('libBasicsTitle') }));
       basics.forEach(function (x) { list.appendChild(row(x)); });
+      var minis = MINIS.map(function (M) { return { mini: M.id, title: t('mg_' + M.id), sub: M.ic + ' ' + t('mgr_' + M.id) }; }).filter(match);
+      list.appendChild(h('div', { class: 'eyebrow', text: '🎲 ' + t('miniTitle') }));
+      minis.forEach(function (x) { list.appendChild(row(x)); });
     }
     function load() {
       HCC.clear(list); list.appendChild(h('p', { class: 'muted', text: t('loading') }));
@@ -4324,7 +4359,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         var b = btn(t('libSend'), 'primary', function () {
           b.disabled = true;
           var p = CL.profile() || {}, doc = { gid: g.id, coachUid: CL.uid(), coachName: p.name || '', title: item.title, at: Date.now() };
-          if (item.basics) doc.basics = item.basics; else doc.pgn = item.pgn;
+          if (item.mini) doc.mini = item.mini; else if (item.basics) doc.basics = item.basics; else doc.pgn = item.pgn;
           CL.set('groups/' + g.id + '/homework/h' + Date.now().toString(36), doc).then(function () {
             b.textContent = '✔ ' + t('libWasSent'); b.classList.remove('primary'); HCC.toast(t('libSent', { f: item.title, s: g.n }));
           }, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); });
@@ -4508,7 +4543,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     page.appendChild(h('div', { class: 'btns' },
       btn(t('ssDone'), 'primary', function () { state.cv = { page: 'group', gid: g.id }; render(); HCC.toast(t('ssSaved')); }),
       btn(t('ssDelete'), 'danger', function () {
-        if (!sure) { sure = true; this.textContent = t('cgDeleteSure'); return; }
+        if (!sure) { var me2 = this; return confirmBox(t('cfSession'), t('cfYes'), function () { sure = true; me2.click(); }); }
         d.sessions = d.sessions.filter(function (x) { return x !== s; }); store.save(); state.cv = { page: 'group', gid: g.id }; render();
       })));
     mainEl.appendChild(page);
@@ -4569,7 +4604,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         btn(t('acRefresh'), '', function () { var b = this; busy(b, true); CL.refreshProfile().then(function () { return cloudStart(); }).then(function () { closeSheet(); render(); }, function (e) { busy(b, false); fail(e); }); }, 'redo'),
         btn(t('acSignOut'), '', function () { CL.signOut(); store.data.user = null; store.save(); closeSheet(); state.obMode = 'in'; render(); }),
         btn(t('acDelete'), 'danger', function () {
-          var b = this; if (!sure) { sure = true; b.textContent = t('acDeleteSure'); return; }
+          var b = this; if (!sure) { return confirmBox(t('cfAccount'), t('cfYes'), function () { sure = true; b.click(); }); }
           busy(b, true); CL.deleteAccount().then(function () { store.data.user = null; store.save(); closeSheet(); render(); HCC.toast(t('acDeleted')); }, function (e) { busy(b, false); fail(e); });
         })));
       openSheet(t('acMine'), box); return;
@@ -4723,7 +4758,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   /** Student: the group the academy put them in (and its coach). */
   function myGroupPull() {
     return CL.query('groups', [['memberUids', 'ARRAY_CONTAINS', CL.uid()]], 1).then(function (l) {
-      var g = l[0]; store.data.myGroup = g ? { id: g._id, name: g.name, coach: g.coachName || '', days: g.days || [], time: g.time || '' } : null; store.save();
+      var g = l[0]; store.data.myGroup = g ? { id: g._id, name: g.name, coach: g.coachName || '', days: g.days || [], time: g.time || '', members: (g.members || []).map(function (m) { return { uid: m.uid, name: m.name }; }) } : null; store.save();
       remindNative(); remindInApp();
       return studentHwPull();
     });
@@ -4740,6 +4775,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       var gone = l.filter(function (x) { return x.removed && got[x._id]; });
       var hb = store.data.hwBasics || (store.data.hwBasics = {}), meta = store.data.hwMeta || (store.data.hwMeta = {});
       l.forEach(function (x) { if (x.removed) delete meta[x._id]; else if (x.pgn || x.basics) meta[x._id] = { t: x.title, at: x.at, f: x.basics ? null : x.title + '.pgn', b: x.basics || null }; });
+      var hm = store.data.hwMini || (store.data.hwMini = {});
+      l.forEach(function (x) { if (x.mini) { if (x.removed) delete hm[x._id]; else if (!hm[x._id]) { hm[x._id] = { id: x.mini, at: x.at }; HCC.toast('🎲 ' + t('mgFromCoach', { g: t('mg_' + x.mini) })); } } });
       gone.forEach(function (x) { delete got[x._id]; if (x.basics) delete hb[x.basics]; });
       fresh.filter(function (x) { return x.basics; }).forEach(function (x) { got[x._id] = 1; hb[x.basics] = x._id; });
       var jobs = fresh.filter(function (x) { return !x.basics; }).map(function (x) {
@@ -4821,6 +4858,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         var g0 = JSON.stringify(store.data.myGroup || null);
         jobs.push(myGroupPull().then(function () { return JSON.stringify(store.data.myGroup || null) !== g0; }));
       }
+      if (!CL.blocked() && !(state.tab === 'play' && !state.duel)) jobs.push(duelsPull().then(function () { return false; }));   // new challenges (the Play screen looks more often itself)
       if (cloudCoach() && (changed || liveN % 5 === 0)) {
         var d = coachData(), k0 = JSON.stringify(d.groups.map(function (g) { return [g.id, g.name, g.students]; }));
         jobs.push(CL.query('groups', [['coachUid', 'EQUAL', CL.uid()]]).then(function (l) {
@@ -4993,10 +5031,10 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
               var b = this; b.disabled = true;
               CL.update('users/' + u._id, { role: ask, approved: ask === 'coach', requested: ask }).then(function () { closeSheet(); }).then(adDone('adApproved'), adErr(b));
             }, 'check'),
-            btn(t('adDecline'), 'danger', function () {
+            btn(t('adDecline'), 'danger', askFirst('cfDecline', function () {
               var b = this; b.disabled = true;
               CL.update('users/' + u._id, { role: 'visitor', approved: false, requested: 'visitor' }).then(function () { closeSheet(); }).then(adDone('adDeclined'), adErr(b));
-            }))));
+            })))));
       }
       if (u.role === 'student') {
         var g = adGroupOf(u._id);
@@ -5009,14 +5047,14 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     }
     var sure = false;
     box.appendChild(h('div', { class: 'btns col' },
-      btn(t(u.blocked ? 'adUnblock' : 'adBlockUser'), u.blocked ? 'primary' : '', function () {
+      btn(t(u.blocked ? 'adUnblock' : 'adBlockUser'), u.blocked ? 'primary' : '', (u.blocked ? function (f) { return f; } : function (f) { return askFirst('cfBlock', f); })(function () {
         var b = this; b.disabled = true;
         var jobs = [CL.update('users/' + u._id, { blocked: !u.blocked })];
         if (!u.blocked) jobs.push(adMove(u, ''));
         Promise.all(jobs).then(function () { closeSheet(); }).then(adDone(u.blocked ? 'adUnblocked' : 'adBlocked'), adErr(b));
-      }),
+      })),
       btn(t('adDelete'), 'danger', function () {
-        var b = this; if (!sure) { sure = true; b.textContent = t('adDeleteSure'); return; }
+        var b = this; if (!sure) { return confirmBox(t('cfUser', { n: u.name || '' }), t('cfYes'), function () { sure = true; b.click(); }); }
         b.disabled = true;
         adMove(u, '').then(function () { return CL.del('users/' + u._id); }).then(function () { closeSheet(); }).then(adDone('adDeleted'), adErr(b));
       })));
@@ -5086,7 +5124,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     }
     var sure = false;
     box.appendChild(h('div', { class: 'btns' }, btn(t('cgDeleteGroup'), 'danger', function () {
-      var b = this; if (!sure) { sure = true; b.textContent = t('cgDeleteSure'); return; }
+      var b = this; if (!sure) { return confirmBox(t('cfGroup'), t('cfYes'), function () { sure = true; b.click(); }); }
       b.disabled = true; CL.del('groups/' + g._id).then(function () { closeSheet(); }).then(adDone('adSaved'), adErr(b));
     })));
     openSheet(g.name, box);
@@ -5582,6 +5620,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       adminWatchNative();
     }
     if (r === 'student' && store.data.myGroup) page.appendChild(classCard());
+    var hm = store.data.hwMini || {}, mids = Object.keys(hm).map(function (k) { return hm[k].id; }).filter(function (v, i, a) { return miniOf(v) && a.indexOf(v) === i; });
+    if (r === 'student' && mids.length) page.appendChild(h('button', { type: 'button', class: 'card tap mini-card', onclick: function () { HCC.openMini(); } },
+      h('span', { class: 'rush-ic', text: '🎲' }), h('div', { class: 'grow' }, h('h3', { text: t('mgHomeTitle') }), h('span', { class: 'muted small', text: mids.map(function (id) { return miniOf(id).ic + ' ' + t('mg_' + id); }).join(' · ') })), chev()));
     if (r !== 'visitor' || CL.signedIn()) page.appendChild(accountCard());
     if (r === 'coach') {
       var cd = coachData();
@@ -5662,7 +5703,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
           h('button', { type: 'button', class: 'grow hw-open', onclick: function () { L.course = c; L.unit = -1; render(); } },
             h('h3', { text: pick(c.title) }), bar(p.done, p.total),
             h('span', { class: 'muted', text: p.done + ' ' + t('of') + ' ' + p.total + ' ' + t('exercises') + (homeworkScore(c).done ? ' · ' + t('hwScore') + ' ' + homeworkScore(c).pct + '%' : '') })),
-          studentNoUpload() ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), title: t('remove'), onclick: function () { removeHomework(c); } }, icon('close'))));
+          studentNoUpload() ? null : h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('remove'), title: t('remove'), onclick: askFirst('cfMyHw', function () { removeHomework(c); }) }, icon('close'))));
       });
     }
     if (!studentNoUpload()) page.appendChild(homeworkTutorial(!courses.length));
@@ -6669,98 +6710,248 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     load(P.i);
   }
 
-  // ---------------------------------------------------------------- play
+  // ---------------------------------------------------------------- play: the computer, a friend on the same phone, or an academy member online;
+  // with or without a clock; normal chess or a mini game for beginners. Games against the computer and online games count for the rating.
+  var LEVEL_ELO = [0, 450, 650, 850, 1050, 1250, 1450, 1750, 2150];
+  var TCS = [[0, 0], [1, 0], [3, 0], [3, 2], [5, 0], [10, 0], [15, 10], [30, 0]];
+  function tcName(tc) { return tc && tc[0] ? tc[0] + '+' + tc[1] : t('tcNone'); }
+  function myRating() { return store.data.prating || (store.data.prating = { r: 800, n: 0, best: 800 }); }
+  /** Elo with a bigger step while the rating is still new: the first games move it fast, later ones less. */
+  function eloDelta(r, n, opp, score) {
+    var K = n < 10 ? 40 : n < 30 ? 28 : 18, e = 1 / (1 + Math.pow(10, (opp - r) / 400)), d = Math.round(K * (score - e));
+    if (score === 1 && d < 1) d = 1; if (score === 0 && d > -1) d = -1;
+    return d;
+  }
+  HCC._eloDelta = eloDelta;
+  function applyRating(opp, score) {
+    var R = myRating(), d = eloDelta(R.r, R.n, opp, score);
+    R.r = Math.max(100, R.r + d); R.n++; if (R.r > (R.best || 0)) R.best = R.r;
+    store.save(); ratingPush();
+    return d;
+  }
+  function ratingPush() {
+    if (!onlineOn()) return Promise.resolve();
+    var R = myRating(), p = CL.profile() || {};
+    return CL.set('ratings/' + CL.uid(), { name: p.name || (store.data.user || {}).name || '', r: R.r, n: R.n, at: Date.now() }).catch(function () { /* next time */ });
+  }
+  function onlineOn() { return CL.signedIn() && CL.verified() && !CL.blocked(); }
+
+  // mini games: normal chess moves, a different way to win
+  var MINIS = [
+    { id: 'pawns', ic: '♟️', fen: '4k3/pppppppp/8/8/8/8/PPPPPPPP/4K3 w - - 0 1', rules: ['promote', 'nopawns'] },
+    { id: 'knights', ic: '🐴', fen: '1n2k1n1/pppppppp/8/8/8/8/PPPPPPPP/1N2K1N1 w - - 0 1', rules: ['promote', 'nopawns'] },
+    { id: 'rooks', ic: '🏰', fen: 'r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w - - 0 1', rules: ['promote', 'nopawns'] },
+    { id: 'queen', ic: '👑', fen: '4k3/pppppppp/8/8/8/8/8/3QK3 w - - 0 1', rules: ['promote', 'alleaten'] },
+    { id: 'hill', ic: '⛰️', fen: C.START_FEN, rules: ['hill'] },
+    { id: 'check3', ic: '3️⃣', fen: C.START_FEN, rules: ['check3'] }
+  ];
+  function miniOf(id) { return MINIS.filter(function (m) { return m.id === id; })[0] || null; }
+  function startFen(variant) { var m = miniOf(variant); return m ? m.fen : C.START_FEN; }
+  /** Replays a game and says who won by a mini-game rule: { win: 'w'|'b', why } or null; also counts checks. */
+  function miniOutcome(variant, fen0, moves) {
+    var M = miniOf(variant); if (!M) return null;
+    var c = new C.Chess(fen0), checks = { w: 0, b: 0 }, out = null;
+    for (var i = 0; i < moves.length && !out; i++) {
+      var mover = c.turn === 0 ? 'w' : 'b', m = c.play(moves[i]); if (!m) break;
+      M.rules.forEach(function (r) {
+        if (out) return;
+        if (r === 'promote' && moves[i].length === 5) out = { win: mover, why: 'mwPromote' };
+        else if (r === 'check3' && c.inCheck()) { checks[mover]++; if (checks[mover] >= 3) out = { win: mover, why: 'mwCheck3' }; }
+        else if (r === 'hill') { var k = mover === 'w' ? 6 : 14; ['d4', 'e4', 'd5', 'e5'].forEach(function (sq) { if (c.board[C.sqIndex(sq)] === k) out = { win: mover, why: 'mwHill' }; }); }
+        else if (r === 'nopawns' || r === 'alleaten') {
+          var pw = 0, pb = 0; for (var q = 0; q < 120; q++) { if (q & 0x88) { q += 7; continue; } if (c.board[q] === 1) pw++; else if (c.board[q] === 9) pb++; }
+          if (r === 'alleaten' && pb === 0) out = { win: 'w', why: 'mwAllEaten' };
+          if (r === 'nopawns' && pw === 0 && pb > 0) out = { win: 'b', why: 'mwNoPawns' };
+          if (r === 'nopawns' && pb === 0 && pw > 0) out = { win: 'w', why: 'mwNoPawns' };
+        }
+      });
+    }
+    return { out: out, checks: checks };
+  }
+  HCC._miniOutcome = miniOutcome;
+  /** How a game stands: null while it goes on, else { win: 'w'|'b'|null (draw), why }. */
+  function gameOutcome(variant, fen0, moves, chess) {
+    var mo = miniOutcome(variant, fen0, moves);
+    if (mo && mo.out) return mo.out;
+    var over = chess.gameOver();
+    if (!over) return null;
+    if (over === 'checkmate') return { win: chess.turn === 0 ? 'b' : 'w', why: 'byMate' };
+    return { win: null, why: { stalemate: 'byStalemate', repetition: 'byRepetition', fifty: 'byFifty', material: 'byMaterial' }[over] || 'draw' };
+  }
+  /** For the computer in a mini game: take a move that wins at once. */
+  function miniWinningMove(g, chess) {
+    if (!miniOf(g.variant)) return null;
+    var me = chess.turn === 0 ? 'w' : 'b', found = null;
+    chess.legalMoves().some(function (m) {
+      var u = C.uci(m), o = miniOutcome(g.variant, g.fen, g.moves.concat([u]));
+      if (o && o.out && o.out.win === me) { found = u; return true; }
+      return false;
+    });
+    return found;
+  }
+  function fmtMs(ms) {
+    ms = Math.max(0, ms); var s = Math.ceil(ms / 1000);
+    if (ms < 10000) return (ms / 1000).toFixed(1);
+    return Math.floor(s / 60) + ':' + pad2(s % 60);
+  }
+
   function playView() {
+    if (state.duel) return duelView();
+    if (state.mini) return miniHub();
     setTop();
     var g = store.data.play;
     if (!g) return playSetup();
-    var chess, T = timersBox(), token = 0;
+    if (!g.variant) g.variant = 'std';
+    if (!g.opp) g.opp = 'cpu';
+    if (g.result === 'resign') g.result = { win: g.you === 'w' ? 'b' : 'w', why: 'byResign' };
+    var chess, T = timersBox(), token = 0, tickI = null;
     try { chess = new C.Chess(g.fen); g.moves.forEach(function (u) { if (!chess.play(u)) throw new Error('bad move'); }); }
     catch (e) { store.data.play = null; store.save(); return playSetup(); }
-    state.cleanup = function () { T.clear(); token++; };
+    state.cleanup = function () { T.clear(); token++; clearInterval(tickI); if (g.clock && g.clock.run && !g.result) { store.save(); } };
+    var M = miniOf(g.variant), local = g.opp === 'local', timed = g.tc && g.tc[0] > 0;
     var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
     var statusEl = h('div', { class: 'status' }), movesEl = h('div', { class: 'moves' }), btns = h('div', { class: 'btns' }), resultEl = h('div');
-    board.chess = chess; board.setOrient(g.you); HCC._board = board;
-    mainEl.appendChild(h('div', { class: 'work' }, statusEl, h('div', { class: 'board-wrap' }, host), movesEl, btns, resultEl));
-
-    function myTurn() { return (chess.turn === 0) === (g.you === 'w'); }
+    var topClock = h('span', { class: 'gclock' }), botClock = h('span', { class: 'gclock' }), topName = h('span', { class: 'grow gname' }), botName = h('span', { class: 'grow gname' });
+    var bottom = local ? 'w' : g.you;
+    board.chess = chess; board.setOrient(bottom); HCC._board = board;
+    mainEl.appendChild(h('div', { class: 'work' },
+      M ? h('div', { class: 'note mini-rule', text: M.ic + ' ' + t('mg_' + M.id) + ': ' + t('mgr_' + M.id) }) : null,
+      h('div', { class: 'gbar gtop' }, topName, timed ? topClock : null),
+      h('div', { class: 'board-wrap' }, host),
+      h('div', { class: 'gbar' }, botName, timed ? botClock : null),
+      statusEl, movesEl, btns, resultEl));
+    function sideName(s) {
+      if (local) return t(s === 'w' ? 'white' : 'black');
+      return s === g.you ? (store.data.user && store.data.user.name || t('lbYou')) + (g.variant === 'std' ? ' · ' + myRating().r : '') : '🤖 ' + t('level') + ' ' + g.level + (g.variant === 'std' ? ' · ' + LEVEL_ELO[g.level] : '');
+    }
+    function drawNames() {
+      var top = board.orient === 'w' ? 'b' : 'w', bot = top === 'w' ? 'b' : 'w';
+      topName.textContent = sideName(top); botName.textContent = sideName(bot);
+      topClock.dataset.side = top; botClock.dataset.side = bot;
+    }
+    function left(side) { var c = g.clock; if (!c) return 0; return c[side] - (c.run === side ? Date.now() - c.since : 0); }
+    function drawClocks() {
+      if (!timed) return;
+      [topClock, botClock].forEach(function (el) {
+        var sd = el.dataset.side, ms = left(sd);
+        el.textContent = fmtMs(ms);
+        el.classList.toggle('run', g.clock && g.clock.run === sd && !g.result);
+        el.classList.toggle('low', ms < 20000);
+      });
+      if (!g.result && g.clock && g.clock.run && left(g.clock.run) <= 0) {
+        var loser = g.clock.run; g.clock[loser] = 0; g.clock.run = null;
+        end({ win: loser === 'w' ? 'b' : 'w', why: 'byTime' });
+      }
+    }
+    function myTurn() { return local || (chess.turn === 0) === (g.you === 'w'); }
     function sanList() {
       var c = new C.Chess(g.fen), out = [];
       g.moves.forEach(function (u) { var m = c.parseMove(u); out.push(c.san(m)); c.make(m); });
       return { list: out, blackFirst: g.fen.split(' ')[1] === 'b', first: parseInt(g.fen.split(' ')[5], 10) || 1 };
     }
     function drawMoves() {
-      var s = sanList();
+      var sl = sanList();
       HCC.clear(movesEl);
-      s.list.forEach(function (san, k) {
-        var ply = k + (s.blackFirst ? 1 : 0);
-        if (ply % 2 === 0 || k === 0) movesEl.appendChild(h('span', { class: 'n', text: (s.first + Math.floor(ply / 2)) + (ply % 2 ? '…' : '.') }));
-        movesEl.appendChild(h('span', { class: 'm' + (k === s.list.length - 1 ? ' cur' : ''), text: san }));
+      sl.list.forEach(function (san, k) {
+        var ply = k + (sl.blackFirst ? 1 : 0);
+        if (ply % 2 === 0 || k === 0) movesEl.appendChild(h('span', { class: 'n', text: (sl.first + Math.floor(ply / 2)) + (ply % 2 ? '…' : '.') }));
+        movesEl.appendChild(h('span', { class: 'm' + (k === sl.list.length - 1 ? ' cur' : ''), text: san }));
       });
       movesEl.scrollTop = movesEl.scrollHeight;
     }
-    function status(text, cls) {
+    function status(text) {
       HCC.clear(statusEl);
       statusEl.appendChild(h('span', { class: 'dot ' + (chess.turn === 0 ? 'w' : 'b') }));
       statusEl.appendChild(h('span', { class: 'grow', text: text }));
-      statusEl.appendChild(h('span', { class: 'pill' + (cls ? ' ' + cls : ''), text: t('level') + ' ' + g.level + ' · ' + t('lvl' + g.level) }));
+      if (M && M.id === 'check3') { var mo = miniOutcome(g.variant, g.fen, g.moves); statusEl.appendChild(h('span', { class: 'pill', text: '♔ ' + mo.checks.w + ' · ♚ ' + mo.checks.b })); }
+      statusEl.appendChild(h('span', { class: 'pill', text: tcName(g.tc) }));
     }
+    function rated() { return g.opp === 'cpu' && g.variant === 'std' && !g.unrated; }
     function buttons(over) {
       HCC.clear(btns);
       if (!over) {
-        btns.appendChild(btn(t('takeback'), '', takeback, 'undo'));
-        btns.appendChild(btn(t('resign'), 'danger', function () { g.result = 'resign'; store.save(); sync(); }, 'flag'));
+        if (!local && !timed) btns.appendChild(btn(t('takeback'), '', takeback, 'undo'));
+        btns.appendChild(btn(t('resign'), 'danger', askFirst('cfResign', function () { end({ win: local ? (chess.turn === 0 ? 'b' : 'w') : (g.you === 'w' ? 'b' : 'w'), why: 'byResign' }); }), 'flag'));
       }
-      btns.appendChild(btn(t('flipBoard'), '', function () { board.flip(); }, 'flip'));
+      btns.appendChild(btn(t('flipBoard'), '', function () { board.flip(); drawNames(); drawClocks(); }, 'flip'));
       if (over) btns.appendChild(btn(t('newGame'), 'primary', function () { store.data.play = null; store.save(); render(); }));
     }
-    function showResult(over) {
-      var title, why;
-      if (over === 'resign') { title = t('youLose'); why = t('byResign'); }
-      else if (over === 'checkmate') { title = t(myTurn() ? 'youLose' : 'youWin'); why = t('byMate'); }
-      else { title = t('draw'); why = t({ stalemate: 'byStalemate', repetition: 'byRepetition', fifty: 'byFifty', material: 'byMaterial' }[over]); }
+    function end(res) {
+      if (g.result) return;
+      g.result = res;
+      if (g.clock) { if (g.clock.run) g.clock[g.clock.run] = left(g.clock.run); g.clock.run = null; }
+      if (rated() && !g.ratedDone && g.moves.length >= 2) {
+        var score = res.win === null ? 0.5 : res.win === g.you ? 1 : 0;
+        g.rDelta = applyRating(LEVEL_ELO[g.level], score); g.ratedDone = true;
+      }
+      store.save();
+      if (res.win && (local || res.win === g.you)) HCC.celebrate(document.querySelector('.board-wrap')); else HCC.sfx(res.win ? 'end' : 'good');
+      sync();
+    }
+    function showResult(res) {
+      var title = res.win === null ? t('draw') : local ? t(res.win === 'w' ? 'whiteWins' : 'blackWins') : t(res.win === g.you ? 'youWin' : 'youLose');
       HCC.clear(resultEl);
-      resultEl.appendChild(h('div', { class: 'result' }, h('h3', { text: title }), h('p', { text: why }),
+      var R = myRating();
+      resultEl.appendChild(h('div', { class: 'result' }, h('h3', { text: title }), h('p', { text: t(res.why) }),
+        g.rDelta !== undefined ? h('p', { class: 'r-delta ' + (g.rDelta >= 0 ? 'up' : 'down'), text: t('ratingNow', { d: (g.rDelta >= 0 ? '+' : '') + g.rDelta, r: R.r }) }) : null,
+        rated() || g.variant !== 'std' || local ? null : null,
         h('div', { class: 'btns' }, btn(t('analyseGame'), 'primary', function () {
           state.analysis = { fen: g.fen, moves: g.moves.slice(), cursor: g.moves.length, engine: true, panel: 'moves' };
           go('analysis');
-        }, 'chart'))));
+        }, 'chart'), btn(t('rematch'), '', function () {
+          store.data.play = { fen: g.fen, moves: [], you: local ? 'w' : (g.you === 'w' ? 'b' : 'w'), opp: g.opp, level: g.level, variant: g.variant, tc: g.tc, clock: timed ? { w: g.tc[0] * 60000, b: g.tc[0] * 60000, run: null, since: 0 } : null, result: null };
+          store.save(); lastScreen = null; render();
+        }, 'redo'))));
       status(t('gameOver'));
     }
     function sync() {
-      drawMoves();
-      var over = g.result || chess.gameOver();
+      drawMoves(); drawNames(); drawClocks();
+      var res = g.result || gameOutcome(g.variant, g.fen, g.moves, chess);
       HCC.clear(resultEl);
-      if (over) { board.movable = null; board.paint(); buttons(true); showResult(over); return; }
+      if (res && !g.result) { end(res); return; }
+      if (res) { board.movable = null; board.paint(); buttons(true); showResult(res); return; }
       buttons(false);
-      if (myTurn()) { board.movable = g.you; board.paint(); status(t('yourTurn')); }
+      if (myTurn()) { board.movable = local ? (chess.turn === 0 ? 'w' : 'b') : g.you; board.paint(); status(local ? t(chess.turn === 0 ? 'whiteToMove' : 'blackToMove') : t('yourTurn')); }
       else think();
     }
     function think() {
       var mine = ++token, t0 = Date.now();
       board.movable = null; board.paint();
       status(t('thinking'));
-      HCC.engineMove(g.fen, g.moves.slice(), g.level).then(function (u) {
-        if (mine !== token || !u) return;
+      var quick = miniWinningMove(g, chess);
+      (quick ? Promise.resolve(quick) : HCC.engineMove(g.fen, g.moves.slice(), g.level)).then(function (u) {
+        if (mine !== token || !u || g.result) return;
         T.later(function () {
-          if (mine !== token) return;
+          if (mine !== token || g.result) return;
           var m = chess.play(u);
           if (!m) return;
+          moved(chess.turn === 0 ? 'b' : 'w');
           g.moves.push(u); store.save();
           board.update({ last: m, animate: true });
           sync();
         }, Math.max(0, 450 - (Date.now() - t0)));
       }).catch(function () { /* engine restarted: sync() runs again when the screen is rebuilt */ });
     }
+    /** The clock after a move by `mover`: its time stops (plus the increment), the other side's starts. */
+    function moved(mover) {
+      var c = g.clock; if (!timed || !c) return;
+      var now = Date.now();
+      if (c.run === mover) c[mover] -= now - c.since;
+      if (c.run) c[mover] += g.tc[1] * 1000;
+      c.run = mover === 'w' ? 'b' : 'w'; c.since = now;
+    }
     function onUser(m) {
       if (!myTurn() || g.result) return;
+      moved(chess.turn === 0 ? 'w' : 'b');
       g.moves.push(C.uci(m)); chess.make(m); store.save();
       board.update({ last: m, animate: true });
+      if (local && store.data.autoFlip) { board.setOrient(chess.turn === 0 ? 'w' : 'b'); board.update(); }
       sync();
     }
     function takeback() {
       if (!g.moves.length) return;
       token++; T.clear();
+      if (g.variant === 'std' && g.opp === 'cpu' && !g.unrated) { g.unrated = true; HCC.toast(t('tbUnrated')); }
       var n = myTurn() ? 2 : 1;
       if (g.moves.length < n) n = g.moves.length;
       while (n-- > 0) { chess.undo(); g.moves.pop(); }
@@ -6772,35 +6963,280 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
     }
     var hist0 = chess.history();
     board.update({ last: hist0.length ? hist0[hist0.length - 1] : 0 });
+    if (timed) tickI = setInterval(drawClocks, 200);
     sync();
   }
 
+  function tcPicker(cur, onPick) {
+    var box = h('div', { class: 'tc-chips', role: 'group' });
+    function draw() {
+      HCC.clear(box);
+      TCS.forEach(function (tc) {
+        box.appendChild(h('button', { type: 'button', class: 'chip', 'data-tc': tc.join('+'), 'aria-pressed': String(cur[0] === tc[0] && cur[1] === tc[1]), text: tcName(tc), onclick: function () { cur = tc; onPick(tc); draw(); } }));
+      });
+    }
+    draw();
+    return box;
+  }
+  function newGame(opts) {
+    var tc = opts.tc || [0, 0], fen = startFen(opts.variant || 'std');
+    store.data.play = { fen: fen, moves: [], you: opts.you || 'w', opp: opts.opp, level: opts.level || 2, variant: opts.variant || 'std', tc: tc,
+      clock: tc[0] ? { w: tc[0] * 60000, b: tc[0] * 60000, run: null, since: 0 } : null, result: null };
+    store.save(); state.mini = false; lastScreen = null; go('play'); render();
+  }
+  HCC._newGame = newGame;
+
   function playSetup() {
-    var choice = { color: 'w', level: (store.data.lastLevel || 2) }, maxLevel = HCC.sf.state === 'ready' ? 8 : 6;
+    var choice = { color: 'w', level: (store.data.lastLevel || 2), tc: store.data.lastTc || [0, 0] }, maxLevel = HCC.sf.state === 'ready' ? 8 : 6;
     if (choice.level > maxLevel) choice.level = maxLevel;
-    var page = h('div', { class: 'page' }), seg = h('div', { class: 'seg', role: 'group' }), levelName = h('strong'), levelNote = h('span', { class: 'pill accent ltr' });
+    var page = h('div', { class: 'page play-setup' }), seg = h('div', { class: 'seg', role: 'group' }), levelName = h('strong'), levelNote = h('span', { class: 'pill accent ltr' });
     function drawSeg() {
       HCC.clear(seg);
       [['w', 'white'], ['b', 'black'], ['r', 'random']].forEach(function (o) {
         seg.appendChild(h('button', { type: 'button', 'aria-pressed': String(choice.color === o[0]), text: t(o[1]), onclick: function () { choice.color = o[0]; drawSeg(); } }));
       });
     }
-    function drawLevel() { levelName.textContent = t('lvl' + choice.level); levelNote.textContent = choice.level + ' / ' + maxLevel; }
+    function drawLevel() { levelName.textContent = t('lvl' + choice.level) + ' · ' + t('lvlElo', { r: LEVEL_ELO[choice.level] }); levelNote.textContent = choice.level + ' / ' + maxLevel; }
     var range = h('input', { type: 'range', id: 'play-level', min: '1', max: String(maxLevel), step: '1', value: String(choice.level), oninput: function () { choice.level = +range.value; drawLevel(); } });
     drawSeg(); drawLevel();
-    page.appendChild(h('section', { class: 'hero' }, h('span', { class: 'eyebrow', text: t('play') }), h('h2', { text: t('playComputer') }), h('p', { class: 'muted', text: t(HCC.sf.state === 'ready' ? 'stockfishOn' : 'playSub') })));
+    var R = myRating();
+    page.appendChild(h('section', { class: 'hero' }, h('span', { class: 'eyebrow', text: t('play') }), h('h2', { text: t('playComputer') }),
+      h('div', { class: 'row wrap' }, h('span', { class: 'pill accent', text: t('myPlayRating') + ' ' }, h('b', { class: 'ltr', text: String(R.r) })),
+        h('span', { class: 'pill', text: R.n < 10 ? t('ratingNew', { n: 10 - R.n }) : t('gamesN', { n: R.n }) }))));
     page.appendChild(h('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:14px' },
       h('div', { class: 'field' }, h('label', { text: t('color') }), seg),
       h('div', { class: 'field' }, h('label', { for: 'play-level', text: t('level') }), h('div', { class: 'level' }, range, levelNote), levelName),
+      h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(choice.tc, function (tc) { choice.tc = tc; })),
+      h('p', { class: 'muted small', text: t('ratedNote') }),
       btn(t('start'), 'primary', function () {
         var you = choice.color === 'r' ? (Math.random() < 0.5 ? 'w' : 'b') : choice.color;
-        store.data.lastLevel = choice.level;
-        store.data.play = { fen: C.START_FEN, moves: [], you: you, level: choice.level, result: null };
-        store.save(); render();
+        store.data.lastLevel = choice.level; store.data.lastTc = choice.tc;
+        newGame({ opp: 'cpu', you: you, level: choice.level, tc: choice.tc });
       })));
-    // (the "challenge a friend online" card was removed at the academy's request; challengeSheet() is kept but unused)
+    var ltc = store.data.lastTc || [0, 0];
+    page.appendChild(h('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:10px' },
+      h('h3', { text: '👫 ' + t('playLocal') }), h('p', { class: 'muted small', text: t('playLocalSub') }),
+      tcPicker(ltc, function (tc) { ltc = tc; }),
+      btn(t('start'), '', function () { newGame({ opp: 'local', tc: ltc }); })));
+    page.appendChild(h('button', { type: 'button', class: 'card tap mini-card', onclick: function () { state.mini = true; render(); } },
+      h('span', { class: 'rush-ic', text: '🎲' }), h('div', { class: 'grow' }, h('h3', { text: t('miniTitle') }), h('span', { class: 'muted small', text: t('miniSub') })), chev()));
+    if (onlineOn()) page.appendChild(duelBox());
+    else page.appendChild(h('p', { class: 'muted small center', text: t('duelSignIn') }));
     mainEl.appendChild(page);
   }
+
+  // ---------------------------------------------------------------- mini games
+  function miniHub() {
+    setTop({ title: t('miniTitle'), back: function () { state.mini = false; render(); } });
+    var page = h('div', { class: 'page mini-hub' }), sent = {};
+    Object.keys(store.data.hwMini || {}).forEach(function (k) { sent[store.data.hwMini[k].id] = 1; });
+    page.appendChild(h('p', { class: 'muted', text: t('miniIntro') }));
+    MINIS.forEach(function (M) {
+      page.appendChild(h('div', { class: 'card mini-game', 'data-mini': M.id },
+        h('div', { class: 'row' }, h('span', { class: 'rush-ic', text: M.ic }), h('h3', { class: 'grow', text: t('mg_' + M.id) }), sent[M.id] ? h('span', { class: 'pill accent', text: t('mgFromCoachPill') }) : null),
+        h('p', { class: 'small', text: t('mgr_' + M.id) }),
+        h('div', { class: 'btns' },
+          btn('👫 ' + t('mgVsFriend'), 'primary', function () { newGame({ opp: 'local', variant: M.id }); }),
+          btn('🤖 ' + t('mgVsCpu'), '', function () { newGame({ opp: 'cpu', variant: M.id, level: 2, you: 'w' }); }),
+          onlineOn() ? btn('⚔️ ' + t('mgOnline'), '', function () { duelSheet(M.id); }) : null)));
+    });
+    mainEl.appendChild(page);
+  }
+  HCC.openMini = function () { state.mini = true; go('play'); render(); };
+
+  // ---------------------------------------------------------------- challenges between academy members (online, through the academy's server)
+  var duelList = [], duelTimer = null;
+  function opponents() {
+    var me = CL.uid(), out = [], seen = {};
+    function add(uid, name) { if (uid && uid !== me && !seen[uid]) { seen[uid] = 1; out.push({ uid: uid, name: name }); } }
+    if (CL.isAdmin()) ((adminData().users) || []).forEach(function (u) { if (u.role === 'student' || u.role === 'coach') add(u._id, u.name); });
+    if (cloudCoach()) coachData().groups.forEach(function (g) { Object.keys(g.uids || {}).forEach(function (n) { var u = g.uids[n]; add(u && u.uid ? u.uid : u, n); }); });
+    var mg = store.data.myGroup; ((mg && mg.members) || []).forEach(function (m) { add(m.uid, m.name); });
+    return out.sort(function (a, b) { return String(a.name).localeCompare(String(b.name)); });
+  }
+  function duelsPull() {
+    if (!onlineOn()) return Promise.resolve([]);
+    return CL.query('games', [['members', 'ARRAY_CONTAINS', CL.uid()]], 30).then(function (l) {
+      duelList = l;
+      var me = CL.uid(), seen = store.data.duelSeen || (store.data.duelSeen = {}), fresh = l.filter(function (d) { return d.status === 'pending' && d.from !== me && !seen[d._id]; });
+      fresh.forEach(function (d) { seen[d._id] = 1; });
+      if (fresh.length) { store.save(); HCC.toast('⚔️ ' + t('duelIncoming', { n: fresh[0].from === fresh[0].w ? fresh[0].wn : fresh[0].bn })); HCC.sfx('start'); }
+      // tidy: declined / cancelled challenges I sent, finished games both players have seen
+      l.forEach(function (d) {
+        if (d.status === 'declined' && d.from === me) CL.del('games/' + d._id).catch(function () {});
+      });
+      return l;
+    }, function () { return duelList; });
+  }
+  HCC._duelsPull = duelsPull;
+  function duelName(d, side) { return side === 'w' ? d.wn : d.bn; }
+  function duelBox() {
+    var box = h('div', { class: 'card duel-box' }), list = h('div', { class: 'list' }), lb = h('div', { class: 'list lb-list' });
+    box.appendChild(h('div', { class: 'row' }, h('h3', { class: 'grow', text: '⚔️ ' + t('duelTitle') }), btn(t('duelNew'), 'primary', function () { duelSheet('std'); })));
+    box.appendChild(h('p', { class: 'muted small', text: t('duelSub') }));
+    box.appendChild(list);
+    box.appendChild(h('div', { class: 'eyebrow', text: '🏆 ' + t('playBoard') }));
+    box.appendChild(lb);
+    function draw() {
+      HCC.clear(list);
+      var me = CL.uid(), live = duelList.filter(function (d) { return d.status === 'pending' || d.status === 'active'; });
+      if (!live.length) list.appendChild(h('p', { class: 'muted small', text: t('duelNone') }));
+      live.forEach(function (d) {
+        var myC = d.w === me ? 'w' : 'b', other = duelName(d, myC === 'w' ? 'b' : 'w'), info = tcName([d.tcM, d.tcI]) + ' · ' + (d.variant === 'std' ? t('stdChess') : t('mg_' + d.variant));
+        var row = h('div', { class: 'unit duel-row', 'data-gid': d._id }, h('div', { class: 'grow' }, h('b', { dir: 'auto', text: other }), h('div', { class: 'muted small', text: info })));
+        if (d.status === 'active') row.appendChild(btn(t('duelResume'), 'primary', function () { state.duel = d._id; render(); }));
+        else if (d.from === me) { row.querySelector('.muted').textContent += ' · ' + t('duelWaiting'); row.appendChild(btn(t('cancel'), '', askFirst('cfDuelCancel', function () { CL.del('games/' + d._id).then(refresh, refresh); }))); }
+        else {
+          row.appendChild(btn(t('duelAccept'), 'primary', function () {
+            var b = this; b.disabled = true; var f = {}; f.status = 'active'; f.last = Date.now(); f[myC + 'r'] = myRating().r;
+            CL.update('games/' + d._id, f).then(function () { state.duel = d._id; render(); }, function (e) { b.disabled = false; HCC.toast(t(CL.errKey(e))); });
+          }));
+          row.appendChild(btn(t('duelDecline'), '', askFirst('cfDuelDecline', function () { CL.update('games/' + d._id, { status: 'declined' }).then(refresh, refresh); })));
+        }
+        list.appendChild(row);
+      });
+    }
+    function refresh() { duelsPull().then(function () { if (box.isConnected) draw(); }); }
+    draw(); refresh();
+    clearInterval(duelTimer); duelTimer = setInterval(function () { if (!box.isConnected) { clearInterval(duelTimer); return; } refresh(); }, 6000);
+    CL.query('ratings', [], 200).then(function (l) {
+      var me = CL.uid(); HCC.clear(lb);
+      l = l.filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.r - a.r; }).slice(0, 15);
+      if (!l.length) lb.appendChild(h('p', { class: 'muted small', text: t('rushNoScores') }));
+      l.forEach(function (x, i) {
+        lb.appendChild(h('div', { class: 'unit lb-row' + (x._id === me ? ' me' : '') }, h('span', { class: 'lb-rank', text: ['🥇', '🥈', '🥉'][i] || String(i + 1) }),
+          h('div', { class: 'grow' }, h('b', { dir: 'auto', text: x.name })), h('span', { class: 'lb-pts' }, h('b', { text: String(x.r) }))));
+      });
+    }, function () {});
+    return box;
+  }
+  function duelSheet(variant) {
+    var ops = opponents(), box = h('div', { class: 'list duel-sheet' }), msg = h('div');
+    var pick = { uid: '', color: 'r', tc: store.data.lastDuelTc || [5, 0], variant: variant || 'std' };
+    if (!ops.length) { openSheet(t('duelNew'), h('p', { class: 'muted', text: t('duelNoOpp') })); return; }
+    var sel = h('select', { id: 'duel-opp', onchange: function () { pick.uid = sel.value; } }, h('option', { value: '', text: t('duelPickOpp') }), ops.map(function (o) { return h('option', { value: o.uid, text: o.name }); }));
+    var vsel = h('select', { id: 'duel-var', onchange: function () { pick.variant = vsel.value; } }, [h('option', { value: 'std', text: t('stdChess'), selected: pick.variant === 'std' ? 'selected' : null })].concat(MINIS.map(function (M) { return h('option', { value: M.id, text: M.ic + ' ' + t('mg_' + M.id), selected: pick.variant === M.id ? 'selected' : null }); })));
+    var cseg = h('div', { class: 'seg', role: 'group' });
+    function drawC() { HCC.clear(cseg); [['w', 'white'], ['b', 'black'], ['r', 'random']].forEach(function (o) { cseg.appendChild(h('button', { type: 'button', 'aria-pressed': String(pick.color === o[0]), text: t(o[1]), onclick: function () { pick.color = o[0]; drawC(); } })); }); }
+    drawC();
+    box.appendChild(h('div', { class: 'field' }, h('label', { for: 'duel-opp', text: t('duelOpp') }), sel));
+    box.appendChild(h('div', { class: 'field' }, h('label', { for: 'duel-var', text: t('duelVariant') }), vsel));
+    box.appendChild(h('div', { class: 'field' }, h('label', { text: t('color') }), cseg));
+    box.appendChild(h('div', { class: 'field' }, h('label', { text: t('timeControl') }), tcPicker(pick.tc, function (tc) { pick.tc = tc; })));
+    box.appendChild(msg);
+    box.appendChild(h('div', { class: 'btns' }, btn(t('duelSend'), 'primary', function () {
+      if (!pick.uid) { HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t('duelPickOpp') })); return; }
+      var b = this; b.disabled = true;
+      var me = CL.uid(), o = ops.filter(function (x) { return x.uid === pick.uid; })[0], col = pick.color === 'r' ? (Math.random() < 0.5 ? 'w' : 'b') : pick.color;
+      var p = CL.profile() || {}, myName = p.name || (store.data.user || {}).name || '';
+      var d = { members: [me, o.uid], from: me, w: col === 'w' ? me : o.uid, b: col === 'w' ? o.uid : me, wn: col === 'w' ? myName : o.name, bn: col === 'w' ? o.name : myName,
+        wr: col === 'w' ? myRating().r : 0, br: col === 'b' ? myRating().r : 0, status: 'pending', variant: pick.variant, fen0: startFen(pick.variant),
+        tcM: pick.tc[0], tcI: pick.tc[1], wt: pick.tc[0] * 60000, bt: pick.tc[0] * 60000, moves: '', last: 0, result: '', why: '', seen: [], at: Date.now() };
+      store.data.lastDuelTc = pick.tc; store.save();
+      CL.set('games/g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), d).then(function () {
+        closeSheet(); HCC.toast('⚔️ ' + t('duelSent', { n: o.name })); state.mini = false; go('play'); render();
+      }, function (e) { b.disabled = false; HCC.clear(msg); msg.appendChild(h('div', { class: 'note bad', text: t(CL.errKey(e)) })); });
+    })));
+    openSheet('⚔️ ' + t('duelNew'), box);
+  }
+  /** An online game: the side to move writes its move to the server; the other phone reads it. */
+  function duelView() {
+    var gid = state.duel, me = CL.uid(), T = timersBox(), pollT = null, tickI = null, d = null, chess = null, myC = 'w', shownN = -1, busyW = false, closed = false;
+    setTop({ title: t('duelTitle'), back: function () { state.duel = null; render(); } });
+    state.cleanup = function () { closed = true; clearTimeout(pollT); clearInterval(tickI); T.clear(); };
+    var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
+    var topName = h('span', { class: 'grow gname' }), botName = h('span', { class: 'grow gname' }), topClock = h('span', { class: 'gclock' }), botClock = h('span', { class: 'gclock' });
+    var statusEl = h('div', { class: 'status' }, h('span', { text: t('loading') })), btns = h('div', { class: 'btns' }), resultEl = h('div'), ruleEl = h('div');
+    HCC._board = board;
+    mainEl.appendChild(h('div', { class: 'work duel' }, ruleEl, h('div', { class: 'gbar gtop' }, topName, topClock), h('div', { class: 'board-wrap' }, host), h('div', { class: 'gbar' }, botName, botClock), statusEl, btns, resultEl));
+    function movesOf(x) { return x.moves ? x.moves.split(' ') : []; }
+    function running(x) { return x.status === 'active' && x.tcM > 0 && movesOf(x).length >= 2 && !x.result; }
+    function toMove(x) { return movesOf(x).length % 2 === 0 ? (x.fen0.split(' ')[1] || 'w') : ((x.fen0.split(' ')[1] || 'w') === 'w' ? 'b' : 'w'); }
+    function left(x, side) { var v = x[side + 't']; if (running(x) && toMove(x) === side) v -= Date.now() - x.last; return v; }
+    function poll(delay) { clearTimeout(pollT); if (!closed) pollT = setTimeout(load, delay); }
+    function load() {
+      if (closed || busyW) return poll(800);
+      CL.get('games/' + gid).then(function (x) {
+        if (closed) return;
+        if (!x) { HCC.toast(t('duelGone')); state.duel = null; render(); return; }
+        apply(x);
+      }, function () { poll(4000); });
+    }
+    function apply(x) {
+      d = x; myC = d.w === me ? 'w' : 'b';
+      var mv = movesOf(d);
+      if (!chess || mv.length !== shownN) {
+        chess = new C.Chess(d.fen0); var last = 0; mv.forEach(function (u) { last = chess.play(u) || last; });
+        board.chess = chess; if (shownN < 0) board.setOrient(myC);
+        board.update({ last: last, animate: shownN >= 0 && mv.length > shownN });
+        shownN = mv.length;
+      }
+      var M = miniOf(d.variant); HCC.clear(ruleEl); if (M) ruleEl.appendChild(h('div', { class: 'note mini-rule', text: M.ic + ' ' + t('mg_' + M.id) + ': ' + t('mgr_' + M.id) }));
+      var oc = myC === 'w' ? 'b' : 'w';
+      topName.textContent = d[oc + 'n'] + (d.variant === 'std' && d[oc + 'r'] ? ' · ' + d[oc + 'r'] : ''); botName.textContent = d[myC + 'n'] + (d.variant === 'std' ? ' · ' + myRating().r : '');
+      topClock.dataset.side = oc; botClock.dataset.side = myC;
+      topClock.hidden = botClock.hidden = !d.tcM;
+      drawClocks();
+      var res = d.result || d.status === 'done' ? { win: d.result === 'd' ? null : d.result || null, why: d.why } : null;
+      HCC.clear(btns);
+      if (d.status === 'pending') { status(t('duelWaitingFor', { n: d[oc + 'n'] })); board.movable = null; board.paint(); poll(2500); return; }
+      if (d.status === 'declined') { status(t('duelDeclined')); board.movable = null; board.paint(); CL.del('games/' + gid).catch(function () {}); return; }
+      if (res) return finish(res);
+      var mine = toMove(d) === myC;
+      board.movable = mine ? myC : null; board.paint();
+      status(mine ? t('yourTurn') : t('duelTheirTurn', { n: d[oc + 'n'] }));
+      if (mv.length < 2) btns.appendChild(btn(t('duelAbort'), '', askFirst('cfAbort', function () { write({ status: 'done', result: '', why: 'byAbort' }); })));
+      btns.appendChild(btn(t('resign'), 'danger', askFirst('cfResign', function () { write({ status: 'done', result: oc, why: 'byResign' }); }), 'flag'));
+      poll(mine ? 5000 : 1500);
+    }
+    function status(text) { HCC.clear(statusEl); if (chess) statusEl.appendChild(h('span', { class: 'dot ' + (chess.turn === 0 ? 'w' : 'b') })); statusEl.appendChild(h('span', { class: 'grow', text: text })); if (d) statusEl.appendChild(h('span', { class: 'pill', text: tcName([d.tcM, d.tcI]) })); }
+    function drawClocks() {
+      if (!d || !d.tcM) return;
+      [topClock, botClock].forEach(function (el) { var sd = el.dataset.side, ms = left(d, sd); el.textContent = fmtMs(ms); el.classList.toggle('run', running(d) && toMove(d) === sd); el.classList.toggle('low', ms < 20000); });
+      if (running(d)) { var sm = toMove(d); if (left(d, sm) <= 0 && !busyW) { var f = { status: 'done', result: sm === 'w' ? 'b' : 'w', why: 'byTime' }; f[sm + 't'] = 0; write(f); } }
+    }
+    function write(f) {
+      busyW = true;
+      var nd = {}; for (var k in d) nd[k] = d[k]; for (k in f) nd[k] = f[k];
+      apply(nd);
+      CL.update('games/' + gid, f).then(function () { busyW = false; poll(1500); }, function (e) { busyW = false; HCC.toast(t(CL.errKey(e))); poll(1000); });
+    }
+    function onUser(m) {
+      if (!d || d.status !== 'active' || d.result || toMove(d) !== myC) return;
+      var u = C.uci(m), mv = movesOf(d).concat([u]), f = { moves: mv.join(' '), last: Date.now() };
+      if (running(d)) f[myC + 't'] = left(d, myC) + d.tcI * 1000;
+      var c2 = new C.Chess(d.fen0); mv.forEach(function (x) { c2.play(x); });
+      var res = gameOutcome(d.variant, d.fen0, mv, c2);
+      if (res) { f.status = 'done'; f.result = res.win || 'd'; f.why = res.why; }
+      write(f);
+    }
+    function finish(res) {
+      board.movable = null; board.paint(); clearInterval(tickI);
+      var key = 'd_' + gid, done = store.data.duelDone || (store.data.duelDone = {}), oc = myC === 'w' ? 'b' : 'w';
+      if (!done[key]) {
+        done[key] = 1;
+        if (d.variant === 'std' && movesOf(d).length >= 2 && res.why !== 'byAbort') {
+          var score = res.win === null ? 0.5 : res.win === myC ? 1 : 0;
+          done[key] = { d: applyRating(d[oc + 'r'] || 800, score) };
+        }
+        store.save();
+        if (res.win === myC) HCC.celebrate(document.querySelector('.board-wrap')); else HCC.sfx('end');
+        var seen = (d.seen || []).concat([me]);
+        if ((d.seen || []).length) CL.del('games/' + gid).catch(function () {}); else CL.update('games/' + gid, { seen: seen }).catch(function () {});
+      }
+      var info = done[key], title = res.why === 'byAbort' ? t('duelAborted') : res.win === null ? t('draw') : t(res.win === myC ? 'youWin' : 'youLose');
+      status(t('gameOver'));
+      HCC.clear(resultEl);
+      resultEl.appendChild(h('div', { class: 'result' }, h('h3', { text: title }), res.why && res.why !== 'byAbort' ? h('p', { text: t(res.why) }) : null,
+        info && info.d !== undefined ? h('p', { class: 'r-delta ' + (info.d >= 0 ? 'up' : 'down'), text: t('ratingNow', { d: (info.d >= 0 ? '+' : '') + info.d, r: myRating().r }) }) : null,
+        h('div', { class: 'btns' }, btn(t('analyseGame'), 'primary', function () {
+          state.analysis = { fen: d.fen0, moves: movesOf(d), cursor: movesOf(d).length, engine: true, panel: 'moves' }; state.duel = null; go('analysis');
+        }, 'chart'), btn(t('duelBack'), '', function () { state.duel = null; render(); }))));
+    }
+    tickI = setInterval(function () { if (d) drawClocks(); }, 250);
+    load();
+  }
+  HCC.openDuel = function (id) { state.duel = id; go('play'); render(); };
 
   // ---------------------------------------------------------------- analysis
   // ---------------------------------------------------------------- endgame tablebase (online, Lichess)
@@ -7672,6 +8108,19 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         h('span', { class: 'grow', text: l[1] }), store.data.lang === l[0] ? h('span', { class: 'pill', text: '✔' }) : null);
     })));
   }
+  /** "Are you sure?" before anything is deleted or taken away: a box over everything, Cancel is the default. */
+  function confirmBox(msg, okText, onYes) {
+    var bg = h('div', { class: 'cf-bg', role: 'alertdialog', 'aria-modal': 'true' });
+    function close() { bg.classList.add('closing'); setTimeout(function () { if (bg.parentNode) bg.parentNode.removeChild(bg); }, motionOn() ? 160 : 0); }
+    var cancel = btn(t('cancel'), '', close), ok = btn(okText || t('cfYes'), 'danger', function () { close(); onYes(); });
+    bg.appendChild(h('div', { class: 'cf-box' }, h('div', { class: 'cf-ic', text: '⚠️' }), h('p', { class: 'cf-msg', text: msg }), h('div', { class: 'btns cf-btns' }, cancel, ok)));
+    bg.addEventListener('click', function (e) { if (e.target === bg) close(); });
+    document.body.appendChild(bg);
+    try { cancel.focus(); } catch (e) { /* */ }
+  }
+  HCC.confirmBox = confirmBox;
+  /** Wraps a delete button's handler: asks first, then runs it. */
+  function askFirst(key, fn) { return function () { var el = this, args = arguments; confirmBox(t(key), t('cfYes'), function () { fn.apply(el, args); }); }; }
   function closeSheet() {
     if (!sheetEl) return;
     var el = sheetEl; sheetEl = null;
