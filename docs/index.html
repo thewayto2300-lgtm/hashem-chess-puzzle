@@ -1792,7 +1792,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   HCC.APP = {
     name: 'Hashem Chess Puzzle',
     academy: 'Hashem Chess Castle',      // the academy behind the app, shown on the About sheet
-    version: '2.3.0',
+    version: '2.3.1',
     // Academy contact details shown on the About sheet. Leave a field empty to hide it.
     facebook: 'https://www.facebook.com/profile.php?id=61569383516230',
     phone: '',
@@ -2226,6 +2226,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   var AUTH = mock ? decodeURIComponent(mock[1]) + '/auth' : 'https://identitytoolkit.googleapis.com/v1';
   var TOKEN = mock ? decodeURIComponent(mock[1]) + '/token' : 'https://securetoken.googleapis.com/v1/token';
   var DB = (mock ? decodeURIComponent(mock[1]) + '/fs' : 'https://firestore.googleapis.com/v1') + '/projects/' + CFG.projectId + '/databases/(default)/documents';
+  // Realtime Database: only for the moves of games being played (pushed to the other phone at once, no polling)
+  var RTDB = mock ? decodeURIComponent(mock[1]) + '/rt' : 'https://hashem-chess-castle-default-rtdb.europe-west1.firebasedatabase.app';
 
   function sess() { return store.data.cloud || null; }
   function errCode(j) { if (Array.isArray(j)) j = j[0]; return (j && j.error && (j.error.message || j.error.status)) || 'NETWORK'; }
@@ -2342,6 +2344,38 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       return req('PATCH', '/' + path + '?' + q.join('&') + '&currentDocument.exists=true', { fields: f }).then(docOut);
     },
     del: function (path) { return req('DELETE', '/' + path); },
+    live: {
+      on: function () { return !!RTDB && typeof EventSource === 'function'; },
+      patch: function (path, obj) {
+        return token().then(function (t) { return fetch(RTDB + '/' + path + '.json?auth=' + encodeURIComponent(t), { method: 'PATCH', body: JSON.stringify(obj) }); })
+          .then(function (r) { if (!r.ok) throw new Error('LIVE ' + r.status); return r.json(); });
+      },
+      del: function (path) { return token().then(function (t) { return fetch(RTDB + '/' + path + '.json?auth=' + encodeURIComponent(t), { method: 'DELETE' }); }); },
+      /** Server-sent events: onData(state) with the whole node every time it changes; onState('open'|'error'|'cancel'). */
+      listen: function (path, onData, onState) {
+        var es = null, closed = false, cur = {};
+        function set(p, v) {
+          if (p === '/' || !p) { cur = v && typeof v === 'object' ? v : {}; return; }
+          var ks = p.replace(/^\//, '').split('/'), o = cur;
+          for (var i = 0; i < ks.length - 1; i++) { if (!o[ks[i]] || typeof o[ks[i]] !== 'object') o[ks[i]] = {}; o = o[ks[i]]; }
+          if (v === null) delete o[ks[ks.length - 1]]; else o[ks[ks.length - 1]] = v;
+        }
+        function open() {
+          token().then(function (t) {
+            if (closed) return;
+            es = new EventSource(RTDB + '/' + path + '.json?auth=' + encodeURIComponent(t));
+            es.addEventListener('put', function (e) { var j = JSON.parse(e.data); set(j.path, j.data); onData(cur); });
+            es.addEventListener('patch', function (e) { var j = JSON.parse(e.data); for (var k in (j.data || {})) set((j.path === '/' ? '' : j.path) + '/' + k, j.data[k]); onData(cur); });
+            es.addEventListener('auth_revoked', function () { es.close(); if (!closed) open(); });
+            es.addEventListener('cancel', function () { es.close(); if (onState) onState('cancel'); });
+            es.onopen = function () { if (onState) onState('open'); };
+            es.onerror = function () { if (onState) onState('error'); };
+          }, function () { if (onState) onState('error'); });
+        }
+        open();
+        return { close: function () { closed = true; if (es) es.close(); } };
+      }
+    },
     /** Creates a document only if it does not exist yet (fails with ALREADY_EXISTS otherwise): the first phone wins. */
     create: function (path, obj) {
       var f = {}; for (var k in obj) f[k] = enc(obj[k]);
@@ -7166,9 +7200,34 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
   /** An online game: the side to move writes its move to the server; the other phone reads it. */
   function duelView() {
     var gid = state.duel, me = CL.uid(), T = timersBox(), pollT = null, tickI = null, d = null, chess = null, myC = 'w', shownN = -1, busyW = false, closed = false;
+    var live = null, liveOk = false, liveData = null, turnSince = Date.now();   // the moves arrive through the Realtime Database at once; Firestore is read now and then as a backup
     setTop({ title: t('duelTitle'), back: function () { if (d && d.tour) state.tour = d.tour; state.duel = null; render(); } });
-    state.cleanup = function () { closed = true; clearTimeout(pollT); clearInterval(tickI); T.clear(); };
+    state.cleanup = function () { closed = true; clearTimeout(pollT); clearInterval(tickI); T.clear(); if (live) live.close(); };
     var host = h('div'), board = new HCC.Board(host, { onMove: onUser });
+    var LIVE_KEYS = ['moves', 'wt', 'bt', 'last', 'status', 'result', 'why'];
+    HCC._duelLive = function () { return { live: !!live, ok: liveOk, data: liveData, busy: busyW }; };
+    function nMoves(x) { return x && x.moves ? x.moves.split(' ').length : 0; }
+    /** The newest of what Firestore said and what the live channel said. */
+    function merged(x) {
+      var o = {}; for (var k in x) o[k] = x[k];
+      var L = liveData;
+      if (L && (nMoves(L) > nMoves(o) || (nMoves(L) === nMoves(o) && L.result && !o.result) || (L.status === 'active' && o.status === 'pending'))) LIVE_KEYS.forEach(function (k) { if (L[k] !== undefined) o[k] = L[k]; });
+      if (d && nMoves(d) > nMoves(o) && !o.result) LIVE_KEYS.forEach(function (k) { o[k] = d[k]; });   // my own move is still on its way
+      return o;
+    }
+    function startLive() {
+      if (live || !CL.live.on() || !d || d.status === 'pending' || d.status === 'declined') return;
+      var m = {}; m[d.w] = true; m[d.b] = true;
+      CL.live.patch('live/' + gid, { m: m }).then(function () {
+        if (closed) return;
+        live = CL.live.listen('live/' + gid, function (data) {
+          liveData = data;
+          if (!d || busyW) return;
+          var nd = merged(d);
+          if (nMoves(nd) !== nMoves(d) || nd.result !== d.result || nd.status !== d.status) apply(nd);
+        }, function (st) { liveOk = st === 'open' || (liveOk && st !== 'cancel' && st !== 'error'); });
+      }, function () { /* no live channel: Firestore polling only */ });
+    }
     var topName = h('span', { class: 'grow gname' }), botName = h('span', { class: 'grow gname' }), topClock = h('span', { class: 'gclock' }), botClock = h('span', { class: 'gclock' });
     var statusEl = h('div', { class: 'status' }, h('span', { text: t('loading') })), btns = h('div', { class: 'btns' }), resultEl = h('div'), ruleEl = h('div');
     HCC._board = board;
@@ -7183,10 +7242,11 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       CL.get('games/' + gid).then(function (x) {
         if (closed) return;
         if (!x) { HCC.toast(t('duelGone')); state.duel = null; render(); return; }
-        apply(x);
+        apply(merged(x)); startLive();
       }, function () { poll(4000); });
     }
     function apply(x) {
+      if (!d || toMove(x) !== toMove(d)) turnSince = Date.now();
       d = x; myC = d.w === me ? 'w' : 'b';
       var mv = movesOf(d);
       if (!chess || mv.length !== shownN) {
@@ -7203,7 +7263,7 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       drawClocks();
       var res = d.result || d.status === 'done' ? { win: d.result === 'd' ? null : d.result || null, why: d.why } : null;
       HCC.clear(btns);
-      if (d.status === 'pending') { status(t('duelWaitingFor', { n: d[oc + 'n'] })); board.movable = null; board.paint(); poll(2500); return; }
+      if (d.status === 'pending') { status(t('duelWaitingFor', { n: d[oc + 'n'] })); board.movable = null; board.paint(); poll(1500); return; }
       if (d.status === 'declined') { status(t('duelDeclined')); board.movable = null; board.paint(); CL.del('games/' + gid).catch(function () {}); return; }
       if (res) return finish(res);
       var mine = toMove(d) === myC;
@@ -7214,7 +7274,9 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         btns.appendChild(btn(t('tourNoShow'), 'primary', askFirst('cfNoShow', function () { write({ status: 'done', result: myC, why: 'byNoShow' }); })));
       if (d.tname) statusEl.appendChild(h('span', { class: 'pill accent', text: '🏆 ' + d.tname }));
       btns.appendChild(btn(t('resign'), 'danger', askFirst('cfResign', function () { write({ status: 'done', result: oc, why: 'byResign' }); }), 'flag'));
-      poll(mine ? 5000 : 1500);
+      // backup polling: slow while the live channel works; without it, fast right after my move
+      var waited = Date.now() - turnSince;
+      poll(liveOk ? 6000 : mine ? 4000 : waited < 30000 ? 900 : waited < 120000 ? 1600 : 3000);
     }
     function status(text) { HCC.clear(statusEl); if (chess) statusEl.appendChild(h('span', { class: 'dot ' + (chess.turn === 0 ? 'w' : 'b') })); statusEl.appendChild(h('span', { class: 'grow', text: text })); if (d) statusEl.appendChild(h('span', { class: 'pill', text: tcName([d.tcM, d.tcI]) })); }
     function drawClocks() {
@@ -7226,7 +7288,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
       busyW = true;
       var nd = {}; for (var k in d) nd[k] = d[k]; for (k in f) nd[k] = f[k];
       apply(nd);
-      CL.update('games/' + gid, f).then(function () { busyW = false; poll(1500); }, function (e) { busyW = false; HCC.toast(t(CL.errKey(e))); poll(1000); });
+      if (live) { var lf = {}; LIVE_KEYS.forEach(function (k) { lf[k] = nd[k]; }); CL.live.patch('live/' + gid, lf).catch(function () {}); liveData = lf; }
+      CL.update('games/' + gid, f).then(function () { busyW = false; poll(liveOk ? 6000 : 900); }, function (e) { busyW = false; HCC.toast(t(CL.errKey(e))); poll(1000); });
     }
     function onUser(m) {
       if (!d || d.status !== 'active' || d.result || toMove(d) !== myC) return;
@@ -7250,7 +7313,8 @@ window.HCC_LOGO = { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABI
         tourResult(d, res);
         if (res.win === myC) HCC.celebrate(document.querySelector('.board-wrap')); else HCC.sfx('end');
         var seen = (d.seen || []).concat([me]);
-        if ((d.seen || []).length) CL.del('games/' + gid).catch(function () {}); else CL.update('games/' + gid, { seen: seen }).catch(function () {});
+        if ((d.seen || []).length) { CL.del('games/' + gid).catch(function () {}); if (CL.live.on()) CL.live.del('live/' + gid).catch(function () {}); } else CL.update('games/' + gid, { seen: seen }).catch(function () {});
+        if (live) { live.close(); live = null; }
       }
       var info = done[key], title = res.why === 'byAbort' ? t('duelAborted') : res.win === null ? t('draw') : t(res.win === myC ? 'youWin' : 'youLose');
       status(t('gameOver'));
