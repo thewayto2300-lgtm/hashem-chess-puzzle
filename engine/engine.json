@@ -1,0 +1,1 @@
+{"worker":"stockfish-19-single.js","fallback":"stockfish-19-lite-single.js","version":"Stockfish.js 19 (v19.0.1): the full build with the standard NNUE network; the lite build only as a fallback","source":"https://github.com/nmrugg/stockfish.js/releases/tag/v19.0.1","upstream":"https://github.com/official-stockfish/Stockfish","license":"GPL-3.0"}
